@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCBH Mission Map</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">GC</span>
+        <div>
+          <strong>MISSION MAP</strong>
+          <small>GCB Horizon scenario workspace</small>
+        </div>
+      </div>
+      <div class="scenario-controls">
+        <select id="scenario-select" aria-label="Scenario"></select>
+        <button id="browse-button" class="button secondary">Browse…</button>
+        <button id="reload-button" class="button secondary">Reload</button>
+        <span id="watch-status" class="status-dot">LIVE</span>
+      </div>
+      <button id="settings-button" class="button">Google Maps key</button>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar mission-panel">
+        <div class="eyebrow">MISSION OVERVIEW</div>
+        <h1 id="mission-name">Select a scenario</h1>
+        <div id="mission-meta" class="meta-line"></div>
+        <p id="mission-description" class="description"></p>
+
+        <div class="section-heading">
+          <span>ORDER OF BATTLE</span>
+          <span id="unit-count" class="count-pill">0</span>
+        </div>
+        <div id="unit-list" class="unit-list"></div>
+      </aside>
+
+      <section class="map-shell">
+        <div id="map"></div>
+        <div id="map-placeholder" class="map-placeholder">
+          <div class="radar-grid"></div>
+          <div class="placeholder-copy">
+            <span class="eyebrow">MAP OFFLINE</span>
+            <h2>Add a restricted Google Maps key</h2>
+            <p>The mission can still be parsed and checked against the GCBH safe-water mask.</p>
+            <button id="placeholder-key-button" class="button">Configure key</button>
+          </div>
+        </div>
+        <div class="map-tools">
+          <label><input id="toggle-mask" type="checkbox" checked> GCBH safe-water mask</label>
+          <label><input id="toggle-land" type="checkbox" checked> Real coastline</label>
+          <label><input id="toggle-routes" type="checkbox" checked> Routes</label>
+          <label><input id="toggle-satellite" type="checkbox"> Satellite</label>
+        </div>
+        <div id="map-legend" class="map-legend">
+          <span><i class="legend-dot blue"></i>Blue</span>
+          <span><i class="legend-dot red"></i>Red</span>
+          <span><i class="legend-coast"></i>Real coast</span>
+          <span><i class="legend-line"></i>Planned route</span>
+        </div>
+      </section>
+
+      <aside class="sidebar audit-panel">
+        <div class="eyebrow">COORDINATE AUDIT</div>
+        <div class="coordinate-card">
+          <span>SetPosition detected as</span>
+          <strong id="coordinate-order">—</strong>
+          <small id="coordinate-reason"></small>
+        </div>
+        <div class="data-card">
+          <span>REAL-WORLD LAND DATA</span>
+          <strong id="land-data-status">Loading…</strong>
+          <small>Natural Earth 1:10m land + minor islands</small>
+        </div>
+
+        <label class="field-label" for="clearance-select">Required mask clearance</label>
+        <select id="clearance-select">
+          <option value="0.5">0.5 nautical miles</option>
+          <option value="1" selected>1 nautical mile</option>
+          <option value="3">3 nautical miles</option>
+          <option value="5">5 nautical miles</option>
+        </select>
+
+        <div class="audit-actions">
+          <button id="validate-button" class="button wide">Run full local comparison</button>
+          <button id="elevation-button" class="button secondary wide">Check Google elevation</button>
+          <button id="fix-button" class="button fix wide" disabled>Fix scenario (0)</button>
+          <button id="edit-mode-button" class="button secondary wide">Edit coordinates manually</button>
+          <div id="manual-actions" class="manual-actions" hidden>
+            <button id="save-manual-button" class="button wide" disabled>Save manual edits (0)</button>
+            <button id="discard-edits-button" class="button secondary wide">Discard edits</button>
+          </div>
+          <div id="edit-status" class="edit-status" aria-live="polite"></div>
+        </div>
+
+        <div class="section-heading">
+          <span>FINDINGS</span>
+          <span id="finding-count" class="count-pill">0</span>
+        </div>
+        <div id="finding-list" class="finding-list"></div>
+        <p class="audit-note">The hand-authored mask predicts GCBH navigability. Google elevation is a secondary real-world check and can be imprecise along coastlines.</p>
+      </aside>
+    </main>
+
+    <dialog id="settings-dialog">
+      <form method="dialog" id="settings-form">
+        <div class="eyebrow">LOCAL CONFIGURATION</div>
+        <h2>Google Maps API key</h2>
+        <p>Use a newly generated key restricted to Maps JavaScript API, Elevation API, and <code>http://127.0.0.1:43117/*</code>. The previously shared key should be revoked.</p>
+        <label for="api-key">API key</label>
+        <input id="api-key" type="password" autocomplete="off" placeholder="Paste regenerated key">
+        <div id="settings-message" class="settings-message"></div>
+        <div class="dialog-actions">
+          <button value="cancel" class="button secondary">Cancel</button>
+          <button id="save-key-button" value="default" class="button">Save encrypted key</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

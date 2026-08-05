@@ -1,0 +1,26 @@
+# Dependencies and build output
+node_modules/
+dist/
+*.log
+
+# Local Python artifacts
+__pycache__/
+*.py[cod]
+
+# Mission Map safety backups and local configuration
+scenarios/_backups/
+.env
+.env.*
+!.env.example
+settings.json
+
+# Local game/database files
+*.db
+*.db-shm
+*.db-wal
+
+# Operating-system and editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

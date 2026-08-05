@@ -1,0 +1,59 @@
+{
+  "theater_id": "hormuz_mvp",
+  "name": "Strait of Hormuz MVP Safe Water",
+  "notes": [
+    "This is a conservative hand-authored navigable-water mask for the current campaign area.",
+    "It is intentionally biased toward keeping ships well clear of coastlines rather than maximizing route freedom.",
+    "Coordinates use lon, lat ordering."
+  ],
+  "surface_classes": [
+    "Fort Victoria AOR",
+    "Arleigh Burke IIA DDGHM",
+    "Cyclone PBFM",
+    "Type 45 DDG",
+    "Henry J Kaiser",
+    "Lewis and Clark",
+    "Legend WMSL",
+    "Kaman FACM"
+  ],
+  "safe_water_polygons": [
+    {
+      "name": "Gulf of Oman Main",
+      "points": [
+        [58.40, 25.15],
+        [58.55, 25.75],
+        [58.35, 26.45],
+        [57.85, 26.78],
+        [57.15, 26.88],
+        [56.65, 26.74],
+        [56.45, 26.42],
+        [56.52, 25.95],
+        [56.95, 25.45],
+        [57.65, 25.15]
+      ]
+    },
+    {
+      "name": "Strait Center Lane",
+      "points": [
+        [56.62, 25.98],
+        [56.95, 26.05],
+        [57.00, 26.35],
+        [56.80, 26.58],
+        [56.45, 26.55],
+        [56.28, 26.30],
+        [56.34, 26.05]
+      ]
+    },
+    {
+      "name": "Eastern Rendezvous Box",
+      "points": [
+        [57.55, 25.40],
+        [58.25, 25.45],
+        [58.30, 26.10],
+        [57.95, 26.45],
+        [57.35, 26.35],
+        [57.30, 25.70]
+      ]
+    }
+  ]
+}

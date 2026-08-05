@@ -1,0 +1,760 @@
+{
+  "campaign_id": "indian_ocean_hormuz_mvp",
+  "campaign_name": "Indian Ocean Escalation",
+  "version": 2,
+  "current_time_local": "2026-05-21T22:00:00+04:00",
+  "time_zone": "Asia/Muscat",
+  "turn": 2,
+  "state_basis": "assumed_outcome_after_operation_gate_latch_with_follow_on_escalation",
+  "notes": [
+    "This is an MVP persistent campaign state maintained outside GCBH scenario files.",
+    "The force picture now reflects a realistic short-horizon escalation over the next several hours, not a full theater mobilization.",
+    "Timed goals are no longer part of scenario design intent. Survival and destruction goals only."
+  ],
+  "logistics_rules_mvp": {
+    "fuel_state_bands_pct": {
+      "green": "70-100",
+      "amber": "40-69",
+      "red": "0-39"
+    },
+    "structural_state_bands_pct": {
+      "operational": "85-100",
+      "damaged": "60-84",
+      "crippled": "30-59",
+      "lost": "0-29"
+    },
+    "repair_policy": {
+      "emergency_repair_hours": "Temporary at-sea stabilization only. Restores limited mobility or damage control, not full combat power.",
+      "pier_side_repair_hours": "Requires secure port, parts, and work teams.",
+      "full_reconstitution_days": "May require withdrawal from the immediate operational area."
+    }
+  },
+  "sides": {
+    "blue": {
+      "summary": {
+        "operational_picture": "Blue retains tactical control of the withdrawal corridor but has lost operational tempo. The damaged logistics ship now dictates the pace of events.",
+        "next_intent": "Screen the damaged auxiliary, absorb reinforcements, build local air and missile defense, and restore enough sustainment capacity to re-enter the Strait later."
+      },
+      "theater_logistics": {
+        "fuel_points": 118,
+        "ordnance_points": 101,
+        "repair_capacity_points": 74,
+        "air_sortie_capacity_next_24h": 20,
+        "comment": "Blue can reinforce quickly at sea and in the air, but heavy repair remains the pacing constraint."
+      },
+      "units": [
+        {
+          "unit_name": "RFA Fort Victoria",
+          "platform_class": "Fort Victoria AOR",
+          "status": "damaged",
+          "mission_capable": true,
+          "structural_integrity_pct": 62,
+          "speed_limit_kts": 10,
+          "readiness_pct": 48,
+          "crew_fatigue_pct": 41,
+          "fuel_pct": 71,
+          "ammo_pct": 100,
+          "current_location": "Gulf of Oman withdrawal lane",
+          "damage": [
+            "Starboard topside damage",
+            "Flight deck temporarily unavailable",
+            "Replenishment rig offline",
+            "Flooding contained"
+          ],
+          "repair": {
+            "emergency_hours_remaining": 10,
+            "pier_side_hours_required": 96,
+            "full_reconstitution_days": 8,
+            "port_required": true
+          },
+          "logistics": {
+            "fuel_transfer_capable": false,
+            "helo_ops_capable": false,
+            "underway_replenishment_capable": false,
+            "daily_upkeep_points": 6
+          }
+        },
+        {
+          "unit_name": "USS Mason",
+          "platform_class": "Arleigh Burke IIA DDGHM",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 94,
+          "speed_limit_kts": 30,
+          "readiness_pct": 86,
+          "crew_fatigue_pct": 28,
+          "fuel_pct": 82,
+          "ammo_pct": 78,
+          "current_location": "Primary escort screen",
+          "damage": [
+            "Minor splinter damage"
+          ],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 10,
+            "full_reconstitution_days": 1,
+            "port_required": false
+          },
+          "logistics": {
+            "helo_ops_capable": true,
+            "vls_rearm_required": false,
+            "sonobuoy_stock_state": "amber",
+            "daily_upkeep_points": 5
+          }
+        },
+        {
+          "unit_name": "USS Tempest",
+          "platform_class": "Cyclone PBFM",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 89,
+          "speed_limit_kts": 30,
+          "readiness_pct": 73,
+          "crew_fatigue_pct": 46,
+          "fuel_pct": 61,
+          "ammo_pct": 68,
+          "current_location": "Close escort screen",
+          "damage": [
+            "Light superficial damage"
+          ],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 8,
+            "full_reconstitution_days": 1,
+            "port_required": false
+          },
+          "logistics": {
+            "sea_state_penalty": "moderate",
+            "daily_upkeep_points": 2
+          }
+        },
+        {
+          "unit_name": "HMS Diamond",
+          "platform_class": "Type 45 DDG",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 29,
+          "readiness_pct": 96,
+          "crew_fatigue_pct": 12,
+          "fuel_pct": 93,
+          "ammo_pct": 100,
+          "current_location": "Reinforcement axis south of convoy",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "helo_ops_capable": true,
+            "area_air_defense_ready": true,
+            "daily_upkeep_points": 5
+          }
+        },
+        {
+          "unit_name": "USS Chosin",
+          "platform_class": "Ticonderoga CG Baseline 4",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 30,
+          "readiness_pct": 92,
+          "crew_fatigue_pct": 15,
+          "fuel_pct": 88,
+          "ammo_pct": 100,
+          "current_location": "Closing from eastern support station",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "area_air_defense_ready": true,
+            "strike_load_retained": true,
+            "daily_upkeep_points": 6
+          }
+        },
+        {
+          "unit_name": "USNS John Ericsson",
+          "platform_class": "Henry J Kaiser",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 20,
+          "readiness_pct": 95,
+          "crew_fatigue_pct": 15,
+          "fuel_pct": 100,
+          "ammo_pct": 0,
+          "current_location": "Rendezvous support track",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "fuel_transfer_capable": true,
+            "stores_transfer_capable": false,
+            "daily_upkeep_points": 4
+          }
+        },
+        {
+          "unit_name": "USNS Amelia Earhart",
+          "platform_class": "Lewis and Clark",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 20,
+          "readiness_pct": 94,
+          "crew_fatigue_pct": 11,
+          "fuel_pct": 100,
+          "ammo_pct": 100,
+          "current_location": "Logistics package inbound from east",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "fuel_transfer_capable": false,
+            "stores_transfer_capable": true,
+            "damage_control_supplies": "high",
+            "daily_upkeep_points": 4
+          }
+        },
+        {
+          "unit_name": "USCGC Stone",
+          "platform_class": "Legend WMSL",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 28,
+          "readiness_pct": 88,
+          "crew_fatigue_pct": 18,
+          "fuel_pct": 90,
+          "ammo_pct": 100,
+          "current_location": "Secondary screen and visit-board-search posture",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "boarding_capable": true,
+            "surface_search_contribution": "medium",
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Tiger Flight",
+          "platform_class": "F/A-18F",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 83,
+          "crew_fatigue_pct": 24,
+          "fuel_pct": 74,
+          "ammo_pct": 82,
+          "current_location": "Carrier or expeditionary support orbit, off-map",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "sorties_available_next_12h": 4,
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Lancer Flight",
+          "platform_class": "F-15E",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 91,
+          "crew_fatigue_pct": 16,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Long-range strike strip, off-map",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "sorties_available_next_12h": 4,
+            "anti_ship_tasking_ready": true,
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Sentinel",
+          "platform_class": "E-2C",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 89,
+          "crew_fatigue_pct": 17,
+          "fuel_pct": 81,
+          "ammo_pct": 0,
+          "current_location": "AEW orbit east of engagement area",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "sorties_available_next_12h": 2,
+            "battle_management_value": "high",
+            "daily_upkeep_points": 2
+          }
+        },
+        {
+          "unit_name": "Shell 1",
+          "platform_class": "KC-135R",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 14,
+          "fuel_pct": 100,
+          "ammo_pct": 0,
+          "current_location": "Tanker orbit east of Musandam",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "sorties_available_next_12h": 2,
+            "fuel_offload_state": "high",
+            "daily_upkeep_points": 2
+          }
+        },
+        {
+          "unit_name": "Broadarrow",
+          "platform_class": "P-8 MPA",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 87,
+          "crew_fatigue_pct": 20,
+          "fuel_pct": 83,
+          "ammo_pct": 64,
+          "current_location": "Maritime patrol box over Gulf of Oman",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "sorties_available_next_12h": 2,
+            "surface_search_value": "high",
+            "daily_upkeep_points": 2
+          }
+        }
+      ]
+    },
+    "red": {
+      "summary": {
+        "operational_picture": "Red failed to stop the convoy outright but has imposed an operational pause. The immediate aim is to keep Blue cautious, keep the coastal threat alive, and exploit Blue's stretched logistics posture.",
+        "next_intent": "Mass additional coastal defense, push surviving fast attack craft back into the fight, and create enough air and missile threat to delay Blue from resetting the initiative."
+      },
+      "theater_logistics": {
+        "fuel_points": 92,
+        "ordnance_points": 86,
+        "repair_capacity_points": 61,
+        "coastal_missile_salvo_capacity_next_24h": 2,
+        "comment": "Red can reinforce locally over the next several hours with shore systems and short-range naval assets faster than with major blue-water units."
+      },
+      "units": [
+        {
+          "unit_name": "Peykan",
+          "platform_class": "Kaman FACM",
+          "status": "destroyed",
+          "mission_capable": false,
+          "structural_integrity_pct": 0,
+          "speed_limit_kts": 0,
+          "readiness_pct": 0,
+          "crew_fatigue_pct": 0,
+          "fuel_pct": 0,
+          "ammo_pct": 0,
+          "current_location": "Sunk during Scenario 1",
+          "damage": [
+            "Total loss"
+          ],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 999,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 0
+          }
+        },
+        {
+          "unit_name": "Joshan",
+          "platform_class": "Kaman FACM",
+          "status": "damaged",
+          "mission_capable": false,
+          "structural_integrity_pct": 57,
+          "speed_limit_kts": 12,
+          "readiness_pct": 25,
+          "crew_fatigue_pct": 52,
+          "fuel_pct": 43,
+          "ammo_pct": 35,
+          "current_location": "Inshore repair berth",
+          "damage": [
+            "Main gun degraded",
+            "Engineering casualty"
+          ],
+          "repair": {
+            "emergency_hours_remaining": 7,
+            "pier_side_hours_required": 28,
+            "full_reconstitution_days": 3,
+            "port_required": true
+          },
+          "logistics": {
+            "daily_upkeep_points": 2
+          }
+        },
+        {
+          "unit_name": "Khanjar",
+          "platform_class": "Kaman FACM",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 88,
+          "speed_limit_kts": 30,
+          "readiness_pct": 74,
+          "crew_fatigue_pct": 37,
+          "fuel_pct": 58,
+          "ammo_pct": 72,
+          "current_location": "Forward intercept station",
+          "damage": [
+            "Light shrapnel damage"
+          ],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 6,
+            "full_reconstitution_days": 1,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2
+          }
+        },
+        {
+          "unit_name": "Falakhon",
+          "platform_class": "Kaman FACM",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 30,
+          "readiness_pct": 88,
+          "crew_fatigue_pct": 18,
+          "fuel_pct": 92,
+          "ammo_pct": 100,
+          "current_location": "Reserve FAC committed seaward",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2
+          }
+        },
+        {
+          "unit_name": "Shamshir",
+          "platform_class": "Kaman FACM",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 30,
+          "readiness_pct": 82,
+          "crew_fatigue_pct": 22,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Secondary reserve flotilla",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2
+          }
+        },
+        {
+          "unit_name": "Bastion 1",
+          "platform_class": "K-300P Bastion-P",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 91,
+          "speed_limit_kts": 0,
+          "readiness_pct": 79,
+          "crew_fatigue_pct": 16,
+          "fuel_pct": 100,
+          "ammo_pct": 50,
+          "current_location": "Primary northern coast missile site",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "salvos_remaining": 1,
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Bastion 2",
+          "platform_class": "K-300P Bastion-P",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 86,
+          "crew_fatigue_pct": 8,
+          "fuel_pct": 100,
+          "ammo_pct": 100,
+          "current_location": "Freshly activated inland reserve site",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "salvos_remaining": 1,
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Pantsir 1",
+          "platform_class": "Pantsir-S1",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 91,
+          "crew_fatigue_pct": 9,
+          "fuel_pct": 100,
+          "ammo_pct": 100,
+          "current_location": "Battery point defense site 1",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2
+          }
+        },
+        {
+          "unit_name": "Pantsir 2",
+          "platform_class": "Pantsir-S1",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 93,
+          "crew_fatigue_pct": 7,
+          "fuel_pct": 100,
+          "ammo_pct": 100,
+          "current_location": "Battery point defense site 2",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2
+          }
+        },
+        {
+          "unit_name": "S-300 Site North",
+          "platform_class": "S-300PMU-2",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 88,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 100,
+          "ammo_pct": 100,
+          "current_location": "Northern integrated air defense sector",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 4
+          }
+        },
+        {
+          "unit_name": "Coastwatch 1",
+          "platform_class": "Generic Radar Post 170",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 95,
+          "crew_fatigue_pct": 6,
+          "fuel_pct": 100,
+          "ammo_pct": 0,
+          "current_location": "Static coastal radar line",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "sensor_value": "medium",
+            "daily_upkeep_points": 1
+          }
+        },
+        {
+          "unit_name": "Coastwatch 2",
+          "platform_class": "Generic Mobile Radar Post 170",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 89,
+          "crew_fatigue_pct": 9,
+          "fuel_pct": 100,
+          "ammo_pct": 0,
+          "current_location": "Mobile cueing site covering strait approaches",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "sensor_value": "medium",
+            "daily_upkeep_points": 1
+          }
+        },
+        {
+          "unit_name": "Bandar Abbas Strip",
+          "platform_class": "Airstrip",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 82,
+          "crew_fatigue_pct": 21,
+          "fuel_pct": 84,
+          "ammo_pct": 77,
+          "current_location": "Northern shore air dispersal site",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "sortie_generation_value": "medium",
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Phantom Flight",
+          "platform_class": "F-4E",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 64,
+          "crew_fatigue_pct": 29,
+          "fuel_pct": 72,
+          "ammo_pct": 68,
+          "current_location": "Bandar Abbas area alert posture",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 10,
+            "full_reconstitution_days": 1,
+            "port_required": false
+          },
+          "logistics": {
+            "sorties_available_next_12h": 2,
+            "daily_upkeep_points": 3
+          }
+        }
+      ]
+    }
+  },
+  "scenario_history": [
+    {
+      "scenario_id": "gate_latch_draft_001",
+      "scenario_name": "Operation Gate Latch",
+      "result_assumption": "Blue tactical success, convoy turned back east, one Iranian FAC destroyed, one coalition logistics ship damaged.",
+      "time_ended_local": "2026-05-21T14:00:00+04:00"
+    }
+  ],
+  "escalation_assessment_next_6h": {
+    "blue": [
+      "Additional escort air-defense capacity arrives faster than heavy repair capacity.",
+      "A second logistics ship and a fleet oiler can enter the support picture within hours.",
+      "Maritime patrol and AEW coverage increase before land-attack operations do."
+    ],
+    "red": [
+      "Additional coastal missiles, radar cueing, and short-range air defense can be activated quickly.",
+      "FAC reinforcements and re-sorts are more realistic than major surface combatant intervention.",
+      "Local interceptor and strike sorties from nearby airstrips are plausible but should remain limited."
+    ]
+  },
+  "next_scenario_seed": {
+    "scenario_id": "iron_shelter_draft_003",
+    "scenario_name": "Operation Iron Shelter",
+    "premise": "Blue tries to hold a logistics handoff and operational reset east of Hormuz while multiple concurrent air, sea, and coastal-defense missions unfold across the battlespace.",
+    "scenario_file": "scenarios/operation_iron_shelter.py"
+  }
+}
