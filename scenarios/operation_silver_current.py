@@ -15,7 +15,7 @@ Red has committed a third fast-attack craft, a second coastal missile section, l
     d['thumb'] = 'CarrierStrike.png'
     d['date'] = 'May 2026'
     d['unitCount'] = 27
-    d['scenarioId'] = 'silver_current_002'
+    d['scenarioId'] = 'silver_current_003'
     return d
 
 
@@ -46,7 +46,9 @@ RFA Fort Victoria has been stabilized, but the relocation is no longer a limited
 
 <color=#00a8ff>FRIENDLY FORCES</color>
 
-USS Mason, HMS Diamond, and USS Chosin form the principal escort; USS Tempest and USCGC Stone cover the inshore and outer surface sectors. RFA Fort Victoria, USNS John Ericsson, and USNS Amelia Earhart form the support group. Sentinel and Broadarrow maintain the air and maritime picture while Tiger and Lancer flights operate beneath Shell 1 tanker support.
+RFA Fort Victoria, USNS John Ericsson, and USNS Amelia Earhart form the support group and will continue southeast. USS Mason, HMS Diamond, and USS Chosin are turning northwest to establish a blocking screen. USS Tempest and USCGC Stone will converge on the Strait interception lane.
+
+Sentinel maintains the protected eastern air picture, Broadarrow patrols the maritime approaches, Tiger flight establishes CAP over the surface screen, and Lancer flight attacks the coastal missile and cueing network. Shell 1 remains southeast on the tanker track.
 
 <color=#00a8ff>THREAT</color>
 
@@ -54,7 +56,7 @@ Khanjar, Falakhon, and Shamshir are converging from the northwest. Two Bastion s
 
 <color=#00a8ff>MISSION</color>
 
-Preserve all three logistics ships, destroy the three hostile fast-attack craft, and eliminate at least two critical nodes in the coastal attack network so the support corridor remains usable.""")
+Execute a fighting counter-move: preserve all three logistics ships, destroy the three hostile fast-attack craft, and eliminate at least two critical nodes in the coastal attack network so the support corridor remains usable. The combatants are not to follow the support group east unless forced to disengage.""")
 
     SM.SetSimpleBriefing(2, """Red is not playable in this scenario.""")
 
@@ -66,7 +68,7 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     unit.className = 'Fort Victoria AOR'
     unit.unitName = 'RFA Fort Victoria'
     unit.SetPosition(26.000000, 56.950000, 0.0)
-    unit.heading = 108.00
+    unit.heading = 160.00
     unit.speed = 9.0
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
@@ -85,7 +87,7 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     unit.className = 'Arleigh Burke IIA DDGHM'
     unit.unitName = 'USS Mason'
     unit.SetPosition(26.090000, 56.820000, 0.0)
-    unit.heading = 108.00
+    unit.heading = 300.00
     unit.speed = 18.0
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
@@ -124,15 +126,14 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI.AddTask('Ship1', 2.000000, 3)
     UI.AddTask('ShipDefense', 4.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(25.820110, 57.149290, 0.000000, 0.000000)
-    UI.add_waypoint_advanced(25.691494, 57.276910, 0.000000, 0.000000)
-    UI.add_waypoint_advanced(25.523748, 57.605330, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(26.140000, 56.700000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(26.200000, 56.620000, 0.000000, 0.000000)
 
     unit = SM.GetDefaultUnit()
     unit.className = 'Cyclone PBFM'
     unit.unitName = 'USS Tempest'
     unit.SetPosition(25.900000, 57.040000, 0.0)
-    unit.heading = 105.00
+    unit.heading = 318.00
     unit.speed = 20.0
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
@@ -150,15 +151,15 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI.AddTask('Ship1', 2.000000, 3)
     UI.AddTask('ShipDefense', 3.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(25.727746, 57.148242, 0.000000, 0.000000)
-    UI.add_waypoint_advanced(25.570183, 57.352143, 0.000000, 0.000000)
-    UI.add_waypoint_advanced(25.393291, 57.660356, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(26.020000, 56.920000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(26.130000, 56.780000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(26.200000, 56.650000, 0.000000, 0.000000)
 
     unit = SM.GetDefaultUnit()
     unit.className = 'Type 45 DDG'
     unit.unitName = 'HMS Diamond'
     unit.SetPosition(25.500000, 57.250000, 0.0)
-    unit.heading = 350.00
+    unit.heading = 340.00
     unit.speed = 22.0
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
@@ -178,14 +179,15 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI.AddTask('Ship1', 2.000000, 3)
     UI.AddTask('ShipDefense', 4.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(25.430552, 57.326866, 0.000000, 0.000000)
-    UI.add_waypoint_advanced(25.169596, 57.626208, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(25.750000, 57.150000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(25.950000, 56.980000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(26.100000, 56.820000, 0.000000, 0.000000)
 
     unit = SM.GetDefaultUnit()
     unit.className = 'Henry J Kaiser'
     unit.unitName = 'USNS John Ericsson'
     unit.SetPosition(25.632682, 57.545981, 0.0)
-    unit.heading = 280.00
+    unit.heading = 140.00
     unit.speed = 14.0
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
@@ -200,7 +202,7 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     unit.className = 'Ticonderoga CG Baseline 4'
     unit.unitName = 'USS Chosin'
     unit.SetPosition(25.580000, 57.500000, 0.0)
-    unit.heading = 112.00
+    unit.heading = 250.00
     unit.speed = 18.0
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
@@ -208,14 +210,15 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI.AddTask('Ship1', 2.000000, 3)
     UI.AddTask('ShipDefense', 4.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(25.450000, 57.800000, 0.000000, 0.000000)
-    UI.add_waypoint_advanced(25.500000, 58.100000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(25.500000, 57.250000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(25.750000, 57.150000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(25.950000, 56.980000, 0.000000, 0.000000)
 
     unit = SM.GetDefaultUnit()
     unit.className = 'Lewis and Clark'
     unit.unitName = 'USNS Amelia Earhart'
     unit.SetPosition(25.460000, 57.750000, 0.0)
-    unit.heading = 72.00
+    unit.heading = 105.00
     unit.speed = 15.0
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
@@ -228,8 +231,8 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     unit = SM.GetDefaultUnit()
     unit.className = 'Legend WMSL'
     unit.unitName = 'USCGC Stone'
-    unit.SetPosition(25.720000, 57.450000, 0.0)
-    unit.heading = 105.00
+    unit.SetPosition(25.689800, 57.395841, 0.0)
+    unit.heading = 225.00
     unit.speed = 20.0
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
@@ -237,9 +240,9 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI.AddTask('Ship1', 2.000000, 3)
     UI.AddTask('ShipDefense', 3.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(25.500000, 57.600000, 0.000000, 0.000000)
-    UI.add_waypoint_advanced(25.450000, 57.900000, 0.000000, 0.000000)
-    UI.add_waypoint_advanced(25.500000, 58.220000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(25.550000, 57.250000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(25.750000, 57.150000, 0.000000, 0.000000)
+    UI.add_waypoint_advanced(25.950000, 56.980000, 0.000000, 0.000000)
 
     unit = SM.GetDefaultUnit()
     unit.className = 'E-2D'
@@ -253,9 +256,9 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI = SM.GetUnitInterface(unit.unitName)
     UI.AddTask('Aircraft1', 2.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(25.720000, 57.780000, 8500.000000, 260.000000)
-    UI.add_waypoint_advanced(25.900000, 57.520000, 8500.000000, 260.000000)
-    UI.add_waypoint_advanced(25.820000, 57.960000, 8500.000000, 260.000000)
+    UI.add_waypoint_advanced(25.700000, 57.950000, 8500.000000, 260.000000)
+    UI.add_waypoint_advanced(25.900000, 57.750000, 8500.000000, 260.000000)
+    UI.add_waypoint_advanced(25.750000, 58.150000, 8500.000000, 260.000000)
     UI.SetNavLoopState(True)
 
     unit = SM.GetDefaultUnit()
@@ -289,9 +292,10 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI.AddTask('AutoAttack', 3.000000, 0)
     UI.AddTask('AirEvade', 4.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(25.960000, 57.680000, 7800.000000, 360.000000)
-    UI.add_waypoint_advanced(26.120000, 57.280000, 7800.000000, 360.000000)
-    UI.add_waypoint_advanced(26.020000, 57.860000, 7800.000000, 360.000000)
+    UI.add_waypoint_advanced(26.050000, 57.350000, 7800.000000, 360.000000)
+    UI.add_waypoint_advanced(26.150000, 56.950000, 7800.000000, 360.000000)
+    UI.add_waypoint_advanced(26.300000, 56.750000, 7800.000000, 360.000000)
+    UI.add_waypoint_advanced(26.050000, 57.350000, 7800.000000, 360.000000)
     UI.SetNavLoopState(True)
 
     unit = SM.GetDefaultUnit()
@@ -308,9 +312,10 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI.AddTask('AutoAttack', 3.000000, 0)
     UI.AddTask('AirEvade', 4.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(25.940000, 57.720000, 7800.000000, 360.000000)
-    UI.add_waypoint_advanced(26.100000, 57.240000, 7800.000000, 360.000000)
-    UI.add_waypoint_advanced(26.000000, 57.900000, 7800.000000, 360.000000)
+    UI.add_waypoint_advanced(25.980000, 57.400000, 7800.000000, 360.000000)
+    UI.add_waypoint_advanced(26.100000, 57.000000, 7800.000000, 360.000000)
+    UI.add_waypoint_advanced(26.250000, 56.820000, 7800.000000, 360.000000)
+    UI.add_waypoint_advanced(25.980000, 57.400000, 7800.000000, 360.000000)
     UI.SetNavLoopState(True)
 
     unit = SM.GetDefaultUnit()
@@ -327,9 +332,9 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI.AddTask('AutoAttack', 3.000000, 0)
     UI.AddTask('AirEvade', 4.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(26.350000, 57.100000, 6800.000000, 420.000000)
-    UI.add_waypoint_advanced(26.520000, 56.760000, 6800.000000, 420.000000)
-    UI.add_waypoint_advanced(26.260000, 57.480000, 6800.000000, 420.000000)
+    UI.add_waypoint_advanced(26.550000, 57.100000, 6800.000000, 420.000000)
+    UI.add_waypoint_advanced(26.835440, 56.333700, 6800.000000, 420.000000)
+    UI.add_waypoint_advanced(26.200000, 57.480000, 6800.000000, 420.000000)
 
     unit = SM.GetDefaultUnit()
     unit.className = 'F-15E'
@@ -345,9 +350,9 @@ Preserve all three logistics ships, destroy the three hostile fast-attack craft,
     UI.AddTask('AutoAttack', 3.000000, 0)
     UI.AddTask('AirEvade', 4.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
-    UI.add_waypoint_advanced(26.280000, 57.180000, 6800.000000, 420.000000)
-    UI.add_waypoint_advanced(26.460000, 56.820000, 6800.000000, 420.000000)
-    UI.add_waypoint_advanced(26.220000, 57.520000, 6800.000000, 420.000000)
+    UI.add_waypoint_advanced(26.650000, 57.250000, 6800.000000, 420.000000)
+    UI.add_waypoint_advanced(27.036039, 56.865368, 6800.000000, 420.000000)
+    UI.add_waypoint_advanced(26.250000, 57.550000, 6800.000000, 420.000000)
 
     unit = SM.GetDefaultUnit()
     unit.className = 'KC-135R'
