@@ -43,10 +43,17 @@ def CreateScenario(SM):
     unit.unitName = 'Alpha'
     unit.SetPosition(26.1, 56.9, 0)
     SM.AddUnitToAlliance(unit, 1)
+    SM.SetUnitLauncherItem(unit.unitName, 2, 'Test Missile', 4)
     UI.AddTask('Ship1', 2.0, 3)
+    UI.AddTask('AutoAttack', 3.0, 0)
     UI.add_waypoint_advanced(26.2, 57.0, 0, 12)
   `);
   assert.equal(parsed.units[0].allianceName, 'Blue');
   assert.equal(parsed.units[0].domain, 'surface');
   assert.equal(parsed.units[0].waypoints.length, 1);
+  assert.deepEqual(parsed.units[0].tasks, ['Ship1', 'AutoAttack']);
+  assert.deepEqual(
+    { ...parsed.units[0].launcherItems[0], sourceLine: undefined },
+    { launcherId: 2, item: 'Test Missile', quantity: 4, sourceLine: undefined },
+  );
 });

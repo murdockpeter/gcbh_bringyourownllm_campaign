@@ -11,7 +11,7 @@ const theaterPath = path.join(projectRoot, 'theaters', 'hormuz_mvp.json');
 const landPath = path.resolve(__dirname, '..', 'renderer', 'data', 'hormuz-land.geojson');
 
 async function main() {
-  const { buildLandIndex, validateMission, validateRealWorld } = await import(
+  const { buildLandIndex, validateAircraftLoadouts, validateMission, validateRealWorld } = await import(
     pathToFileURL(path.resolve(__dirname, '..', 'renderer', 'geometry.js'))
   );
   const theater = JSON.parse(fs.readFileSync(theaterPath, 'utf8'));
@@ -29,7 +29,7 @@ async function main() {
     const maskFindings = validateMission(scenario, theater, 1)
       .map((finding) => ({ source: 'GCBH mask', ...finding }));
     const realFindings = validateRealWorld(scenario, theater, landIndex, 1);
-    const findings = [...maskFindings, ...realFindings];
+    const findings = [...maskFindings, ...realFindings, ...validateAircraftLoadouts(scenario)];
     const errors = findings.filter((finding) => finding.severity === 'error');
     errorCount += errors.length;
     console.log(`\n${path.basename(scenarioPath)}: ${errors.length} errors, ${findings.length - errors.length} warnings/info`);

@@ -9,6 +9,7 @@ import {
   pointInLand,
   pointInPolygon,
   sampleSegment,
+  validateAircraftLoadouts,
   validateMission,
   validateRealWorld,
 } from '../renderer/geometry.js';
@@ -48,6 +49,17 @@ test('flags a surface route that exits safe water', () => {
     }],
   }, theater, 1);
   assert.ok(findings.some((finding) => finding.message.includes('exits')));
+});
+
+test('requires loadouts for attack aircraft but exempts support aircraft', () => {
+  const findings = validateAircraftLoadouts({
+    units: [
+      { name: 'Unarmed fighter', domain: 'air', tasks: ['Aircraft1', 'AutoAttack'], launcherItems: [] },
+      { name: 'Armed fighter', domain: 'air', tasks: ['AutoAttack'], launcherItems: [{ quantity: 2 }] },
+      { name: 'AEW', domain: 'air', tasks: ['Aircraft1'], launcherItems: [] },
+    ],
+  });
+  assert.deepEqual(findings.map((finding) => finding.unit), ['Unarmed fighter']);
 });
 
 test('distinguishes Gulf water from mainland and peninsula land', () => {

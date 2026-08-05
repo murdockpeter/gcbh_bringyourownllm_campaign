@@ -1,6 +1,7 @@
 import {
   buildLandIndex,
   googleElevationSamples,
+  validateAircraftLoadouts,
   validateMission,
   validateRealWorld,
 } from './geometry.js';
@@ -449,6 +450,7 @@ function runLocalValidation() {
   const clearance = Number(elements.clearance_select.value);
   const findings = validateMission(state.scenario, state.theater, clearance)
     .map((finding) => ({ source: 'GCBH mask', ...finding }));
+  findings.push(...validateAircraftLoadouts(state.scenario));
   if (state.landIndex) {
     findings.push(...validateRealWorld(state.scenario, state.theater, state.landIndex, clearance));
   } else {

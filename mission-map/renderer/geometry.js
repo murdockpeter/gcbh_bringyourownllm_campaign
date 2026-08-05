@@ -316,6 +316,19 @@ export function safeWaterClearanceNm(point, theater) {
   return Math.max(...containing.map((polygon) => distanceToPolygonBoundaryNm(point, polygon.points)));
 }
 
+export function validateAircraftLoadouts(scenario) {
+  return scenario.units
+    .filter((unit) => unit.domain === 'air' && unit.tasks?.includes('AutoAttack'))
+    .filter((unit) => !unit.launcherItems?.some((item) => item.quantity > 0))
+    .map((unit) => ({
+      source: 'Scenario loadout',
+      severity: 'error',
+      unit: unit.name,
+      message: 'Combat aircraft has AutoAttack tasking but no launcher loadout.',
+      point: unit.position,
+    }));
+}
+
 export function validateMission(scenario, theater, clearanceNm = 1) {
   const surfaceClasses = new Set(theater.surface_classes);
   const findings = [];

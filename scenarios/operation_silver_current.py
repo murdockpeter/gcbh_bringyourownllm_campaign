@@ -15,7 +15,7 @@ Red has committed a third fast-attack craft, a second coastal missile section, l
     d['thumb'] = 'CarrierStrike.png'
     d['date'] = 'May 2026'
     d['unitCount'] = 27
-    d['scenarioId'] = 'silver_current_003'
+    d['scenarioId'] = 'silver_current_004'
     return d
 
 
@@ -270,6 +270,11 @@ Execute a fighting counter-move: preserve all three logistics ships, destroy the
     unit.throttle = 0.58
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
+    SM.SetUnitLauncherItem(unit.unitName, 0, 'Mk-46 Mod5', 4)
+    SM.SetUnitLauncherItem(unit.unitName, 1, 'AGM-84D Harpoon', 4)
+    SM.SetUnitLauncherItem(unit.unitName, 5, 'AN/AAQ-24 Nemesis Laser Beam', 100)
+    SM.SetUnitLauncherItem(unit.unitName, 6, 'Chaff-1', 30)
+    SM.SetUnitLauncherItem(unit.unitName, 7, 'Flare-1', 30)
     UI = SM.GetUnitInterface(unit.unitName)
     UI.AddTask('Aircraft1', 2.000000, 3)
     UI.AddTask('Nav', 1.000000, 0)
@@ -287,6 +292,15 @@ Execute a fighting counter-move: preserve all three logistics ships, destroy the
     unit.throttle = 0.72
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
+    SM.SetUnitLauncherItem(unit.unitName, 0, '1400 liter tank', 1)
+    SM.SetUnitLauncherItem(unit.unitName, 1, 'AIM-120D', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 2, 'AIM-120D', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 3, 'AIM-120D', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 4, 'AIM-9X', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 5, 'AIM-9X', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 6, '20mm PGU', 46)
+    SM.SetUnitLauncherItem(unit.unitName, 7, 'Chaff-1', 25)
+    SM.SetUnitLauncherItem(unit.unitName, 8, 'Flare-1', 25)
     UI = SM.GetUnitInterface(unit.unitName)
     UI.AddTask('Aircraft1', 2.000000, 3)
     UI.AddTask('AutoAttack', 3.000000, 0)
@@ -307,6 +321,15 @@ Execute a fighting counter-move: preserve all three logistics ships, destroy the
     unit.throttle = 0.72
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
+    SM.SetUnitLauncherItem(unit.unitName, 0, '1400 liter tank', 1)
+    SM.SetUnitLauncherItem(unit.unitName, 1, 'AIM-120D', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 2, 'AIM-120D', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 3, 'AIM-120D', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 4, 'AIM-9X', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 5, 'AIM-9X', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 6, '20mm PGU', 46)
+    SM.SetUnitLauncherItem(unit.unitName, 7, 'Chaff-1', 25)
+    SM.SetUnitLauncherItem(unit.unitName, 8, 'Flare-1', 25)
     UI = SM.GetUnitInterface(unit.unitName)
     UI.AddTask('Aircraft1', 2.000000, 3)
     UI.AddTask('AutoAttack', 3.000000, 0)
@@ -327,6 +350,14 @@ Execute a fighting counter-move: preserve all three logistics ships, destroy the
     unit.throttle = 0.76
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
+    SM.SetUnitLauncherItem(unit.unitName, 0, 'GBU-39 SDB', 8)
+    SM.SetUnitLauncherItem(unit.unitName, 1, 'AIM-120D', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 2, 'AIM-9X', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 3, 'GBU-12/B', 4)
+    SM.SetUnitLauncherItem(unit.unitName, 4, 'GBU-31A(v)2', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 6, 'Flare-1', 120)
+    SM.SetUnitLauncherItem(unit.unitName, 7, 'Chaff-1', 120)
+    SM.SetUnitLauncherItem(unit.unitName, 8, '20mm PGU', 46)
     UI = SM.GetUnitInterface(unit.unitName)
     UI.AddTask('Aircraft1', 2.000000, 3)
     UI.AddTask('AutoAttack', 3.000000, 0)
@@ -345,6 +376,14 @@ Execute a fighting counter-move: preserve all three logistics ships, destroy the
     unit.throttle = 0.76
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 1)
+    SM.SetUnitLauncherItem(unit.unitName, 0, 'GBU-39 SDB', 8)
+    SM.SetUnitLauncherItem(unit.unitName, 1, 'AIM-120D', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 2, 'AIM-9X', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 3, 'GBU-12/B', 4)
+    SM.SetUnitLauncherItem(unit.unitName, 4, 'GBU-31A(v)2', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 6, 'Flare-1', 120)
+    SM.SetUnitLauncherItem(unit.unitName, 7, 'Chaff-1', 120)
+    SM.SetUnitLauncherItem(unit.unitName, 8, '20mm PGU', 46)
     UI = SM.GetUnitInterface(unit.unitName)
     UI.AddTask('Aircraft1', 2.000000, 3)
     UI.AddTask('AutoAttack', 3.000000, 0)
@@ -546,6 +585,13 @@ Execute a fighting counter-move: preserve all three logistics ships, destroy the
     unit.throttle = 0.74
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 2)
+    SM.SetUnitLauncherItem(unit.unitName, 0, '370 gallon wing tank', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 1, 'AIM-9E', 4)
+    SM.SetUnitLauncherItem(unit.unitName, 2, 'AIM-7P', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 3, 'AIM-7P', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 4, '600 gallon centerline tank', 1)
+    SM.SetUnitLauncherItem(unit.unitName, 5, 'Chaff-1', 30)
+    SM.SetUnitLauncherItem(unit.unitName, 6, 'Flare-1', 30)
     UI = SM.GetUnitInterface(unit.unitName)
     UI.AddTask('Aircraft1', 2.000000, 3)
     UI.AddTask('AutoAttack', 3.000000, 0)
@@ -563,6 +609,13 @@ Execute a fighting counter-move: preserve all three logistics ships, destroy the
     unit.throttle = 0.74
     unit.cost = 0.0
     SM.AddUnitToAlliance(unit, 2)
+    SM.SetUnitLauncherItem(unit.unitName, 0, '370 gallon wing tank', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 1, 'AIM-9E', 4)
+    SM.SetUnitLauncherItem(unit.unitName, 2, 'AIM-7P', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 3, 'AIM-7P', 2)
+    SM.SetUnitLauncherItem(unit.unitName, 4, '600 gallon centerline tank', 1)
+    SM.SetUnitLauncherItem(unit.unitName, 5, 'Chaff-1', 30)
+    SM.SetUnitLauncherItem(unit.unitName, 6, 'Flare-1', 30)
     UI = SM.GetUnitInterface(unit.unitName)
     UI.AddTask('Aircraft1', 2.000000, 3)
     UI.AddTask('AutoAttack', 3.000000, 0)

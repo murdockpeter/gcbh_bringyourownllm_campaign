@@ -83,7 +83,7 @@ function parseScenario(source, filePath = '') {
     let match = /unit\.className\s*=\s*['\"]([^'\"]+)['\"]/.exec(line);
     if (match) {
       flush();
-      current = { className: match[1], waypoints: [], sourceLine: lineIndex + 1 };
+      current = { className: match[1], waypoints: [], launcherItems: [], tasks: [], sourceLine: lineIndex + 1 };
       return;
     }
     if (!current) return;
@@ -109,9 +109,20 @@ function parseScenario(source, filePath = '') {
     match = /SM\.AddUnitToAlliance\(\s*unit\s*,\s*(\d+)\s*\)/.exec(line);
     if (match) current.allianceId = Number(match[1]);
 
-    match = /UI\.AddTask\(\s*['\"](Ship1|Aircraft1|Ground1)['\"]/.exec(line);
+    match = /SM\.SetUnitLauncherItem\(\s*unit\.unitName\s*,\s*(\d+)\s*,\s*['\"]([^'\"]+)['\"]\s*,\s*(\d+)\s*\)/.exec(line);
     if (match) {
-      current.domain = { Ship1: 'surface', Aircraft1: 'air', Ground1: 'ground' }[match[1]];
+      current.launcherItems.push({
+        launcherId: Number(match[1]),
+        item: match[2],
+        quantity: Number(match[3]),
+        sourceLine: lineIndex + 1,
+      });
+    }
+
+    match = /UI\.AddTask\(\s*['\"]([^'\"]+)['\"]/.exec(line);
+    if (match) {
+      current.tasks.push(match[1]);
+      current.domain ||= { Ship1: 'surface', Aircraft1: 'air', Ground1: 'ground' }[match[1]];
     }
 
     match = /UI\.add_waypoint_advanced\(\s*([-+\d.eE]+)\s*,\s*([-+\d.eE]+)\s*,\s*([-+\d.eE]+)\s*,\s*([-+\d.eE]+)\s*\)/.exec(line);
