@@ -54,6 +54,13 @@
           <label><input id="toggle-land" type="checkbox" checked> Real coastline</label>
           <label><input id="toggle-routes" type="checkbox" checked> Routes</label>
           <label><input id="toggle-satellite" type="checkbox"> Satellite</label>
+          <label class="side-filter-label" for="side-filter">Forces
+            <select id="side-filter" aria-label="Visible forces">
+              <option value="all">All</option>
+              <option value="blue" selected>BLUE only</option>
+              <option value="red">RED only</option>
+            </select>
+          </label>
         </div>
         <div id="map-legend" class="map-legend">
           <span><i class="legend-dot blue"></i>Blue</span>
@@ -73,10 +80,11 @@
         <div class="data-card">
           <span>REAL-WORLD LAND DATA</span>
           <strong id="land-data-status">Loading…</strong>
-          <small>Natural Earth 1:10m land + minor islands</small>
+          <small>Global Natural Earth 1:10m land + minor islands</small>
+          <small id="mask-data-status">Selecting regional GCBH mask...</small>
         </div>
 
-        <label class="field-label" for="clearance-select">Required mask clearance</label>
+        <label class="field-label" for="clearance-select">Required land/mask clearance</label>
         <select id="clearance-select">
           <option value="0.5">0.5 nautical miles</option>
           <option value="1" selected>1 nautical mile</option>
@@ -101,7 +109,7 @@
           <span id="finding-count" class="count-pill">0</span>
         </div>
         <div id="finding-list" class="finding-list"></div>
-        <p class="audit-note">The hand-authored mask predicts GCBH navigability. Google elevation is a secondary real-world check and can be imprecise along coastlines.</p>
+        <p class="audit-note">Regional hand-authored masks are used only when they cover the loaded scenario. Global coastline checks remain available elsewhere. Google elevation is a secondary check and can be imprecise along coastlines.</p>
       </aside>
     </main>
 

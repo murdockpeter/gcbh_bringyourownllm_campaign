@@ -73,9 +73,11 @@ function parseScenario(source, filePath = '') {
 
   const units = [];
   let current = null;
+  let launcherListTarget = null;
   const flush = () => {
     if (current?.className && current?.name && current?.rawPosition) units.push(current);
     current = null;
+    launcherListTarget = null;
   };
 
   const lines = source.split(/\r?\n/);
@@ -87,6 +89,21 @@ function parseScenario(source, filePath = '') {
       return;
     }
     if (!current) return;
+
+    if (/SM\.SetUnitLauncherList\(\s*unit\.unitName\s*,\s*\[/.test(line)) {
+      launcherListTarget = current;
+    }
+    if (launcherListTarget) {
+      for (const itemMatch of line.matchAll(/\(\s*(\d+)\s*,\s*['"]([^'"]+)['"]\s*,\s*(\d+)\s*\)/g)) {
+        launcherListTarget.launcherItems.push({
+          launcherId: Number(itemMatch[1]),
+          item: itemMatch[2],
+          quantity: Number(itemMatch[3]),
+          sourceLine: lineIndex + 1,
+        });
+      }
+      if (/\]\s*\)/.test(line)) launcherListTarget = null;
+    }
 
     match = /unit\.unitName\s*=\s*['\"]([^'\"]+)['\"]/.exec(line);
     if (match) current.name = match[1];

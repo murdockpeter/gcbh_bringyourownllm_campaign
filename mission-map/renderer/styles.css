@@ -78,6 +78,8 @@ h2 { margin: 9px 0; }
 .map-tools { top: 14px; left: 14px; }
 .map-legend { right: 14px; bottom: 14px; }
 .map-tools label, .map-legend span { display: flex; align-items: center; gap: 5px; }
+.map-tools .side-filter-label { padding-left: 10px; border-left: 1px solid var(--border); }
+.map-tools select { min-width: 92px; padding: 3px 24px 3px 6px; border-radius: 3px; font-size: 10px; }
 .legend-dot { width: 7px; height: 7px; border-radius: 50%; }
 .legend-dot.blue { background: var(--blue); }
 .legend-dot.red { background: var(--red); }
@@ -94,6 +96,7 @@ h2 { margin: 9px 0; }
 .data-card span { color: var(--muted); font-size: 9px; letter-spacing: 0.08em; }
 .data-card strong { margin: 4px 0 2px; color: #ff9b83; font-size: 12px; }
 .data-card small { color: #7f98a7; font-size: 9px; }
+.data-card small + small { margin-top: 3px; color: var(--cyan); }
 .field-label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
 #clearance-select { width: 100%; }
 .audit-actions { display: grid; gap: 7px; margin-top: 14px; }

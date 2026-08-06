@@ -9,8 +9,9 @@ Electron desktop companion for visualizing and validating Global Conflict Blue: 
 - Watches the selected scenario and refreshes after it is saved.
 - Detects legacy `longitude, latitude` and scenario v0.2.1 `latitude, longitude` `SetPosition` formats.
 - Plots units, alliances, and routes on Google terrain or satellite maps.
-- Overlays the project's conservative GCBH safe-water polygons.
-- Uses Natural Earth 1:10m land and minor-island polygons for offline point-on-land, exact route/coast intersection, and distance-to-land checks.
+- Selects and overlays a regional GCBH safe-water mask only when it covers the loaded scenario.
+- Filters the map, routes, order of battle, and unit-specific findings to all forces, BLUE only, or RED only.
+- Uses global Natural Earth 1:10m land and minor-island polygons for offline point-on-land, exact route/coast intersection, and distance-to-land checks in any operational area.
 - Highlights disagreements where the GCBH mask labels real-world land as safe.
 - Suggests candidate water coordinates for invalid starts and route crossings when a mask-safe detour can be found.
 - Applies validated green candidates with **Fix scenario**, writes a timestamped copy under `scenarios/_backups`, reloads the saved file, and immediately reruns every local check.
@@ -75,7 +76,7 @@ The cyan polygons are not a real coastline. They are the project's conservative 
 
 The map and both validators should be reviewed together before changing scenario coordinates.
 
-The orange/red coastline overlay is generated from the public-domain [Natural Earth 1:10m land dataset](https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-land/) and its minor-islands companion. Regenerate the clipped campaign data with:
+The orange/red coastline overlay is generated from the public-domain [Natural Earth 1:10m land dataset](https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-land/) and its minor-islands companion. Regenerate the global coastline data with:
 
 ```powershell
 npm run data:coastline

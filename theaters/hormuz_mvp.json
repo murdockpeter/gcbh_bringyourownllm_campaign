@@ -1,6 +1,7 @@
 {
   "theater_id": "hormuz_mvp",
   "name": "Strait of Hormuz MVP Safe Water",
+  "coverage_bounds": { "west": 54.0, "south": 23.0, "east": 60.5, "north": 28.8 },
   "notes": [
     "This is a conservative hand-authored navigable-water mask for the current campaign area.",
     "It is intentionally biased toward keeping ships well clear of coastlines rather than maximizing route freedom.",

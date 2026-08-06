@@ -7,12 +7,13 @@ const http = require('node:http');
 const path = require('node:path');
 const { parseScenario } = require('./scenario-parser.cjs');
 const { saveScenarioEdits } = require('./scenario-editor.cjs');
+const { selectTheater } = require('./theater-selector.cjs');
 
 const APP_PORT = 43117;
 const APP_HOST = '127.0.0.1';
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 const SCENARIO_ROOT = path.join(PROJECT_ROOT, 'scenarios');
-const THEATER_PATH = path.join(PROJECT_ROOT, 'theaters', 'hormuz_mvp.json');
+const THEATER_ROOT = path.join(PROJECT_ROOT, 'theaters');
 const RENDERER_ROOT = path.join(__dirname, '..', 'renderer');
 
 let mainWindow;
@@ -73,8 +74,12 @@ function isScenarioPath(filePath) {
 async function loadScenario(filePath) {
   if (!isScenarioPath(filePath)) throw new Error('Select a Python scenario file.');
   const source = await fsp.readFile(filePath, 'utf8');
-  const theater = JSON.parse(await fsp.readFile(THEATER_PATH, 'utf8'));
-  return { scenario: parseScenario(source, filePath), theater };
+  const scenario = parseScenario(source, filePath);
+  const theaterFiles = (await fsp.readdir(THEATER_ROOT)).filter((name) => name.toLowerCase().endsWith('.json'));
+  const theaters = await Promise.all(theaterFiles.map(async (name) => (
+    JSON.parse(await fsp.readFile(path.join(THEATER_ROOT, name), 'utf8'))
+  )));
+  return { scenario, theater: selectTheater(scenario, theaters) };
 }
 
 function watchScenario(filePath) {

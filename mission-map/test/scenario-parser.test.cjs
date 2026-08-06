@@ -57,3 +57,29 @@ def CreateScenario(SM):
     { launcherId: 2, item: 'Test Missile', quantity: 4, sourceLine: undefined },
   );
 });
+
+test('captures the official multiline SetUnitLauncherList syntax', () => {
+  const parsed = parseScenario(`
+# Scenario version: 0.2.1
+def CreateScenario(SM):
+    SM.CreateAlliance(1, 'Japan')
+    unit = SM.GetDefaultUnit()
+    unit.className = 'F-15JSI'
+    unit.unitName = 'Eagle 11'
+    unit.SetPosition(26.5, 126.5, 10000)
+    SM.AddUnitToAlliance(unit, 1)
+    SM.SetUnitLauncherList(unit.unitName, [
+        (0, 'AIM-120D', 4),
+        (1, 'AIM-9X', 2),
+    ])
+    UI.AddTask('Aircraft1', 1.0, 0)
+    UI.AddTask('AutoAttack', 2.0, 0)
+  `);
+  assert.deepEqual(
+    parsed.units[0].launcherItems.map(({ launcherId, item, quantity }) => ({ launcherId, item, quantity })),
+    [
+      { launcherId: 0, item: 'AIM-120D', quantity: 4 },
+      { launcherId: 1, item: 'AIM-9X', quantity: 2 },
+    ],
+  );
+});

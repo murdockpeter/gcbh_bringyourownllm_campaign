@@ -5,16 +5,17 @@ import {
   validateMission,
   validateRealWorld,
 } from './geometry.js';
+import { allianceSide, visibleFindings, visibleUnits } from './side-filter.js';
 
 const elements = Object.fromEntries([
   'scenario-select', 'browse-button', 'reload-button', 'watch-status', 'settings-button',
   'mission-name', 'mission-meta', 'mission-description', 'unit-count', 'unit-list',
   'map', 'map-placeholder', 'placeholder-key-button', 'toggle-mask', 'toggle-land', 'toggle-routes',
-  'toggle-satellite', 'coordinate-order', 'coordinate-reason', 'clearance-select',
+  'toggle-satellite', 'side-filter', 'coordinate-order', 'coordinate-reason', 'clearance-select',
   'validate-button', 'elevation-button', 'fix-button', 'edit-mode-button',
   'manual-actions', 'save-manual-button', 'discard-edits-button', 'edit-status',
   'finding-count', 'finding-list',
-  'land-data-status',
+  'land-data-status', 'mask-data-status',
   'settings-dialog', 'settings-form', 'api-key', 'settings-message', 'save-key-button',
 ].map((id) => [id.replaceAll('-', '_'), document.getElementById(id)]));
 
@@ -46,10 +47,18 @@ function escapeHtml(value) {
   return node.innerHTML;
 }
 
-function allianceColor(allianceName) {
-  if (/blue|usa|uk|coalition/i.test(allianceName)) return '#4aa9ff';
-  if (/red|iran|russia/i.test(allianceName)) return '#ef5a61';
+function allianceColor(unit) {
+  if (allianceSide(unit.allianceName, unit.allianceId) === 'blue') return '#4aa9ff';
+  if (allianceSide(unit.allianceName, unit.allianceId) === 'red') return '#ef5a61';
   return '#f4a24c';
+}
+
+function selectedSide() {
+  return elements.side_filter.value || 'all';
+}
+
+function displayedFindings() {
+  return visibleFindings(state.findings, state.scenario?.units, selectedSide());
 }
 
 function showSettings() {
@@ -97,8 +106,15 @@ function setFindings(findings) {
   state.findings = findings;
   state.autoFixEdits = collectFixEdits(findings);
   updateEditControls();
-  elements.finding_count.textContent = findings.length;
-  if (state.map) renderFindingMarkers();
+  renderFindings();
+}
+
+function renderFindings({ refreshMapMarkers = true } = {}) {
+  const findings = displayedFindings();
+  elements.finding_count.textContent = state.findings.length === findings.length
+    ? findings.length
+    : `${findings.length}/${state.findings.length}`;
+  if (state.map && refreshMapMarkers) renderFindingMarkers();
   if (findings.length === 0) {
     elements.finding_list.innerHTML = '<div class="empty-state">No findings for the selected comparison.</div>';
     return;
@@ -127,25 +143,28 @@ function setFindings(findings) {
 
 function renderMissionDetails() {
   const { scenario } = state;
+  const units = visibleUnits(scenario.units, selectedSide());
   elements.mission_name.textContent = scenario.info.name;
   const date = scenario.info.dateLabel || scenario.dateTime.slice(0, 3).join('-');
   elements.mission_meta.textContent = [date, scenario.info.playableSides.join(' / '), scenario.fileName].filter(Boolean).join(' · ');
   elements.mission_description.textContent = scenario.info.description || 'No scenario description.';
-  elements.unit_count.textContent = scenario.units.length;
+  elements.unit_count.textContent = units.length === scenario.units.length
+    ? units.length
+    : `${units.length}/${scenario.units.length}`;
   elements.coordinate_order.textContent = scenario.coordinateConvention.order === 'lng-lat'
     ? 'LONGITUDE → LATITUDE'
     : 'LATITUDE → LONGITUDE';
   elements.coordinate_reason.textContent = scenario.coordinateConvention.reason;
 
-  elements.unit_list.innerHTML = scenario.units.map((unit, index) => `
-    <button class="unit-card" data-unit-index="${index}" style="--alliance-color:${allianceColor(unit.allianceName)}">
+  elements.unit_list.innerHTML = units.map((unit, index) => `
+    <button class="unit-card" data-unit-index="${index}" style="--alliance-color:${allianceColor(unit)}">
       <strong>${escapeHtml(unit.name)}</strong>
       <span>${escapeHtml(unit.className)}</span>
       <span>${escapeHtml(unit.allianceName)} · ${unit.position.lat.toFixed(4)}, ${unit.position.lng.toFixed(4)} · ${unit.waypoints.length} WP</span>
     </button>
   `).join('');
   elements.unit_list.querySelectorAll('.unit-card').forEach((card) => {
-    card.addEventListener('click', () => focusUnit(state.scenario.units[Number(card.dataset.unitIndex)]));
+    card.addEventListener('click', () => focusUnit(units[Number(card.dataset.unitIndex)]));
   });
 }
 
@@ -180,7 +199,7 @@ function renderFindingMarkers() {
   state.findingOverlays.forEach((overlay) => overlay.setMap(null));
   state.findingOverlays = [];
   if (!state.map || !globalThis.google?.maps?.Marker) return;
-  for (const finding of state.findings) {
+  for (const finding of displayedFindings()) {
     if (finding.point) {
       const color = finding.severity === 'error' ? '#ff3f4c'
         : finding.severity === 'warning' ? '#ffad42' : '#25c7d9';
@@ -233,18 +252,22 @@ function focusUnit(unit) {
 }
 
 function renderMap() {
-  if (!state.mapsReady || !state.scenario || !state.theater) return;
+  if (!state.mapsReady || !state.scenario) return;
   const priorCenter = state.map.getCenter()?.toJSON();
   const priorZoom = state.map.getZoom();
   clearMap();
   const bounds = new google.maps.LatLngBounds();
   const infoWindow = new google.maps.InfoWindow();
 
-  for (const feature of state.landGeoJson?.features || []) {
-    const coordinateSets = feature.geometry.type === 'Polygon'
-      ? [feature.geometry.coordinates]
-      : feature.geometry.coordinates;
-    for (const rings of coordinateSets) {
+  const scenarioPoints = state.scenario.units.flatMap((unit) => [unit.position, ...unit.waypoints]);
+  const areaBounds = scenarioPoints.reduce((value, point) => ({
+    west: Math.min(value.west, point.lng), south: Math.min(value.south, point.lat),
+    east: Math.max(value.east, point.lng), north: Math.max(value.north, point.lat),
+  }), { west: Infinity, south: Infinity, east: -Infinity, north: -Infinity });
+  for (const { rings, bounds: landBounds } of state.landIndex?.polygons || []) {
+    const visible = landBounds.west <= areaBounds.east + 1 && landBounds.east >= areaBounds.west - 1
+      && landBounds.south <= areaBounds.north + 1 && landBounds.north >= areaBounds.south - 1;
+    if (visible) {
       const polygon = new google.maps.Polygon({
         paths: rings.map((ring) => ring.map(([lng, lat]) => ({ lat, lng }))),
         strokeColor: '#ff7657',
@@ -260,7 +283,7 @@ function renderMap() {
     }
   }
 
-  state.theater.safe_water_polygons.forEach((area) => {
+  (state.theater?.safe_water_polygons || []).forEach((area) => {
     const polygon = new google.maps.Polygon({
       paths: area.points.map(([lng, lat]) => ({ lat, lng })),
       strokeColor: '#25c7d9',
@@ -275,9 +298,9 @@ function renderMap() {
     state.maskOverlays.push(polygon);
   });
 
-  state.scenario.units.forEach((unit) => {
+  visibleUnits(state.scenario.units, selectedSide()).forEach((unit) => {
     bounds.extend(unit.position);
-    const color = allianceColor(unit.allianceName);
+    const color = allianceColor(unit);
     const marker = new google.maps.Marker({
       position: unit.position,
       map: state.map,
@@ -411,6 +434,11 @@ async function loadScenario(filePath, { quiet = false } = {}) {
     const result = await window.missionMap.loadScenario(filePath);
     state.scenario = result.scenario;
     state.theater = result.theater;
+    elements.toggle_mask.disabled = !state.theater;
+    elements.toggle_mask.checked = Boolean(state.theater);
+    elements.mask_data_status.textContent = state.theater
+      ? `${state.theater.name} mask active`
+      : 'No regional GCBH mask; global coastline checks remain active';
     state.selectedPath = filePath;
     state.pendingEdits.clear();
     state.editMode = false;
@@ -446,10 +474,12 @@ async function saveEdits(edits, label) {
 }
 
 function runLocalValidation() {
-  if (!state.scenario || !state.theater) return;
+  if (!state.scenario) return;
   const clearance = Number(elements.clearance_select.value);
-  const findings = validateMission(state.scenario, state.theater, clearance)
-    .map((finding) => ({ source: 'GCBH mask', ...finding }));
+  const findings = state.theater
+    ? validateMission(state.scenario, state.theater, clearance)
+      .map((finding) => ({ source: 'GCBH mask', ...finding }))
+    : [];
   findings.push(...validateAircraftLoadouts(state.scenario));
   if (state.landIndex) {
     findings.push(...validateRealWorld(state.scenario, state.theater, state.landIndex, clearance));
@@ -532,7 +562,7 @@ async function initialize() {
   setFindings([]);
   const scenarios = await window.missionMap.listScenarios();
   try {
-    const response = await fetch('/data/hormuz-land.geojson');
+    const response = await fetch('/data/global-land.geojson');
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.landGeoJson = await response.json();
     state.landIndex = buildLandIndex(state.landGeoJson);
@@ -596,6 +626,11 @@ elements.toggle_mask.addEventListener('change', () => state.maskOverlays.forEach
 elements.toggle_land.addEventListener('change', () => state.landOverlays.forEach((overlay) => overlay.setMap(elements.toggle_land.checked ? state.map : null)));
 elements.toggle_routes.addEventListener('change', () => state.routeOverlays.forEach((overlay) => overlay.setMap(elements.toggle_routes.checked ? state.map : null)));
 elements.toggle_satellite.addEventListener('change', () => state.map?.setMapTypeId(elements.toggle_satellite.checked ? 'hybrid' : 'terrain'));
+elements.side_filter.addEventListener('change', () => {
+  renderMissionDetails();
+  renderMap();
+  renderFindings({ refreshMapMarkers: false });
+});
 elements.settings_form.addEventListener('submit', async (event) => {
   const submitter = event.submitter;
   if (submitter?.value === 'cancel') return;

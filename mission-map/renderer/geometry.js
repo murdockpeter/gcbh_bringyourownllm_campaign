@@ -69,6 +69,7 @@ export function sampleSegment(left, right, intervalNm = 0.5) {
 }
 
 export function isInsideSafeWater(point, theater) {
+  if (!theater?.safe_water_polygons?.length) return true;
   return theater.safe_water_polygons.some((polygon) => pointInPolygon(point, polygon.points));
 }
 
@@ -86,37 +87,113 @@ function boundsContain(bounds, point, padding = 0) {
     && point.lat >= bounds.south - padding && point.lat <= bounds.north + padding;
 }
 
+const LAND_GRID_DEGREES = 2;
+
+function gridCell(value, offset) {
+  return Math.floor((value + offset) / LAND_GRID_DEGREES);
+}
+
+function gridKeysForBounds(bounds, padding = 0) {
+  const west = Math.max(-180, bounds.west - padding);
+  const east = Math.min(180, bounds.east + padding);
+  const south = Math.max(-90, bounds.south - padding);
+  const north = Math.min(90, bounds.north + padding);
+  const keys = [];
+  for (let x = gridCell(west, 180); x <= gridCell(east, 180); x += 1) {
+    for (let y = gridCell(south, 90); y <= gridCell(north, 90); y += 1) keys.push(`${x}:${y}`);
+  }
+  return keys;
+}
+
+function indexedPolygons(landIndex, bounds, padding = 0) {
+  if (!landIndex.grid) return landIndex.polygons;
+  const candidates = new Set();
+  for (const key of gridKeysForBounds(bounds, padding)) {
+    for (const polygon of landIndex.grid.get(key) || []) candidates.add(polygon);
+  }
+  return candidates;
+}
+
+function indexedSegments(landIndex, bounds, padding = 0) {
+  if (!landIndex.segmentGrid) return [];
+  const candidates = new Set();
+  for (const key of gridKeysForBounds(bounds, padding)) {
+    for (const segment of landIndex.segmentGrid.get(key) || []) candidates.add(segment);
+  }
+  return candidates;
+}
+
+function pointInIndexedRing(point, latitudeBands) {
+  let inside = false;
+  const band = latitudeBands.get(gridCell(point.lat, 90)) || [];
+  for (const { left, right } of band) {
+    const crosses = ((left.lat > point.lat) !== (right.lat > point.lat))
+      && (point.lng < ((right.lng - left.lng) * (point.lat - left.lat))
+        / (right.lat - left.lat || Number.EPSILON) + left.lng);
+    if (crosses) inside = !inside;
+  }
+  return inside;
+}
+
 export function buildLandIndex(geoJson) {
   const polygons = [];
+  const grid = new Map();
+  const segmentGrid = new Map();
   for (const feature of geoJson.features || []) {
     const geometry = feature.geometry;
     if (!geometry) continue;
     const coordinateSets = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
     for (const rings of coordinateSets) {
       if (!rings?.[0]?.length) continue;
-      polygons.push({ rings, bounds: ringBounds(rings[0]) });
+      const ringLatitudeBands = rings.map((ring) => {
+        const bands = new Map();
+        for (let index = 0; index < ring.length - 1; index += 1) {
+          const left = { lng: ring[index][0], lat: ring[index][1] };
+          const right = { lng: ring[index + 1][0], lat: ring[index + 1][1] };
+          const segment = { left, right };
+          const bounds = segmentBounds(left, right);
+          const southBand = gridCell(bounds.south, 90);
+          const northBand = gridCell(bounds.north, 90);
+          for (let band = southBand; band <= northBand; band += 1) {
+            if (!bands.has(band)) bands.set(band, []);
+            bands.get(band).push(segment);
+          }
+          for (const key of gridKeysForBounds(bounds)) {
+            if (!segmentGrid.has(key)) segmentGrid.set(key, []);
+            segmentGrid.get(key).push(segment);
+          }
+        }
+        return bands;
+      });
+      const polygon = { rings, bounds: ringBounds(rings[0]), ringLatitudeBands };
+      polygons.push(polygon);
+      for (const key of gridKeysForBounds(polygon.bounds)) {
+        if (!grid.has(key)) grid.set(key, []);
+        grid.get(key).push(polygon);
+      }
     }
   }
-  return { metadata: geoJson.metadata || {}, polygons };
+  return { metadata: geoJson.metadata || {}, polygons, grid, segmentGrid };
 }
 
 export function pointInLand(point, landIndex) {
-  return landIndex.polygons.some((polygon) => {
+  const pointBounds = { west: point.lng, south: point.lat, east: point.lng, north: point.lat };
+  return [...indexedPolygons(landIndex, pointBounds)].some((polygon) => {
     if (!boundsContain(polygon.bounds, point)) return false;
-    if (!pointInPolygon(point, polygon.rings[0])) return false;
-    return !polygon.rings.slice(1).some((hole) => pointInPolygon(point, hole));
+    if (!pointInIndexedRing(point, polygon.ringLatitudeBands[0])) return false;
+    return !polygon.ringLatitudeBands.slice(1).some((hole) => pointInIndexedRing(point, hole));
   });
 }
 
 export function distanceToLandNm(point, landIndex) {
   const onLand = pointInLand(point, landIndex);
   let minimum = Number.POSITIVE_INFINITY;
-  for (const polygon of landIndex.polygons) {
-    const approximatePadding = Number.isFinite(minimum) ? minimum / 45 : 360;
-    if (!boundsContain(polygon.bounds, point, approximatePadding)) continue;
-    for (const ring of polygon.rings) {
-      minimum = Math.min(minimum, distanceToPolygonBoundaryNm(point, ring));
+  const pointBounds = { west: point.lng, south: point.lat, east: point.lng, north: point.lat };
+  for (const padding of [1, 4, 16, 90, 180]) {
+    for (const segment of indexedSegments(landIndex, pointBounds, padding)) {
+      minimum = Math.min(minimum, distanceToSegmentNm(point, segment.left, segment.right));
     }
+    if (minimum <= padding * 30) break;
   }
   return onLand ? -minimum : minimum;
 }
@@ -149,19 +226,9 @@ export function firstLandIntersection(left, right, landIndex) {
   if (pointInLand(left, landIndex)) return { ...left, t: 0 };
   const routeBounds = segmentBounds(left, right);
   let first = null;
-  for (const polygon of landIndex.polygons) {
-    if (!boundsOverlap(routeBounds, polygon.bounds)) continue;
-    for (const ring of polygon.rings) {
-      for (let index = 0; index < ring.length - 1; index += 1) {
-        const intersection = segmentIntersection(
-          left,
-          right,
-          { lng: ring[index][0], lat: ring[index][1] },
-          { lng: ring[index + 1][0], lat: ring[index + 1][1] },
-        );
-        if (intersection && (!first || intersection.t < first.t)) first = intersection;
-      }
-    }
+  for (const segment of indexedSegments(landIndex, routeBounds)) {
+    const intersection = segmentIntersection(left, right, segment.left, segment.right);
+    if (intersection && (!first || intersection.t < first.t)) first = intersection;
   }
   if (!first && pointInLand(right, landIndex)) return { ...right, t: 1 };
   return first;
@@ -216,7 +283,7 @@ export function findSafeDetour(left, right, crossing, landIndex, theater, cleara
 }
 
 export function validateRealWorld(scenario, theater, landIndex, clearanceNm = 1) {
-  const surfaceClasses = new Set(theater.surface_classes);
+  const surfaceClasses = new Set(theater?.surface_classes || []);
   const findings = [];
   for (const unit of scenario.units) {
     const isSurface = unit.domain === 'surface' || surfaceClasses.has(unit.className);
@@ -250,7 +317,7 @@ export function validateRealWorld(scenario, theater, landIndex, clearanceNm = 1)
           kind: 'position', sourceLine: unit.position.sourceLine, unitName: unit.name,
         } : null,
       });
-      if (isInsideSafeWater(unit.position, theater)) {
+      if (theater && isInsideSafeWater(unit.position, theater)) {
         findings.push({
           source: 'Mask disagreement', severity: 'error', unit: unit.name,
           message: 'The GCBH safe-water mask marks this real-world land position as safe.', point: unit.position,
@@ -283,7 +350,7 @@ export function validateRealWorld(scenario, theater, landIndex, clearanceNm = 1)
             speed: right.speed,
           } : null,
         });
-        if (isInsideSafeWater(intersection, theater)) {
+        if (theater && isInsideSafeWater(intersection, theater)) {
           findings.push({
             source: 'Mask disagreement', severity: 'error', unit: unit.name,
             message: `GCBH mask incorrectly permits the land crossing on route leg ${index + 1}.`, point: intersection,
@@ -330,6 +397,7 @@ export function validateAircraftLoadouts(scenario) {
 }
 
 export function validateMission(scenario, theater, clearanceNm = 1) {
+  if (!theater?.safe_water_polygons?.length) return [];
   const surfaceClasses = new Set(theater.surface_classes);
   const findings = [];
   for (const unit of scenario.units) {
@@ -362,7 +430,7 @@ export function validateMission(scenario, theater, clearanceNm = 1) {
 }
 
 export function googleElevationSamples(scenario, theater, spacingNm = 1) {
-  const surfaceClasses = new Set(theater.surface_classes);
+  const surfaceClasses = new Set(theater?.surface_classes || []);
   const points = [];
   for (const unit of scenario.units.filter((candidate) => candidate.domain === 'surface' || surfaceClasses.has(candidate.className))) {
     const route = [unit.position, ...unit.waypoints];

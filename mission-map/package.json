@@ -10,7 +10,7 @@
     "data:coastline": "node tools/build-coastline.cjs",
     "audit:scenarios": "node tools/audit-scenarios.cjs",
     "test": "node --test",
-    "check": "node --check src/launch.cjs && node --check src/main.cjs && node --check src/preload.cjs && node --check src/scenario-parser.cjs && node --check src/scenario-editor.cjs && node --check renderer/app.js && node --check renderer/geometry.js"
+    "check": "node --check src/launch.cjs && node --check src/main.cjs && node --check src/preload.cjs && node --check src/scenario-parser.cjs && node --check src/scenario-editor.cjs && node --check src/theater-selector.cjs && node --check renderer/app.js && node --check renderer/geometry.js && node --check renderer/side-filter.js"
   },
   "devDependencies": {
     "electron": "^43.3.0"
