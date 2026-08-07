@@ -107,3 +107,22 @@ If Scenario 2 loads and plays correctly, the next useful upgrade is a small tool
 - reduced speed for damaged hulls
 - partially depleted magazines
 - date and location carried forward automatically
+
+## Canonical Outcome After Operation Silver Current
+
+The `silver_current_004` game logs, rather than the earlier planning assumption, now drive campaign turn 4:
+
+- all three BLUE logistics ships survived
+- `USS Tempest`, `HMS Diamond`, both Tiger aircraft, and `Broadarrow` were lost
+- `USS Mason` survived with heavy damage and must withdraw at reduced speed
+- both Iranian Phantom aircraft were lost
+- all three Iranian FACs and every coastal node survived
+- neither side completed its scenario objectives before the session was ended
+
+## Scenario 4 Operational Logic
+
+`Operation Sable Reprisal` is a bounded escalation. BLUE receives one fresh destroyer, replacement CAP, and a recovery base at Al Dhafra, but does not replace every loss. Its authority is limited to defending the withdrawal and striking designated nodes that directly supported the attacks.
+
+Iran exploits the damaged screen with MiG-29 cover and a two-aircraft Su-24 anti-shipping package. The surviving FACs remain dangerous but are not mandatory BLUE targets, reducing the incentive to repeat the close-range fight that caused the Silver Current losses.
+
+Because the game removed `AutoAttack` from player-controlled aircraft in the logged run, the briefing explicitly requires manual positive-control target designation for the Lancer strike package.
