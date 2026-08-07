@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Naval Landform Collision Assurance — GCBH Mission Framework</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #e9f4f7;
+      --muted: #91aab5;
+      --bg: #061018;
+      --panel: #0c1c27;
+      --panel-2: #102734;
+      --line: #25414f;
+      --cyan: #2bd1df;
+      --blue: #55aaff;
+      --green: #70e3a1;
+      --amber: #ffb14e;
+      --red: #ff626d;
+      --land: #ff8165;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 80% 0%, rgba(43, 209, 223, .12), transparent 34rem),
+        linear-gradient(160deg, #07131d 0%, var(--bg) 55%, #040a0f 100%);
+      font: 15px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    .page { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .hero { position: relative; min-height: 520px; padding: 82px 0 64px; overflow: hidden; }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      right: -160px;
+      top: -170px;
+      border: 1px solid rgba(43, 209, 223, .18);
+      border-radius: 50%;
+      background: repeating-radial-gradient(circle, transparent 0 74px, rgba(43, 209, 223, .08) 75px 76px);
+      pointer-events: none;
+    }
+
+    .kicker, .section-kicker {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1 { max-width: 900px; margin: 18px 0 20px; font-size: clamp(42px, 7vw, 78px); line-height: .98; letter-spacing: -.055em; }
+    h1 em { color: var(--cyan); font-style: normal; }
+    .dek { max-width: 760px; color: #b8cad2; font-size: 19px; line-height: 1.55; }
+    .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .tag { padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; color: #bcd0d8; background: rgba(12, 28, 39, .72); font-size: 12px; }
+    .tag.pass { color: var(--green); border-color: rgba(112, 227, 161, .35); }
+
+    main { padding-bottom: 90px; }
+    section { margin: 26px 0; padding: 34px; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(145deg, rgba(15, 35, 47, .96), rgba(7, 20, 29, .96)); box-shadow: 0 22px 65px rgba(0, 0, 0, .2); }
+    h2 { margin: 7px 0 20px; font-size: clamp(26px, 4vw, 40px); line-height: 1.12; letter-spacing: -.03em; }
+    h3 { margin: 0 0 8px; font-size: 17px; }
+    p { margin: 0 0 14px; }
+    code { padding: 2px 5px; border-radius: 4px; color: var(--cyan); background: #06141d; font-family: "Cascadia Code", Consolas, monospace; font-size: .88em; }
+
+    .scoreboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: -42px; position: relative; z-index: 2; }
+    .metric { min-height: 132px; padding: 22px; border: 1px solid var(--line); border-radius: 11px; background: rgba(11, 28, 39, .96); box-shadow: 0 18px 50px rgba(0, 0, 0, .28); }
+    .metric strong { display: block; color: var(--cyan); font-size: 34px; line-height: 1.1; }
+    .metric span { display: block; margin-top: 8px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .09em; }
+
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 25px; }
+    .flow-card { position: relative; min-height: 155px; padding: 18px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); }
+    .flow-card:not(:last-child)::after { content: "→"; position: absolute; top: 57px; right: -17px; z-index: 2; color: var(--cyan); font-size: 20px; font-weight: 900; }
+    .flow-card b { display: grid; place-items: center; width: 28px; height: 28px; margin-bottom: 14px; border-radius: 50%; color: #041115; background: var(--cyan); }
+    .flow-card span { color: var(--muted); font-size: 12px; }
+
+    .checks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .check { padding: 20px; border-left: 3px solid var(--cyan); border-radius: 6px; background: rgba(6, 17, 25, .65); }
+    .check.land { border-color: var(--land); }
+    .check.mask { border-color: var(--cyan); }
+    .check.repair { border-color: var(--green); }
+    .check.google { border-color: var(--amber); }
+    .check p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .logic-table { width: 100%; border-collapse: collapse; margin-top: 18px; overflow: hidden; }
+    .logic-table th, .logic-table td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .logic-table th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+    .logic-table td:first-child { width: 22%; color: var(--cyan); font-weight: 750; }
+    .logic-table td:nth-child(2) { width: 25%; }
+    .logic-table tr:last-child td { border-bottom: 0; }
+    .severity { display: inline-block; min-width: 68px; padding: 2px 7px; border-radius: 999px; text-align: center; font-size: 10px; font-weight: 850; letter-spacing: .08em; }
+    .severity.error { color: var(--red); background: rgba(255, 98, 109, .12); }
+    .severity.warning { color: var(--amber); background: rgba(255, 177, 78, .12); }
+    .severity.pass { color: var(--green); background: rgba(112, 227, 161, .12); }
+
+    .results { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .result { padding: 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+    .result-head { display: flex; justify-content: space-between; gap: 14px; align-items: start; }
+    .result small { color: var(--muted); }
+    .result .outcome { margin: 22px 0 12px; color: var(--green); font-size: 30px; font-weight: 850; }
+    .result ul { margin: 12px 0 0; padding-left: 18px; color: #aec1ca; }
+
+    .assurance { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: start; }
+    .layers { display: grid; gap: 9px; }
+    .layer { display: flex; gap: 12px; padding: 13px; border: 1px solid var(--line); border-radius: 7px; background: rgba(6, 17, 25, .55); }
+    .layer b { flex: 0 0 26px; display: grid; place-items: center; height: 26px; border-radius: 4px; color: #071018; background: var(--cyan); }
+    .layer span { color: var(--muted); font-size: 12px; }
+    .callout { padding: 20px; border: 1px solid rgba(255, 177, 78, .35); border-radius: 9px; color: #d3c2a9; background: rgba(255, 177, 78, .07); }
+    .callout strong { display: block; margin-bottom: 8px; color: var(--amber); }
+
+    .formula { margin: 18px 0; padding: 18px 20px; border: 1px dashed #3b6070; border-radius: 8px; color: #cbe2e8; background: #071720; font-family: "Cascadia Code", Consolas, monospace; font-size: 13px; overflow-x: auto; }
+    footer { padding: 36px 0 48px; color: #6f8893; font-size: 12px; text-align: center; }
+
+    @media (max-width: 900px) {
+      .scoreboard { grid-template-columns: repeat(2, 1fr); }
+      .flow { grid-template-columns: 1fr; }
+      .flow-card { min-height: auto; }
+      .flow-card:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -20px; }
+      .checks, .results, .assurance { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .page { width: min(100% - 22px, 1160px); }
+      .hero { padding-top: 50px; }
+      section { padding: 24px 18px; }
+      .scoreboard { grid-template-columns: 1fr; margin-top: -24px; }
+      .logic-table { display: block; overflow-x: auto; }
+    }
+    @media print {
+      :root { color-scheme: light; --ink: #10212a; --muted: #51656e; --bg: #fff; --panel: #f4f8f9; --panel-2: #eef4f6; --line: #c9d7dc; }
+      body { background: #fff; }
+      .hero { min-height: auto; padding-top: 30px; }
+      .hero::after { display: none; }
+      section, .metric { break-inside: avoid; box-shadow: none; background: #fff; }
+      .flow-card, .check, .result, .layer, .formula { background: #f7fafb; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="page">
+      <div class="kicker">GCB Horizon mission engineering · Assurance report</div>
+      <h1>Keeping naval routes <em>off the land.</em></h1>
+      <p class="dek">How the Mission Map framework converts generated Python scenarios into auditable routes, compares every naval start and route leg with global land geometry, and safely repairs detected conflicts.</p>
+      <div class="meta">
+        <span class="tag">Report date · 06 August 2026</span>
+        <span class="tag">Natural Earth · 1:10m</span>
+        <span class="tag">Global operational coverage</span>
+        <span class="tag pass">21 automated tests passing</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="scoreboard" aria-label="Framework metrics">
+      <div class="metric"><strong>9,632</strong><span>Indexed land polygons</span></div>
+      <div class="metric"><strong>0.25 nm</strong><span>Coast-proximity sample interval</span></div>
+      <div class="metric"><strong>2 layers</strong><span>Real coast + regional game mask</span></div>
+      <div class="metric"><strong>0</strong><span>Silver Current findings</span></div>
+    </div>
+
+    <section>
+      <div class="section-kicker">Executive summary</div>
+      <h2>A layered check, not a single guess</h2>
+      <p>The framework never executes an untrusted scenario to draw the map. It parses structured unit positions, domains, alliances, and waypoints from the Python source. Naval elements are recognized through their <code>Ship1</code> tasking, with regional class lists retained as a compatibility fallback.</p>
+      <p>Every identified naval start and route is checked against global land polygons. When a scenario falls inside a supported regional theater, it also receives a second, game-oriented safe-water-mask check. A scenario outside that theater—such as Senkaku—is not incorrectly tested against Hormuz geometry.</p>
+
+      <div class="flow" aria-label="Collision validation flow">
+        <div class="flow-card"><b>1</b><h3>Parse</h3><span>Read positions, waypoints, unit domain, alliance, and source-line provenance.</span></div>
+        <div class="flow-card"><b>2</b><h3>Classify</h3><span>Select naval units and determine whether a regional GCBH mask covers the scenario.</span></div>
+        <div class="flow-card"><b>3</b><h3>Intersect</h3><span>Test starts and exact route segments against indexed global coastline geometry.</span></div>
+        <div class="flow-card"><b>4</b><h3>Measure</h3><span>Sample each leg to detect routes that pass inside the requested coastal clearance.</span></div>
+        <div class="flow-card"><b>5</b><h3>Repair</h3><span>Offer safe candidate coordinates, back up the source, save verified edits, and re-run all checks.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-kicker">Detection layers</div>
+      <h2>What is checked</h2>
+      <div class="checks">
+        <article class="check land">
+          <h3>Real-world coastline</h3>
+          <p>Global Natural Earth land and minor-island polygons detect starts on land, exact route/coast intersections, and near-coast clearance. A two-degree spatial grid and latitude-band index keep the global check responsive.</p>
+        </article>
+        <article class="check mask">
+          <h3>Regional GCBH safe-water mask</h3>
+          <p>The hand-authored mask models water expected to be navigable in the game. It is activated only when the scenario center falls within that mask’s declared coverage bounds.</p>
+        </article>
+        <article class="check repair">
+          <h3>Candidate repair</h3>
+          <p>Radial searches locate water with sufficient clearance. Route crossings may receive a detour only after both replacement legs are proven free of coastline intersections.</p>
+        </article>
+        <article class="check google">
+          <h3>Optional Google corroboration</h3>
+          <p>Elevation samples above +2 metres on a naval route are flagged as possible land. This is a secondary signal because coastal interpolation is not authoritative.</p>
+        </article>
+      </div>
+
+      <table class="logic-table">
+        <thead><tr><th>Condition</th><th>Result</th><th>Framework action</th></tr></thead>
+        <tbody>
+          <tr><td>Naval start inside land</td><td><span class="severity error">ERROR</span></td><td>Mark the unit, calculate a clear-water candidate, and expose an automatic source edit when possible.</td></tr>
+          <tr><td>Route intersects a coast</td><td><span class="severity error">ERROR</span></td><td>Locate the first exact intersection and propose a moved waypoint or validated detour.</td></tr>
+          <tr><td>Route remains clear but approaches the coast</td><td><span class="severity warning">WARNING</span></td><td>Report the closest sampled position and measured clearance without changing the scenario.</td></tr>
+          <tr><td>Route exits an applicable game mask</td><td><span class="severity error">ERROR</span></td><td>Report the first sampled mask violation at 0.5-nautical-mile spacing.</td></tr>
+          <tr><td>No regional mask covers the scenario</td><td><span class="severity pass">VALID</span></td><td>Disable the mask layer and continue using global coastline validation; do not manufacture out-of-theater errors.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="section-kicker">Geometry mechanics</div>
+      <h2>How a route leg becomes evidence</h2>
+      <p>A route is assembled as the unit’s start position followed by its ordered waypoints. For each adjacent pair, the framework checks the route segment against nearby coastline segments selected from the spatial index. This produces the first exact crossing point, if one exists.</p>
+      <div class="formula">route = [unit.position, ...unit.waypoints]
+for each leg (A → B):
+  crossing = firstLandIntersection(A, B, globalLandIndex)
+  clearance = min(distanceToLand(sample)) at 0.25 nm intervals</div>
+      <p>The requested clearance is user-selectable at 0.5, 1, 3, or 5 nautical miles. A negative signed distance means a point lies on land; zero or a small positive value means it is on or close to the coastline. Exact intersection and sampled clearance serve different purposes: the former detects crossing, while the latter identifies unsafe proximity even when the route stays technically offshore.</p>
+    </section>
+
+    <section>
+      <div class="section-kicker">Verified output</div>
+      <h2>Current scenario evidence</h2>
+      <div class="results">
+        <article class="result">
+          <div class="result-head"><div><h3>Operation Silver Current</h3><small>Hormuz · 27 positioned units · 15 BLUE / 12 RED</small></div><span class="severity pass">PASS</span></div>
+          <div class="outcome">0 findings</div>
+          <ul>
+            <li>Global real-world coastline check active.</li>
+            <li><code>hormuz_mvp</code> safe-water mask selected.</li>
+            <li>Naval starts and route legs clear at the audited threshold.</li>
+          </ul>
+        </article>
+        <article class="result">
+          <div class="result-head"><div><h3>Senkaku Standoff</h3><small>East China Sea · official game scenario</small></div><span class="severity pass">PASS</span></div>
+          <div class="outcome">0 errors</div>
+          <ul>
+            <li>Global coastline check active; Hormuz mask correctly disabled.</li>
+            <li>Two advisory warnings on CCG Jiulong route legs at 0.79 nm clearance.</li>
+            <li>Japan resolves as BLUE and China as RED.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-kicker">Change control</div>
+      <h2>Repair is guarded and reversible</h2>
+      <div class="assurance">
+        <div class="layers">
+          <div class="layer"><b>1</b><div><h3>Source provenance</h3><span>Every editable position retains its original Python source-line number and coordinate convention.</span></div></div>
+          <div class="layer"><b>2</b><div><h3>Stale-line rejection</h3><span>The editor verifies that the expected structured statement is still present before modifying it.</span></div></div>
+          <div class="layer"><b>3</b><div><h3>Timestamped backup</h3><span>The existing scenario is copied to the backup area before the revised file is saved.</span></div></div>
+          <div class="layer"><b>4</b><div><h3>Immediate re-audit</h3><span>The saved scenario is reloaded, the map is repopulated, and all local checks run again.</span></div></div>
+        </div>
+        <aside class="callout"><strong>Operational boundary</strong>Natural Earth 1:10m geometry is appropriate for regional planning, not harbor navigation. Small man-made structures, narrow channels, reclaimed land, and differences in the game’s own navigability model may require manual review. The regional mask and optional elevation check provide corroboration, not a nautical-chart guarantee.</aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page">Generated for the GCBH Bring Your Own LLM Campaign framework · Self-contained HTML · No API key or network connection required</footer>
+</body>
+</html>
