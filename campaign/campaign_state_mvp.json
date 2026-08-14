@@ -1,15 +1,16 @@
 {
   "campaign_id": "indian_ocean_hormuz_mvp",
   "campaign_name": "Indian Ocean Escalation",
-  "version": 3,
-  "current_time_local": "2026-05-22T12:00:00+04:00",
+  "version": 4,
+  "current_time_local": "2026-05-22T14:00:00+04:00",
   "time_zone": "Asia/Muscat",
-  "turn": 4,
-  "state_basis": "logged_outcome_after_operation_silver_current",
+  "turn": 5,
+  "state_basis": "logged_multiplayer_replay_outcome_after_operation_silver_current",
   "notes": [
     "This is an MVP persistent campaign state maintained outside GCBH scenario files.",
-    "The force picture incorporates the game logs from silver_current_004; logged losses are canonical even though the session ended without a formal victory result.",
-    "The next turn is a bounded coalition reprisal and convoy withdrawal, not a full theater mobilization or general strike on Iran.",
+    "The August 9 multiplayer replay of silver_current_004 supersedes the earlier solo-loss branch for campaign continuity.",
+    "The replay ended without a formal victory, but all fifteen BLUE platforms survived while Phantom 1, Phantom 2, and Shamshir were destroyed.",
+    "The next turn doubles both original Silver Current orders of battle for a corridor-reopening sealift, not a general strike on Iran.",
     "Timed goals are no longer part of scenario design intent. Survival and destruction goals only."
   ],
   "logistics_rules_mvp": {
@@ -33,15 +34,15 @@
   "sides": {
     "blue": {
       "summary": {
-        "operational_picture": "Blue preserved all three logistics ships but lost HMS Diamond, USS Tempest, Tiger flight, and Broadarrow. USS Mason is heavily damaged, leaving the convoy intact but the escort and reconnaissance screen badly mauled.",
-        "next_intent": "Withdraw the convoy and damaged Mason under a fresh air-defense escort, establish a valid recovery base, defeat the next anti-ship sortie, and conduct a tightly limited strike on the coastal kill chain."
+        "operational_picture": "Blue preserved all three logistics ships and every escort and aircraft during the multiplayer Silver Current replay. The force destroyed both hostile interceptors and Shamshir while maintaining standoff discipline.",
+        "next_intent": "Exploit the temporary corridor-control window by escorting bulk missile-defense reloads, aviation fuel, repair modules, and medical stores west through Hormuz before Bahrain's contingency stocks fall below threshold."
       },
       "theater_logistics": {
-        "fuel_points": 104,
-        "ordnance_points": 82,
-        "repair_capacity_points": 59,
-        "air_sortie_capacity_next_24h": 14,
-        "comment": "Al Dhafra can support recovery and a limited replacement package, while Mason requires withdrawal and major repair."
+        "fuel_points": 156,
+        "ordnance_points": 148,
+        "repair_capacity_points": 92,
+        "air_sortie_capacity_next_24h": 28,
+        "comment": "A theater reinforcement package can double the original Silver Current force, but the six-ship sealift must enter the Gulf to sustain that posture."
       },
       "units": [
         {
@@ -49,22 +50,19 @@
           "platform_class": "Fort Victoria AOR",
           "status": "operational",
           "mission_capable": true,
-          "structural_integrity_pct": 88,
-          "speed_limit_kts": 12,
-          "readiness_pct": 68,
-          "crew_fatigue_pct": 49,
-          "fuel_pct": 64,
-          "ammo_pct": 76,
-          "current_location": "Gulf of Oman withdrawal lane",
-          "damage": [
-            "Light combat damage",
-            "Minor replenishment-system restrictions"
-          ],
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 20,
+          "readiness_pct": 88,
+          "crew_fatigue_pct": 34,
+          "fuel_pct": 72,
+          "ammo_pct": 84,
+          "current_location": "Westbound corridor assembly area",
+          "damage": [],
           "repair": {
             "emergency_hours_remaining": 0,
-            "pier_side_hours_required": 24,
-            "full_reconstitution_days": 2,
-            "port_required": true
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
           },
           "logistics": {
             "fuel_transfer_capable": true,
@@ -76,81 +74,76 @@
         {
           "unit_name": "USS Mason",
           "platform_class": "Arleigh Burke IIA DDGHM",
-          "status": "damaged",
+          "status": "operational",
           "mission_capable": true,
-          "structural_integrity_pct": 43,
-          "speed_limit_kts": 12,
-          "readiness_pct": 31,
-          "crew_fatigue_pct": 67,
-          "fuel_pct": 58,
-          "ammo_pct": 34,
-          "current_location": "Withdrawing under damage-control restrictions",
-          "damage": [
-            "Heavy combat damage",
-            "Reduced propulsion and combat-system availability"
-          ],
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 30,
+          "readiness_pct": 89,
+          "crew_fatigue_pct": 31,
+          "fuel_pct": 76,
+          "ammo_pct": 72,
+          "current_location": "Westbound area-air-defense screen",
+          "damage": [],
           "repair": {
-            "emergency_hours_remaining": 8,
-            "pier_side_hours_required": 120,
-            "full_reconstitution_days": 12,
-            "port_required": true
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
           },
           "logistics": {
-            "helo_ops_capable": false,
-            "vls_rearm_required": true,
-            "sonobuoy_stock_state": "red",
+            "helo_ops_capable": true,
+            "vls_rearm_required": false,
+            "sonobuoy_stock_state": "amber",
             "daily_upkeep_points": 5
           }
         },
         {
           "unit_name": "USS Tempest",
           "platform_class": "Cyclone PBFM",
-          "status": "destroyed",
-          "mission_capable": false,
-          "structural_integrity_pct": 0,
-          "speed_limit_kts": 0,
-          "readiness_pct": 0,
-          "crew_fatigue_pct": 0,
-          "fuel_pct": 0,
-          "ammo_pct": 0,
-          "current_location": "Lost during Operation Silver Current",
-          "damage": [
-            "Total loss"
-          ],
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 30,
+          "readiness_pct": 84,
+          "crew_fatigue_pct": 38,
+          "fuel_pct": 68,
+          "ammo_pct": 78,
+          "current_location": "Forward close-escort screen",
+          "damage": [],
           "repair": {
             "emergency_hours_remaining": 0,
             "pier_side_hours_required": 0,
-            "full_reconstitution_days": 999,
+            "full_reconstitution_days": 0,
             "port_required": false
           },
           "logistics": {
-            "sea_state_penalty": "not applicable",
-            "daily_upkeep_points": 0
+            "sea_state_penalty": "moderate",
+            "daily_upkeep_points": 2
           }
         },
         {
           "unit_name": "HMS Diamond",
           "platform_class": "Type 45 DDG",
-          "status": "destroyed",
-          "mission_capable": false,
-          "structural_integrity_pct": 0,
-          "speed_limit_kts": 0,
-          "readiness_pct": 0,
-          "crew_fatigue_pct": 0,
-          "fuel_pct": 0,
-          "ammo_pct": 0,
-          "current_location": "Lost during Operation Silver Current",
-          "damage": ["Total loss"],
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 29,
+          "readiness_pct": 91,
+          "crew_fatigue_pct": 27,
+          "fuel_pct": 78,
+          "ammo_pct": 81,
+          "current_location": "Outer area-air-defense screen",
+          "damage": [],
           "repair": {
             "emergency_hours_remaining": 0,
             "pier_side_hours_required": 0,
-            "full_reconstitution_days": 999,
+            "full_reconstitution_days": 0,
             "port_required": false
           },
           "logistics": {
-            "helo_ops_capable": false,
-            "area_air_defense_ready": false,
-            "daily_upkeep_points": 0
+            "helo_ops_capable": true,
+            "area_air_defense_ready": true,
+            "daily_upkeep_points": 5
           }
         },
         {
@@ -257,25 +250,25 @@
         {
           "unit_name": "Tiger Flight",
           "platform_class": "F/A-18F",
-          "status": "destroyed",
-          "mission_capable": false,
-          "structural_integrity_pct": 0,
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
           "speed_limit_kts": 0,
-          "readiness_pct": 0,
-          "crew_fatigue_pct": 0,
-          "fuel_pct": 0,
-          "ammo_pct": 0,
-          "current_location": "Both aircraft lost during Operation Silver Current",
-          "damage": ["Total loss"],
+          "readiness_pct": 86,
+          "crew_fatigue_pct": 32,
+          "fuel_pct": 70,
+          "ammo_pct": 66,
+          "current_location": "Carrier-supported CAP station east of Hormuz",
+          "damage": [],
           "repair": {
             "emergency_hours_remaining": 0,
             "pier_side_hours_required": 0,
-            "full_reconstitution_days": 999,
+            "full_reconstitution_days": 0,
             "port_required": false
           },
           "logistics": {
-            "sorties_available_next_12h": 0,
-            "daily_upkeep_points": 0
+            "sorties_available_next_12h": 2,
+            "daily_upkeep_points": 3
           }
         },
         {
@@ -356,34 +349,34 @@
         {
           "unit_name": "Broadarrow",
           "platform_class": "P-8 MPA",
-          "status": "destroyed",
-          "mission_capable": false,
-          "structural_integrity_pct": 0,
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
           "speed_limit_kts": 0,
-          "readiness_pct": 0,
-          "crew_fatigue_pct": 0,
-          "fuel_pct": 0,
-          "ammo_pct": 0,
-          "current_location": "Lost during Operation Silver Current",
-          "damage": ["Total loss"],
+          "readiness_pct": 82,
+          "crew_fatigue_pct": 35,
+          "fuel_pct": 64,
+          "ammo_pct": 50,
+          "current_location": "Maritime classification orbit east of Hormuz",
+          "damage": [],
           "repair": {
             "emergency_hours_remaining": 0,
             "pier_side_hours_required": 0,
-            "full_reconstitution_days": 999,
+            "full_reconstitution_days": 0,
             "port_required": false
           },
           "logistics": {
-            "sorties_available_next_12h": 0,
-            "surface_search_value": "lost",
-            "daily_upkeep_points": 0
+            "sorties_available_next_12h": 1,
+            "surface_search_value": "high",
+            "daily_upkeep_points": 2
           }
         }
       ]
     },
     "red": {
       "summary": {
-        "operational_picture": "Red lost both Phantom interceptors but retained every fast-attack craft and coastal node. The convoy survived, yet the FAC and shore-based kill chain inflicted disproportionate losses on its screen.",
-        "next_intent": "Exploit the damaged escort picture with limited MiG-29 cover and a two-aircraft Su-24 anti-shipping sortie while preserving the coastal network."
+        "operational_picture": "Red lost both Phantom interceptors and Shamshir during the multiplayer replay without damaging a BLUE platform. Khanjar, Falakhon, and the coastal kill chain remain intact.",
+        "next_intent": "Declare an exclusion zone and reinforce the Strait with additional FACs, two Moudge frigates, two Tsunami missile boats, MiG-29 cover, and a limited Su-24 strike package."
       },
       "theater_logistics": {
         "fuel_points": 92,
@@ -495,24 +488,24 @@
         {
           "unit_name": "Shamshir",
           "platform_class": "Kaman FACM",
-          "status": "operational",
-          "mission_capable": true,
-          "structural_integrity_pct": 100,
-          "speed_limit_kts": 30,
-          "readiness_pct": 82,
-          "crew_fatigue_pct": 22,
-          "fuel_pct": 85,
-          "ammo_pct": 100,
-          "current_location": "Secondary reserve flotilla",
-          "damage": [],
+          "status": "destroyed",
+          "mission_capable": false,
+          "structural_integrity_pct": 0,
+          "speed_limit_kts": 0,
+          "readiness_pct": 0,
+          "crew_fatigue_pct": 0,
+          "fuel_pct": 0,
+          "ammo_pct": 0,
+          "current_location": "Sunk during the multiplayer Operation Silver Current replay",
+          "damage": ["Total loss"],
           "repair": {
             "emergency_hours_remaining": 0,
             "pier_side_hours_required": 0,
-            "full_reconstitution_days": 0,
+            "full_reconstitution_days": 999,
             "port_required": false
           },
           "logistics": {
-            "daily_upkeep_points": 2
+            "daily_upkeep_points": 0
           }
         },
         {
@@ -744,24 +737,33 @@
       "result_observed": "Session ended without a formal victory result. Blue preserved all three logistics ships but lost USS Tempest, HMS Diamond, Tiger flight, and Broadarrow; USS Mason suffered heavy damage. Red lost Phantom flight while all FACs and coastal nodes survived.",
       "time_ended_local": "2026-05-22T07:00:00+04:00",
       "evidence": "Game logs from the most recent completed run"
+    },
+    {
+      "scenario_id": "silver_current_004",
+      "run_id": "multiplayer_replay_20260809",
+      "scenario_name": "Operation Silver Current",
+      "result_observed": "Session ended without a formal victory after 24 minutes 25 seconds. All fifteen BLUE platforms survived with no reported damage; Phantom 1, Phantom 2, and Shamshir were destroyed. One of three FAC objectives and none of the coastal objectives were completed.",
+      "time_ended_local": "2026-05-22T06:24:25+04:00",
+      "evidence": "Player.log and unit_state.xml from the August 9 multiplayer session",
+      "campaign_effect": "Supersedes the earlier solo-loss branch for turn 5 force availability."
     }
   ],
   "escalation_assessment_next_6h": {
     "blue": [
-      "Additional escort air-defense capacity arrives faster than heavy repair capacity.",
-      "A second logistics ship and a fleet oiler can enter the support picture within hours.",
-      "Maritime patrol and AEW coverage increase before land-attack operations do."
+      "A carrier-supported CAP and land-based reinforcement package can assemble east of Hormuz.",
+      "Three additional auxiliaries carry the bulk fuel, VLS reloads, repair modules, and medical stores that airlift cannot move at scale.",
+      "The multiplayer replay's standoff success makes a protected westbound transit politically and operationally credible."
     ],
     "red": [
-      "Additional coastal missiles, radar cueing, and short-range air defense can be activated quickly.",
-      "FAC reinforcements and re-sorts are more realistic than major surface combatant intervention.",
-      "Local interceptor and strike sorties from nearby airstrips are plausible but should remain limited."
+      "Iran declares an exclusion zone after losing its Phantom pair and Shamshir.",
+      "Moudge frigates, missile boats, and reserve FACs can mass locally faster than distant blue-water reinforcements.",
+      "Four MiG-29s and two Su-24s represent a sharp local surge without implying total national mobilization."
     ]
   },
   "next_scenario_seed": {
-    "scenario_id": "sable_reprisal_001",
-    "scenario_name": "Operation Sable Reprisal",
-    "premise": "Blue withdraws the intact convoy and crippled Mason under a replacement air-defense screen while executing a limited strike on the coastal kill chain; Iran commits a small MiG-29 and Su-24 package to exploit the opening.",
-    "scenario_file": "scenarios/operation_sable_reprisal.py"
+    "scenario_id": "resolute_passage_001",
+    "scenario_name": "Operation Resolute Passage",
+    "premise": "A six-ship sealift carrying bulk fuel, missile-defense reloads, repair modules, and medical stores must transit west through Hormuz before Bahrain's forward stocks fall below contingency levels. Both sides field exactly double their original Silver Current order of battle.",
+    "scenario_file": "scenarios/operation_resolute_passage.py"
   }
 }

@@ -46,6 +46,16 @@
       ]
     },
     {
+      "name": "Persian Gulf Westbound Lane",
+      "points": [
+        [55.55, 26.18],
+        [56.48, 26.18],
+        [56.58, 26.48],
+        [56.28, 26.62],
+        [55.55, 26.62]
+      ]
+    },
+    {
       "name": "Eastern Rendezvous Box",
       "points": [
         [57.55, 25.40],

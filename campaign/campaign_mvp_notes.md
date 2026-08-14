@@ -126,3 +126,11 @@ The `silver_current_004` game logs, rather than the earlier planning assumption,
 Iran exploits the damaged screen with MiG-29 cover and a two-aircraft Su-24 anti-shipping package. The surviving FACs remain dangerous but are not mandatory BLUE targets, reducing the incentive to repeat the close-range fight that caused the Silver Current losses.
 
 Because the game removed `AutoAttack` from player-controlled aircraft in the logged run, the briefing explicitly requires manual positive-control target designation for the Lancer strike package.
+
+## Multiplayer Replay Branch and Scenario 5
+
+The August 9 replay of `silver_current_004` replaces the earlier solo-loss outcome for campaign continuity. The replay ended before a formal victory, but all fifteen BLUE platforms survived without reported damage. Phantom 1, Phantom 2, and Shamshir were destroyed. The two remaining FACs and every coastal node survived.
+
+`Operation Resolute Passage` doubles each side's original Silver Current order of battle: 30 BLUE assets and 24 RED assets. The reason for returning to Hormuz is logistical rather than symbolic. Six auxiliaries carry bulk aviation fuel, missile-defense reloads, repair modules, and medical stores required by the forward force in Bahrain; airlift cannot deliver those commodities at the necessary scale before contingency stocks are exhausted.
+
+The carrier remains outside the Strait while the convoy, mine-countermeasure ships, and escorts proceed west through a real-coastline-checked traffic corridor. Iran responds with an exclusion zone, local frigate and missile-boat reinforcements, four MiG-29s, two Su-24s, and the surviving coastal kill chain. The authority remains corridor opening and protection, not a general attack on Iran.

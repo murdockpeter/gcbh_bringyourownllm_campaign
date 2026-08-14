@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Operation Resolute Passage | Commander's Planning Packet</title>
+  <style>
+    :root {
+      --night: #04111a;
+      --deep: #071d2a;
+      --panel: #0b2635;
+      --panel2: #0e3042;
+      --ink: #ecf8fb;
+      --muted: #9bb7c1;
+      --line: #285166;
+      --cyan: #35d6e7;
+      --blue: #63aaff;
+      --green: #6ee7aa;
+      --amber: #ffc05c;
+      --red: #ff6675;
+      --purple: #b29aff;
+      --paper: #f6fafb;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 78% -10%, rgba(53,214,231,.15), transparent 34rem),
+        radial-gradient(circle at 0% 30%, rgba(99,170,255,.09), transparent 28rem),
+        var(--night);
+      font: 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    a { color: inherit; }
+    .wrap { width: min(1320px, calc(100% - 36px)); margin: auto; }
+    .marking {
+      padding: 7px 16px;
+      color: #06141a;
+      background: var(--cyan);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(53,214,231,.23);
+      background: rgba(4,17,26,.9);
+      backdrop-filter: blur(14px);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 56px; }
+    .brand { color: var(--cyan); font-size: 12px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    .links { display: flex; flex-wrap: wrap; gap: 7px; }
+    .links a, .print-button {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #bcd3db;
+      background: transparent;
+      font: inherit;
+      font-size: 11px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .links a:hover, .print-button:hover { color: var(--cyan); border-color: var(--cyan); }
+
+    .hero { position: relative; min-height: 650px; padding: 74px 0 54px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 42px; align-items: center; }
+    .eyebrow, .section-kicker { color: var(--cyan); font-size: 11px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 14px 0 22px; font-size: clamp(48px, 7vw, 88px); line-height: .92; letter-spacing: -.06em; }
+    h1 span { color: var(--cyan); }
+    .lead { max-width: 720px; color: #bfd2d9; font-size: 19px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 27px; }
+    .tag { padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: rgba(11,38,53,.7); font-size: 11px; }
+    .tag.good { color: var(--green); border-color: rgba(110,231,170,.38); }
+
+    .plot {
+      position: relative;
+      min-height: 470px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      background: linear-gradient(155deg, rgba(14,48,66,.94), rgba(3,15,23,.98));
+      box-shadow: 0 34px 100px rgba(0,0,0,.34);
+    }
+    .plot svg { display: block; width: 100%; height: 470px; }
+    .plot-label { position: absolute; left: 18px; bottom: 16px; color: var(--muted); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; }
+
+    .scoreboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; margin-top: -26px; position: relative; z-index: 2; }
+    .metric { padding: 19px; border: 1px solid var(--line); border-radius: 12px; background: rgba(9,32,44,.96); box-shadow: 0 16px 45px rgba(0,0,0,.25); }
+    .metric strong { display: block; color: var(--cyan); font-size: 30px; line-height: 1; }
+    .metric span { display: block; margin-top: 8px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+
+    main { padding: 36px 0 86px; }
+    section {
+      margin: 25px 0;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(12,42,57,.95), rgba(5,20,29,.96));
+      box-shadow: 0 22px 62px rgba(0,0,0,.19);
+    }
+    h2 { margin: 7px 0 20px; font-size: clamp(29px, 4vw, 44px); line-height: 1.06; letter-spacing: -.04em; }
+    h3 { margin: 0 0 8px; font-size: 16px; }
+    p { margin: 0 0 13px; }
+    .muted { color: var(--muted); }
+    .small { font-size: 12px; }
+    .callout { padding: 18px 20px; border: 1px solid rgba(53,214,231,.32); border-left: 4px solid var(--cyan); border-radius: 9px; color: #d5e9ee; background: rgba(53,214,231,.055); }
+    .callout.amber { border-color: rgba(255,192,92,.32); border-left-color: var(--amber); background: rgba(255,192,92,.055); }
+
+    .intent-grid { display: grid; grid-template-columns: .8fr 1.25fr .95fr; gap: 13px; margin-top: 22px; }
+    .intent-card { padding: 22px; border: 1px solid var(--line); border-radius: 11px; background: rgba(5,21,30,.68); }
+    .intent-card.purpose { border-top: 3px solid var(--blue); }
+    .intent-card.tasks { border-top: 3px solid var(--cyan); }
+    .intent-card.end { border-top: 3px solid var(--green); }
+    .intent-card h3 { color: var(--cyan); font-size: 12px; letter-spacing: .11em; text-transform: uppercase; }
+    ul.tight { margin: 10px 0 0; padding-left: 18px; }
+    ul.tight li { margin: 5px 0; }
+
+    .priority-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 18px; }
+    .priority { position: relative; padding: 16px 14px 14px 42px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); }
+    .priority b { position: absolute; left: 12px; top: 14px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #06141a; background: var(--cyan); font-size: 11px; }
+    .priority span { color: var(--muted); font-size: 11px; }
+
+    .mett { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .factor { padding: 21px; border: 1px solid var(--line); border-radius: 10px; background: rgba(5,21,30,.66); }
+    .factor.wide { grid-column: 1 / -1; }
+    .factor-head { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+    .letter { display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 32px; border-radius: 7px; color: #06141a; background: var(--cyan); font-weight: 950; }
+    .factor h3 { margin: 0; font-size: 18px; }
+    .coa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 13px; }
+    .coa { padding: 15px; border-radius: 8px; background: var(--panel); }
+    .coa strong { display: block; margin-bottom: 6px; color: var(--amber); font-size: 11px; letter-spacing: .09em; text-transform: uppercase; }
+
+    .ocoka-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .terrain { padding: 19px; border: 1px solid var(--line); border-radius: 10px; background: rgba(5,21,30,.68); }
+    .terrain .letter { margin-bottom: 13px; background: var(--blue); }
+    .terrain h3 { min-height: 40px; color: #d9edf2; }
+    .terrain ul { margin: 10px 0 0; padding-left: 17px; color: var(--muted); font-size: 12px; }
+    .terrain li { margin: 6px 0; }
+
+    .force-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .force { padding: 22px; border: 1px solid var(--line); border-radius: 11px; background: rgba(5,21,30,.68); }
+    .force.blue { border-top: 3px solid var(--blue); }
+    .force.red { border-top: 3px solid var(--red); }
+    .force-head { display: flex; justify-content: space-between; gap: 15px; align-items: start; }
+    .force-count { color: var(--cyan); font-size: 30px; font-weight: 900; }
+    .force dl { display: grid; grid-template-columns: 135px 1fr; gap: 7px 12px; margin: 16px 0 0; }
+    .force dt { color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .force dd { margin: 0; }
+
+    .matrix-shell { overflow-x: auto; margin-top: 18px; border: 1px solid var(--line); border-radius: 11px; }
+    table { width: 100%; border-collapse: collapse; }
+    .matrix { min-width: 1280px; background: rgba(4,17,26,.66); }
+    th, td { padding: 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+    th:last-child, td:last-child { border-right: 0; }
+    tr:last-child td { border-bottom: 0; }
+    .matrix thead th { position: sticky; top: 0; z-index: 1; color: #07141b; background: var(--cyan); font-size: 10px; letter-spacing: .07em; text-transform: uppercase; }
+    .matrix thead th:first-child { min-width: 165px; color: var(--ink); background: var(--panel2); }
+    .matrix tbody th { width: 165px; color: var(--cyan); background: #092333; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+    .matrix td { min-width: 215px; color: #c3d6dd; font-size: 11px; }
+    .matrix td strong { display: block; margin-bottom: 4px; color: var(--ink); }
+    .matrix td em { color: var(--amber); font-style: normal; }
+    .matrix ul { margin: 4px 0 0; padding-left: 15px; }
+    .matrix li { margin: 3px 0; }
+    .phase-title { display: block; font-size: 13px; }
+    .phase-trigger { display: block; margin-top: 5px; font-size: 9px; font-weight: 700; opacity: .72; }
+
+    .decisions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .decision { padding: 18px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); }
+    .decision b { color: var(--amber); }
+    .decision span { display: block; margin-top: 6px; color: var(--muted); font-size: 11px; }
+
+    footer { padding: 34px 0 45px; color: #7896a2; font-size: 11px; text-align: center; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .intent-grid, .force-grid { grid-template-columns: 1fr; }
+      .plot { min-height: 390px; }
+      .plot svg { height: 390px; }
+      .ocoka-grid { grid-template-columns: repeat(2, 1fr); }
+      .priority-strip, .decisions { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 20px, 1320px); }
+      .links { display: none; }
+      .hero { padding-top: 46px; }
+      section { padding: 22px 16px; }
+      .scoreboard, .mett, .ocoka-grid, .priority-strip, .decisions { grid-template-columns: 1fr; }
+      .factor.wide { grid-column: auto; }
+    }
+
+    @page { size: Letter landscape; margin: .38in; }
+    @media print {
+      :root { --ink: #102630; --muted: #4d6872; --line: #b8cbd2; --cyan: #047f93; --blue: #266fbb; --green: #14794b; --amber: #9a6000; --red: #b62d3b; }
+      body { color: var(--ink); background: white; font-size: 10px; }
+      .marking { color: white; background: #087e91; }
+      nav, .print-button { display: none !important; }
+      .wrap { width: 100%; }
+      .hero { min-height: 0; padding: 22px 0 8px; break-after: page; }
+      .hero-grid { grid-template-columns: 1fr .8fr; gap: 24px; }
+      h1 { font-size: 48px; }
+      .lead { font-size: 13px; }
+      .plot, .plot svg { min-height: 330px; height: 330px; box-shadow: none; }
+      .metric { padding: 12px; box-shadow: none; background: white; }
+      .metric strong { font-size: 22px; }
+      main { padding: 0; }
+      section { margin: 0; padding: 18px 0; border: 0; border-radius: 0; background: white; box-shadow: none; break-before: page; }
+      section:first-child { break-before: auto; }
+      h2 { font-size: 27px; margin-bottom: 12px; }
+      .intent-card, .factor, .terrain, .force, .decision, .callout { background: #f6fafb; break-inside: avoid; }
+      .intent-grid { grid-template-columns: .8fr 1.25fr .95fr; }
+      .priority-strip { grid-template-columns: repeat(5,1fr); }
+      .mett { grid-template-columns: repeat(2,1fr); }
+      .ocoka-grid { grid-template-columns: repeat(5,1fr); }
+      .force-grid { grid-template-columns: 1fr 1fr; }
+      .decisions { grid-template-columns: repeat(4,1fr); }
+      .matrix-shell { overflow: visible; border-color: #9fb7c0; }
+      .matrix { min-width: 0; table-layout: fixed; background: white; }
+      .matrix thead th { position: static; color: white; background: #087e91; font-size: 7px; padding: 7px; }
+      .matrix thead th:first-child { width: 112px; color: white; background: #173d50; }
+      .matrix tbody th { width: 112px; color: #075f70; background: #edf5f7; font-size: 7px; padding: 7px; }
+      .matrix td { min-width: 0; padding: 7px; color: #213b45; font-size: 7px; }
+      .matrix td strong { font-size: 7.5px; }
+      .phase-title { font-size: 8px; }
+      .phase-trigger { font-size: 6px; }
+      footer { padding: 12px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="marking">Unclassified // Simulation Game Play Only // Not for Real-World Navigation or Operations</div>
+  <nav>
+    <div class="wrap">
+      <div class="brand">Resolute Passage &middot; Command Packet</div>
+      <div class="links">
+        <a href="operation_resolute_passage_orbat.html">Player ORBAT</a>
+        <a href="#intent">Intent</a>
+        <a href="#mett">METT-TC</a>
+        <a href="#ocoka">OCOKA</a>
+        <a href="#forces">Forces</a>
+        <a href="#matrix">Sync Matrix</a>
+        <button class="print-button" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Commander&rsquo;s planning packet &middot; Campaign turn 5</div>
+        <h1>Operation<br><span>Resolute Passage</span></h1>
+        <p class="lead">A naval-centric command brief for reopening the Strait of Hormuz and escorting six high-value auxiliaries west before Bahrain&rsquo;s missile-defense, aviation-fuel, repair, and medical stocks fall below contingency levels.</p>
+        <div class="tags">
+          <span class="tag">22 May 2026 &middot; 1400 local</span>
+          <span class="tag">Player side &middot; BLUE</span>
+          <span class="tag">Sea state &middot; 3</span>
+          <span class="tag">54 total assets</span>
+          <span class="tag good">Real-coastline audit &middot; clean</span>
+        </div>
+      </div>
+
+      <div class="plot" aria-label="Schematic of the westbound corridor and threat geometry">
+        <svg viewBox="0 0 620 470" role="img" aria-labelledby="plotTitle plotDesc">
+          <title id="plotTitle">Resolute Passage operational design</title>
+          <desc id="plotDesc">Six-ship convoy moves west through a narrow corridor while blue escorts and aircraft screen against red surface, air, and coastal threats.</desc>
+          <defs>
+            <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0e3446"/><stop offset="1" stop-color="#051621"/></linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <rect width="620" height="470" fill="url(#sea)"/>
+          <path d="M0 0H620V115C545 96 495 118 430 150C353 188 318 205 242 192C162 178 101 139 0 157Z" fill="#25352f" stroke="#547060"/>
+          <path d="M0 470V347C74 337 124 302 184 279C243 256 276 278 310 318C344 357 402 370 471 344C528 323 573 319 620 330V470Z" fill="#28382f" stroke="#547060"/>
+          <path d="M580 206C543 185 508 183 477 202C451 217 430 224 403 220" fill="none" stroke="#60786b" stroke-width="18" stroke-linecap="round" opacity=".8"/>
+          <path d="M540 284C501 276 461 283 429 304" fill="none" stroke="#60786b" stroke-width="13" stroke-linecap="round" opacity=".75"/>
+          <g opacity=".36" stroke="#35d6e7" fill="none"><circle cx="493" cy="154" r="58"/><circle cx="493" cy="154" r="104"/><circle cx="493" cy="154" r="150"/></g>
+          <path d="M548 285C481 294 421 284 361 260C298 235 238 245 181 273C126 300 78 304 31 291" fill="none" stroke="#35d6e7" stroke-width="5" stroke-linecap="round" filter="url(#glow)"/>
+          <path d="M495 170C453 199 420 228 387 253" fill="none" stroke="#ff6675" stroke-width="2" stroke-dasharray="7 7"/>
+          <path d="M535 221C484 229 446 241 402 260" fill="none" stroke="#ff6675" stroke-width="2" stroke-dasharray="7 7"/>
+          <g fill="#63aaff" stroke="#d9f2ff" stroke-width="1.5">
+            <circle cx="511" cy="289" r="6"/><circle cx="491" cy="288" r="6"/><circle cx="471" cy="284" r="6"/>
+            <circle cx="450" cy="280" r="6"/><circle cx="430" cy="274" r="6"/><circle cx="410" cy="268" r="6"/>
+          </g>
+          <g fill="#35d6e7"><path d="M397 248l11 7-11 7-11-7z"/><path d="M376 245l11 7-11 7-11-7z"/><path d="M355 244l11 7-11 7-11-7z"/></g>
+          <g fill="#ff6675"><path d="M348 225l9 6-9 6-9-6z"/><path d="M366 216l9 6-9 6-9-6z"/><path d="M386 207l9 6-9 6-9-6z"/></g>
+          <g fill="#ffc05c"><circle cx="487" cy="138" r="6"/><circle cx="516" cy="151" r="6"/><circle cx="548" cy="173" r="6"/></g>
+          <g font-family="Segoe UI, sans-serif" font-size="11" font-weight="700">
+            <text x="33" y="281" fill="#35d6e7">WEST / BAHRAIN</text>
+            <text x="465" y="318" fill="#d9f2ff">6-SHIP SEALIFT</text>
+            <text x="325" y="278" fill="#35d6e7">ESCORT SCREEN</text>
+            <text x="450" y="126" fill="#ffc05c">COASTAL KILL CHAIN</text>
+            <text x="325" y="199" fill="#ff8c98">INTERCEPT FORCE</text>
+            <text x="474" y="425" fill="#7f9da9">CARRIER REMAINS EAST</text>
+          </g>
+          <circle cx="535" cy="400" r="8" fill="#63aaff"/><path d="M509 400h52" stroke="#63aaff" stroke-width="3"/>
+        </svg>
+        <div class="plot-label">Operational schematic &middot; Not to scale</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="scoreboard">
+      <div class="metric"><strong>30</strong><span>BLUE assets</span></div>
+      <div class="metric"><strong>24</strong><span>RED assets</span></div>
+      <div class="metric"><strong>5 of 6</strong><span>Minimum convoy survival</span></div>
+      <div class="metric"><strong>3 nodes</strong><span>Kill-chain disruption required</span></div>
+    </div>
+
+    <section id="intent">
+      <div class="section-kicker">01 &middot; Commander&rsquo;s Intent</div>
+      <h2>Reopen the corridor without widening the war.</h2>
+      <div class="callout"><strong>Intent statement.</strong> The coalition will exploit the temporary control gained during Silver Current to escort the bulk sustainment package west through Hormuz. We will preserve the logistics backbone by detecting and defeating the Iranian surface-air attack at standoff range, disrupting the designated coastal kill chain under positive control, and retaining a recoverable combat force. Success is a functioning corridor and a sustained forward force in Bahrain&mdash;not destruction for its own sake.</div>
+
+      <div class="intent-grid">
+        <article class="intent-card purpose">
+          <h3>Expanded Purpose</h3>
+          <p>Prevent Bahrain&rsquo;s forward naval and air-defense posture from falling below contingency readiness. Airlift cannot deliver the required bulk fuel, VLS reloads, repair modules, and medical stores in time.</p>
+        </article>
+        <article class="intent-card tasks">
+          <h3>Key Tasks</h3>
+          <ul class="tight">
+            <li>Maintain a recognized maritime and air picture from assembly through western exit.</li>
+            <li>Keep at least five of six auxiliaries mission capable.</li>
+            <li>Lead with MCM assets and keep high-value units behind layered air defense.</li>
+            <li>Destroy at least six of nine hostile surface combatants from outside FAC gun range.</li>
+            <li>Neutralize at least three designated coastal kill-chain nodes.</li>
+            <li>Preserve carrier and land-based recovery options; retain a credible post-mission screen.</li>
+          </ul>
+        </article>
+        <article class="intent-card end">
+          <h3>End State</h3>
+          <ul class="tight">
+            <li>Five or more auxiliaries clear the decisive Strait sector westbound.</li>
+            <li>Iranian surface interception is combat ineffective.</li>
+            <li>At least three sensor/missile nodes are neutralized.</li>
+            <li>BLUE can recover aircraft and continue escort operations.</li>
+            <li>No attacks occur outside designated hostile forces and sites.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="priority-strip" aria-label="Commander's priorities">
+        <div class="priority"><b>1</b><strong>Convoy survival</strong><br><span>Protect the campaign&rsquo;s sustainment center of gravity.</span></div>
+        <div class="priority"><b>2</b><strong>Air/missile defense</strong><br><span>Break the most dangerous massed salvo.</span></div>
+        <div class="priority"><b>3</b><strong>Standoff surface fires</strong><br><span>Never trade inside the FAC gun envelope.</span></div>
+        <div class="priority"><b>4</b><strong>Kill-chain disruption</strong><br><span>Strike only positively controlled designated nodes.</span></div>
+        <div class="priority"><b>5</b><strong>Force preservation</strong><br><span>Finish with recovery and follow-on capacity.</span></div>
+      </div>
+    </section>
+
+    <section id="mett">
+      <div class="section-kicker">02 &middot; Naval METT-TC</div>
+      <h2>The mission viewed through the maritime fight.</h2>
+      <div class="mett">
+        <article class="factor">
+          <div class="factor-head"><span class="letter">M</span><h3>Mission</h3></div>
+          <p>Escort six auxiliaries west through the Hormuz corridor while defeating the forces that can close it. Protect five, destroy six hostile surface combatants, and neutralize three coastal nodes.</p>
+          <p class="muted small"><strong>Decisive operation:</strong> protected convoy passage. Surface and shore strikes are shaping or supporting actions unless they directly threaten the convoy.</p>
+        </article>
+
+        <article class="factor">
+          <div class="factor-head"><span class="letter">E</span><h3>Enemy</h3></div>
+          <p><strong>24 assets:</strong> five Kaman FACs, two Moudge frigates, two Tsunami missile boats, three Bastions, three Pantsirs, one S-300, Coastwatch radar, Bandar Abbas strip, four MiG-29s, and two Su-24Ms.</p>
+          <div class="coa-grid">
+            <div class="coa"><strong>Most likely COA</strong>Coastwatch and fighters classify/fix the screen; Su-24s and coastal launchers force defensive expenditure; surface units close from the west to finish damaged auxiliaries.</div>
+            <div class="coa"><strong>Most dangerous COA</strong>A near-simultaneous Oniks/Noor/P-20/Kh-59 salvo saturates the AAW screen while MiGs pin CAP and FACs penetrate to gun range.</div>
+          </div>
+        </article>
+
+        <article class="factor">
+          <div class="factor-head"><span class="letter">T</span><h3>Terrain &amp; Weather</h3></div>
+          <p>The narrow Strait compresses formations and weapon axes. Peninsula and island geometry creates radar shadow, late visual contacts, and channelization. Open water east and west favors long-range sensing and missile employment.</p>
+          <p class="muted small">Scenario conditions: 1400 local, sea state 3. Specific visibility, wind, and merchant density are not modeled; treat them as commander&rsquo;s assumptions rather than known facts.</p>
+        </article>
+
+        <article class="factor">
+          <div class="factor-head"><span class="letter">T</span><h3>Troops &amp; Support Available</h3></div>
+          <p>Six auxiliaries; five major AAW combatants; Type 23, Cyclone, and cutter close screen; two MCMs; offshore carrier; Al Dhafra; eight fighters/strike aircraft; two P-8s; E-2D; KC-135R.</p>
+          <p class="muted small"><strong>Constraint:</strong> player-controlled aircraft lose automatic attack tasking at game start. CAP and shore strike require deliberate player control and target assignment.</p>
+        </article>
+
+        <article class="factor">
+          <div class="factor-head"><span class="letter">T</span><h3>Time Available</h3></div>
+          <p>The campaign premise gives less than twenty-four hours before Bahrain&rsquo;s contingency stocks become operationally limiting. The tactical matrix is event-driven: phase on classification, salvo defeat, and geographic clearance rather than arbitrary clock time.</p>
+          <p class="muted small">There is no formal in-game TimeGoal. The time pressure is operational context and a group pacing mechanism.</p>
+        </article>
+
+        <article class="factor">
+          <div class="factor-head"><span class="letter">C</span><h3>Civil Considerations</h3></div>
+          <p>Hormuz is an international commercial chokepoint bordered by populated coasts. Maintain positive identification, avoid neutral shipping lanes where possible, and confine shore attack to the five designated nodes.</p>
+          <p class="muted small">For Discord play, publish one command net, one air-control net, a shared target-status format, and a clear pause/clarification procedure before launch.</p>
+        </article>
+
+        <article class="factor wide">
+          <div class="factor-head"><span class="letter">R</span><h3>Risk to Mission / Risk to Force</h3></div>
+          <p><strong>Primary risk:</strong> convoy compression during a coordinated saturation attack. <strong>Control:</strong> do not outrun the MCM lead, maintain AAW depth, keep auxiliaries outside direct-fire range, and prioritize inbound weapons and shooters over opportunistic targets. <strong>Residual risk:</strong> one auxiliary may be lost without mission failure, but loss of two breaks Commander&rsquo;s Intent.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="ocoka">
+      <div class="section-kicker">03 &middot; Maritime OCOKA</div>
+      <h2>Read water, airspace, coastline, and sensors as one terrain system.</h2>
+      <div class="ocoka-grid">
+        <article class="terrain"><span class="letter">O</span><h3>Observation &amp; Fields of Fire</h3><ul><li>Sentinel and P-8 orbits provide the broad BLUE picture.</li><li>Coastwatch and S-300 anchor RED cueing.</li><li>The channel produces long missile fields but shortens reaction time around land masks.</li><li>Visual/FAC gun engagements indicate the screen has allowed excessive closure.</li></ul></article>
+        <article class="terrain"><span class="letter">C</span><h3>Cover &amp; Concealment</h3><ul><li>Open sea gives little physical cover to the convoy.</li><li>Musandam and islands can mask radar and missile seekers.</li><li>RED surface units can emerge late from coastal clutter.</li><li>BLUE substitutes layered defense, emission control, spacing, and standoff for physical cover.</li></ul></article>
+        <article class="terrain"><span class="letter">O</span><h3>Obstacles</h3><ul><li>The Strait itself is the dominant channelizing obstacle.</li><li>Mine uncertainty justifies Devastator and Dextrous leading the passage.</li><li>Overlapping Bastion, S-300, and Pantsir zones constrain maneuver.</li><li>Neutral traffic and restrictive identification requirements limit free fire.</li></ul></article>
+        <article class="terrain"><span class="letter">K</span><h3>Key Terrain</h3><ul><li>Eastern assembly area: organize without coastal exposure.</li><li>Center lane: decisive geographic point and maximum compression.</li><li>Western exit: convoy clearance and transition point.</li><li>Coastwatch/Bastion clusters: functional key terrain for RED&rsquo;s kill chain.</li><li>Carrier recovery box: preserves Tiger flight without committing the carrier.</li></ul></article>
+        <article class="terrain"><span class="letter">A</span><h3>Avenues of Approach</h3><ul><li>BLUE main: MCM-led westbound surface corridor.</li><li>BLUE air: CAP over corridor; strike axis from Al Dhafra; P-8 classification orbit east.</li><li>RED surface: eastbound blocking line from the western narrows.</li><li>RED air: MiGs fix CAP while Fencers approach the auxiliaries.</li><li>RED fires: north-to-south coastal missile axes into a compressed formation.</li></ul></article>
+      </div>
+    </section>
+
+    <section id="forces">
+      <div class="section-kicker">04 &middot; Combat Power &amp; Organization</div>
+      <h2>Organize around protection of the sealift.</h2>
+      <div class="force-grid">
+        <article class="force blue">
+          <div class="force-head"><div><h3>BLUE &middot; Corridor Force</h3><p class="muted">Recommended functional grouping</p></div><span class="force-count">30</span></div>
+          <dl>
+            <dt>Sealift</dt><dd>Fort Victoria, John Ericsson, Amelia Earhart, Tidespring, Guadalupe, Cesar Chavez</dd>
+            <dt>MCM Lead</dt><dd>Devastator, Dextrous</dd>
+            <dt>AAW Screen</dt><dd>Mason, Chosin, Thomas Hudner, Arleigh Burke, Diamond</dd>
+            <dt>Close Screen</dt><dd>Richmond, Tempest, Stone</dd>
+            <dt>CAP</dt><dd>Tiger 1/2; Viper 1/2</dd>
+            <dt>Strike</dt><dd>Lancer 1/2; Wildcat 1/2</dd>
+            <dt>ISR / C2</dt><dd>Sentinel; Broadarrow; Trident</dd>
+            <dt>Support</dt><dd>Shell 1; Al Dhafra; George H.W. Bush outside Strait</dd>
+          </dl>
+        </article>
+        <article class="force red">
+          <div class="force-head"><div><h3>RED &middot; Exclusion Force</h3><p class="muted">Threat functions</p></div><span class="force-count">24</span></div>
+          <dl>
+            <dt>FAC Screen</dt><dd>Khanjar, Falakhon, Dagger, Scimitar, Zolfaghar</dd>
+            <dt>Surface Fires</dt><dd>IRIS Sahand, IRIS Dena, Tsunami 1/2</dd>
+            <dt>Coastal Fires</dt><dd>Bastion 1/2/3</dd>
+            <dt>Point Defense</dt><dd>Pantsir 1/2/3</dd>
+            <dt>Area Defense</dt><dd>S-300 Site North</dd>
+            <dt>Sensor</dt><dd>Coastwatch 1</dd>
+            <dt>Counter-Air</dt><dd>Fulcrum 1&ndash;4</dd>
+            <dt>Strike</dt><dd>Fencer 1/2; Bandar Abbas support</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section id="matrix">
+      <div class="section-kicker">05 &middot; Full Synchronization Matrix</div>
+      <h2>Phase on events, not hope.</h2>
+      <p class="muted">The matrix is a recommended multiplayer control scheme. “H” is convoy movement from the assembly line. The commander may hold a phase until its exit criteria are met.</p>
+
+      <div class="matrix-shell">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th><span class="phase-title">Phase 0 &middot; Set</span><span class="phase-trigger">Before H / command check</span></th>
+              <th><span class="phase-title">Phase I &middot; Classify</span><span class="phase-trigger">H to hostile classification</span></th>
+              <th><span class="phase-title">Phase II &middot; Penetrate</span><span class="phase-trigger">Corridor entry to first coordinated attack</span></th>
+              <th><span class="phase-title">Phase III &middot; Defeat</span><span class="phase-trigger">Massed attack through surface break</span></th>
+              <th><span class="phase-title">Phase IV &middot; Clear</span><span class="phase-trigger">Surface threat broken to western exit</span></th>
+              <th><span class="phase-title">Phase V &middot; Consolidate</span><span class="phase-trigger">Convoy clear / recover force</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Commander / C2</th>
+              <td><strong>Publish control plan.</strong> Assign convoy, AAW, surface, air, and strike leads. Confirm pause authority and target-report format.</td>
+              <td><strong>Build one picture.</strong> Require contact ID, bearing/range, confidence, and threat axis before engagement.</td>
+              <td><strong>Control compression.</strong> Hold auxiliaries behind MCM/AAW lead. Declare primary threat axis and reserve shooter.</td>
+              <td><strong>Fight the salvo.</strong> Centralize priorities; decentralize self-defense. Shift fires only after inbound weapons are controlled.</td>
+              <td><strong>Prevent pursuit.</strong> Keep screen between convoy and surviving threats; do not chase north.</td>
+              <td><strong>Account and report.</strong> Units, weapons, damage, goal status, recovery, and campaign carry-forward.</td>
+            </tr>
+            <tr>
+              <th>Phase Trigger / Decision</th>
+              <td><em>Go:</em> all players ready; routes and recovery reviewed.</td>
+              <td><em>Advance:</em> nine RED surface contacts classified or bounded; CAP established.</td>
+              <td><em>Advance:</em> lead MCM reaches narrows or RED initiates coordinated fires.</td>
+              <td><em>Advance:</em> six surface kills achieved or remaining surface force cannot reach convoy.</td>
+              <td><em>Advance:</em> fifth auxiliary clears decisive sector and no effective salvo is inbound.</td>
+              <td><em>Terminate:</em> goals resolved or commander determines further action violates intent.</td>
+            </tr>
+            <tr>
+              <th>MCM Lead</th>
+              <td><strong>Devastator / Dextrous.</strong> Form ahead of convoy; verify both use checked westbound route.</td>
+              <td>Proceed at formation pace. Report any forced deviation; avoid independent contact pursuit.</td>
+              <td>Lead through the center lane. If one is lost, survivor becomes lane guide; AAW lead does not pass blindly.</td>
+              <td>Continue navigation; self-defense only. Do not become the surface action group.</td>
+              <td>Mark western exit and hand convoy lead to designated escort.</td>
+              <td>Rejoin support group; report route deviations for map-framework review.</td>
+            </tr>
+            <tr>
+              <th>Convoy</th>
+              <td><strong>Six auxiliaries.</strong> Establish order, speed of slowest unit, and casualty station.</td>
+              <td>Maintain column/compact formation without overtaking screen. No independent targeting.</td>
+              <td>Preserve spacing sufficient to avoid one salvo affecting multiple hulls; stay within AAW umbrella.</td>
+              <td>Continue west unless physically blocked. Damaged ship falls to rear with assigned escort.</td>
+              <td>Cross western exit in order. Five surviving auxiliaries is mission threshold.</td>
+              <td>Damage-control and logistics assessment; identify which cargo capability was preserved or lost.</td>
+            </tr>
+            <tr>
+              <th>AAW Screen</th>
+              <td><strong>Mason / Chosin / Hudner / Arleigh Burke / Diamond.</strong> Establish sectors and reserve channels.</td>
+              <td>Track MiGs, Fencers, and coastal emitters. Conserve long-range missiles until hostile intent/launch.</td>
+              <td>Layer shooters ahead, abeam, and astern of convoy. Prioritize leakers threatening auxiliaries.</td>
+              <td><strong>Priority:</strong> inbound weapons &rarr; Fencers &rarr; missile shooters &rarr; MiGs threatening strike/CAP.</td>
+              <td>Maintain aft guard; do not strip convoy defense to finish retreating contacts.</td>
+              <td>Report remaining AAW inventory and identify minimum screen for follow-on operations.</td>
+            </tr>
+            <tr>
+              <th>Close / Surface Screen</th>
+              <td><strong>Richmond / Tempest / Stone.</strong> Assign left, right, and stern sectors.</td>
+              <td>Hold outside FAC direct-fire envelope. Pass classifications to long-range shooters.</td>
+              <td>Block leakers without outrunning major combatants. Use guns only for self-defense or terminal defense.</td>
+              <td>Engage damaged/leaking FACs that can still reach convoy; avoid entering the northern coastal-defense pocket.</td>
+              <td>Cover rear and damaged auxiliaries. Break contact when enemy no longer affects passage.</td>
+              <td>Reconstitute close screen and report boarding/search capability.</td>
+            </tr>
+            <tr>
+              <th>CAP / Counter-Air</th>
+              <td><strong>Tiger / Viper.</strong> Assign high/low blocks and recovery owner. Manually confirm weapons.</td>
+              <td>Sanitize Fencer approach lanes; keep MiGs separated from strike package and Sentinel.</td>
+              <td>Commit one element; retain one between threat and convoy. Do not drag CAP over S-300/Pantsir sites.</td>
+              <td>Kill Fencers before release when possible; otherwise support missile defense and defeat MiG escort.</td>
+              <td>Reset east of coastal SAM threat; cover convoy until last auxiliary clears.</td>
+              <td>Tiger recovers to carrier; Viper to Al Dhafra. Report fuel, missiles, and aircraft status.</td>
+            </tr>
+            <tr>
+              <th>Maritime ISR / Strike</th>
+              <td><strong>Broadarrow / Trident.</strong> Split search sectors; load Harpoons verified.</td>
+              <td>Classify surface groups and maintain standoff. Avoid duplicating tracks and weapons.</td>
+              <td>Target frigates/missile boats first; FACs next. Fire only against identified hostile tracks.</td>
+              <td>Provide battle-damage assessment before reattack. Prevent waste against already doomed contacts.</td>
+              <td>Track survivors; attack only if they retain a firing solution on convoy.</td>
+              <td>Recover to Al Dhafra; report remaining Harpoons and sensor coverage.</td>
+            </tr>
+            <tr>
+              <th>Shore Strike</th>
+              <td><strong>Lancer / Wildcat.</strong> Pair shooters, assign primary/alternate nodes, verify manual-control players.</td>
+              <td>Hold outside S-300/Pantsir envelopes while Sentinel/P-8 refine the picture.</td>
+              <td>On positive control, disrupt Coastwatch or exposed Bastion first if it directly supports active fires.</td>
+              <td>Complete three-node requirement while preserving enough weapons for reattack. No non-designated targets.</td>
+              <td>Terminate shore attack when three nodes are down or convoy defense requires aircraft elsewhere.</td>
+              <td>Recover Al Dhafra; document exact nodes destroyed for campaign persistence.</td>
+            </tr>
+            <tr>
+              <th>ISR / Battle Management</th>
+              <td><strong>Sentinel.</strong> Establish orbit and naming convention. Confirm all players share track picture.</td>
+              <td>Separate air, surface, missile, and coastal tracks. Call first indication of coordinated attack.</td>
+              <td>Maintain custody through land masking; warn when contacts disappear behind terrain.</td>
+              <td>Prioritize inbound weapon tracks and surface shooters with unexpended missiles.</td>
+              <td>Watch for reattack from Bandar Abbas and surviving coastal nodes.</td>
+              <td>Recover Al Dhafra; preserve track history for after-action review.</td>
+            </tr>
+            <tr>
+              <th>Target Priority</th>
+              <td>Pre-assign: Fencers; missile boats/frigates; active Bastions/Coastwatch; leaker FACs.</td>
+              <td>Do not spend weapons solely to satisfy goals before threat intent is established.</td>
+              <td><em>1.</em> Inbound weapons <em>2.</em> Fencers <em>3.</em> surface missile shooters.</td>
+              <td><em>1.</em> Inbound weapons <em>2.</em> live shooters <em>3.</em> three designated nodes <em>4.</em> goal completion.</td>
+              <td>Only threats that can still affect convoy passage.</td>
+              <td>No additional fires unless required for force protection.</td>
+            </tr>
+            <tr>
+              <th>Logistics / Recovery</th>
+              <td>Shell establishes support orbit. Carrier and Al Dhafra availability confirmed.</td>
+              <td>Monitor fuel states; do not let strike aircraft cross minimum recovery fuel.</td>
+              <td>Prioritize damaged aircraft and low-fuel CAP. Keep tanker away from threat axis.</td>
+              <td>Rotate CAP rather than collapse the screen. Divert damaged land-based aircraft to Al Dhafra.</td>
+              <td>Recover strike first if Winchester; maintain one CAP element until convoy clears.</td>
+              <td>Full fuel/ammunition/damage accounting; identify next-turn availability.</td>
+            </tr>
+            <tr>
+              <th>ROE / Constraints</th>
+              <td>Hostile relationship active. Rehearse positive identification and designated shore-target list.</td>
+              <td>Track and classify; self-defense always authorized. Avoid neutral or ambiguous contacts.</td>
+              <td>Engage hostile aircraft, missiles, and attacking surface units. Shore fires require positive control.</td>
+              <td>No expansion beyond Bastion 1/2/3, S-300 North, and Coastwatch 1.</td>
+              <td>No pursuit into ports or attacks on Bandar Abbas merely to accumulate damage.</td>
+              <td>Cease offensive action when corridor is secure and force-protection need ends.</td>
+            </tr>
+            <tr>
+              <th>Risk Indicator</th>
+              <td>Unassigned roles, no recovery plan, or conflicting target ownership.</td>
+              <td>Unknown surface contacts inside standoff range; CAP pulled north toward S-300.</td>
+              <td>Auxiliaries ahead of AAW screen; MCM bypassed; formation compressed below reaction space.</td>
+              <td>Multiple inbound axes, depleted long-range SAMs, two auxiliaries damaged, FACs inside gun range.</td>
+              <td>Screen chases retreating enemy while convoy remains in the narrows.</td>
+              <td>Unrecovered aircraft or incomplete loss/ammunition accounting.</td>
+            </tr>
+            <tr>
+              <th>Exit Criteria</th>
+              <td>Roles, comms, routes, weapons, recovery, and ROE acknowledged.</td>
+              <td>Picture stable enough to designate threat axes and shooter assignments.</td>
+              <td>Convoy enters decisive sector with layered protection intact.</td>
+              <td>Six surface threats destroyed/neutralized and massed attack defeated.</td>
+              <td>At least five auxiliaries clear west; no effective attack remains inbound.</td>
+              <td>Goals adjudicated, units recovered/accounted, campaign state ready to update.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-kicker">06 &middot; Commander&rsquo;s Critical Decisions</div>
+      <h2>Four moments where the group should slow down and decide.</h2>
+      <div class="decisions">
+        <article class="decision"><b>DP 1 &middot; Commit</b><span>Is the recognized picture good enough to move six auxiliaries into the channel, or should the convoy hold east?</span></article>
+        <article class="decision"><b>DP 2 &middot; Defend or strike</b><span>Are Lancer/Wildcat needed against the active coastal kill chain, or must they support the air/surface defense?</span></article>
+        <article class="decision"><b>DP 3 &middot; Continue or extract</b><span>After the first massed salvo, can five auxiliaries still clear with a viable AAW screen?</span></article>
+        <article class="decision"><b>DP 4 &middot; Terminate</b><span>Once the corridor is open, does further pursuit add campaign value or merely create avoidable losses and escalation?</span></article>
+      </div>
+      <div class="callout amber" style="margin-top:16px"><strong>Discord facilitator note.</strong> Pause briefly at each decision point. Have the commander state the decision, supporting facts, accepted risk, and next phase trigger. That creates a clean shared record for the campaign AAR and gives every player a common mental model.</div>
+    </section>
+  </main>
+
+  <footer class="wrap">Prepared for the GCB Horizon Bring-Your-Own-LLM Campaign &middot; Operation Resolute Passage &middot; 14 August 2026<br>Simulation planning artifact only. Natural Earth route assurance is regional planning support, not a nautical chart.</footer>
+</body>
+</html>
