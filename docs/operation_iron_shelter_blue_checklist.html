@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Operation Iron Shelter | BLUE Player Checklist</title>
+  <style>
+    :root {
+      --night: #020b14;
+      --deep: #061725;
+      --panel: rgba(6, 25, 40, .88);
+      --panel-solid: #081f31;
+      --ink: #eef8ff;
+      --muted: #9ab3c5;
+      --line: rgba(98, 174, 226, .28);
+      --blue: #4db5ff;
+      --cyan: #52e0ed;
+      --green: #71e4ac;
+      --amber: #ffc760;
+      --red: #ff7180;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .42);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--night);
+      font: 15px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    button, textarea, input { font: inherit; }
+    button { color: inherit; }
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: url("../scenarios/Images/operation_iron_shelter.png") center 24% / cover no-repeat;
+      filter: saturate(.75) contrast(1.1);
+      transform: scale(1.015);
+    }
+    .backdrop::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(2, 11, 20, .18) 0, rgba(2, 11, 20, .72) 40%, #020b14 78%),
+        linear-gradient(90deg, rgba(2, 11, 20, .83), rgba(2, 11, 20, .22) 48%, rgba(2, 11, 20, .68));
+    }
+    .marking {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      padding: 7px 16px;
+      color: #00131e;
+      background: var(--cyan);
+      font: 900 10px/1.2 ui-monospace, "Cascadia Code", monospace;
+      letter-spacing: .16em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    nav {
+      position: sticky;
+      top: 25px;
+      z-index: 29;
+      border-bottom: 1px solid var(--line);
+      background: rgba(2, 11, 20, .88);
+      backdrop-filter: blur(18px);
+    }
+    .nav-inner, .wrap { width: min(1240px, calc(100% - 34px)); margin: auto; }
+    .nav-inner { display: flex; min-height: 58px; align-items: center; gap: 14px; }
+    .brand { font-size: 11px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    .brand b { color: var(--blue); }
+    .nav-links { display: flex; gap: 6px; margin-left: auto; }
+    .nav-links a, .nav-links button, .reset {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #c2d9e8;
+      background: rgba(8, 31, 49, .68);
+      font-size: 11px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links button:hover, .reset:hover { color: var(--cyan); border-color: var(--cyan); }
+
+    .hero { min-height: 600px; display: flex; align-items: flex-end; padding: 76px 0 54px; }
+    .hero-copy { max-width: 800px; padding: clamp(25px, 4vw, 48px); border: 1px solid rgba(104, 190, 243, .35); border-radius: 20px; background: rgba(2, 13, 23, .62); box-shadow: var(--shadow); backdrop-filter: blur(10px); }
+    .eyebrow, .kicker { color: var(--cyan); font: 900 11px/1.25 ui-monospace, "Cascadia Code", monospace; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 15px 0 21px; font-size: clamp(48px, 7vw, 92px); line-height: .88; letter-spacing: -.055em; }
+    h1 span { display: block; color: var(--blue); }
+    .lede { max-width: 710px; margin: 0; color: #d0e3ee; font-size: clamp(17px, 2vw, 22px); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
+    .chip { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: #bad2e0; background: rgba(5, 24, 38, .75); font-size: 11px; }
+    .chip.good { color: var(--green); border-color: rgba(113, 228, 172, .4); }
+
+    main { padding-bottom: 70px; }
+    .command-strip {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, .55fr);
+      gap: 10px;
+      margin: -18px 0 26px;
+    }
+    .command-card { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: rgba(6, 25, 40, .94); box-shadow: var(--shadow); }
+    .command-card strong { display: block; color: var(--cyan); font-size: 25px; line-height: 1.1; }
+    .command-card span { display: block; margin-top: 7px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .command-card.intent strong { color: var(--ink); font-size: 16px; line-height: 1.4; }
+
+    .progress-shell { margin: 0 0 24px; padding: 19px 21px; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); backdrop-filter: blur(10px); }
+    .progress-head { display: flex; align-items: baseline; justify-content: space-between; gap: 15px; margin-bottom: 10px; }
+    .progress-head strong { color: var(--cyan); }
+    .progress-head span { color: var(--muted); font-size: 12px; }
+    .progress { height: 9px; overflow: hidden; border-radius: 99px; background: #02101a; }
+    .progress i { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green)); box-shadow: 0 0 15px var(--cyan); transition: width .25s ease; }
+
+    .domain-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .domain {
+      --accent: var(--blue);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--accent);
+      border-radius: 15px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    .domain.c2 { --accent: var(--cyan); }
+    .domain.air { --accent: #67a7ff; }
+    .domain.surface { --accent: #45d4d2; }
+    .domain.land { --accent: var(--amber); }
+    .domain.support { --accent: var(--green); }
+    .domain.integrate { --accent: #b99aff; }
+    .domain-head { display: flex; gap: 15px; align-items: center; padding: 22px 23px 17px; }
+    .domain-icon { display: grid; place-items: center; width: 43px; height: 43px; flex: 0 0 43px; border: 1px solid color-mix(in srgb, var(--accent), transparent 45%); border-radius: 11px; color: var(--accent); background: color-mix(in srgb, var(--accent), transparent 88%); font: 900 16px ui-monospace, monospace; }
+    .domain h2 { margin: 3px 0 0; font-size: 23px; line-height: 1.1; }
+    .domain-role { margin-left: auto; color: var(--accent); font: 800 9px/1.3 ui-monospace, monospace; letter-spacing: .1em; text-align: right; text-transform: uppercase; }
+    .question { margin: 0 23px 17px; padding: 12px 14px; border-left: 3px solid var(--accent); color: #d9eaf3; background: rgba(1, 12, 20, .58); font-size: 13px; }
+    .checks { padding: 0 16px 18px; }
+    .check { position: relative; display: grid; grid-template-columns: 25px 1fr; gap: 10px; padding: 10px 8px; border-top: 1px solid rgba(99, 172, 217, .14); cursor: pointer; }
+    .check:first-child { border-top: 0; }
+    .check:hover { background: rgba(77, 181, 255, .045); }
+    .check input { position: absolute; opacity: 0; pointer-events: none; }
+    .box { display: grid; place-items: center; width: 20px; height: 20px; margin-top: 1px; border: 1px solid #53758c; border-radius: 5px; color: #03101a; background: rgba(1, 12, 20, .72); font-size: 13px; font-weight: 1000; transition: .15s ease; }
+    .check input:focus-visible + .box { outline: 2px solid white; outline-offset: 2px; }
+    .check input:checked + .box { border-color: var(--accent); background: var(--accent); }
+    .check input:checked + .box::after { content: "✓"; }
+    .check input:checked ~ .check-copy { opacity: .58; }
+    .check-copy strong { display: block; font-size: 13px; }
+    .check-copy small { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
+    .trigger { color: var(--amber) !important; }
+
+    .gates { margin-top: 22px; padding: 26px; border: 1px solid var(--line); border-radius: 15px; background: rgba(5, 22, 35, .92); box-shadow: var(--shadow); }
+    .gates h2 { margin: 6px 0 7px; font-size: clamp(27px, 4vw, 42px); }
+    .gates > p { margin: 0 0 19px; color: var(--muted); }
+    .gate-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .gate { padding: 17px; border: 1px solid var(--line); border-radius: 10px; background: rgba(2, 13, 22, .64); }
+    .gate b { color: var(--cyan); font: 900 21px/1 ui-monospace, monospace; }
+    .gate h3 { margin: 10px 0 6px; font-size: 14px; }
+    .gate p { margin: 0; color: var(--muted); font-size: 11px; }
+
+    .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+    .notepad { padding: 22px; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); }
+    .notepad label { display: block; margin-bottom: 9px; color: var(--cyan); font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+    textarea { width: 100%; min-height: 122px; resize: vertical; padding: 13px; border: 1px solid var(--line); border-radius: 8px; outline: 0; color: var(--ink); background: rgba(1, 10, 18, .7); }
+    textarea:focus { border-color: var(--cyan); }
+    footer { padding: 0 0 38px; color: #6f91a4; font-size: 10px; letter-spacing: .06em; text-align: center; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .command-strip { grid-template-columns: repeat(3, 1fr); }
+      .command-card.intent { grid-column: 1 / -1; }
+      .gate-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .nav-links a { display: none; }
+      .domain-grid, .notes { grid-template-columns: 1fr; }
+      .hero { min-height: 535px; }
+      .hero-copy { padding: 24px; }
+      .command-strip { grid-template-columns: 1fr; }
+      .command-card.intent { grid-column: auto; }
+      .domain-role { display: none; }
+    }
+    @media print {
+      @page { size: Letter portrait; margin: .38in; }
+      :root { --ink: #102733; --muted: #496675; --line: #a8bec9; --blue: #196cad; --cyan: #087e92; --green: #14774d; --amber: #926000; }
+      body { color: var(--ink); background: white; font-size: 10px; }
+      .backdrop { position: absolute; height: 4.5in; filter: grayscale(.2); opacity: .2; }
+      .backdrop::after { background: linear-gradient(180deg, transparent, white 90%); }
+      .marking { position: static; color: white; background: #087e92; }
+      nav, .progress-shell, .notes, .reset { display: none !important; }
+      .hero { min-height: 3.6in; padding: .35in 0 .2in; }
+      .hero-copy { padding: .25in; background: rgba(255,255,255,.88); box-shadow: none; backdrop-filter: none; }
+      h1 { font-size: 48px; }
+      .lede { color: #2d4c5b; font-size: 14px; }
+      .command-strip { margin: 0 0 .18in; grid-template-columns: 1.4fr repeat(3,.55fr); }
+      .command-card, .domain, .gates, .gate { color: var(--ink); background: rgba(255,255,255,.93); box-shadow: none; backdrop-filter: none; }
+      .command-card { padding: 11px; }
+      .command-card strong { font-size: 18px; }
+      .command-card.intent strong { font-size: 11px; }
+      .domain-grid { grid-template-columns: 1fr 1fr; gap: .11in; }
+      .domain { break-inside: avoid; }
+      .domain-head { padding: 12px 14px 9px; }
+      .domain h2 { font-size: 17px; }
+      .domain-icon { width: 30px; height: 30px; flex-basis: 30px; }
+      .question { margin: 0 14px 7px; padding: 7px 9px; color: #233f4b; font-size: 9px; }
+      .checks { padding: 0 9px 9px; }
+      .check { grid-template-columns: 18px 1fr; gap: 7px; padding: 5px; }
+      .box { width: 15px; height: 15px; }
+      .check-copy strong { font-size: 9px; }
+      .check-copy small { font-size: 7.5px; }
+      .gates { margin-top: .15in; padding: .18in; break-inside: avoid; }
+      .gates h2 { font-size: 22px; }
+      .gates > p { margin-bottom: 10px; }
+      .gate { padding: 10px; }
+      .gate b { font-size: 16px; }
+      .gate h3 { margin: 6px 0 3px; font-size: 10px; }
+      .gate p { font-size: 8px; }
+      footer { padding: 14px 0 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+  <div class="marking">Unclassified // Simulation Game Play Only // Not for Real-World Navigation or Operations</div>
+  <nav>
+    <div class="nav-inner">
+      <div class="brand"><b>IRON SHELTER</b> // BLUE checklist</div>
+      <div class="nav-links">
+        <a href="#domains">Domains</a>
+        <a href="#gates">Decision gates</a>
+        <button type="button" onclick="window.print()">Print / Save PDF</button>
+        <button class="reset" type="button" id="reset">Reset</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero wrap">
+    <div class="hero-copy">
+      <div class="eyebrow">BLUE player aid · Campaign stabilization fight</div>
+      <h1>See the fight.<span>Protect the reset.</span></h1>
+      <p class="lede">A domain-by-domain battle rhythm for keeping the logistics handoff alive, defeating the local fast-attack-craft thrust, and breaking the shore threat ring—without being pulled into the whole theater.</p>
+      <div class="chips">
+        <span class="chip">22 May 2026 · 0430 local</span>
+        <span class="chip">Player side · BLUE</span>
+        <span class="chip">Sea state · 3</span>
+        <span class="chip good">Progress saves in this browser</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="command-strip" aria-label="Mission essentials">
+      <div class="command-card intent"><strong>Keep the corridor open and break the local threat ring only as hard as the operational reset requires.</strong><span>Commander’s intent</span></div>
+      <div class="command-card"><strong>3 / 3</strong><span>Logistics ships survive</span></div>
+      <div class="command-card"><strong>4</strong><span>Required targets destroyed</span></div>
+      <div class="command-card"><strong>5</strong><span>Eligible RED targets</span></div>
+    </div>
+
+    <div class="progress-shell" aria-live="polite">
+      <div class="progress-head"><strong id="progressText">0 of 30 checks complete</strong><span>Use this as a battle rhythm, not a rigid sequence.</span></div>
+      <div class="progress"><i id="progressBar"></i></div>
+    </div>
+
+    <div class="domain-grid" id="domains">
+      <section class="domain c2">
+        <div class="domain-head"><div class="domain-icon">C2</div><div><div class="kicker">Domain 01</div><h2>Command + ISR</h2></div><div class="domain-role">Sentinel<br>Broadarrow</div></div>
+        <p class="question"><b>Decision question:</b> Do I understand the raid well enough to commit a scarce shooter?</p>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-key="c2-1"><span class="box"></span><span class="check-copy"><strong>State the priority: logistics → inbound weapons → shooters → shore nodes.</strong><small>Keep every subordinate decision tied to the support corridor.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="c2-2"><span class="box"></span><span class="check-copy"><strong>Place Sentinel outside the threat ring with continuous corridor coverage.</strong><small>Preserve the sensor; do not trade it for a closer picture.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="c2-3"><span class="box"></span><span class="check-copy"><strong>Use Broadarrow to classify the surface thrust before long-range release.</strong><small>Report track, confidence, behavior, and recommended action.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="c2-4"><span class="box"></span><span class="check-copy"><strong>Rebuild the picture after every major intercept or strike.</strong><small class="trigger">Trigger: lost track, sensor displacement, or unexpected weapons launch.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="c2-5"><span class="box"></span><span class="check-copy"><strong>Announce phase changes and reassign unowned threats.</strong><small>No contact, convoy sector, or recovery problem remains implicit.</small></span></label>
+        </div>
+      </section>
+
+      <section class="domain air">
+        <div class="domain-head"><div class="domain-icon">AIR</div><div><div class="kicker">Domain 02</div><h2>Air</h2></div><div class="domain-role">Tiger 1–2<br>Lancer 1–2</div></div>
+        <p class="question"><b>Decision question:</b> Can the air plan defeat the immediate threat and still recover every useful aircraft?</p>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-key="air-1"><span class="box"></span><span class="check-copy"><strong>Set Tiger CAP between the Bandar Abbas axis and the support group.</strong><small>Protect Sentinel and the corridor; avoid an unproductive fighter chase.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="air-2"><span class="box"></span><span class="check-copy"><strong>Confirm manual targets and weapons for every BLUE combat aircraft.</strong><small>A quiet aircraft may be awaiting player direction.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="air-3"><span class="box"></span><span class="check-copy"><strong>Keep Lancer packaged until the target and egress are valid.</strong><small>Positive control: target ID, defenses, weapon, route, and abort condition.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="air-4"><span class="box"></span><span class="check-copy"><strong>Check fuel before commit, after engagement, and before re-attack.</strong><small class="trigger">Trigger: no recovery margin → disengage or use Shell 1 if the route is secure.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="air-5"><span class="box"></span><span class="check-copy"><strong>Keep Shell 1 outside the fight and preserve a protected recovery lane.</strong><small>The tanker is endurance, not ISR or bait.</small></span></label>
+        </div>
+      </section>
+
+      <section class="domain surface">
+        <div class="domain-head"><div class="domain-icon">SEA</div><div><div class="kicker">Domain 03</div><h2>Maritime</h2></div><div class="domain-role">Mason · Diamond<br>Chosin · Tempest · Stone</div></div>
+        <p class="question"><b>Decision question:</b> Does this move or shot improve protection of Fort Victoria, Ericsson, and Earhart?</p>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-key="sea-1"><span class="box"></span><span class="check-copy"><strong>Form a layered screen around all three logistics ships.</strong><small>Chosin/Diamond anchor AAW; Mason covers the forward axis; Stone/Tempest handle close contacts.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="sea-2"><span class="box"></span><span class="check-copy"><strong>Match formation speed to damaged Fort Victoria.</strong><small>Do not let the handoff group split across incompatible routes or speeds.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="sea-3"><span class="box"></span><span class="check-copy"><strong>Engage FACs at standoff range after classification.</strong><small>Khanjar, Falakhon, and Shamshir count toward the four-target threshold.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="sea-4"><span class="box"></span><span class="check-copy"><strong>Reserve high-end AAW inventory for inbound missiles and leakers.</strong><small class="trigger">Trigger: coordinated raid → defend weapons first, then launch platforms.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="sea-5"><span class="box"></span><span class="check-copy"><strong>Recall any escort whose pursuit opens the logistics screen.</strong><small>The force is holding a support box, not clearing the entire Gulf of Oman.</small></span></label>
+        </div>
+      </section>
+
+      <section class="domain land">
+        <div class="domain-head"><div class="domain-icon">FX</div><div><div class="kicker">Domain 04</div><h2>Shore effects</h2></div><div class="domain-role">Bastion 2<br>Coastwatch 2</div></div>
+        <p class="question"><b>Decision question:</b> Which shore node most directly breaks RED’s ability to find, cue, or shoot the corridor?</p>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-key="land-1"><span class="box"></span><span class="check-copy"><strong>Verify the strike is limited to the local attack/cueing network.</strong><small>Do not expand the fight simply because another target is visible.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="land-2"><span class="box"></span><span class="check-copy"><strong>Prioritize Coastwatch 2 when cueing is the main danger.</strong><small>Breaking detection can protect the corridor without attacking every defender.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="land-3"><span class="box"></span><span class="check-copy"><strong>Prioritize Bastion 2 when missile launch capacity is the main danger.</strong><small>Confirm the node, delivery geometry, and expected defensive exposure.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="land-4"><span class="box"></span><span class="check-copy"><strong>Sequence strike timing with CAP and maritime air defense.</strong><small class="trigger">Trigger: strike package exposed without cover → hold or abort.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="land-5"><span class="box"></span><span class="check-copy"><strong>Confirm effects before retasking or spending another weapon.</strong><small>Count only destroyed eligible targets; avoid redundant attacks.</small></span></label>
+        </div>
+      </section>
+
+      <section class="domain support">
+        <div class="domain-head"><div class="domain-icon">LOG</div><div><div class="kicker">Domain 05</div><h2>Sustainment</h2></div><div class="domain-role">Fort Victoria<br>Ericsson · Earhart · Shell 1</div></div>
+        <p class="question"><b>Decision question:</b> What preserves the next hour of combat power, not merely the next exchange?</p>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-key="log-1"><span class="box"></span><span class="check-copy"><strong>Report all three logistics ships by name, damage, speed, and screen status.</strong><small>Loss of even one fails BLUE’s protection objective.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="log-2"><span class="box"></span><span class="check-copy"><strong>Keep replenishment ships out of sensor and weapon employment roles.</strong><small>Their contribution is survival and the logistics handoff.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="log-3"><span class="box"></span><span class="check-copy"><strong>Track AAW depth, strike weapons, aircraft fuel, and recoverability.</strong><small>Call “last useful shot” before a magazine or fuel state becomes critical.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="log-4"><span class="box"></span><span class="check-copy"><strong>Have a damaged-ship response before first contact.</strong><small class="trigger">Trigger: mobility kill → tighten cover, adjust common speed, preserve the other two.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="log-5"><span class="box"></span><span class="check-copy"><strong>Preserve forces that are no longer needed for the win condition.</strong><small>Campaign combat power matters after the local objectives are met.</small></span></label>
+        </div>
+      </section>
+
+      <section class="domain integrate">
+        <div class="domain-head"><div class="domain-icon">X</div><div><div class="kicker">Domain 06</div><h2>Cross-domain closeout</h2></div><div class="domain-role">Assess<br>Decide · Disengage</div></div>
+        <p class="question"><b>Decision question:</b> Have we achieved enough to stop risking the force?</p>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-key="x-1"><span class="box"></span><span class="check-copy"><strong>Confirm Fort Victoria, John Ericsson, and Amelia Earhart all survive.</strong><small>This is non-negotiable: BLUE must preserve three of three.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="x-2"><span class="box"></span><span class="check-copy"><strong>Confirm four eligible targets are destroyed.</strong><small>Eligible: Khanjar, Falakhon, Shamshir, Bastion 2, Coastwatch 2.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="x-3"><span class="box"></span><span class="check-copy"><strong>Stop nonessential attacks once both objectives are secure.</strong><small>Do not convert mission success into avoidable campaign losses.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="x-4"><span class="box"></span><span class="check-copy"><strong>Recover aircraft and contract the screen around the handoff group.</strong><small>Maintain enough ISR and defense to cover the exit.</small></span></label>
+          <label class="check"><input type="checkbox" data-key="x-5"><span class="box"></span><span class="check-copy"><strong>Record losses, damage, expenditure, and surviving RED capability.</strong><small>End with a campaign-ready handoff, not just a scenario score.</small></span></label>
+        </div>
+      </section>
+    </div>
+
+    <section class="gates" id="gates">
+      <div class="kicker">Rapid decision gates</div>
+      <h2>Before every major commitment, ask four things.</h2>
+      <p>If any answer is unclear, pause long enough to rebuild the picture or choose the lower-risk action.</p>
+      <div class="gate-grid">
+        <article class="gate"><b>01</b><h3>What must be protected?</h3><p>Name the threatened logistics ship, sensor, defender, or recovery route.</p></article>
+        <article class="gate"><b>02</b><h3>What is the actual threat?</h3><p>Separate inbound weapon, shooter, cueing node, and merely visible contact.</p></article>
+        <article class="gate"><b>03</b><h3>What is the least-cost answer?</h3><p>Choose the right domain, weapon, timing, and supporting cover.</p></article>
+        <article class="gate"><b>04</b><h3>What happens after release?</h3><p>Check screen integrity, fuel, magazine depth, egress, and campaign value.</p></article>
+      </div>
+    </section>
+
+    <div class="notes">
+      <div class="notepad"><label for="contacts">Threats / target count</label><textarea id="contacts" data-note="contacts" placeholder="FAC status, shore-node effects, inbound raids…"></textarea></div>
+      <div class="notepad"><label for="status">Logistics / force status</label><textarea id="status" data-note="status" placeholder="Ship damage and speed, AAW depth, fuel, recovery…"></textarea></div>
+    </div>
+  </main>
+
+  <footer class="wrap">Operation Iron Shelter · BLUE player checklist · Built from scenarios/operation_iron_shelter.py · Backdrop: operation_iron_shelter.png</footer>
+
+  <script>
+    (() => {
+      const prefix = 'iron-shelter-blue-checklist:';
+      const checks = [...document.querySelectorAll('input[type="checkbox"][data-key]')];
+      const notes = [...document.querySelectorAll('[data-note]')];
+      const progressText = document.querySelector('#progressText');
+      const progressBar = document.querySelector('#progressBar');
+
+      const update = () => {
+        const complete = checks.filter(check => check.checked).length;
+        progressText.textContent = `${complete} of ${checks.length} checks complete`;
+        progressBar.style.width = `${checks.length ? complete / checks.length * 100 : 0}%`;
+      };
+
+      checks.forEach(check => {
+        check.checked = localStorage.getItem(prefix + check.dataset.key) === '1';
+        check.addEventListener('change', () => {
+          localStorage.setItem(prefix + check.dataset.key, check.checked ? '1' : '0');
+          update();
+        });
+      });
+
+      notes.forEach(note => {
+        note.value = localStorage.getItem(prefix + 'note:' + note.dataset.note) || '';
+        note.addEventListener('input', () => localStorage.setItem(prefix + 'note:' + note.dataset.note, note.value));
+      });
+
+      document.querySelector('#reset').addEventListener('click', () => {
+        if (!confirm('Clear all checklist progress and notes for Operation Iron Shelter?')) return;
+        checks.forEach(check => {
+          check.checked = false;
+          localStorage.removeItem(prefix + check.dataset.key);
+        });
+        notes.forEach(note => {
+          note.value = '';
+          localStorage.removeItem(prefix + 'note:' + note.dataset.note);
+        });
+        update();
+      });
+
+      update();
+    })();
+  </script>
+</body>
+</html>
