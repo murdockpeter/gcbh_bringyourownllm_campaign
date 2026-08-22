@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gcbh/scenario_seed.schema.json",
+  "title": "GCBH Campaign Scenario Seed",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "scenario_id", "scenario_name", "theater_id", "date_time",
+    "playable_side", "archetype", "premise", "placement"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "scenario_id": { "type": "string", "minLength": 1 },
+    "scenario_name": { "type": "string", "minLength": 1 },
+    "theater_id": { "type": "string", "minLength": 1 },
+    "date_time": { "type": "string", "format": "date-time" },
+    "playable_side": { "enum": ["blue", "red"] },
+    "rng_seed": { "type": ["string", "number"] },
+    "archetype": {
+      "enum": [
+        "convoy_escort", "withdrawal", "corridor_opening", "interception",
+        "limited_strike", "reconnaissance", "recovery"
+      ]
+    },
+    "premise": { "type": "string", "minLength": 1 },
+    "blue_intent": { "type": "string" },
+    "red_intent": { "type": "string" },
+    "escalation_constraints": { "type": "array", "items": { "type": "string" } },
+    "duration_hours": { "type": "number", "exclusiveMinimum": 0 },
+    "sea_state": { "type": "integer", "minimum": 0, "maximum": 9 },
+    "svp": { "type": "string" },
+    "force_policy": { "type": "object" },
+    "loadout_overrides": { "type": "object" },
+    "aviation_support": { "type": "object" },
+    "objectives": { "type": "object" },
+    "placement": { "type": "object" },
+    "variation": { "type": "object" }
+  }
+}

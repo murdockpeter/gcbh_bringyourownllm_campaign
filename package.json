@@ -1,0 +1,20 @@
+{
+  "name": "gcbh-dynamic-campaign",
+  "version": "0.2.0",
+  "private": true,
+  "description": "State-driven campaign mission generation for Global Conflict Blue: Horizon",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "generate": "node tools/generate_campaign_mission.cjs",
+    "test:generator": "node --test test/mission-generator/core.test.cjs test/mission-generator/integration.test.cjs",
+    "test:map": "npm --prefix mission-map test",
+    "test": "npm run test:generator && npm run test:map",
+    "check:generator": "node tools/check_generator.cjs",
+    "check:map": "npm --prefix mission-map run check",
+    "check": "npm run check:generator && npm run check:map",
+    "audit:scenarios": "npm --prefix mission-map run audit:scenarios --",
+    "audit:generated": "node tools/audit_generated.cjs"
+  }
+}
