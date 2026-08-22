@@ -1,0 +1,2413 @@
+{
+  "aviation_support": {
+    "blue": {
+      "aircraft": 5,
+      "combat_aircraft": 2,
+      "in_scenario_bases": [],
+      "location": "Carrier recovery area east of Hormuz and Al Dhafra Air Base",
+      "mode": "off_map",
+      "reason": "Campaign air units are represented airborne while their established recovery facilities remain outside the generated tactical order of battle.",
+      "tankers": 1
+    },
+    "red": {
+      "aircraft": 0,
+      "mode": "not_required"
+    }
+  },
+  "balance": {
+    "blue": {
+      "effective": 43.573,
+      "force": 48.802,
+      "objectiveBurden": 1.12
+    },
+    "model": "role-condition-sustainment-v1",
+    "ratio": 1.089,
+    "red": {
+      "effective": 40.029,
+      "force": 40.029,
+      "objectiveBurden": 1
+    },
+    "warnings": []
+  },
+  "effective_rng_seed": "20260822",
+  "generator": {
+    "database_schema_version": 4,
+    "name": "mission-generator-v2",
+    "node": ">=24",
+    "version": "0.2.0"
+  },
+  "inputs": {
+    "campaign_state": "c1cff917eb460b1474348c6db3abf014297b2846a482b125c910a2875e743ef2",
+    "scenario_seed": "9e7744c5fb5dcefc3ca962f023d55615e6005d88d75f4562bfb82ad5c2d7eb71"
+  },
+  "logistics": {
+    "blue": {
+      "allocated": {
+        "air_sorties": 11,
+        "fuel_points": 47,
+        "ordnance_points": 32,
+        "repair_capacity_points": 0
+      },
+      "available": {
+        "air_sortie_capacity_next_24h": 28,
+        "comment": "A theater reinforcement package can double the original Silver Current force, but the six-ship sealift must enter the Gulf to sustain that posture.",
+        "fuel_points": 156,
+        "ordnance_points": 148,
+        "repair_capacity_points": 92
+      }
+    },
+    "red": {
+      "allocated": {
+        "air_sorties": 0,
+        "fuel_points": 23,
+        "ordnance_points": 29,
+        "repair_capacity_points": 0
+      },
+      "available": {
+        "coastal_missile_salvo_capacity_next_24h": 2,
+        "comment": "Red can reinforce locally over the next several hours with shore systems and short-range naval assets faster than with major blue-water units.",
+        "fuel_points": 92,
+        "ordnance_points": 86,
+        "repair_capacity_points": 61
+      }
+    }
+  },
+  "objectives": {
+    "blue": {
+      "goals": [
+        {
+          "label": "preserve campaign-critical assets",
+          "quantity": 2,
+          "targets": [
+            "RFA Fort Victoria",
+            "USNS Amelia Earhart",
+            "USNS John Ericsson"
+          ],
+          "type": "ProtectGoal"
+        },
+        {
+          "label": "neutralize the designated threat",
+          "quantity": 2,
+          "targets": [
+            "Bastion 1",
+            "Bastion 2",
+            "Falakhon",
+            "Khanjar"
+          ],
+          "type": "DestroyGoal"
+        }
+      ],
+      "label": "Convoy Escort",
+      "mode": 0,
+      "type": "CompoundGoal"
+    },
+    "red": {
+      "label": "break the protected force",
+      "quantity": 2,
+      "targets": [
+        "RFA Fort Victoria",
+        "USNS Amelia Earhart",
+        "USNS John Ericsson"
+      ],
+      "type": "DestroyGoal"
+    }
+  },
+  "output_hash": "36d434f0484d6a74cac15872a266e38c14193a1a31eff6b03fc4f29367fbdaf5",
+  "random_draws": [
+    {
+      "index": 0,
+      "label": "variation:time-offset-minutes",
+      "value": 0.285948171513
+    },
+    {
+      "index": 1,
+      "label": "variation:sea-state",
+      "value": 0.870823491365
+    },
+    {
+      "index": 2,
+      "label": "variation:blue:reserve-slots",
+      "value": 0.497091995785
+    },
+    {
+      "index": 3,
+      "label": "variation:red:reserve-slots",
+      "value": 0.397666163743
+    },
+    {
+      "index": 4,
+      "label": "roster:blue:RFA Fort Victoria",
+      "value": 0.224870167207
+    },
+    {
+      "index": 5,
+      "label": "roster:blue:USS Mason",
+      "value": 0.516414353391
+    },
+    {
+      "index": 6,
+      "label": "roster:blue:USS Tempest",
+      "value": 0.648695160402
+    },
+    {
+      "index": 7,
+      "label": "roster:blue:HMS Diamond",
+      "value": 0.053167624865
+    },
+    {
+      "index": 8,
+      "label": "roster:blue:USS Chosin",
+      "value": 0.97876950237
+    },
+    {
+      "index": 9,
+      "label": "roster:blue:USNS John Ericsson",
+      "value": 0.699996511685
+    },
+    {
+      "index": 10,
+      "label": "roster:blue:USNS Amelia Earhart",
+      "value": 0.416380007053
+    },
+    {
+      "index": 11,
+      "label": "roster:blue:USCGC Stone",
+      "value": 0.488727314165
+    },
+    {
+      "index": 12,
+      "label": "roster:blue:Tiger Flight",
+      "value": 0.527731320588
+    },
+    {
+      "index": 13,
+      "label": "roster:blue:Lancer Flight",
+      "value": 0.222374186153
+    },
+    {
+      "index": 14,
+      "label": "roster:blue:Sentinel",
+      "value": 0.472556029446
+    },
+    {
+      "index": 15,
+      "label": "roster:blue:Shell 1",
+      "value": 0.486442316789
+    },
+    {
+      "index": 16,
+      "label": "roster:blue:Broadarrow",
+      "value": 0.820780667476
+    },
+    {
+      "index": 17,
+      "label": "roster:red:Khanjar",
+      "value": 0.306698861765
+    },
+    {
+      "index": 18,
+      "label": "roster:red:Falakhon",
+      "value": 0.446024670033
+    },
+    {
+      "index": 19,
+      "label": "roster:red:Bastion 1",
+      "value": 0.422272867057
+    },
+    {
+      "index": 20,
+      "label": "roster:red:Bastion 2",
+      "value": 0.589473390486
+    },
+    {
+      "index": 21,
+      "label": "roster:red:Pantsir 1",
+      "value": 0.963949109195
+    },
+    {
+      "index": 22,
+      "label": "roster:red:Pantsir 2",
+      "value": 0.918198850239
+    },
+    {
+      "index": 23,
+      "label": "roster:red:S-300 Site North",
+      "value": 0.84015480103
+    },
+    {
+      "index": 24,
+      "label": "roster:red:Coastwatch 1",
+      "value": 0.55728184944
+    },
+    {
+      "index": 25,
+      "label": "roster:red:Coastwatch 2",
+      "value": 0.308397438144
+    },
+    {
+      "index": 26,
+      "label": "roster:red:Bandar Abbas Strip",
+      "value": 0.736928806873
+    },
+    {
+      "index": 27,
+      "label": "blue:Broadarrow:air:lat",
+      "value": 0.184507936006
+    },
+    {
+      "index": 28,
+      "label": "blue:Broadarrow:air:lon",
+      "value": 0.077628527535
+    },
+    {
+      "index": 29,
+      "label": "blue:Lancer Flight:air:lat",
+      "value": 0.793498482322
+    },
+    {
+      "index": 30,
+      "label": "blue:Lancer Flight:air:lon",
+      "value": 0.454813346034
+    },
+    {
+      "index": 31,
+      "label": "blue:Sentinel:air:lat",
+      "value": 0.868091959273
+    },
+    {
+      "index": 32,
+      "label": "blue:Sentinel:air:lon",
+      "value": 0.973493166966
+    },
+    {
+      "index": 33,
+      "label": "blue:Shell 1:air:lat",
+      "value": 0.905108140083
+    },
+    {
+      "index": 34,
+      "label": "blue:Shell 1:air:lon",
+      "value": 0.033899026224
+    },
+    {
+      "index": 35,
+      "label": "blue:Tiger Flight:air:lat",
+      "value": 0.013884256827
+    },
+    {
+      "index": 36,
+      "label": "blue:Tiger Flight:air:lon",
+      "value": 0.78373381705
+    },
+    {
+      "index": 37,
+      "label": "red:Bandar Abbas Strip:visibility",
+      "value": 0.502050908981
+    },
+    {
+      "index": 38,
+      "label": "red:Bastion 1:visibility",
+      "value": 0.593360135099
+    },
+    {
+      "index": 39,
+      "label": "red:Bastion 2:visibility",
+      "value": 0.428153506247
+    },
+    {
+      "index": 40,
+      "label": "red:Coastwatch 1:visibility",
+      "value": 0.008889879333
+    },
+    {
+      "index": 41,
+      "label": "red:Coastwatch 2:visibility",
+      "value": 0.032158801798
+    },
+    {
+      "index": 42,
+      "label": "red:Falakhon:visibility",
+      "value": 0.490135517437
+    },
+    {
+      "index": 43,
+      "label": "red:Khanjar:visibility",
+      "value": 0.059998512268
+    },
+    {
+      "index": 44,
+      "label": "red:Pantsir 1:visibility",
+      "value": 0.040402163053
+    },
+    {
+      "index": 45,
+      "label": "red:Pantsir 2:visibility",
+      "value": 0.755734871142
+    },
+    {
+      "index": 46,
+      "label": "red:S-300 Site North:visibility",
+      "value": 0.68619587156
+    }
+  ],
+  "rejected_units": [
+    {
+      "reasons": [
+        "status is destroyed",
+        "mission_capable is false",
+        "structural integrity is below 30%"
+      ],
+      "side": "red",
+      "unit_name": "Peykan"
+    },
+    {
+      "reasons": [
+        "mission_capable is false"
+      ],
+      "side": "red",
+      "unit_name": "Joshan"
+    },
+    {
+      "reasons": [
+        "status is destroyed",
+        "mission_capable is false",
+        "structural integrity is below 30%"
+      ],
+      "side": "red",
+      "unit_name": "Shamshir"
+    },
+    {
+      "reasons": [
+        "status is destroyed",
+        "mission_capable is false",
+        "structural integrity is below 30%"
+      ],
+      "side": "red",
+      "unit_name": "Phantom Flight"
+    }
+  ],
+  "scenario": {
+    "archetype": "convoy_escort",
+    "id": "resolute_passage_generated_001",
+    "name": "Operation Resolute Passage — Campaign Generated",
+    "theater_id": "hormuz_mvp"
+  },
+  "schema_version": 1,
+  "selected_units": [
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.64,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 8000,
+          "lat": 25.247606,
+          "lon": 57.377629
+        },
+        "route": [
+          {
+            "altitude": 7600,
+            "lat": 26.1,
+            "lon": 57.5,
+            "speed": 280
+          },
+          {
+            "altitude": 7600,
+            "lat": 25.95,
+            "lon": 56.95,
+            "speed": 280
+          }
+        ],
+        "sorties": 1,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "platform_class": "P-8 MPA",
+      "role": "maritime_patrol",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 50,
+        "crew_fatigue_pct": 35,
+        "fuel_pct": 64,
+        "readiness_pct": 82,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Broadarrow"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.78,
+        "launchers": [
+          {
+            "item": "ASTER 30",
+            "launcherId": 0,
+            "quantity": 1
+          },
+          {
+            "item": "ASTER 15",
+            "launcherId": 1,
+            "quantity": 1
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "launcherId": 2,
+            "quantity": 78
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "launcherId": 3,
+            "quantity": 78
+          },
+          {
+            "item": "114mm N4A1 HE",
+            "launcherId": 4,
+            "quantity": 1
+          }
+        ],
+        "loadout_setup": "Type 45 2007",
+        "magazines": [
+          {
+            "item": "ASTER 15",
+            "magazineId": 0,
+            "quantity": 8
+          },
+          {
+            "item": "ASTER 30",
+            "magazineId": 0,
+            "quantity": 25
+          },
+          {
+            "item": "114mm N4A1 HE",
+            "magazineId": 1,
+            "quantity": 648
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "magazineId": 2,
+            "quantity": 847
+          },
+          {
+            "item": "Fuel",
+            "magazineId": 3,
+            "quantity": 18486
+          },
+          {
+            "item": "Sea Skua",
+            "magazineId": 3,
+            "quantity": 12
+          },
+          {
+            "item": "Stingray",
+            "magazineId": 3,
+            "quantity": 24
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 25.38,
+          "lon": 58.08
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.42,
+            "lon": 56.38,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 55.78,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.38,
+            "lon": 55.76,
+            "speed": 22
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 22,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Type 45 DDG",
+      "role": "surface_combatant",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 81,
+        "crew_fatigue_pct": 27,
+        "fuel_pct": 78,
+        "readiness_pct": 91,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 29,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "HMS Diamond"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "GBU-39 SDB",
+            "launcherId": 0,
+            "quantity": 8
+          },
+          {
+            "item": "AIM-120D",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-9X",
+            "launcherId": 2,
+            "quantity": 2
+          },
+          {
+            "item": "GBU-12/B",
+            "launcherId": 3,
+            "quantity": 4
+          },
+          {
+            "item": "GBU-31A(v)2",
+            "launcherId": 4,
+            "quantity": 2
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 6,
+            "quantity": 120
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 7,
+            "quantity": 120
+          },
+          {
+            "item": "20mm PGU",
+            "launcherId": 8,
+            "quantity": 46
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 8000,
+          "lat": 25.734799,
+          "lon": 57.754813
+        },
+        "route": [
+          {
+            "altitude": 7600,
+            "lat": 25.65,
+            "lon": 56.95,
+            "speed": 390
+          },
+          {
+            "altitude": 7600,
+            "lat": 26.55,
+            "lon": 56.35,
+            "speed": 390
+          }
+        ],
+        "sorties": 4,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "platform_class": "F-15E",
+      "role": "strike",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 16,
+        "fuel_pct": 85,
+        "readiness_pct": 91,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Lancer Flight"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.72,
+        "launchers": [
+          {
+            "item": "20mm Mark 149-4",
+            "launcherId": 0,
+            "quantity": 118
+          },
+          {
+            "item": "20mm Mark 149-4",
+            "launcherId": 1,
+            "quantity": 118
+          }
+        ],
+        "loadout_setup": "Fort Victoria AOR-1",
+        "magazines": [
+          {
+            "item": "20mm Mark 149-4",
+            "magazineId": 0,
+            "quantity": 814
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 25.41,
+          "lon": 58.016
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.42,
+            "lon": 56.38,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 55.78,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.38,
+            "lon": 55.76,
+            "speed": 20
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 20,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Fort Victoria AOR",
+      "role": "logistics",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 84,
+        "crew_fatigue_pct": 34,
+        "fuel_pct": 72,
+        "readiness_pct": 88,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 20,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "RFA Fort Victoria"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.81,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 8000,
+          "lat": 25.794474,
+          "lon": 58.273493
+        },
+        "route": [
+          {
+            "altitude": 8500,
+            "lat": 25.4,
+            "lon": 57.9,
+            "speed": 260
+          },
+          {
+            "altitude": 8500,
+            "lat": 25.2,
+            "lon": 58.3,
+            "speed": 260
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 324,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "platform_class": "E-2C",
+      "role": "reconnaissance",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 0,
+        "crew_fatigue_pct": 17,
+        "fuel_pct": 81,
+        "readiness_pct": 89,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Sentinel"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 1,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 8000,
+          "lat": 25.824087,
+          "lon": 57.333899
+        },
+        "route": [
+          {
+            "altitude": 9000,
+            "lat": 25.2,
+            "lon": 58,
+            "speed": 300
+          },
+          {
+            "altitude": 9000,
+            "lat": 25,
+            "lon": 58.5,
+            "speed": 300
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "platform_class": "KC-135R",
+      "role": "tanker",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 0,
+        "crew_fatigue_pct": 14,
+        "fuel_pct": 100,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Shell 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.7,
+        "launchers": [
+          {
+            "item": "1400 liter tank",
+            "launcherId": 0,
+            "quantity": 1
+          },
+          {
+            "item": "AIM-120D",
+            "launcherId": 1,
+            "quantity": 1
+          },
+          {
+            "item": "AIM-120D",
+            "launcherId": 2,
+            "quantity": 1
+          },
+          {
+            "item": "AIM-120D",
+            "launcherId": 3,
+            "quantity": 1
+          },
+          {
+            "item": "AIM-120D",
+            "launcherId": 4,
+            "quantity": 1
+          },
+          {
+            "item": "AIM-9X",
+            "launcherId": 5,
+            "quantity": 1
+          },
+          {
+            "item": "20mm PGU",
+            "launcherId": 6,
+            "quantity": 30
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 7,
+            "quantity": 16
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 8,
+            "quantity": 16
+          }
+        ],
+        "loadout_setup": "AW1   2010",
+        "magazines": [],
+        "position": {
+          "altitude": 8000,
+          "lat": 25.111107,
+          "lon": 58.083734
+        },
+        "route": [
+          {
+            "altitude": 8200,
+            "lat": 26.05,
+            "lon": 57.3,
+            "speed": 380
+          },
+          {
+            "altitude": 8200,
+            "lat": 26.3,
+            "lon": 56.75,
+            "speed": 380
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "platform_class": "F/A-18F",
+      "role": "fighter",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 66,
+        "crew_fatigue_pct": 32,
+        "fuel_pct": 70,
+        "readiness_pct": 86,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Tiger Flight"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.9,
+        "launchers": [
+          {
+            "item": ".50 cal bullet",
+            "launcherId": 0,
+            "quantity": 600
+          },
+          {
+            "item": ".50 cal bullet",
+            "launcherId": 1,
+            "quantity": 600
+          },
+          {
+            "item": ".50 cal bullet",
+            "launcherId": 2,
+            "quantity": 600
+          },
+          {
+            "item": ".50 cal bullet",
+            "launcherId": 3,
+            "quantity": 600
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "launcherId": 4,
+            "quantity": 523
+          },
+          {
+            "item": "57mm HCER",
+            "launcherId": 5,
+            "quantity": 840
+          }
+        ],
+        "loadout_setup": "Legend 2008",
+        "magazines": [
+          {
+            "item": ".50 cal bullet",
+            "magazineId": 0,
+            "quantity": 24000
+          },
+          {
+            "item": "57mm HCER",
+            "magazineId": 0,
+            "quantity": 840
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "magazineId": 1,
+            "quantity": 523
+          },
+          {
+            "item": "Fuel",
+            "magazineId": 2,
+            "quantity": 34464
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 25.44,
+          "lon": 57.952
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.42,
+            "lon": 56.38,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 55.78,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.38,
+            "lon": 55.76,
+            "speed": 22
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 22,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Legend WMSL",
+      "role": "surface_combatant",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 18,
+        "fuel_pct": 90,
+        "readiness_pct": 88,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 28,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "USCGC Stone"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 1,
+        "launchers": [],
+        "loadout_setup": "Lewis and Clark-1",
+        "magazines": [
+          {
+            "item": "Fuel",
+            "magazineId": 0,
+            "quantity": 1000000
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 25.47,
+          "lon": 57.888
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.42,
+            "lon": 56.38,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 55.78,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.38,
+            "lon": 55.76,
+            "speed": 20
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 20,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Lewis and Clark",
+      "role": "logistics",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 11,
+        "fuel_pct": 100,
+        "readiness_pct": 94,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 20,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "USNS Amelia Earhart"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 1,
+        "launchers": [],
+        "loadout_setup": "Henry J Kaiser-1",
+        "magazines": [
+          {
+            "item": "Fuel",
+            "magazineId": 0,
+            "quantity": 15000000
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 25.5,
+          "lon": 57.824
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.42,
+            "lon": 56.38,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 55.78,
+            "speed": 20
+          },
+          {
+            "altitude": 0,
+            "lat": 26.38,
+            "lon": 55.76,
+            "speed": 20
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 20,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Henry J Kaiser",
+      "role": "logistics",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 0,
+        "crew_fatigue_pct": 15,
+        "fuel_pct": 100,
+        "readiness_pct": 95,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 20,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "USNS John Ericsson"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.88,
+        "launchers": [
+          {
+            "item": "SM-2MR Bk3B",
+            "launcherId": 0,
+            "quantity": 29
+          },
+          {
+            "item": "RIM-162A",
+            "launcherId": 1,
+            "quantity": 64
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "launcherId": 2,
+            "quantity": 97
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "launcherId": 3,
+            "quantity": 97
+          },
+          {
+            "item": "RGM-84F Harpoon",
+            "launcherId": 4,
+            "quantity": 4
+          },
+          {
+            "item": "RGM-84F Harpoon",
+            "launcherId": 5,
+            "quantity": 4
+          },
+          {
+            "item": "127mm mk 80 HE-PD mk 67",
+            "launcherId": 6,
+            "quantity": 20
+          },
+          {
+            "item": "127mm mk 80 HE-PD mk 67",
+            "launcherId": 7,
+            "quantity": 20
+          },
+          {
+            "item": "Mk-54",
+            "launcherId": 8,
+            "quantity": 3
+          },
+          {
+            "item": "Mk-54",
+            "launcherId": 9,
+            "quantity": 3
+          }
+        ],
+        "loadout_setup": "Tico B4 2012",
+        "magazines": [
+          {
+            "item": "127mm mk 80 HE-PD mk 67",
+            "magazineId": 1,
+            "quantity": 1200
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "magazineId": 2,
+            "quantity": 1046
+          },
+          {
+            "item": "120 gallon tank",
+            "magazineId": 3,
+            "quantity": 4
+          },
+          {
+            "item": "AGM-114 Hellfire",
+            "magazineId": 3,
+            "quantity": 16
+          },
+          {
+            "item": "AGM-119B",
+            "magazineId": 3,
+            "quantity": 4
+          },
+          {
+            "item": "AGM-65J",
+            "magazineId": 3,
+            "quantity": 12
+          },
+          {
+            "item": "Chaff-1",
+            "magazineId": 3,
+            "quantity": 75
+          },
+          {
+            "item": "DICASS (110) Sonobuoy",
+            "magazineId": 3,
+            "quantity": 203
+          },
+          {
+            "item": "DIFAR (110) Sonobuoy",
+            "magazineId": 3,
+            "quantity": 608
+          },
+          {
+            "item": "Flare-1",
+            "magazineId": 3,
+            "quantity": 75
+          },
+          {
+            "item": "Fuel",
+            "magazineId": 3,
+            "quantity": 49382
+          },
+          {
+            "item": "LOFAR (110) Sonobuoy",
+            "magazineId": 3,
+            "quantity": 203
+          },
+          {
+            "item": "Mk-50",
+            "magazineId": 3,
+            "quantity": 2
+          },
+          {
+            "item": "Mk-54",
+            "magazineId": 3,
+            "quantity": 34
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 25.53,
+          "lon": 57.76
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.42,
+            "lon": 56.38,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 55.78,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.38,
+            "lon": 55.76,
+            "speed": 22
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 22,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Ticonderoga CG Baseline 4",
+      "role": "surface_combatant",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 15,
+        "fuel_pct": 88,
+        "readiness_pct": 92,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 30,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "USS Chosin"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.76,
+        "launchers": [
+          {
+            "item": "RIM-66M",
+            "launcherId": 0,
+            "quantity": 1
+          },
+          {
+            "item": "RIM-156",
+            "launcherId": 1,
+            "quantity": 1
+          },
+          {
+            "item": "RIM-174A",
+            "launcherId": 2,
+            "quantity": 1
+          },
+          {
+            "item": "RIM-162B",
+            "launcherId": 3,
+            "quantity": 11
+          },
+          {
+            "item": "RIM-162B",
+            "launcherId": 4,
+            "quantity": 11
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "launcherId": 5,
+            "quantity": 69
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "launcherId": 6,
+            "quantity": 69
+          },
+          {
+            "item": "RGM-84F Harpoon",
+            "launcherId": 7,
+            "quantity": 2
+          },
+          {
+            "item": "RGM-84F Harpoon",
+            "launcherId": 8,
+            "quantity": 2
+          },
+          {
+            "item": "127mm mk 127 HE-CVT mk 67",
+            "launcherId": 9,
+            "quantity": 14
+          },
+          {
+            "item": "Mk-54",
+            "launcherId": 10,
+            "quantity": 2
+          },
+          {
+            "item": "Mk-54",
+            "launcherId": 11,
+            "quantity": 2
+          }
+        ],
+        "loadout_setup": "Burke A 2012",
+        "magazines": [
+          {
+            "item": "120 gallon tank",
+            "magazineId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "AGM-114 Hellfire",
+            "magazineId": 0,
+            "quantity": 11
+          },
+          {
+            "item": "AGM-119B",
+            "magazineId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "AGM-65J",
+            "magazineId": 0,
+            "quantity": 8
+          },
+          {
+            "item": "Chaff-1",
+            "magazineId": 0,
+            "quantity": 54
+          },
+          {
+            "item": "DICASS (110) Sonobuoy",
+            "magazineId": 0,
+            "quantity": 146
+          },
+          {
+            "item": "DIFAR (110) Sonobuoy",
+            "magazineId": 0,
+            "quantity": 437
+          },
+          {
+            "item": "Flare-1",
+            "magazineId": 0,
+            "quantity": 54
+          },
+          {
+            "item": "Fuel",
+            "magazineId": 0,
+            "quantity": 42648
+          },
+          {
+            "item": "LOFAR (110) Sonobuoy",
+            "magazineId": 0,
+            "quantity": 146
+          },
+          {
+            "item": "Mk-50",
+            "magazineId": 0,
+            "quantity": 1
+          },
+          {
+            "item": "Mk-54",
+            "magazineId": 0,
+            "quantity": 24
+          },
+          {
+            "item": "BGM-109 TLAM",
+            "magazineId": 1,
+            "quantity": 25
+          },
+          {
+            "item": "RIM-156",
+            "magazineId": 1,
+            "quantity": 7
+          },
+          {
+            "item": "RIM-174A",
+            "magazineId": 1,
+            "quantity": 7
+          },
+          {
+            "item": "RIM-66M",
+            "magazineId": 1,
+            "quantity": 20
+          },
+          {
+            "item": "RUM-139 Mod4 ASROC",
+            "magazineId": 1,
+            "quantity": 8
+          },
+          {
+            "item": "127mm mk 127 HE-CVT mk 67",
+            "magazineId": 2,
+            "quantity": 489
+          },
+          {
+            "item": "20mm mark 244-0 ELC",
+            "magazineId": 3,
+            "quantity": 753
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 25.56,
+          "lon": 57.696
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.42,
+            "lon": 56.38,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 55.78,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.38,
+            "lon": 55.76,
+            "speed": 22
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 22,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Arleigh Burke IIA DDGHM",
+      "role": "surface_combatant",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 72,
+        "crew_fatigue_pct": 31,
+        "fuel_pct": 76,
+        "readiness_pct": 89,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 30,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "USS Mason"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.68,
+        "launchers": [
+          {
+            "item": ".50 cal bullet",
+            "launcherId": 0,
+            "quantity": 468
+          },
+          {
+            "item": ".50 cal bullet",
+            "launcherId": 1,
+            "quantity": 468
+          },
+          {
+            "item": ".50 cal bullet",
+            "launcherId": 2,
+            "quantity": 468
+          },
+          {
+            "item": ".50 cal bullet",
+            "launcherId": 3,
+            "quantity": 468
+          },
+          {
+            "item": "25mm APDS",
+            "launcherId": 4,
+            "quantity": 312
+          },
+          {
+            "item": "25mm APDS",
+            "launcherId": 5,
+            "quantity": 312
+          },
+          {
+            "item": "FIM-92 Stinger",
+            "launcherId": 6,
+            "quantity": 4
+          }
+        ],
+        "loadout_setup": "Cyclone 1993",
+        "magazines": [
+          {
+            "item": ".50 cal bullet",
+            "magazineId": 0,
+            "quantity": 5616
+          },
+          {
+            "item": "25mm APDS",
+            "magazineId": 0,
+            "quantity": 1872
+          },
+          {
+            "item": "FIM-92 Stinger",
+            "magazineId": 1,
+            "quantity": 4
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 25.59,
+          "lon": 57.632
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.42,
+            "lon": 56.38,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 55.78,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 26.38,
+            "lon": 55.76,
+            "speed": 22
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 22,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Cyclone PBFM",
+      "role": "surface_combatant",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 78,
+        "crew_fatigue_pct": 38,
+        "fuel_pct": 68,
+        "readiness_pct": 84,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 30,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "USS Tempest"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.84,
+        "launchers": [],
+        "loadout_setup": "Default",
+        "magazines": [
+          {
+            "item": "Fuel",
+            "magazineId": 0,
+            "quantity": 840000
+          },
+          {
+            "item": "AIM-120C",
+            "magazineId": 1,
+            "quantity": 77
+          },
+          {
+            "item": "AIM-9M",
+            "magazineId": 1,
+            "quantity": 77
+          },
+          {
+            "item": "Chaff-1",
+            "magazineId": 1,
+            "quantity": 7700
+          },
+          {
+            "item": "Flare-1",
+            "magazineId": 1,
+            "quantity": 7700
+          }
+        ],
+        "position": {
+          "altitude": 12,
+          "lat": 27.08,
+          "lon": 56.98
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "platform_class": "Airstrip",
+      "role": "base",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 77,
+        "crew_fatigue_pct": 21,
+        "fuel_pct": 84,
+        "readiness_pct": 82,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Bandar Abbas Strip"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 1,
+        "launchers": [
+          {
+            "item": "3M10 Granat",
+            "launcherId": 0,
+            "quantity": 3
+          }
+        ],
+        "loadout_setup": "SSC-4(6)-1",
+        "magazines": [
+          {
+            "item": "3M10 Granat",
+            "magazineId": 0,
+            "quantity": 3
+          }
+        ],
+        "position": {
+          "altitude": 10,
+          "lat": 26.83544,
+          "lon": 56.3337
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1",
+          "AutoAttack"
+        ]
+      },
+      "domain": "ground",
+      "platform_class": "K-300P Bastion-P",
+      "role": "coastal_strike",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 50,
+        "crew_fatigue_pct": 16,
+        "fuel_pct": 100,
+        "readiness_pct": 79,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 91
+      },
+      "unit_name": "Bastion 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 1,
+        "launchers": [
+          {
+            "item": "3M10 Granat",
+            "launcherId": 0,
+            "quantity": 6
+          }
+        ],
+        "loadout_setup": "SSC-4(6)-1",
+        "magazines": [
+          {
+            "item": "3M10 Granat",
+            "magazineId": 0,
+            "quantity": 6
+          }
+        ],
+        "position": {
+          "altitude": 10,
+          "lat": 26.88,
+          "lon": 56.398544
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1",
+          "AutoAttack"
+        ]
+      },
+      "domain": "ground",
+      "platform_class": "K-300P Bastion-P",
+      "role": "coastal_strike",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 8,
+        "fuel_pct": 100,
+        "readiness_pct": 86,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Bastion 2"
+    },
+    {
+      "applied": {
+        "always_visible": true,
+        "fuel_fraction": 1,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 26.792083,
+          "lon": 56.078986
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "platform_class": "Generic Radar Post 170",
+      "role": "reconnaissance",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 0,
+        "crew_fatigue_pct": 6,
+        "fuel_pct": 100,
+        "readiness_pct": 95,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Coastwatch 1"
+    },
+    {
+      "applied": {
+        "always_visible": true,
+        "fuel_fraction": 1,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 26.864194,
+          "lon": 56.400479
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "platform_class": "Generic Mobile Radar Post 170",
+      "role": "reconnaissance",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 0,
+        "crew_fatigue_pct": 9,
+        "fuel_pct": 100,
+        "readiness_pct": 89,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Coastwatch 2"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 0.57,
+        "launchers": [
+          {
+            "item": "RGM-84A Harpoon",
+            "launcherId": 0,
+            "quantity": 1
+          },
+          {
+            "item": "RGM-84A Harpoon",
+            "launcherId": 1,
+            "quantity": 1
+          },
+          {
+            "item": "76mm HE-MOM",
+            "launcherId": 2,
+            "quantity": 22
+          },
+          {
+            "item": "40mm HE-T",
+            "launcherId": 3,
+            "quantity": 14
+          }
+        ],
+        "loadout_setup": "Kaman FACM-1",
+        "magazines": [
+          {
+            "item": "76mm HE-MOM",
+            "magazineId": 0,
+            "quantity": 67
+          },
+          {
+            "item": "40mm HE-T",
+            "magazineId": 1,
+            "quantity": 140
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 26.42,
+          "lon": 56.38
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 18
+          },
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 18
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 18,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Kaman FACM",
+      "role": "surface_combatant",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 28,
+        "crew_fatigue_pct": 46,
+        "fuel_pct": 57,
+        "readiness_pct": 51,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 18,
+        "structural_integrity_pct": 83
+      },
+      "unit_name": "Falakhon"
+    },
+    {
+      "applied": {
+        "always_visible": true,
+        "fuel_fraction": 0.58,
+        "launchers": [
+          {
+            "item": "RGM-84A Harpoon",
+            "launcherId": 0,
+            "quantity": 1
+          },
+          {
+            "item": "RGM-84A Harpoon",
+            "launcherId": 1,
+            "quantity": 1
+          },
+          {
+            "item": "76mm HE-MOM",
+            "launcherId": 2,
+            "quantity": 57
+          },
+          {
+            "item": "40mm HE-T",
+            "launcherId": 3,
+            "quantity": 36
+          }
+        ],
+        "loadout_setup": "Kaman FACM-1",
+        "magazines": [
+          {
+            "item": "76mm HE-MOM",
+            "magazineId": 0,
+            "quantity": 172
+          },
+          {
+            "item": "40mm HE-T",
+            "magazineId": 1,
+            "quantity": 360
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 26.419,
+          "lon": 56.395
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 26.4,
+            "lon": 56.52,
+            "speed": 22
+          },
+          {
+            "altitude": 0,
+            "lat": 25.86,
+            "lon": 57.06,
+            "speed": 22
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 22,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "platform_class": "Kaman FACM",
+      "role": "surface_combatant",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 72,
+        "crew_fatigue_pct": 37,
+        "fuel_pct": 58,
+        "readiness_pct": 74,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 1,
+          "pier_side_hours_required": 6,
+          "port_required": false
+        },
+        "speed_limit_kts": 30,
+        "structural_integrity_pct": 88
+      },
+      "unit_name": "Khanjar"
+    },
+    {
+      "applied": {
+        "always_visible": true,
+        "fuel_fraction": 1,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 26.834632,
+          "lon": 56.338093
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "platform_class": "Pantsir-S1",
+      "role": "air_defense",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 9,
+        "fuel_pct": 100,
+        "readiness_pct": 91,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Pantsir 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 1,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 26.870324,
+          "lon": 56.399035
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "platform_class": "Pantsir-S1",
+      "role": "air_defense",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 7,
+        "fuel_pct": 100,
+        "readiness_pct": 93,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Pantsir 2"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "fuel_fraction": 1,
+        "launchers": [
+          {
+            "item": "48N6E2",
+            "launcherId": 0,
+            "quantity": 4
+          },
+          {
+            "item": "48N6E2",
+            "launcherId": 1,
+            "quantity": 4
+          },
+          {
+            "item": "48N6E2",
+            "launcherId": 2,
+            "quantity": 4
+          },
+          {
+            "item": "48N6E2",
+            "launcherId": 3,
+            "quantity": 4
+          }
+        ],
+        "loadout_setup": "S-300PMU-2-1",
+        "magazines": [
+          {
+            "item": "48N6E2",
+            "magazineId": 0,
+            "quantity": 72
+          }
+        ],
+        "position": {
+          "altitude": 10,
+          "lat": 27.036039,
+          "lon": 56.865368
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1",
+          "PointDefense"
+        ]
+      },
+      "domain": "ground",
+      "platform_class": "S-300PMU-2",
+      "role": "air_defense",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 100,
+        "readiness_pct": 88,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "S-300 Site North"
+    }
+  ],
+  "validation": {
+    "errors": 0,
+    "findings": [],
+    "parser": "passed",
+    "theater": "hormuz_mvp",
+    "warnings": 0
+  },
+  "variation": {
+    "applied": {
+      "blue_reserve_slots": 0,
+      "red_reserve_slots": 0,
+      "sea_state": 4,
+      "time_offset_minutes": -7
+    },
+    "configured": {
+      "contact_visibility_fraction": {
+        "blue": 0,
+        "red": 0.15
+      },
+      "position_jitter_nm": 0,
+      "reserve_slots": {
+        "blue": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      },
+      "sea_state_range": [
+        2,
+        4
+      ],
+      "time_offset_minutes": [
+        -15,
+        15
+      ]
+    }
+  }
+}
