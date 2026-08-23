@@ -48,21 +48,29 @@ function placeSide(units, side, seed, rng) {
   const jitterNm = Number(seed.variation?.position_jitter_nm || 0);
   let surfaceIndex = 0;
   return units.map((unit) => {
+    const directive = seed.unit_directives?.[side]?.[unit.unit_name] || {};
+    const presence = directive.presence || 'active';
+    const exactPosition = placement.unit_positions?.[side]?.[unit.unit_name];
+    const exactRoute = placement.unit_routes?.[side]?.[unit.unit_name];
     let position;
     let route = [];
-    if (unit.domain === 'ship' || unit.domain === 'sub') {
-      const source = surfaceStarts[surfaceIndex];
+    if (['staged', 'maintenance'].includes(presence)) {
+      if (unit.domain !== 'air') throw new GeneratorError('PRESENCE_DOMAIN', `${unit.unit_name} can be ${presence} only when it is an aircraft`);
+      position = { lat: 0, lon: 0, altitude: 0 };
+    } else if (unit.domain === 'ship' || unit.domain === 'sub') {
+      const source = exactPosition || surfaceStarts[surfaceIndex];
       if (!validPoint(source)) throw new GeneratorError('PLACEMENT_SURFACE', `No valid ${side} surface start is available for ${unit.unit_name}`);
       position = jitterPoint({ ...source, altitude: unit.domain === 'sub' ? Number(source.altitude ?? -40) : 0 }, jitterNm, rng, `${side}:${unit.unit_name}:start`);
-      route = surfaceRoute.map((point) => ({ ...point, speed: point.speed || unit.speed }));
+      const routeSource = exactRoute || surfaceRoute;
+      route = routeSource.length ? normalizeRoute(routeSource, `${unit.unit_name} surface route`).map((point) => ({ ...point, speed: point.speed || directive.speed || unit.speed })) : [];
       surfaceIndex += 1;
     } else if (unit.domain === 'air') {
-      position = pointFromBox(airBox, rng, `${side}:${unit.unit_name}:air`);
-      let source = airRoutes[unit.role] || airRoutes[side] || [];
+      position = exactPosition ? { ...exactPosition, altitude: Number(exactPosition.altitude || 0) } : pointFromBox(airBox, rng, `${side}:${unit.unit_name}:air`);
+      let source = exactRoute || airRoutes[unit.role] || airRoutes[side] || [];
       if (source.length && Array.isArray(source[0])) source = rng.pick(source, `${side}:${unit.role}:air-route-variant`);
       route = source.length ? normalizeRoute(source, `${unit.role} air route`).map((point) => ({ ...point, speed: point.speed || unit.speed, altitude: point.altitude || position.altitude })) : [];
     } else {
-      const source = groundPositions[unit.unit_name] || groundPositions[unit.platform_class];
+      const source = exactPosition || groundPositions[unit.unit_name] || groundPositions[unit.platform_class];
       if (!validPoint(source)) throw new GeneratorError('PLACEMENT_GROUND', `No valid ground position is defined for ${unit.unit_name}`);
       position = { ...source, altitude: Number(source.altitude || 10) };
     }
@@ -70,23 +78,35 @@ function placeSide(units, side, seed, rng) {
     if (visibilityFraction < 0 || visibilityFraction > 1) throw new GeneratorError('VARIATION_VISIBILITY', `contact_visibility_fraction.${side} must be between 0 and 1`);
     return {
       ...unit,
+      presence,
+      host: directive.host || null,
+      flightDeckLocation: Number(directive.flight_deck_location || (presence === 'maintenance' ? 1 : 2)),
       position,
       route,
-      heading: Number(position.heading ?? (side === 'blue' ? 285 : 135)),
-      navLoop: unit.domain === 'air' && route.length > 1 && ['fighter', 'reconnaissance', 'maritime_patrol', 'tanker'].includes(unit.role),
-      alwaysVisible: visibilityFraction > 0 && rng.next(`${side}:${unit.unit_name}:visibility`) < visibilityFraction,
+      speed: Number(directive.speed ?? unit.speed),
+      tasks: directive.tasks ? [...directive.tasks] : unit.tasks,
+      heading: Number(directive.heading ?? position.heading ?? (side === 'blue' ? 285 : 135)),
+      navLoop: directive.nav_loop ?? (unit.domain === 'air' && route.length > 1 && ['fighter', 'reconnaissance', 'maritime_patrol', 'tanker'].includes(unit.role)),
+      alwaysVisible: directive.always_visible ?? (visibilityFraction > 0 && rng.next(`${side}:${unit.unit_name}:visibility`) < visibilityFraction),
     };
   });
 }
 
 function placeUnits(units, seed, rng) {
-  return {
+  const placed = {
     blue: placeSide(units.blue, 'blue', seed, rng),
     red: placeSide(units.red, 'red', seed, rng),
     rejected: units.rejected,
     logistics: units.logistics,
     aviation: units.aviation,
   };
+  for (const side of ['blue', 'red']) {
+    const names = new Set(placed[side].map((unit) => unit.unit_name));
+    for (const unit of placed[side].filter((candidate) => ['staged', 'maintenance'].includes(candidate.presence))) {
+      if (!names.has(unit.host)) throw new GeneratorError('PRESENCE_HOST', `${unit.unit_name} references unavailable host ${unit.host}`);
+    }
+  }
+  return placed;
 }
 
 module.exports = { validPoint, jitterPoint, pointFromBox, normalizeRoute, placeUnits };

@@ -63,9 +63,12 @@ Subsystem damage that the scenario API cannot express is retained in the manifes
 - force caps and explicit include/exclude requirements;
 - explicit in-scenario or documented off-map aviation recovery support;
 - protected and designated target sets and quantities;
+- independent named destruction groups when one mission requires separate thresholds, such as suppressing three coastal nodes while neutralizing two pickets;
 - surface starts/routes, aircraft operating boxes/tracks, and ground positions;
 - database-validated loadout overrides for platforms without a dated setup; and
 - bounded variation for timing, sea state, reserve slots, contact visibility, positional jitter, surface-route variants, and air-route variants.
+- per-unit presence directives (`active`, `reserve`, `staged`, or `maintenance`), host platforms, tasks, starts, and routes for story-critical formations.
+- executable continuity assertions for required selections and exclusions, participation states, forbidden tasks, exact launcher totals, force counts, and unique surface waypoints.
 
 Supported archetypes are:
 
@@ -83,7 +86,7 @@ Archetypes provide role requirements, default objective targets, tactical framin
 
 Platforms are resolved from the `ship`, `air`, `simpleair`, `ground`, and `sub` tables. Dated setups and launcher/magazine contents come from `platform_setup`, `launcher_loadout`, and `magazine_loadout`.
 
-The database's own dated default loadout is authoritative. When a setup assigns several weapon groups to one simulator launcher index, the generator deterministically selects the highest-quantity group because `SetUnitLauncherItem` can emit only one active child class per launcher. Seed-level loadout overrides are required when a platform has no dated setup, and every override launcher/item pair is checked against `platform_launcher`, `launcher_configuration`, and `equipment_group` before generation.
+The database's own dated default loadout is authoritative. When a setup assigns several weapon groups to one simulator launcher index, the generator deterministically selects the highest-quantity group because `SetUnitLauncherItem` can emit only one active child class per launcher. Seed-level loadout overrides are required when a platform has no dated setup, and every override launcher/item pair is checked against `platform_launcher`, `launcher_configuration`, and `equipment_group` before generation. A named-unit override takes precedence over a platform-class override so exact expenditure can be carried forward for one aircraft or ship without changing every unit of that class. An override is authoritative for the mission and suppresses the dated setup's magazine inventory, preventing unrelated database-default stores from being reintroduced behind an exact launcher state.
 
 ## Quality gates
 
@@ -134,6 +137,7 @@ The generator tests cover input validation, deterministic RNG, availability, rol
 ## Known boundaries
 
 - Campaign ammunition is an abstract percentage, not exact launcher history; the deterministic scaling rule and result are recorded in the manifest.
+- A scenario may override a named unit's loadout when the campaign has exact launcher-history evidence. Staged and maintenance aircraft are emitted on their declared carrier or airfield instead of being forced airborne.
 - The generator does not mutate campaign state or ingest battle logs.
 - Free-form LLM briefing generation is outside this rules-based pipeline.
 - A theater without an explicit theater definition and placement geometry is rejected.

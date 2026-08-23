@@ -12,6 +12,7 @@ const { jitterPoint, pointFromBox, placeUnits } = require('../../tools/mission-g
 const { scoreUnit, assessBalance } = require('../../tools/mission-generator/balance.cjs');
 const { renderScenario } = require('../../tools/mission-generator/renderer.cjs');
 const { shiftLocalDateTime, applyVariation } = require('../../tools/mission-generator/variation.cjs');
+const { validateContinuity } = require('../../tools/mission-generator/continuity.cjs');
 const { baseUnit, baseState, baseSeed, plannedUnit } = require('./fixtures.cjs');
 
 test('normalizes a valid campaign state', () => {
@@ -32,6 +33,14 @@ test('rejects unknown seed fields and unsupported archetypes', () => {
 
 test('seed defaults are deterministic', () => {
   assert.equal(hashValue(normalizeSeed(baseSeed())), hashValue(normalizeSeed(baseSeed())));
+});
+
+test('unit directives validate staged hosts and supported presence states', () => {
+  const seed = normalizeSeed(baseSeed({
+    unit_directives: { blue: { 'Tiger 1': { presence: 'staged', host: 'Carrier', flight_deck_location: 2 } }, red: {} },
+  }));
+  assert.equal(seed.unit_directives.blue['Tiger 1'].host, 'Carrier');
+  assert.throws(() => normalizeSeed(baseSeed({ unit_directives: { blue: { Bad: { presence: 'teleported' } }, red: {} } })), /validation failed/);
 });
 
 test('seeded RNG repeats draws and records their labels', () => {
@@ -122,6 +131,43 @@ test('placement fails instead of inventing a missing ground location', () => {
   assert.throws(() => placeUnits({ blue: [ground], red: [], rejected: [] }, baseSeed(), createRng('x')), /No valid ground position/);
 });
 
+test('objective composition supports independent named destruction groups', () => {
+  const blue = [plannedUnit({ unit_name: 'Convoy', role: 'logistics' })];
+  const red = [
+    plannedUnit({ unit_name: 'Picket', side: 'red', role: 'surface_combatant' }),
+    plannedUnit({ unit_name: 'Battery', side: 'red', role: 'coastal_strike' }),
+  ];
+  const seed = normalizeSeed(baseSeed({ objectives: {
+    protect: { blue: ['Convoy'] }, protect_quantity: { blue: 1 },
+    destroy_groups: { blue: [
+      { targets: ['Picket'], quantity: 1 },
+      { targets: ['Battery'], quantity: 1 },
+    ] },
+    destroy_quantity: { red: 1 },
+  } }));
+  const objectives = buildObjectives({ blue, red }, seed, getArchetype('convoy_escort'));
+  assert.equal(objectives.blue.goals.length, 3);
+  assertApprovedGoals(objectives.blue);
+});
+
+test('per-unit placement and staged aircraft directives override generic placement', () => {
+  const ship = plannedUnit({ unit_name: 'Escort' });
+  const carrier = plannedUnit({ unit_name: 'Carrier', role: 'base' });
+  const aircraft = plannedUnit({ unit_name: 'Tiger 1', domain: 'air', role: 'fighter' });
+  const seed = baseSeed({
+    unit_directives: { blue: { 'Tiger 1': { presence: 'staged', host: 'Carrier', flight_deck_location: 2 } }, red: {} },
+    placement: {
+      ...baseSeed().placement,
+      unit_positions: { blue: { Escort: { lat: 25.6, lon: 57.7 }, Carrier: { lat: 25.4, lon: 58.0 } } },
+      unit_routes: { blue: { Escort: [{ lat: 25.8, lon: 57.2 }] } },
+    },
+  });
+  const placed = placeUnits({ blue: [ship, carrier, aircraft], red: [], rejected: [] }, seed, createRng('directives'));
+  assert.deepEqual(placed.blue[0].position, { lat: 25.6, lon: 57.7, altitude: 0 });
+  assert.equal(placed.blue[2].presence, 'staged');
+  assert.equal(placed.blue[2].host, 'Carrier');
+});
+
 test('balance scoring accounts for condition and reports extreme ratios', () => {
   const healthy = plannedUnit();
   const weak = plannedUnit({ side: 'red', readiness_pct: 20, structural_integrity_pct: 30, fuelFraction: 0.2, ammo_pct: 10 });
@@ -149,4 +195,32 @@ test('renderer emits current coordinates, persistence controls, and approved goa
   assert.match(source, /# Scenario version: 0\.2\.1/);
   assert.match(source, /SetFuelFraction\(0\.750000\)/);
   assert.doesNotMatch(source, /TimeGoal/);
+});
+
+test('renderer emits staged aircraft after their active host', () => {
+  const carrier = plannedUnit({ unit_name: 'Carrier', role: 'base', presence: 'active' });
+  const tiger = plannedUnit({ unit_name: 'Tiger 1', domain: 'air', role: 'fighter', presence: 'staged', host: 'Carrier', flightDeckLocation: 2 });
+  const red = plannedUnit({ unit_name: 'Raider', side: 'red', presence: 'active' });
+  const model = {
+    state: { turn: 2 }, seed: normalizeSeed(baseSeed()), effectiveSeed: 'test', archetype: getArchetype('convoy_escort'),
+    units: { blue: [tiger, carrier], red: [red] },
+    objectives: { blue: { type: 'ProtectGoal', targets: ['Carrier'], quantity: 1 }, red: { type: 'DestroyGoal', targets: ['Carrier'], quantity: 1 } },
+    balance: { ratio: 1 },
+  };
+  const source = renderScenario(model);
+  assert.match(source, /AddUnitToFlightDeck\("Carrier", "Test Ship", "Tiger 1", 2\)/);
+  assert.ok(source.indexOf('unit.unitName = "Carrier"') < source.indexOf('AddUnitToFlightDeck'));
+});
+
+test('continuity assertions enforce presence, losses, tasking, ammunition, and unique surface routes', () => {
+  const blue = plannedUnit({ unit_name: 'Lancer 1', domain: 'air', role: 'strike', presence: 'active', tasks: ['Aircraft1', 'Nav'] });
+  const red = plannedUnit({ unit_name: 'Khanjar', side: 'red', presence: 'active', route: [{ lat: 26.4, lon: 56.4 }], launchers: [{ launcherId: 2, item: '76mm', quantity: 1 }] });
+  const units = { blue: [blue], red: [red], rejected: [{ side: 'blue', unit_name: 'Wildcat 2', reasons: ['destroyed'] }] };
+  assert.equal(validateContinuity(units, {
+    required_counts: { blue: 1, red: 1 },
+    required_selected: { red: ['Khanjar'] }, required_rejected: { blue: ['Wildcat 2'] },
+    required_presence: { blue: { 'Lancer 1': 'active' } }, forbidden_tasks: { 'Lancer 1': ['AutoAttack'] },
+    required_loadout_totals: { Khanjar: { '76mm': 1 } }, unique_surface_waypoints: true,
+  }).passed, true);
+  assert.throws(() => validateContinuity(units, { required_counts: { red: 2 } }), /assertions failed/);
 });

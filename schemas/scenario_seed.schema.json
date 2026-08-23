@@ -32,6 +32,15 @@
     "force_policy": { "type": "object" },
     "loadout_overrides": { "type": "object" },
     "aviation_support": { "type": "object" },
+    "unit_directives": {
+      "type": "object",
+      "properties": {
+        "blue": { "type": "object" },
+        "red": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "continuity_assertions": { "type": "object" },
     "objectives": { "type": "object" },
     "placement": { "type": "object" },
     "variation": { "type": "object" }

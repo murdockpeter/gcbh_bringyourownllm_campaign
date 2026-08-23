@@ -1,0 +1,100 @@
+{
+  "campaign_id": "indian_ocean_hormuz_mvp",
+  "campaign_name": "Indian Ocean Escalation",
+  "version": 5,
+  "current_time_local": "2026-05-22T20:30:00+04:00",
+  "time_zone": "Asia/Muscat",
+  "turn": 6,
+  "state_basis": "corrected_operation_resolute_passage_playthrough_20260823",
+  "notes": [
+    "Operation Resolute Passage destroyed Fulcrum 1-4 and Fencer 1-2.",
+    "Wildcat 2 was destroyed by Khanjar gunfire; its aircrew recovery remains unresolved.",
+    "Wildcat 1 recovered with 62 percent structural integrity and is unavailable for this mission.",
+    "The apparent losses of IRIS Sahand, Dagger, Scimitar, Zolfaghar, Tsunami 1, and Tsunami 2 were route-convergence artifacts and are not canonical campaign losses.",
+    "All six auxiliaries and the coastal network survived intact. Exact observed ammunition expenditure is carried forward where launcher history is known."
+  ],
+  "sides": {
+    "blue": {
+      "summary": {
+        "operational_picture": "BLUE holds temporary air superiority but has an expended first-line CAP, one Strike Eagle loss, and one damaged Strike Eagle. The convoy remains intact east of Hormuz.",
+        "next_intent": "Commit the convoy westward under a fresh carrier CAP and suppress only the named systems controlling the corridor."
+      },
+      "units": [
+        { "unit_name": "RFA Fort Victoria", "platform_class": "Fort Victoria AOR", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 12, "readiness_pct": 88, "crew_fatigue_pct": 38, "fuel_pct": 68, "ammo_pct": 84 },
+        { "unit_name": "USNS John Ericsson", "platform_class": "Henry J Kaiser", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 12, "readiness_pct": 91, "crew_fatigue_pct": 25, "fuel_pct": 86, "ammo_pct": 0 },
+        { "unit_name": "USNS Amelia Earhart", "platform_class": "Lewis and Clark", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 12, "readiness_pct": 92, "crew_fatigue_pct": 23, "fuel_pct": 88, "ammo_pct": 100 },
+        { "unit_name": "RFA Tidespring", "platform_class": "Fort Victoria AOR", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 12, "readiness_pct": 87, "crew_fatigue_pct": 35, "fuel_pct": 70, "ammo_pct": 84 },
+        { "unit_name": "USNS Guadalupe", "platform_class": "Henry J Kaiser", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 12, "readiness_pct": 90, "crew_fatigue_pct": 27, "fuel_pct": 84, "ammo_pct": 0 },
+        { "unit_name": "USNS Cesar Chavez", "platform_class": "Lewis and Clark", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 12, "readiness_pct": 91, "crew_fatigue_pct": 25, "fuel_pct": 86, "ammo_pct": 100 },
+        { "unit_name": "USS Mason", "platform_class": "Arleigh Burke IIA DDGHM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 16, "readiness_pct": 86, "crew_fatigue_pct": 39, "fuel_pct": 71, "ammo_pct": 100 },
+        { "unit_name": "USS Chosin", "platform_class": "Ticonderoga CG Baseline 4", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 16, "readiness_pct": 89, "crew_fatigue_pct": 32, "fuel_pct": 75, "ammo_pct": 100 },
+        { "unit_name": "USS Thomas Hudner", "platform_class": "Arleigh Burke IIA DDGHM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 16, "readiness_pct": 87, "crew_fatigue_pct": 35, "fuel_pct": 73, "ammo_pct": 100 },
+        { "unit_name": "USS Arleigh Burke", "platform_class": "Arleigh Burke III DDGHM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 16, "readiness_pct": 88, "crew_fatigue_pct": 34, "fuel_pct": 74, "ammo_pct": 100 },
+        { "unit_name": "HMS Diamond", "platform_class": "Type 45 DDG", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 16, "readiness_pct": 89, "crew_fatigue_pct": 32, "fuel_pct": 76, "ammo_pct": 100 },
+        { "unit_name": "HMS Richmond", "platform_class": "Type 23 FF", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 16, "readiness_pct": 87, "crew_fatigue_pct": 36, "fuel_pct": 74, "ammo_pct": 100 },
+        { "unit_name": "USS Tempest", "platform_class": "Cyclone PBFM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 14, "readiness_pct": 83, "crew_fatigue_pct": 45, "fuel_pct": 61, "ammo_pct": 100 },
+        { "unit_name": "USCGC Stone", "platform_class": "Legend WMSL", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 14, "readiness_pct": 85, "crew_fatigue_pct": 40, "fuel_pct": 68, "ammo_pct": 100 },
+        { "unit_name": "USS Devastator", "platform_class": "Avenger MCM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 10, "readiness_pct": 82, "crew_fatigue_pct": 42, "fuel_pct": 65, "ammo_pct": 100 },
+        { "unit_name": "USS Dextrous", "platform_class": "Avenger MCM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 10, "readiness_pct": 82, "crew_fatigue_pct": 42, "fuel_pct": 65, "ammo_pct": 100 },
+        { "unit_name": "USS George H.W. Bush", "platform_class": "CVN-77 (Nimitz) USS George H.W. Bush", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 12, "readiness_pct": 91, "crew_fatigue_pct": 28, "fuel_pct": 82, "ammo_pct": 92 },
+        { "unit_name": "Al Dhafra Air Base", "platform_class": "Airstrip(USA)", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 94, "crew_fatigue_pct": 18, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Tiger 1", "platform_class": "F/A-18F", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 70, "crew_fatigue_pct": 62, "fuel_pct": 35, "ammo_pct": 10 },
+        { "unit_name": "Tiger 2", "platform_class": "F/A-18F", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 70, "crew_fatigue_pct": 62, "fuel_pct": 35, "ammo_pct": 10 },
+        { "unit_name": "Tiger 3", "platform_class": "F/A-18F", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 96, "crew_fatigue_pct": 8, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Tiger 4", "platform_class": "F/A-18F", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 96, "crew_fatigue_pct": 8, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Lancer 1", "platform_class": "F-15E", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 91, "crew_fatigue_pct": 27, "fuel_pct": 86, "ammo_pct": 100 },
+        { "unit_name": "Lancer 2", "platform_class": "F-15E", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 91, "crew_fatigue_pct": 27, "fuel_pct": 86, "ammo_pct": 100 },
+        { "unit_name": "Viper 1", "platform_class": "F-15E", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 68, "crew_fatigue_pct": 66, "fuel_pct": 32, "ammo_pct": 10 },
+        { "unit_name": "Viper 2", "platform_class": "F-15E", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 68, "crew_fatigue_pct": 66, "fuel_pct": 32, "ammo_pct": 10 },
+        { "unit_name": "Wildcat 1", "platform_class": "F-15E", "status": "damaged", "mission_capable": true, "structural_integrity_pct": 62, "speed_limit_kts": 0, "readiness_pct": 20, "crew_fatigue_pct": 58, "fuel_pct": 30, "ammo_pct": 100 },
+        { "unit_name": "Wildcat 2", "platform_class": "F-15E", "status": "destroyed", "mission_capable": false, "structural_integrity_pct": 0, "speed_limit_kts": 0, "readiness_pct": 0, "crew_fatigue_pct": 0, "fuel_pct": 0, "ammo_pct": 0 },
+        { "unit_name": "Broadarrow", "platform_class": "P-8 MPA", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 88, "crew_fatigue_pct": 34, "fuel_pct": 78, "ammo_pct": 100 },
+        { "unit_name": "Trident", "platform_class": "P-8 MPA", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 84, "crew_fatigue_pct": 38, "fuel_pct": 76, "ammo_pct": 100 },
+        { "unit_name": "Sentinel", "platform_class": "E-2D", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 87, "crew_fatigue_pct": 35, "fuel_pct": 80, "ammo_pct": 0 },
+        { "unit_name": "Shell 1", "platform_class": "KC-135R", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 86, "crew_fatigue_pct": 36, "fuel_pct": 92, "ammo_pct": 0 }
+      ]
+    },
+    "red": {
+      "summary": {
+        "operational_picture": "RED lost its complete airborne package but retains the coastal kill chain and all nine surface combatants after correction of the route-convergence artifact.",
+        "next_intent": "Use dispersed surface layers and the intact coastal network to break the sealift while keeping national reserve fighters staged."
+      },
+      "units": [
+        { "unit_name": "Khanjar", "platform_class": "Kaman FACM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 22, "readiness_pct": 71, "crew_fatigue_pct": 48, "fuel_pct": 52, "ammo_pct": 100 },
+        { "unit_name": "Falakhon", "platform_class": "Kaman FACM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 18, "readiness_pct": 66, "crew_fatigue_pct": 52, "fuel_pct": 50, "ammo_pct": 100 },
+        { "unit_name": "Dagger", "platform_class": "Kaman FACM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 22, "readiness_pct": 82, "crew_fatigue_pct": 29, "fuel_pct": 72, "ammo_pct": 100 },
+        { "unit_name": "Scimitar", "platform_class": "Kaman FACM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 22, "readiness_pct": 82, "crew_fatigue_pct": 29, "fuel_pct": 72, "ammo_pct": 100 },
+        { "unit_name": "Zolfaghar", "platform_class": "Kaman FACM", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 22, "readiness_pct": 82, "crew_fatigue_pct": 29, "fuel_pct": 72, "ammo_pct": 100 },
+        { "unit_name": "IRIS Sahand", "platform_class": "Moudge FFG", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 18, "readiness_pct": 84, "crew_fatigue_pct": 27, "fuel_pct": 76, "ammo_pct": 100 },
+        { "unit_name": "IRIS Dena", "platform_class": "Moudge FFG", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 18, "readiness_pct": 76, "crew_fatigue_pct": 43, "fuel_pct": 61, "ammo_pct": 100 },
+        { "unit_name": "Tsunami 1", "platform_class": "Pr 205ER Tsunami (Iran)", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 20, "readiness_pct": 80, "crew_fatigue_pct": 31, "fuel_pct": 70, "ammo_pct": 100 },
+        { "unit_name": "Tsunami 2", "platform_class": "Pr 205ER Tsunami (Iran)", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 20, "readiness_pct": 80, "crew_fatigue_pct": 31, "fuel_pct": 70, "ammo_pct": 100 },
+        { "unit_name": "Bastion 1", "platform_class": "K-300P Bastion-P", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 88, "crew_fatigue_pct": 24, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Bastion 2", "platform_class": "K-300P Bastion-P", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 88, "crew_fatigue_pct": 24, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Bastion 3", "platform_class": "K-300P Bastion-P", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 88, "crew_fatigue_pct": 24, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Pantsir 1", "platform_class": "Pantsir-S1", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 90, "crew_fatigue_pct": 20, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Pantsir 2", "platform_class": "Pantsir-S1", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 90, "crew_fatigue_pct": 20, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Pantsir 3", "platform_class": "Pantsir-S1", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 90, "crew_fatigue_pct": 20, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "S-300 Site North", "platform_class": "S-300PMU-2", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 76, "crew_fatigue_pct": 36, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Coastwatch 1", "platform_class": "Generic Radar Post 170", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 93, "crew_fatigue_pct": 15, "fuel_pct": 100, "ammo_pct": 0 },
+        { "unit_name": "Bandar Abbas Strip", "platform_class": "Airstrip", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 88, "crew_fatigue_pct": 22, "fuel_pct": 90, "ammo_pct": 85 },
+        { "unit_name": "Shahin 1", "platform_class": "F-14A", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 82, "crew_fatigue_pct": 18, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Shahin 2", "platform_class": "F-14A", "status": "operational", "mission_capable": true, "structural_integrity_pct": 100, "speed_limit_kts": 0, "readiness_pct": 82, "crew_fatigue_pct": 18, "fuel_pct": 100, "ammo_pct": 100 },
+        { "unit_name": "Fulcrum 1", "platform_class": "MiG-29", "status": "destroyed", "mission_capable": false, "structural_integrity_pct": 0, "speed_limit_kts": 0, "readiness_pct": 0, "crew_fatigue_pct": 0, "fuel_pct": 0, "ammo_pct": 0 },
+        { "unit_name": "Fulcrum 2", "platform_class": "MiG-29", "status": "destroyed", "mission_capable": false, "structural_integrity_pct": 0, "speed_limit_kts": 0, "readiness_pct": 0, "crew_fatigue_pct": 0, "fuel_pct": 0, "ammo_pct": 0 },
+        { "unit_name": "Fulcrum 3", "platform_class": "MiG-29", "status": "destroyed", "mission_capable": false, "structural_integrity_pct": 0, "speed_limit_kts": 0, "readiness_pct": 0, "crew_fatigue_pct": 0, "fuel_pct": 0, "ammo_pct": 0 },
+        { "unit_name": "Fulcrum 4", "platform_class": "MiG-29", "status": "destroyed", "mission_capable": false, "structural_integrity_pct": 0, "speed_limit_kts": 0, "readiness_pct": 0, "crew_fatigue_pct": 0, "fuel_pct": 0, "ammo_pct": 0 },
+        { "unit_name": "Fencer 1", "platform_class": "Su-24M", "status": "destroyed", "mission_capable": false, "structural_integrity_pct": 0, "speed_limit_kts": 0, "readiness_pct": 0, "crew_fatigue_pct": 0, "fuel_pct": 0, "ammo_pct": 0 },
+        { "unit_name": "Fencer 2", "platform_class": "Su-24M", "status": "destroyed", "mission_capable": false, "structural_integrity_pct": 0, "speed_limit_kts": 0, "readiness_pct": 0, "crew_fatigue_pct": 0, "fuel_pct": 0, "ammo_pct": 0 }
+      ]
+    }
+  },
+  "scenario_history": [
+    { "scenario_id": "resolute_passage_001", "scenario_name": "Operation Resolute Passage", "time_ended": "2026-05-22T14:12:25Z", "result_observed": "RED aviation destroyed; Wildcat 2 destroyed; Wildcat 1 damaged; convoy and coastal network intact. Six apparent RED surface losses rejected as route-convergence artifacts.", "evidence": "GC:BH logs, Tacview recordings, saved-state continuation, and AAR dated 2026-08-23" }
+  ],
+  "next_scenario_seed": {
+    "scenario_id": "narrow_furnace_001",
+    "scenario_name": "Operation Narrow Furnace",
+    "scenario_file": "scenarios/operation_narrow_furnace.py"
+  }
+}

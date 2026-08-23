@@ -16,6 +16,7 @@ const { renderScenario } = require('./renderer.cjs');
 const { finalizeManifest } = require('./manifest.cjs');
 const { validateOutput } = require('./validate-output.cjs');
 const { applyVariation } = require('./variation.cjs');
+const { validateContinuity } = require('./continuity.cjs');
 
 function atomicWrite(filePath, contents) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -45,8 +46,9 @@ async function generateMission(options) {
     const archetype = getArchetype(seed.archetype);
     const objectives = buildObjectives(supplied, seed, archetype);
     const units = placeUnits(supplied, seed, rng);
+    const continuity = validateContinuity(units, seed.continuity_assertions);
     const balance = assessBalance(units, objectives);
-    const model = { state: inputs.state, seed, sourceSeed: inputs.seed, variation: variation.applied, effectiveSeed, archetype, objectives, units, balance };
+    const model = { state: inputs.state, seed, sourceSeed: inputs.seed, variation: variation.applied, effectiveSeed, archetype, objectives, units, continuity, balance };
     const source = renderScenario(model);
     const validation = await validateOutput(source, options.outputPath, seed.theater_id);
     const manifest = finalizeManifest(model, {

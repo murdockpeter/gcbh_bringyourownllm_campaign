@@ -27,8 +27,11 @@ function selectSide(units, side, policy, protectedNames, rng) {
 function selectRoster(indexed, seed, rng) {
   const protectedBySide = seed.objectives?.protect || {};
   const destroyedBySide = seed.objectives?.destroy || {};
-  const blueRequired = [...(protectedBySide.blue || []), ...(destroyedBySide.red || [])];
-  const redRequired = [...(protectedBySide.red || []), ...(destroyedBySide.blue || [])];
+  const destroyGroups = seed.objectives?.destroy_groups || {};
+  const groupedBlueTargets = (destroyGroups.blue || []).flatMap((group) => group.targets || []);
+  const groupedRedTargets = (destroyGroups.red || []).flatMap((group) => group.targets || []);
+  const blueRequired = [...(protectedBySide.blue || []), ...(destroyedBySide.red || []), ...groupedRedTargets];
+  const redRequired = [...(protectedBySide.red || []), ...(destroyedBySide.blue || []), ...groupedBlueTargets];
   const blue = selectSide(indexed.accepted, 'blue', seed.force_policy?.blue || {}, blueRequired, rng);
   const red = selectSide(indexed.accepted, 'red', seed.force_policy?.red || {}, redRequired, rng);
   return { blue, red, rejected: indexed.rejected };

@@ -39,7 +39,7 @@ function planUnit(unit, database, year, override) {
     speed: missionSpeed(unit),
     fuelFraction: Number((unit.fuel_pct / 100).toFixed(4)),
     launchers,
-    magazines: sourceLoadout.magazines.map((item) => ({
+    magazines: (override ? [] : sourceLoadout.magazines).map((item) => ({
       ...item,
       quantity: scaledQuantity(item.quantity, item.item === 'Fuel' ? unit.fuel_pct : unit.ammo_pct),
     })).filter((item) => item.quantity > 0),
@@ -109,8 +109,8 @@ function validateAviationSupport(side, units, support = {}, durationHours = 6) {
 function applyLogistics(roster, database, dateTime, loadoutOverrides = {}, campaignSides = {}, aviationSupport = {}, durationHours = 6) {
   const year = new Date(dateTime).getUTCFullYear();
   const result = {
-    blue: roster.blue.map((unit) => planUnit(unit, database, year, loadoutOverrides[unit.platform_class] || loadoutOverrides[unit.unit_name])),
-    red: roster.red.map((unit) => planUnit(unit, database, year, loadoutOverrides[unit.platform_class] || loadoutOverrides[unit.unit_name])),
+    blue: roster.blue.map((unit) => planUnit(unit, database, year, loadoutOverrides[unit.unit_name] || loadoutOverrides[unit.platform_class])),
+    red: roster.red.map((unit) => planUnit(unit, database, year, loadoutOverrides[unit.unit_name] || loadoutOverrides[unit.platform_class])),
     rejected: roster.rejected,
   };
   result.logistics = {

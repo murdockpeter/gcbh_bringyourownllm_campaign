@@ -9,6 +9,7 @@ const ARCHETYPES = new Set([
   'limited_strike', 'reconnaissance', 'recovery',
 ]);
 const STATUSES = new Set(['operational', 'damaged', 'under_repair', 'destroyed']);
+const PRESENCE_STATES = new Set(['active', 'reserve', 'staged', 'maintenance']);
 
 function readJson(filePath, label) {
   try {
@@ -83,6 +84,8 @@ function normalizeSeed(raw) {
     'schema_version', 'scenario_id', 'scenario_name', 'theater_id', 'date_time', 'playable_side',
     'rng_seed', 'archetype', 'premise', 'blue_intent', 'red_intent', 'escalation_constraints',
     'duration_hours', 'force_policy', 'objectives', 'placement', 'variation', 'sea_state', 'svp', 'loadout_overrides', 'aviation_support',
+    'unit_directives',
+    'continuity_assertions',
   ]), 'scenario seed', errors);
   for (const key of ['schema_version', 'scenario_id', 'scenario_name', 'theater_id', 'date_time', 'playable_side', 'archetype', 'premise', 'placement']) {
     if (raw[key] === undefined || raw[key] === null || raw[key] === '') errors.push(`scenario seed.${key} is required`);
@@ -94,6 +97,20 @@ function normalizeSeed(raw) {
   if (raw.duration_hours !== undefined && (!Number.isFinite(raw.duration_hours) || raw.duration_hours <= 0)) errors.push('scenario seed.duration_hours must be positive');
   if (raw.sea_state !== undefined && (!Number.isInteger(raw.sea_state) || raw.sea_state < 0 || raw.sea_state > 9)) errors.push('scenario seed.sea_state must be an integer from 0 to 9');
   if (!assertObject(raw.placement, 'scenario seed.placement', errors)) errors.push('scenario seed.placement is required');
+  if (raw.unit_directives !== undefined && assertObject(raw.unit_directives, 'scenario seed.unit_directives', errors)) {
+    for (const side of ['blue', 'red']) {
+      const directives = raw.unit_directives[side] || {};
+      if (!assertObject(directives, `scenario seed.unit_directives.${side}`, errors)) continue;
+      for (const [name, directive] of Object.entries(directives)) {
+        const path = `scenario seed.unit_directives.${side}.${name}`;
+        if (!assertObject(directive, path, errors)) continue;
+        if (directive.presence !== undefined && !PRESENCE_STATES.has(directive.presence)) errors.push(`${path}.presence is unsupported: ${directive.presence}`);
+        if (['staged', 'maintenance'].includes(directive.presence) && (typeof directive.host !== 'string' || !directive.host.trim())) errors.push(`${path}.host is required for ${directive.presence} aircraft`);
+        if (directive.flight_deck_location !== undefined && ![1, 2, 3].includes(directive.flight_deck_location)) errors.push(`${path}.flight_deck_location must be 1, 2, or 3`);
+        if (directive.tasks !== undefined && (!Array.isArray(directive.tasks) || directive.tasks.some((task) => typeof task !== 'string' || !task.trim()))) errors.push(`${path}.tasks must contain non-empty strings`);
+      }
+    }
+  }
   if (errors.length) throw new GeneratorError('SEED_INVALID', 'Scenario seed validation failed', errors);
   return canonicalize({
     duration_hours: 6,
@@ -102,6 +119,8 @@ function normalizeSeed(raw) {
     variation: {},
     loadout_overrides: {},
     aviation_support: {},
+    unit_directives: { blue: {}, red: {} },
+    continuity_assertions: {},
     sea_state: 3,
     svp: '0.000000,1515.000000,200.000000,1500.000000,300.000000,1510.000000,500.000000,1520.000000,5000.000000,1600.000000',
     escalation_constraints: [],
@@ -121,4 +140,4 @@ function loadInputs(statePath, seedPath) {
   };
 }
 
-module.exports = { ARCHETYPES, readJson, normalizeState, normalizeSeed, loadInputs };
+module.exports = { ARCHETYPES, PRESENCE_STATES, readJson, normalizeState, normalizeSeed, loadInputs };

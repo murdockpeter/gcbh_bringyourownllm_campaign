@@ -9,6 +9,8 @@ function unitDecision(unit) {
     platform_class: unit.platform_class,
     domain: unit.domain,
     role: unit.role,
+    presence: unit.presence,
+    host: unit.host,
     source_state: unit.persistence,
     applied: {
       speed_kts: unit.speed,
@@ -21,6 +23,7 @@ function unitDecision(unit) {
       route: unit.route,
       tasks: unit.tasks,
       always_visible: unit.alwaysVisible,
+      flight_deck_location: unit.flightDeckLocation,
     },
   };
 }
@@ -38,6 +41,7 @@ function buildManifest(model, context) {
     rejected_units: model.units.rejected,
     logistics: model.units.logistics,
     aviation_support: model.units.aviation,
+    continuity: model.continuity,
     objectives: model.objectives,
     balance: model.balance,
     validation: context.validation,

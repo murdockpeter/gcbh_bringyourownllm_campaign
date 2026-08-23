@@ -11,7 +11,10 @@ function scoreUnit(unit) {
   const condition = (unit.structural_integrity_pct / 100) * (unit.readiness_pct / 100);
   const sustainment = 0.4 + 0.3 * unit.fuelFraction + 0.3 * (unit.ammo_pct / 100);
   const fatigue = 1 - Math.min(0.5, unit.crew_fatigue_pct / 200);
-  return Number((base * condition * sustainment * fatigue).toFixed(3));
+  const presenceFactor = unit.presence === 'maintenance' ? 0
+    : unit.presence === 'staged' ? 0.2
+      : unit.presence === 'reserve' ? 0.6 : 1;
+  return Number((base * condition * sustainment * fatigue * presenceFactor).toFixed(3));
 }
 
 function scoreSide(units, objective) {

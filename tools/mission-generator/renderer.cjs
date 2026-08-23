@@ -36,6 +36,28 @@ function renderUnit(unit, alliance) {
   return lines.join('\n');
 }
 
+function flightDeckLoadout(unit) {
+  const totals = new Map();
+  for (const launcher of unit.launchers) totals.set(launcher.item, (totals.get(launcher.item) || 0) + launcher.quantity);
+  return [...totals.entries()].sort(([left], [right]) => left.localeCompare(right)).map(([item, quantity]) => `${quantity} ${item};`).join('');
+}
+
+function renderStagedUnit(unit) {
+  const lines = [
+    `    # ${unit.presence.toUpperCase()}: ${unit.unit_name}`,
+    `    SM.AddUnitToFlightDeck(${q(unit.host)}, ${q(unit.platform_class)}, ${q(unit.unit_name)}, ${unit.flightDeckLocation})`,
+  ];
+  const loadout = flightDeckLoadout(unit);
+  if (loadout) lines.push(`    SM.SetFlightDeckUnitLoadout(${q(unit.host)}, ${q(unit.unit_name)}, ${q(loadout)})`);
+  return lines.join('\n');
+}
+
+function renderSide(units, alliance) {
+  const active = units.filter((unit) => !['staged', 'maintenance'].includes(unit.presence));
+  const staged = units.filter((unit) => ['staged', 'maintenance'].includes(unit.presence));
+  return [...active.map((unit) => renderUnit(unit, alliance)), ...staged.map(renderStagedUnit)].join('\n\n');
+}
+
 function renderSimpleGoal(goal, variable) {
   const lines = [`    goal_temp = SM.${goal.type}('')`];
   for (const target of goal.targets) lines.push(`    goal_temp.AddTarget(${q(target)})`);
@@ -125,13 +147,13 @@ def CreateScenario(SM):
     ### Alliance 1 - BLUE
     ##############################
 
-${model.units.blue.map((unit) => renderUnit(unit, 1)).join('\n\n')}
+${renderSide(model.units.blue, 1)}
 
     ##############################
     ### Alliance 2 - RED
     ##############################
 
-${model.units.red.map((unit) => renderUnit(unit, 2)).join('\n\n')}
+${renderSide(model.units.red, 2)}
 
     ##############################
     ### Goals
@@ -146,4 +168,4 @@ ${renderAllianceGoal(model.objectives.red, 2, 'red')}
 `;
 }
 
-module.exports = { safeTriple, renderUnit, renderAllianceGoal, objectiveSentence, briefing, localDateParts, renderScenario };
+module.exports = { safeTriple, renderUnit, renderStagedUnit, renderSide, renderAllianceGoal, objectiveSentence, briefing, localDateParts, renderScenario };

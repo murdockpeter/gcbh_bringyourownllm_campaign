@@ -31,11 +31,20 @@ function buildObjectives(units, seed, archetype) {
   const protectTargets = configuredProtect.length
     ? existingNames(units.blue, configuredProtect, 'blue', 'Blue protection objective')
     : namesByRoles(units.blue, archetype.protectRoles);
+  const configuredGroups = seed.objectives?.destroy_groups?.blue || [];
+  const destroyGroups = configuredGroups.length ? configuredGroups.map((group, index) => {
+    const targets = existingNames(units.red, group.targets || [], 'red', `Blue destruction objective group ${index + 1}`);
+    return {
+      type: 'DestroyGoal', targets,
+      quantity: boundedQuantity(group.quantity, targets, 0.5),
+      label: group.label || `neutralize designated threat group ${index + 1}`,
+    };
+  }) : [];
   const configuredDestroy = seed.objectives?.destroy?.blue || [];
-  const destroyTargets = configuredDestroy.length
+  const destroyTargets = destroyGroups.length ? [] : configuredDestroy.length
     ? existingNames(units.red, configuredDestroy, 'red', 'Blue destruction objective')
     : namesByRoles(units.red, archetype.destroyRoles);
-  if (!protectTargets.length && !destroyTargets.length) {
+  if (!protectTargets.length && !destroyTargets.length && !destroyGroups.length) {
     throw new GeneratorError('OBJECTIVE_EMPTY', `${archetype.label} cannot construct a feasible objective from the selected roster`);
   }
   const blueChildren = [];
@@ -49,6 +58,7 @@ function buildObjectives(units, seed, archetype) {
     quantity: boundedQuantity(seed.objectives?.destroy_quantity?.blue, destroyTargets, 0.5),
     label: 'neutralize the designated threat',
   });
+  blueChildren.push(...destroyGroups);
   const redTargets = protectTargets.length ? protectTargets : units.blue.filter((unit) => unit.role !== 'base').map((unit) => unit.unit_name).sort();
   if (!redTargets.length) throw new GeneratorError('OBJECTIVE_EMPTY', 'Red cannot construct a feasible opposing objective');
   const red = {
