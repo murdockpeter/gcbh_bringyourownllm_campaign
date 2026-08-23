@@ -166,6 +166,38 @@
       border-top: 1px solid var(--line);
     }
 
+    figure.tacview {
+      margin: 48px 0 0;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    figure.tacview img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #d9e2e8;
+    }
+
+    figure.tacview figcaption {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      padding: 18px 22px 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    figure.tacview figcaption strong {
+      color: var(--navy);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
     .timeline li {
       display: grid;
       grid-template-columns: 108px 1fr;
@@ -190,6 +222,25 @@
     .moment-copy { padding: 34px; }
     .moment h2, .moment h3 { color: #fff; }
     .moment p { color: #c8d8e2; }
+
+    .moment-visual {
+      grid-column: 1 / -1;
+      margin: 0;
+      background: #0d2233;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .moment-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .moment-visual figcaption {
+      padding: 13px 18px 15px;
+      color: #a9c3d2;
+      font-size: 12px;
+    }
 
     .geometry {
       display: grid;
@@ -257,6 +308,7 @@
       header { padding-top: 48px; }
       .metrics, .verdict { grid-template-columns: 1fr; }
       .timeline li { grid-template-columns: 1fr; gap: 5px; }
+      figure.tacview figcaption { grid-template-columns: 1fr; gap: 5px; }
     }
 
     @media print {
@@ -266,6 +318,7 @@
       section { margin-top: 30px; break-inside: avoid; }
       .metric, .moment { box-shadow: none; }
       .moment { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      figure.tacview { box-shadow: none; break-inside: avoid; }
     }
   </style>
 </head>
@@ -299,6 +352,14 @@
       </div>
     </section>
 
+    <figure class="tacview">
+      <img src="playthru_hormuz.png" alt="Tacview overhead view of Operation Resolute Passage at 14:02:22, showing the RED air package and an S-300 missile north of the Strait, BLUE fighters screening the convoy, and support aircraft to the east." loading="eager">
+      <figcaption>
+        <strong>Opening picture<br>14:02:22</strong>
+        <span>RED's four Fulcrums and two Fencers are massed north of the Strait as a 48N6E2 crosses south from the Bandar Abbas area. Tiger and Viper form the forward air screen around the convoy; Wildcat holds southwest of the screen, Lancer remains farther south, and Sentinel and Shell 1 preserve support depth to the east. This geometry set the conditions for BLUE's complete destruction of the RED air package over the next five minutes.</span>
+      </figcaption>
+    </figure>
+
     <section>
       <h2>Action in twelve minutes</h2>
       <ol class="timeline">
@@ -313,10 +374,14 @@
     </section>
 
     <section class="moment">
+      <figure class="moment-visual">
+        <img src="image.png" alt="Tacview view at 14:11:03 showing yellow 76 mm shell traces climbing from RED fast attack craft toward Wildcat 1 and Wildcat 2 above the Strait." loading="lazy">
+        <figcaption>At 14:11:03, high-angle 76 mm fire climbs toward Wildcat flight. Wildcat 2 is isolated above the main BLUE air picture moments before Khanjar's damaging sequence.</figcaption>
+      </figure>
       <div class="moment-copy">
-        <p class="eyebrow">Tacview frame · 14:11:03</p>
+        <p class="eyebrow">Later Tacview frame · 14:11:03</p>
         <h2>The loss of Wildcat 2</h2>
-        <p>The supplied image catches the opening seconds of the FAC barrage. Curved yellow streams climb from the surface toward Wildcat 1 and Wildcat 2 while Tiger, Viper, Lancer, Broadarrow, and Trident remain visible across the wider air picture.</p>
+        <p>The frame catches the opening seconds of the FAC barrage. Curved yellow streams climb from the surface toward Wildcat 1 and Wildcat 2 while Tiger, Viper, Lancer, Broadarrow, and Trident remain visible across the wider air picture.</p>
         <p>This was not a SAM or MiG kill—RED aviation was already gone. Wildcat 2 crossed close enough to Khanjar for high-angle 76 mm fire to reach it at roughly 7,600 metres altitude. Three rounds received damage credit. Wildcat 2 progressed from moderate to heavy damage and destruction; the crew ejected. Falakhon hit Wildcat 1 once during the same engagement.</p>
       </div>
       <div class="geometry" aria-label="Engagement geometry">
@@ -422,7 +487,7 @@
 
   <footer>
     <div class="page">
-      <strong>Evidence basis:</strong> GC:BH logs, damage and goal reports, primary and resumed Tacview recordings, final unit state, and the supplied 14:11:03 Tacview frame. Campaign state has not been changed.
+      <strong>Evidence basis:</strong> GC:BH logs, damage and goal reports, primary and resumed Tacview recordings, final unit state, and the embedded 14:02:22 and 14:11:03 Tacview frames. Campaign state has not been changed.
     </div>
   </footer>
 </body>
