@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Operation Resolute Passage — After Action Report</title>
+  <style>
+    :root {
+      --ink: #152538;
+      --muted: #607184;
+      --paper: #f4f1e9;
+      --card: #fffdf8;
+      --line: #d9d5ca;
+      --navy: #193954;
+      --blue: #2d6d91;
+      --red: #a54b42;
+      --amber: #c2872d;
+      --green: #46725e;
+      --shadow: 0 12px 36px rgba(22, 40, 58, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 88% 3%, rgba(45, 109, 145, .10), transparent 26rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.58;
+    }
+
+    .page { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+
+    header {
+      padding: 70px 0 46px;
+      color: #f8fbfd;
+      background:
+        linear-gradient(115deg, rgba(15, 38, 58, .98), rgba(30, 73, 101, .93)),
+        linear-gradient(#18364f, #18364f);
+      border-bottom: 5px solid var(--amber);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: #9dc7dc;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 7vw, 72px);
+      font-weight: 500;
+      letter-spacing: -.035em;
+      line-height: .98;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: #ccdae4;
+      font-size: 18px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 28px;
+      padding: 8px 13px;
+      color: #fff7e8;
+      background: rgba(194, 135, 45, .20);
+      border: 1px solid rgba(236, 184, 102, .52);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .status::before { content: ""; width: 8px; height: 8px; background: #efb75d; border-radius: 50%; }
+
+    main { padding: 36px 0 70px; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 42px;
+    }
+
+    .metric {
+      min-height: 132px;
+      padding: 22px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .metric b {
+      display: block;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .metric span { display: block; margin-top: 10px; color: var(--muted); font-size: 13px; }
+
+    section { margin-top: 48px; }
+
+    h2 {
+      margin: 0 0 18px;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+
+    h3 { margin: 0 0 8px; color: var(--navy); font-size: 16px; }
+
+    p { margin: 0 0 16px; }
+
+    .lead {
+      max-width: 900px;
+      color: #2e4254;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      line-height: 1.55;
+    }
+
+    .verdict {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .verdict article {
+      padding: 18px 20px;
+      background: rgba(255, 253, 248, .74);
+      border-left: 4px solid var(--line);
+      border-radius: 5px;
+    }
+
+    .verdict article.good { border-color: var(--green); }
+    .verdict article.bad { border-color: var(--red); }
+    .verdict article.warn { border-color: var(--amber); }
+    .verdict small { color: var(--muted); }
+
+    .timeline {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    figure.tacview {
+      margin: 48px 0 0;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    figure.tacview img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #d9e2e8;
+    }
+
+    figure.tacview figcaption {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      padding: 18px 22px 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    figure.tacview figcaption strong {
+      color: var(--navy);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 22px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline time { color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .04em; }
+    .timeline p { margin: 0; color: #405366; }
+
+    .moment {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      overflow: hidden;
+      color: #eef6fa;
+      background: var(--navy);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .moment-copy { padding: 34px; }
+    .moment h2, .moment h3 { color: #fff; }
+    .moment p { color: #c8d8e2; }
+
+    .moment-visual {
+      grid-column: 1 / -1;
+      margin: 0;
+      background: #0d2233;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .moment-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .moment-visual figcaption {
+      padding: 13px 18px 15px;
+      color: #a9c3d2;
+      font-size: 12px;
+    }
+
+    .geometry {
+      display: grid;
+      align-content: center;
+      gap: 10px;
+      padding: 28px;
+      background: rgba(8, 24, 38, .38);
+      border-left: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .track {
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 8px;
+    }
+
+    .track strong { display: block; font-size: 14px; }
+    .track span { color: #a9c3d2; font-size: 12px; }
+    .track.red { border-left: 3px solid #d46d63; }
+    .track.blue { border-left: 3px solid #67b2d7; }
+    .arrow { color: #e9b65e; text-align: center; font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+
+    .table-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 13px 15px; text-align: left; vertical-align: top; border-bottom: 1px solid #e5e1d7; }
+    th { color: var(--muted); background: #f8f5ee; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    .pass { color: var(--green); font-weight: 800; }
+    .fail { color: var(--red); font-weight: 800; }
+    .caution { color: #9a681d; font-weight: 800; }
+
+    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    .note {
+      padding: 20px 22px;
+      color: #5b471f;
+      background: #fbf2df;
+      border: 1px solid #e6cca0;
+      border-radius: 9px;
+    }
+
+    .note strong { color: #704b14; }
+
+    ul.clean { margin: 0; padding-left: 19px; }
+    ul.clean li { margin: 8px 0; }
+
+    footer {
+      padding: 28px 0 38px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+    }
+
+    footer strong { color: var(--ink); }
+
+    @media (max-width: 780px) {
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .moment, .columns { grid-template-columns: 1fr; }
+      .geometry { border-top: 1px solid rgba(255, 255, 255, .12); border-left: 0; }
+    }
+
+    @media (max-width: 520px) {
+      .page { width: min(100% - 24px, 1080px); }
+      header { padding-top: 48px; }
+      .metrics, .verdict { grid-template-columns: 1fr; }
+      .timeline li { grid-template-columns: 1fr; gap: 5px; }
+      figure.tacview figcaption { grid-template-columns: 1fr; gap: 5px; }
+    }
+
+    @media print {
+      body { background: #fff; font-size: 11pt; }
+      header { padding: 34px 0 26px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main { padding-top: 20px; }
+      section { margin-top: 30px; break-inside: avoid; }
+      .metric, .moment { box-shadow: none; }
+      .moment { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      figure.tacview { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="page">
+      <p class="eyebrow">Global Conflict Blue: Horizon · After Action Report</p>
+      <h1>Operation Resolute Passage</h1>
+      <p class="subtitle">A decisive air victory, an avoidable Strike Eagle loss, and a corridor still waiting to be opened.</p>
+      <div class="status">Partial tactical success · Operational outcome unresolved</div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="metrics" aria-label="Key results">
+      <article class="metric"><b>6</b><span>RED aircraft destroyed by AIM-120D fire</span></article>
+      <article class="metric"><b>6/6</b><span>BLUE auxiliaries safe and undamaged</span></article>
+      <article class="metric"><b>1</b><span>F-15E lost; a second damaged</span></article>
+      <article class="metric"><b>0</b><span>Coastal kill-chain nodes neutralized</span></article>
+    </div>
+
+    <section>
+      <h2>Command assessment</h2>
+      <p class="lead">BLUE eliminated Iran's entire six-aircraft package before it could attack the convoy. The logistics force remained intact, but the strike plan never damaged the coastal network and Wildcat flight crossed into the gun envelope of surviving fast attack craft.</p>
+
+      <div class="verdict">
+        <article class="good"><h3>Air battle</h3><small>Decisive BLUE victory. Four MiG-29s and two Su-24Ms destroyed.</small></article>
+        <article class="good"><h3>Convoy protection</h3><small>Successful during the recorded action. All six auxiliaries survived.</small></article>
+        <article class="warn"><h3>Surface objective</h3><small>Passed by the game, but contaminated by probable navigation or collision losses.</small></article>
+        <article class="bad"><h3>Overall mission</h3><small>Not accomplished. Shore targets survived and transit remained incomplete.</small></article>
+      </div>
+    </section>
+
+    <figure class="tacview">
+      <img src="playthru_hormuz.png" alt="Tacview overhead view of Operation Resolute Passage at 14:02:22, showing the RED air package and an S-300 missile north of the Strait, BLUE fighters screening the convoy, and support aircraft to the east." loading="eager">
+      <figcaption>
+        <strong>Opening picture<br>14:02:22</strong>
+        <span>RED's four Fulcrums and two Fencers are massed north of the Strait as a 48N6E2 crosses south from the Bandar Abbas area. Tiger and Viper form the forward air screen around the convoy; Wildcat holds southwest of the screen, Lancer remains farther south, and Sentinel and Shell 1 preserve support depth to the east. This geometry set the conditions for BLUE's complete destruction of the RED air package over the next five minutes.</span>
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>Action in twelve minutes</h2>
+      <ol class="timeline">
+        <li><time>14:00–14:04</time><p>The convoy moves west-northwest. S-300 Site North begins long-range engagements. Two Tsunami boats reach zero health without recorded weapon impacts.</p></li>
+        <li><time>14:04:57</time><p>Fencer 1 is destroyed after hits from Tiger 1 and Viper 1; Tiger 2 delivers the kill.</p></li>
+        <li><time>14:05:25</time><p>Viper 2 destroys Fencer 2. The anti-ship strike threat is eliminated.</p></li>
+        <li><time>14:06–14:08</time><p>Viper and Tiger flights destroy all four Fulcrums. RED's only R-73 shot misses Viper 1.</p></li>
+        <li><time>14:05–14:10</time><p>Four RED ships sink at virtually one coordinate without weapon attribution. Together with the Tsunamis, they satisfy the surface goal artificially.</p></li>
+        <li><time>14:11</time><p>Khanjar and Falakhon engage Wildcat flight with 76 mm fire. Wildcat 2 is destroyed; Wildcat 1 survives with about 62% health.</p></li>
+        <li><time>14:12:25</time><p>The game is saved. The convoy and coastal network are intact; one S-300 missile remains in flight. The resumed session adds no new combat result.</p></li>
+      </ol>
+    </section>
+
+    <section class="moment">
+      <figure class="moment-visual">
+        <img src="image.png" alt="Tacview view at 14:11:03 showing yellow 76 mm shell traces climbing from RED fast attack craft toward Wildcat 1 and Wildcat 2 above the Strait." loading="lazy">
+        <figcaption>At 14:11:03, high-angle 76 mm fire climbs toward Wildcat flight. Wildcat 2 is isolated above the main BLUE air picture moments before Khanjar's damaging sequence.</figcaption>
+      </figure>
+      <div class="moment-copy">
+        <p class="eyebrow">Later Tacview frame · 14:11:03</p>
+        <h2>The loss of Wildcat 2</h2>
+        <p>The frame catches the opening seconds of the FAC barrage. Curved yellow streams climb from the surface toward Wildcat 1 and Wildcat 2 while Tiger, Viper, Lancer, Broadarrow, and Trident remain visible across the wider air picture.</p>
+        <p>This was not a SAM or MiG kill—RED aviation was already gone. Wildcat 2 crossed close enough to Khanjar for high-angle 76 mm fire to reach it at roughly 7,600 metres altitude. Three rounds received damage credit. Wildcat 2 progressed from moderate to heavy damage and destruction; the crew ejected. Falakhon hit Wildcat 1 once during the same engagement.</p>
+      </div>
+      <div class="geometry" aria-label="Engagement geometry">
+        <div class="track red"><strong>Khanjar · Kaman FAC</strong><span>39 × 76 mm HE-MOM fired</span></div>
+        <div class="arrow">▲ 10.6–14.8 KM SLANT RANGE</div>
+        <div class="track blue"><strong>Wildcat 2 · F-15E</strong><span>~7,599 m · destroyed · ejection reported</span></div>
+        <div class="track red"><strong>Falakhon · Kaman FAC</strong><span>24 × 76 mm HE-MOM fired</span></div>
+        <div class="arrow">▲ 15.4 KM SLANT RANGE</div>
+        <div class="track blue"><strong>Wildcat 1 · F-15E</strong><span>~7,599 m · 62% health remaining</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Combat ledger</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Side</th><th>Unit</th><th>Result</th><th>Attribution</th></tr></thead>
+          <tbody>
+            <tr><td>BLUE</td><td>Wildcat 2 · F-15E</td><td class="fail">Destroyed</td><td>Khanjar 76 mm fire; ejection reported</td></tr>
+            <tr><td>BLUE</td><td>Wildcat 1 · F-15E</td><td class="caution">Damaged</td><td>Falakhon 76 mm fire; ~62% health</td></tr>
+            <tr><td>RED</td><td>Fencer 1 / Fencer 2</td><td class="fail">Destroyed</td><td>Tiger and Viper AIM-120Ds</td></tr>
+            <tr><td>RED</td><td>Fulcrum 1–4</td><td class="fail">Destroyed</td><td>Tiger and Viper AIM-120Ds</td></tr>
+            <tr><td>RED</td><td>Tsunami 1 / Tsunami 2</td><td class="caution">Disputed losses</td><td>No weapon attribution</td></tr>
+            <tr><td>RED</td><td>IRIS Sahand, Zolfaghar, Scimitar, Dagger</td><td class="caution">Disputed losses</td><td>Shared sink point; probable route/collision artifact</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Weapon employment</h2>
+      <div class="columns">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>BLUE shooter</th><th>AIM-120D</th><th>Kills</th></tr></thead>
+            <tbody>
+              <tr><td>Tiger 1</td><td>5</td><td>1 + 2 assists</td></tr>
+              <tr><td>Tiger 2</td><td>6</td><td>1</td></tr>
+              <tr><td>Viper 1</td><td>5</td><td>2 + 1 assist</td></tr>
+              <tr><td>Viper 2</td><td>6</td><td>2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>RED shooter</th><th>Weapon</th><th>Result</th></tr></thead>
+            <tbody>
+              <tr><td>S-300 North</td><td>9 × 48N6E2</td><td>8 misses; 1 unresolved</td></tr>
+              <tr><td>Fulcrum 1</td><td>1 × R-73</td><td>Miss</td></tr>
+              <tr><td>Khanjar / Falakhon</td><td>63 × 76 mm</td><td>1 kill; 1 damaged</td></tr>
+              <tr><td>IRIS Dena</td><td>55 × 40 mm</td><td>No hits</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Objective result</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Objective</th><th>Game status</th><th>Operational reading</th></tr></thead>
+          <tbody>
+            <tr><td>Preserve at least five of six auxiliaries</td><td class="pass">Accomplished</td><td>All six remained intact.</td></tr>
+            <tr><td>Destroy at least six of nine surface combatants</td><td class="pass">Accomplished</td><td>Six losses recorded, but none were BLUE weapon kills.</td></tr>
+            <tr><td>Destroy at least three of five coastal nodes</td><td class="fail">Not accomplished</td><td>No coastal target was damaged.</td></tr>
+            <tr><td>Compound BLUE mission</td><td class="fail">Not accomplished</td><td>Shore objective failed and corridor transit remained incomplete.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>Score caution:</strong> the displayed score of 100 is not a campaign victory. The goal report marks the compound mission incomplete, and route-driven surface losses distorted the score.</p>
+    </section>
+
+    <section>
+      <h2>Lessons and next actions</h2>
+      <div class="columns">
+        <div>
+          <h3>Operational</h3>
+          <ul class="clean">
+            <li>Keep strike aircraft outside intact FAC gun envelopes.</li>
+            <li>Assign explicit fighter targets to reduce AIM-120D overkill.</li>
+            <li>Sequence air superiority, coastal suppression, surface clearance, then convoy advance.</li>
+            <li>Confirm Wildcat 1 recovery and Wildcat 2 aircrew status.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Scenario development</h3>
+          <ul class="clean">
+            <li>Deconflict RED surface starts and waypoint lanes.</li>
+            <li>Investigate Tsunami 1's failure ten seconds after start.</li>
+            <li>Review 76 mm lethality against fast aircraft at 25,000 feet.</li>
+            <li>Do not persist the six disputed ship losses until repair and replay.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Final judgment</h2>
+      <p class="lead">Operation Resolute Passage was a partial tactical success with an unresolved operational outcome. BLUE won the air battle and protected the convoy, but the corridor was not proven open, the coastal kill chain survived, and a Strike Eagle was lost to an avoidable surface-gun exposure.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page">
+      <strong>Evidence basis:</strong> GC:BH logs, damage and goal reports, primary and resumed Tacview recordings, final unit state, and the embedded 14:02:22 and 14:11:03 Tacview frames. Campaign state has not been changed.
+    </div>
+  </footer>
+</body>
+</html>

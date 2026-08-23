@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gcbh/generation_manifest.schema.json",
+  "title": "GCBH Mission Generation Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "generator", "scenario", "inputs", "effective_rng_seed", "variation",
+    "random_draws", "selected_units", "rejected_units", "logistics", "aviation_support", "objectives", "balance",
+    "validation", "output_hash"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "generator": { "type": "object" },
+    "scenario": { "type": "object" },
+    "inputs": { "type": "object" },
+    "effective_rng_seed": { "type": "string" },
+    "variation": { "type": "object" },
+    "random_draws": { "type": "array" },
+    "selected_units": { "type": "array" },
+    "rejected_units": { "type": "array" },
+    "logistics": { "type": "object" },
+    "aviation_support": { "type": "object" },
+    "objectives": { "type": "object" },
+    "balance": { "type": "object" },
+    "validation": { "type": "object" },
+    "output_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

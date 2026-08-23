@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "scenario_id": "resolute_passage_generated_001",
+  "scenario_name": "Operation Resolute Passage — Campaign Generated",
+  "theater_id": "hormuz_mvp",
+  "date_time": "2026-05-22T14:00:00+04:00",
+  "playable_side": "blue",
+  "rng_seed": "resolute-passage-turn-5",
+  "archetype": "convoy_escort",
+  "premise": "The surviving coalition logistics force must make a westbound passage through Hormuz before forward stocks in Bahrain fall below contingency levels. Iran's surviving coastal kill chain and fast attack craft will attempt to break the convoy inside the Strait.",
+  "blue_intent": "Keep the logistics ships behind the defensive screen, classify contacts at range, and open only the corridor needed for the westbound passage.",
+  "red_intent": "Use the coastal sensor and missile network to cue the surviving fast attack craft against the coalition logistics backbone.",
+  "escalation_constraints": [
+    "BLUE shore attack is limited to designated coastal kill-chain nodes.",
+    "Neither side is authorized to expand the operation beyond the Hormuz corridor."
+  ],
+  "duration_hours": 6,
+  "sea_state": 3,
+  "force_policy": {
+    "blue": { "max_units": 13 },
+    "red": { "max_units": 10 }
+  },
+  "loadout_overrides": {
+    "F-15E": [
+      { "launcherId": 0, "item": "GBU-39 SDB", "quantity": 8 },
+      { "launcherId": 1, "item": "AIM-120D", "quantity": 2 },
+      { "launcherId": 2, "item": "AIM-9X", "quantity": 2 },
+      { "launcherId": 3, "item": "GBU-12/B", "quantity": 4 },
+      { "launcherId": 4, "item": "GBU-31A(v)2", "quantity": 2 },
+      { "launcherId": 6, "item": "Flare-1", "quantity": 120 },
+      { "launcherId": 7, "item": "Chaff-1", "quantity": 120 },
+      { "launcherId": 8, "item": "20mm PGU", "quantity": 46 }
+    ]
+  },
+  "aviation_support": {
+    "blue": {
+      "mode": "off_map",
+      "location": "Carrier recovery area east of Hormuz and Al Dhafra Air Base",
+      "reason": "Campaign air units are represented airborne while their established recovery facilities remain outside the generated tactical order of battle."
+    }
+  },
+  "objectives": {
+    "protect": {
+      "blue": ["RFA Fort Victoria", "USNS John Ericsson", "USNS Amelia Earhart"]
+    },
+    "destroy": {
+      "blue": ["Khanjar", "Falakhon", "Bastion 1", "Bastion 2"]
+    },
+    "protect_quantity": { "blue": 2 },
+    "destroy_quantity": { "blue": 2, "red": 2 }
+  },
+  "placement": {
+    "surface_starts": {
+      "blue": [
+        { "lat": 25.38, "lon": 58.08 },
+        { "lat": 25.41, "lon": 58.016 },
+        { "lat": 25.44, "lon": 57.952 },
+        { "lat": 25.47, "lon": 57.888 },
+        { "lat": 25.50, "lon": 57.824 },
+        { "lat": 25.53, "lon": 57.76 },
+        { "lat": 25.56, "lon": 57.696 },
+        { "lat": 25.59, "lon": 57.632 }
+      ],
+      "red": [
+        { "lat": 26.42, "lon": 56.38 },
+        { "lat": 26.419, "lon": 56.395 }
+      ]
+    },
+    "surface_routes": {
+      "blue": [
+        { "lat": 25.86, "lon": 57.06 },
+        { "lat": 26.40, "lon": 56.52 },
+        { "lat": 26.42, "lon": 56.38 },
+        { "lat": 26.40, "lon": 55.78 },
+        { "lat": 26.38, "lon": 55.76 }
+      ],
+      "red": [
+        { "lat": 26.40, "lon": 56.52 },
+        { "lat": 25.86, "lon": 57.06 }
+      ]
+    },
+    "air_boxes": {
+      "blue": { "south": 25.1, "north": 25.9, "west": 57.3, "east": 58.3, "altitude": 8000 },
+      "red": { "south": 26.7, "north": 27.1, "west": 56.5, "east": 57.0, "altitude": 7800 }
+    },
+    "air_routes": {
+      "fighter": [
+        { "lat": 26.05, "lon": 57.3, "altitude": 8200, "speed": 380 },
+        { "lat": 26.30, "lon": 56.75, "altitude": 8200, "speed": 380 }
+      ],
+      "strike": [
+        { "lat": 25.65, "lon": 56.95, "altitude": 7600, "speed": 390 },
+        { "lat": 26.55, "lon": 56.35, "altitude": 7600, "speed": 390 }
+      ],
+      "reconnaissance": [
+        { "lat": 25.4, "lon": 57.9, "altitude": 8500, "speed": 260 },
+        { "lat": 25.2, "lon": 58.3, "altitude": 8500, "speed": 260 }
+      ],
+      "maritime_patrol": [
+        { "lat": 26.1, "lon": 57.5, "altitude": 7600, "speed": 280 },
+        { "lat": 25.95, "lon": 56.95, "altitude": 7600, "speed": 280 }
+      ],
+      "tanker": [
+        { "lat": 25.2, "lon": 58.0, "altitude": 9000, "speed": 300 },
+        { "lat": 25.0, "lon": 58.5, "altitude": 9000, "speed": 300 }
+      ]
+    },
+    "ground_positions": {
+      "Bastion 1": { "lat": 26.83544, "lon": 56.3337, "altitude": 10 },
+      "Bastion 2": { "lat": 26.88, "lon": 56.398544, "altitude": 10 },
+      "Pantsir 1": { "lat": 26.834632, "lon": 56.338093, "altitude": 10 },
+      "Pantsir 2": { "lat": 26.870324, "lon": 56.399035, "altitude": 10 },
+      "S-300 Site North": { "lat": 27.036039, "lon": 56.865368, "altitude": 10 },
+      "Coastwatch 1": { "lat": 26.792083, "lon": 56.078986, "altitude": 10 },
+      "Coastwatch 2": { "lat": 26.864194, "lon": 56.400479, "altitude": 10 },
+      "Bandar Abbas Strip": { "lat": 27.08, "lon": 56.98, "altitude": 12 }
+    }
+  },
+  "variation": {
+    "position_jitter_nm": 0,
+    "time_offset_minutes": [-15, 15],
+    "sea_state_range": [2, 4],
+    "reserve_slots": { "blue": [0, 0], "red": [0, 0] },
+    "contact_visibility_fraction": { "blue": 0, "red": 0.15 }
+  }
+}
