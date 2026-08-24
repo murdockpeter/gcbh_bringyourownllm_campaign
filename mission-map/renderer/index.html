@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <div id="loading-overlay" class="loading-overlay" role="status" aria-live="polite" aria-busy="true">
+      <div class="loading-lockup">
+        <div class="loading-spinner" aria-hidden="true">
+          <span class="loading-ring loading-ring-outer"></span>
+          <span class="loading-ring loading-ring-inner"></span>
+          <span class="loading-mark">GC</span>
+        </div>
+        <strong>MISSION MAP</strong>
+        <span id="loading-message">Loading mission workspace…</span>
+      </div>
+    </div>
+
     <header class="topbar">
       <div class="brand">
         <span class="brand-mark">GC</span>

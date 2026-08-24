@@ -20,3 +20,14 @@ export function waypointVisualStyle(allianceColor, selected = false) {
     zIndex: selected ? 230 : undefined,
   };
 }
+
+export function unitMarkerVisualStyle(allianceColor, selected = false) {
+  return {
+    fillColor: selected ? ACTIVE_UNIT_COLOR : allianceColor,
+    fillOpacity: 0.95,
+    strokeColor: selected ? '#fff0dc' : '#eaf7fb',
+    strokeWeight: selected ? 2.5 : 1,
+    scale: selected ? 11 : 9,
+    zIndex: selected ? 240 : undefined,
+  };
+}

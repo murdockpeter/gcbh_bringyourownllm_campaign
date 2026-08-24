@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { ACTIVE_UNIT_COLOR, routeVisualStyle, waypointVisualStyle } from '../renderer/selection-style.js';
+import { ACTIVE_UNIT_COLOR, routeVisualStyle, unitMarkerVisualStyle, waypointVisualStyle } from '../renderer/selection-style.js';
 
 test('selected routes use the active orange style', () => {
   assert.deepEqual(routeVisualStyle('#4aa9ff', true), {
@@ -20,4 +20,13 @@ test('selected waypoints use orange and stronger emphasis', () => {
   assert.equal(selected.color, ACTIVE_UNIT_COLOR);
   assert.ok(selected.strokeWeight > normal.strokeWeight);
   assert.ok(selected.scale > normal.scale);
+});
+
+test('selected stationary units receive an orange enlarged map marker', () => {
+  const selected = unitMarkerVisualStyle('#4aa9ff', true);
+  const normal = unitMarkerVisualStyle('#4aa9ff');
+  assert.equal(selected.fillColor, ACTIVE_UNIT_COLOR);
+  assert.ok(selected.strokeWeight > normal.strokeWeight);
+  assert.ok(selected.scale > normal.scale);
+  assert.ok(selected.zIndex > 0);
 });

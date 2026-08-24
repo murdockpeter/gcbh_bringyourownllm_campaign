@@ -6,7 +6,7 @@ import {
   validateRealWorld,
 } from './geometry.js';
 import { allianceSide, visibleFindings, visibleUnits } from './side-filter.js';
-import { routeVisualStyle, waypointVisualStyle } from './selection-style.js';
+import { routeVisualStyle, unitMarkerVisualStyle, waypointVisualStyle } from './selection-style.js';
 import { inferUnitMission } from './unit-mission.js';
 
 const elements = Object.fromEntries([
@@ -19,6 +19,7 @@ const elements = Object.fromEntries([
   'finding-count', 'finding-list',
   'land-data-status', 'mask-data-status',
   'settings-dialog', 'settings-form', 'api-key', 'settings-message', 'save-key-button',
+  'loading-overlay', 'loading-message',
 ].map((id) => [id.replaceAll('-', '_'), document.getElementById(id)]));
 
 const state = {
@@ -37,6 +38,7 @@ const state = {
   routeVisualsByUnit: new Map(),
   findingOverlays: [],
   markersByUnit: new Map(),
+  markerVisualsByUnit: new Map(),
   findings: [],
   localFindings: [],
   autoFixEdits: [],
@@ -44,6 +46,25 @@ const state = {
   pendingEdits: new Map(),
   saving: false,
 };
+
+const loadingOperations = new Set();
+
+function beginLoading(message = 'Loading…') {
+  const token = Symbol('loading');
+  loadingOperations.add(token);
+  elements.loading_message.textContent = message;
+  elements.loading_overlay.hidden = false;
+  elements.loading_overlay.setAttribute('aria-busy', 'true');
+  return token;
+}
+
+function endLoading(token) {
+  loadingOperations.delete(token);
+  if (loadingOperations.size === 0) {
+    elements.loading_overlay.hidden = true;
+    elements.loading_overlay.setAttribute('aria-busy', 'false');
+  }
+}
 
 function escapeHtml(value) {
   const node = document.createElement('div');
@@ -185,6 +206,7 @@ function clearMap() {
   state.routeVisualsByUnit.clear();
   state.findingOverlays = [];
   state.markersByUnit.clear();
+  state.markerVisualsByUnit.clear();
 }
 
 function stageManualEdit(kind, target, coordinate) {
@@ -253,6 +275,11 @@ function renderFindingMarkers() {
 }
 
 function updateSelectedRouteStyles() {
+  for (const [unitName, visual] of state.markerVisualsByUnit) {
+    const style = unitMarkerVisualStyle(visual.allianceColor, unitName === state.selectedUnitName);
+    visual.marker.setIcon({ ...visual.marker.getIcon(), ...style });
+    visual.marker.setZIndex(state.editMode ? 300 : style.zIndex);
+  }
   for (const [unitName, visual] of state.routeVisualsByUnit) {
     const selected = unitName === state.selectedUnitName;
     visual.polyline.setOptions(routeVisualStyle(visual.allianceColor, selected));
@@ -338,6 +365,8 @@ function renderMap() {
     bounds.extend(unit.position);
     const color = allianceColor(unit);
     const mission = inferUnitMission(unit);
+    const selected = unit.name === state.selectedUnitName;
+    const markerStyle = unitMarkerVisualStyle(color, selected);
     const marker = new google.maps.Marker({
       position: unit.position,
       map: state.map,
@@ -345,14 +374,14 @@ function renderMap() {
       label: { text: unit.name.slice(0, 2).toUpperCase(), color: '#ffffff', fontSize: '9px', fontWeight: '700' },
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
-        fillColor: color,
-        fillOpacity: 0.95,
-        strokeColor: '#eaf7fb',
-        strokeWeight: 1,
-        scale: 9,
+        fillColor: markerStyle.fillColor,
+        fillOpacity: markerStyle.fillOpacity,
+        strokeColor: markerStyle.strokeColor,
+        strokeWeight: markerStyle.strokeWeight,
+        scale: markerStyle.scale,
       },
       draggable: state.editMode,
-      zIndex: state.editMode ? 300 : undefined,
+      zIndex: state.editMode ? 300 : markerStyle.zIndex,
     });
     marker.addListener('click', () => {
       if (state.selectedUnitName !== unit.name) selectUnit(unit);
@@ -365,11 +394,11 @@ function renderMap() {
     });
     state.overlays.push(marker);
     state.markersByUnit.set(unit.name, marker);
+    state.markerVisualsByUnit.set(unit.name, { allianceColor: color, marker });
 
     if (unit.waypoints.length) {
       const route = [unit.position, ...unit.waypoints];
       route.forEach((point) => bounds.extend(point));
-      const selected = unit.name === state.selectedUnitName;
       const routeStyle = routeVisualStyle(color, selected);
       const polyline = new google.maps.Polyline({
         path: route,
@@ -472,6 +501,7 @@ async function loadGoogleMaps(key) {
 
 async function loadScenario(filePath, { quiet = false } = {}) {
   if (!filePath) return;
+  const loading = beginLoading(quiet ? 'Reloading scenario…' : 'Loading scenario…');
   try {
     const result = await window.missionMap.loadScenario(filePath);
     state.scenario = result.scenario;
@@ -492,11 +522,14 @@ async function loadScenario(filePath, { quiet = false } = {}) {
     if (!quiet) elements.watch_status.textContent = 'LIVE';
   } catch (error) {
     setFindings([{ severity: 'error', unit: 'Parser', message: error.message }]);
+  } finally {
+    endLoading(loading);
   }
 }
 
 async function saveEdits(edits, label) {
   if (!state.selectedPath || !edits.length || state.saving) return;
+  const loading = beginLoading('Saving scenario edits…');
   state.saving = true;
   updateEditControls();
   setEditStatus(`${label}: saving ${edits.length} edit${edits.length === 1 ? '' : 's'}â€¦`, 'active');
@@ -514,6 +547,7 @@ async function saveEdits(edits, label) {
   } finally {
     state.saving = false;
     updateEditControls();
+    endLoading(loading);
   }
 }
 
@@ -603,29 +637,34 @@ async function runElevationValidation() {
 }
 
 async function initialize() {
-  setFindings([]);
-  const scenarios = await window.missionMap.listScenarios();
+  const loading = beginLoading('Loading mission workspace…');
   try {
-    const response = await fetch('/data/global-land.geojson');
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    state.landGeoJson = await response.json();
-    state.landIndex = buildLandIndex(state.landGeoJson);
-    elements.land_data_status.textContent = `${state.landIndex.polygons.length} polygons ready`;
-  } catch (error) {
-    elements.land_data_status.textContent = `Unavailable: ${error.message}`;
-  }
-  elements.scenario_select.innerHTML = scenarios.map((scenario) => `<option value="${escapeHtml(scenario.path)}">${escapeHtml(scenario.name)}</option>`).join('');
-  if (scenarios.length) {
-    await loadScenario(scenarios[0].path);
-    elements.scenario_select.value = scenarios[0].path;
-  }
-  const key = await window.missionMap.getMapsKey();
-  if (key) {
+    setFindings([]);
+    const scenarios = await window.missionMap.listScenarios();
     try {
-      await loadGoogleMaps(key);
+      const response = await fetch('/data/global-land.geojson');
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      state.landGeoJson = await response.json();
+      state.landIndex = buildLandIndex(state.landGeoJson);
+      elements.land_data_status.textContent = `${state.landIndex.polygons.length} polygons ready`;
     } catch (error) {
-      setFindings([{ severity: 'error', unit: 'Google Maps', message: error.message }]);
+      elements.land_data_status.textContent = `Unavailable: ${error.message}`;
     }
+    elements.scenario_select.innerHTML = scenarios.map((scenario) => `<option value="${escapeHtml(scenario.path)}">${escapeHtml(scenario.name)}</option>`).join('');
+    if (scenarios.length) {
+      await loadScenario(scenarios[0].path);
+      elements.scenario_select.value = scenarios[0].path;
+    }
+    const key = await window.missionMap.getMapsKey();
+    if (key) {
+      try {
+        await loadGoogleMaps(key);
+      } catch (error) {
+        setFindings([{ severity: 'error', unit: 'Google Maps', message: error.message }]);
+      }
+    }
+  } finally {
+    endLoading(loading);
   }
 }
 
