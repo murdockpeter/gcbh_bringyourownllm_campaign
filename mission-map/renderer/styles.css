@@ -64,9 +64,14 @@ h2 { margin: 9px 0; }
 .unit-card { position: relative; padding: 10px 10px 10px 15px; border: 1px solid #172b39; border-radius: 3px; background: #0c1a25; cursor: pointer; }
 .unit-card::before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 3px; background: var(--alliance-color, var(--muted)); }
 .unit-card:hover { border-color: #335166; }
+.unit-card.selected { border-color: var(--orange); background: rgba(244, 162, 76, 0.10); box-shadow: inset 0 0 0 1px rgba(244, 162, 76, 0.22); }
+.unit-card.selected::before { width: 4px; background: var(--orange); }
+.unit-card.selected strong { color: var(--orange); }
 .unit-card strong, .unit-card span { display: block; }
 .unit-card strong { font-size: 12px; }
 .unit-card span { margin-top: 3px; color: var(--muted); font-size: 10px; }
+.unit-card .unit-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 0; }
+.mission-badge { max-width: 126px; overflow: hidden; padding: 2px 5px; border: 1px solid rgba(244, 162, 76, 0.45); border-radius: 2px; color: var(--orange); background: rgba(244, 162, 76, 0.08); font-size: 8px; font-style: normal; font-weight: 850; letter-spacing: 0.04em; text-overflow: ellipsis; white-space: nowrap; }
 
 .map-shell { position: relative; min-width: 0; background: #08131a; }
 #map, .map-placeholder { position: absolute; inset: 0; }
@@ -84,6 +89,7 @@ h2 { margin: 9px 0; }
 .legend-dot.blue { background: var(--blue); }
 .legend-dot.red { background: var(--red); }
 .legend-line { width: 18px; border-top: 2px solid var(--cyan); }
+.legend-line.selected { border-top-width: 4px; border-color: var(--orange); }
 .legend-coast { width: 18px; border-top: 2px solid #ff7657; }
 
 .coordinate-card { margin: 12px 0 18px; padding: 13px; border: 1px solid var(--border); background: var(--panel-raised); }

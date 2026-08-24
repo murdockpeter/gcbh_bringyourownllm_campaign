@@ -6,6 +6,8 @@ import {
   validateRealWorld,
 } from './geometry.js';
 import { allianceSide, visibleFindings, visibleUnits } from './side-filter.js';
+import { routeVisualStyle, waypointVisualStyle } from './selection-style.js';
+import { inferUnitMission } from './unit-mission.js';
 
 const elements = Object.fromEntries([
   'scenario-select', 'browse-button', 'reload-button', 'watch-status', 'settings-button',
@@ -25,12 +27,14 @@ const state = {
   landGeoJson: null,
   landIndex: null,
   selectedPath: '',
+  selectedUnitName: '',
   map: null,
   mapsReady: false,
   overlays: [],
   maskOverlays: [],
   landOverlays: [],
   routeOverlays: [],
+  routeVisualsByUnit: new Map(),
   findingOverlays: [],
   markersByUnit: new Map(),
   findings: [],
@@ -156,13 +160,17 @@ function renderMissionDetails() {
     : 'LATITUDE → LONGITUDE';
   elements.coordinate_reason.textContent = scenario.coordinateConvention.reason;
 
-  elements.unit_list.innerHTML = units.map((unit, index) => `
-    <button class="unit-card" data-unit-index="${index}" style="--alliance-color:${allianceColor(unit)}">
-      <strong>${escapeHtml(unit.name)}</strong>
+  elements.unit_list.innerHTML = units.map((unit, index) => {
+    const mission = inferUnitMission(unit);
+    const selected = unit.name === state.selectedUnitName;
+    return `
+    <button class="unit-card${selected ? ' selected' : ''}" data-unit-index="${index}" style="--alliance-color:${allianceColor(unit)}" aria-pressed="${selected}" title="${escapeHtml(mission.tooltip)}">
+      <span class="unit-card-heading"><strong>${escapeHtml(unit.name)}</strong><em class="mission-badge">${escapeHtml(mission.code)}</em></span>
       <span>${escapeHtml(unit.className)}</span>
       <span>${escapeHtml(unit.allianceName)} · ${unit.position.lat.toFixed(4)}, ${unit.position.lng.toFixed(4)} · ${unit.waypoints.length} WP</span>
     </button>
-  `).join('');
+  `;
+  }).join('');
   elements.unit_list.querySelectorAll('.unit-card').forEach((card) => {
     card.addEventListener('click', () => focusUnit(units[Number(card.dataset.unitIndex)]));
   });
@@ -174,6 +182,7 @@ function clearMap() {
   state.maskOverlays = [];
   state.landOverlays = [];
   state.routeOverlays = [];
+  state.routeVisualsByUnit.clear();
   state.findingOverlays = [];
   state.markersByUnit.clear();
 }
@@ -243,7 +252,34 @@ function renderFindingMarkers() {
   }
 }
 
+function updateSelectedRouteStyles() {
+  for (const [unitName, visual] of state.routeVisualsByUnit) {
+    const selected = unitName === state.selectedUnitName;
+    visual.polyline.setOptions(routeVisualStyle(visual.allianceColor, selected));
+    visual.waypointMarkers.forEach((marker) => {
+      const style = waypointVisualStyle(visual.allianceColor, selected);
+      marker.setLabel({ ...marker.getLabel(), color: style.color });
+      marker.setIcon({
+        ...marker.getIcon(),
+        fillColor: style.fillColor,
+        fillOpacity: style.fillOpacity,
+        strokeColor: style.color,
+        strokeWeight: style.strokeWeight,
+        scale: style.scale,
+      });
+      marker.setZIndex(state.editMode ? 310 : style.zIndex);
+    });
+  }
+}
+
+function selectUnit(unit) {
+  state.selectedUnitName = unit?.name || '';
+  renderMissionDetails();
+  updateSelectedRouteStyles();
+}
+
 function focusUnit(unit) {
+  selectUnit(unit);
   if (!state.map) return;
   state.map.panTo(unit.position);
   state.map.setZoom(Math.max(state.map.getZoom() || 8, 10));
@@ -301,10 +337,11 @@ function renderMap() {
   visibleUnits(state.scenario.units, selectedSide()).forEach((unit) => {
     bounds.extend(unit.position);
     const color = allianceColor(unit);
+    const mission = inferUnitMission(unit);
     const marker = new google.maps.Marker({
       position: unit.position,
       map: state.map,
-      title: unit.name,
+      title: `${unit.name} — ${mission.code}: ${mission.label}`,
       label: { text: unit.name.slice(0, 2).toUpperCase(), color: '#ffffff', fontSize: '9px', fontWeight: '700' },
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
@@ -318,6 +355,7 @@ function renderMap() {
       zIndex: state.editMode ? 300 : undefined,
     });
     marker.addListener('click', () => {
+      if (state.selectedUnitName !== unit.name) selectUnit(unit);
       infoWindow.setContent(`<div style="color:#10202a;min-width:190px"><strong>${escapeHtml(unit.name)}</strong><br>${escapeHtml(unit.className)}<br><small>${unit.position.lat.toFixed(5)}, ${unit.position.lng.toFixed(5)} · ${unit.speed ?? 0} kt</small></div>`);
       infoWindow.open({ map: state.map, anchor: marker });
     });
@@ -331,32 +369,34 @@ function renderMap() {
     if (unit.waypoints.length) {
       const route = [unit.position, ...unit.waypoints];
       route.forEach((point) => bounds.extend(point));
+      const selected = unit.name === state.selectedUnitName;
+      const routeStyle = routeVisualStyle(color, selected);
       const polyline = new google.maps.Polyline({
         path: route,
         geodesic: true,
-        strokeColor: color,
-        strokeOpacity: 0.85,
-        strokeWeight: 2,
+        ...routeStyle,
         map: elements.toggle_routes.checked ? state.map : null,
       });
       state.overlays.push(polyline);
       state.routeOverlays.push(polyline);
+      const waypointMarkers = [];
       unit.waypoints.forEach((waypoint, index) => {
+        const waypointStyle = waypointVisualStyle(color, selected);
         const waypointMarker = new google.maps.Marker({
           position: waypoint,
           map: elements.toggle_routes.checked ? state.map : null,
           title: `${unit.name} waypoint ${index + 1}`,
-          label: { text: String(index + 1), color: color, fontSize: '9px', fontWeight: '800' },
+          label: { text: String(index + 1), color: waypointStyle.color, fontSize: '9px', fontWeight: '800' },
           icon: {
             path: google.maps.SymbolPath.CIRCLE,
-            fillColor: '#071019',
-            fillOpacity: 0.85,
-            strokeColor: color,
-            strokeWeight: 1.5,
-            scale: 6,
+            fillColor: waypointStyle.fillColor,
+            fillOpacity: waypointStyle.fillOpacity,
+            strokeColor: waypointStyle.color,
+            strokeWeight: waypointStyle.strokeWeight,
+            scale: waypointStyle.scale,
           },
           draggable: state.editMode,
-          zIndex: state.editMode ? 310 : undefined,
+          zIndex: state.editMode ? 310 : waypointStyle.zIndex,
         });
         waypointMarker.addListener('dragend', (event) => {
           if (!state.editMode || !event.latLng) return;
@@ -364,7 +404,9 @@ function renderMap() {
         });
         state.overlays.push(waypointMarker);
         state.routeOverlays.push(waypointMarker);
+        waypointMarkers.push(waypointMarker);
       });
+      state.routeVisualsByUnit.set(unit.name, { allianceColor: color, polyline, waypointMarkers });
     }
   });
 
@@ -433,6 +475,8 @@ async function loadScenario(filePath, { quiet = false } = {}) {
   try {
     const result = await window.missionMap.loadScenario(filePath);
     state.scenario = result.scenario;
+    state.selectedUnitName = quiet && state.scenario.units.some((unit) => unit.name === state.selectedUnitName)
+      ? state.selectedUnitName : '';
     state.theater = result.theater;
     elements.toggle_mask.disabled = !state.theater;
     elements.toggle_mask.checked = Boolean(state.theater);
