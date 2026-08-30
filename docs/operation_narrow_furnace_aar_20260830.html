@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Operation Narrow Furnace — After Action Report</title>
+  <style>
+    :root {
+      --ink: #eaf2f6;
+      --muted: #9db0bb;
+      --dim: #6f838d;
+      --paper: #081116;
+      --panel: #0d1a20;
+      --panel-2: #11232b;
+      --line: rgba(174, 206, 217, .16);
+      --cyan: #50d5e8;
+      --blue: #65a8ff;
+      --amber: #efbc62;
+      --red: #ff6e68;
+      --green: #62d49a;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .35);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 84% 8%, rgba(42, 112, 132, .24), transparent 26rem),
+        radial-gradient(circle at 12% 34%, rgba(23, 67, 81, .18), transparent 34rem),
+        var(--paper);
+      font-family: var(--sans);
+      line-height: 1.62;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    img { max-width: 100%; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 17, 22, .88);
+      backdrop-filter: blur(18px);
+    }
+    .topbar .wrap { min-height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-size: .76rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .brand-mark { width: 27px; height: 27px; display: grid; place-items: center; border: 1px solid rgba(80,213,232,.45); color: var(--cyan); transform: rotate(45deg); }
+    .brand-mark span { transform: rotate(-45deg); }
+    .actions { display: flex; gap: 8px; }
+    .action {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.025);
+      padding: 7px 12px;
+      cursor: pointer;
+    }
+    .action:hover { color: var(--ink); border-color: rgba(80,213,232,.45); }
+
+    .hero { padding: 84px 0 50px; position: relative; overflow: hidden; }
+    .hero::after {
+      content: "AAR 02";
+      position: absolute;
+      right: max(2vw, calc((100vw - 1180px) / 2));
+      top: 70px;
+      color: rgba(134, 175, 189, .045);
+      font-size: clamp(6rem, 16vw, 14rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -.08em;
+      pointer-events: none;
+    }
+    .eyebrow { color: var(--cyan); font: 700 .76rem/1.2 var(--mono); letter-spacing: .17em; text-transform: uppercase; }
+    h1 { max-width: 850px; margin: 18px 0 12px; font: 500 clamp(3.2rem, 8vw, 7.4rem)/.88 var(--serif); letter-spacing: -.055em; }
+    h1 em { display: block; color: var(--cyan); font-style: italic; }
+    .dek { max-width: 710px; margin: 25px 0 34px; color: #c1d0d7; font: 400 clamp(1.08rem, 2vw, 1.35rem)/1.55 var(--serif); }
+    .meta { display: flex; flex-wrap: wrap; gap: 9px; }
+    .chip { border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; color: var(--muted); font: 650 .72rem/1 var(--mono); letter-spacing: .06em; background: rgba(255,255,255,.02); }
+
+    .verdict {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 28px;
+      margin: 12px 0 28px;
+      padding: 24px 27px;
+      border: 1px solid rgba(239,188,98,.28);
+      border-left: 4px solid var(--amber);
+      border-radius: 4px 18px 18px 4px;
+      background: linear-gradient(105deg, rgba(239,188,98,.11), rgba(255,255,255,.025));
+      box-shadow: var(--shadow);
+    }
+    .verdict small { display: block; color: var(--amber); font: 800 .68rem/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    .verdict strong { display: block; margin-top: 9px; font: 500 clamp(1.5rem, 3vw, 2.35rem)/1.1 var(--serif); }
+    .verdict p { margin: 7px 0 0; color: var(--muted); }
+    .stamp { width: 112px; height: 112px; border: 2px solid rgba(239,188,98,.55); border-radius: 50%; display: grid; place-items: center; color: var(--amber); text-align: center; font: 900 .72rem/1.2 var(--mono); letter-spacing: .12em; transform: rotate(-7deg); }
+
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 70px; }
+    .metric { min-height: 148px; padding: 22px; border: 1px solid var(--line); border-radius: 15px; background: linear-gradient(150deg, rgba(255,255,255,.04), rgba(255,255,255,.012)); }
+    .metric .value { font: 500 2.6rem/1 var(--serif); letter-spacing: -.04em; }
+    .metric .label { margin-top: 12px; font-size: .83rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .metric .note { margin-top: 6px; color: var(--dim); font-size: .8rem; }
+    .good { color: var(--green); } .bad { color: var(--red); } .warn { color: var(--amber); } .info { color: var(--blue); }
+
+    .section { padding: 62px 0; border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 160px minmax(0, 760px); gap: 28px; align-items: start; margin-bottom: 34px; }
+    .kicker { color: var(--cyan); font: 800 .68rem/1.2 var(--mono); letter-spacing: .18em; text-transform: uppercase; padding-top: 9px; }
+    h2 { margin: 0; font: 500 clamp(2rem, 4vw, 3.45rem)/1.02 var(--serif); letter-spacing: -.035em; }
+    .section-intro { margin: 12px 0 0; color: var(--muted); max-width: 720px; }
+
+    .brief-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 16px; }
+    .card { border: 1px solid var(--line); border-radius: 16px; background: rgba(13,26,32,.72); padding: 26px; }
+    .lead { margin: 0; color: #d9e5ea; font: 400 1.25rem/1.6 var(--serif); }
+    .callout { position: relative; overflow: hidden; }
+    .callout::after { content: "!"; position: absolute; right: 12px; bottom: -45px; color: rgba(255,110,104,.06); font: 800 10rem/1 var(--serif); }
+    .callout h3, .card h3 { margin: 0 0 12px; font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; }
+    .callout p { color: var(--muted); margin: 0; position: relative; z-index: 1; }
+
+    .objectives { display: grid; gap: 10px; }
+    .objective { display: grid; grid-template-columns: 150px minmax(0, 1fr) 150px; gap: 20px; align-items: center; padding: 19px 22px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.02); }
+    .objective .status { font: 800 .68rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .objective strong { display: block; font-size: .98rem; }
+    .objective p { margin: 4px 0 0; color: var(--dim); font-size: .84rem; }
+    .bar { height: 7px; border-radius: 10px; background: rgba(255,255,255,.07); overflow: hidden; }
+    .bar span { display: block; height: 100%; border-radius: inherit; }
+
+    .figure { margin: 32px 0 0; border: 1px solid var(--line); border-radius: 19px; overflow: hidden; background: #030709; box-shadow: var(--shadow); }
+    .figure img { display: block; width: 100%; height: auto; }
+    .figure figcaption { display: grid; grid-template-columns: 90px 1fr; gap: 18px; padding: 18px 22px 20px; color: var(--muted); font-size: .86rem; background: var(--panel); }
+    .fig-no { color: var(--cyan); font: 800 .67rem/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .image-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .image-pair .figure { margin-top: 0; }
+
+    .phase-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .filter { border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; background: transparent; color: var(--muted); cursor: pointer; font-size: .78rem; font-weight: 750; }
+    .filter.active, .filter:hover { color: var(--paper); border-color: var(--cyan); background: var(--cyan); }
+    .minute-log { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+    .minute { display: grid; grid-template-columns: 68px 1fr; gap: 14px; min-height: 88px; padding: 15px 17px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.018); }
+    .minute.quiet { opacity: .72; }
+    .minute.hidden { display: none; }
+    .minute time { color: var(--cyan); font: 800 .73rem/1.35 var(--mono); }
+    .minute .clock { display: block; color: var(--dim); font-size: .62rem; margin-top: 4px; }
+    .minute strong { display: block; margin-bottom: 3px; font-size: .86rem; }
+    .minute p { margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.48; }
+    .minute.action { border-color: rgba(101,168,255,.28); background: rgba(101,168,255,.055); }
+    .minute.loss { border-color: rgba(255,110,104,.3); background: rgba(255,110,104,.055); }
+    .timeline-note { margin: 16px 0 0; color: var(--dim); font-size: .78rem; }
+
+    .tables { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+    th { color: var(--dim); font: 800 .65rem/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; text-align: left; padding: 0 10px 11px; }
+    td { padding: 12px 10px; border-top: 1px solid var(--line); vertical-align: top; }
+    td:last-child { color: var(--muted); }
+    .tag { display: inline-block; padding: 4px 7px; border-radius: 5px; font: 800 .62rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .tag-confirmed { color: var(--green); background: rgba(98,212,154,.11); }
+    .tag-disputed { color: var(--amber); background: rgba(239,188,98,.11); }
+    .tag-loss { color: var(--red); background: rgba(255,110,104,.11); }
+
+    .lessons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .lesson { padding: 25px; border-top: 2px solid var(--cyan); background: linear-gradient(180deg, rgba(80,213,232,.07), transparent); }
+    .lesson .num { color: var(--cyan); font: 800 .7rem/1 var(--mono); letter-spacing: .12em; }
+    .lesson h3 { margin: 13px 0 8px; font: 500 1.3rem/1.15 var(--serif); }
+    .lesson p { margin: 0; color: var(--muted); font-size: .87rem; }
+
+    .evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .evidence ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .evidence li + li { margin-top: 8px; }
+    code { font-family: var(--mono); color: #bed5de; font-size: .82em; overflow-wrap: anywhere; }
+    .final-judgment { margin-top: 22px; padding: clamp(28px, 5vw, 54px); border: 1px solid rgba(80,213,232,.24); border-radius: 20px; background: linear-gradient(135deg, rgba(80,213,232,.1), rgba(13,26,32,.7) 45%, rgba(255,110,104,.06)); }
+    .final-judgment blockquote { max-width: 900px; margin: 0; font: 400 clamp(1.5rem, 3vw, 2.4rem)/1.35 var(--serif); }
+    .final-judgment p { max-width: 800px; margin: 20px 0 0; color: var(--muted); }
+
+    footer { padding: 35px 0 60px; color: var(--dim); font-size: .75rem; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; }
+
+    @media (max-width: 840px) {
+      .metrics, .lessons { grid-template-columns: 1fr 1fr; }
+      .brief-grid, .tables, .evidence, .image-pair { grid-template-columns: 1fr; }
+      .section-head { grid-template-columns: 1fr; gap: 8px; }
+      .objective { grid-template-columns: 100px 1fr; }
+      .objective .bar { grid-column: 1 / -1; }
+      .minute-log { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      .hero { padding-top: 58px; }
+      .metrics, .lessons { grid-template-columns: 1fr; }
+      .verdict { grid-template-columns: 1fr; }
+      .stamp { width: 88px; height: 88px; }
+      .figure figcaption { grid-template-columns: 1fr; gap: 5px; }
+      .brand span:last-child { display: none; }
+    }
+    @media print {
+      :root { --ink: #111; --muted: #46535a; --dim: #68757c; --paper: #fff; --panel: #fff; --panel-2: #f5f7f8; --line: rgba(0,0,0,.18); }
+      body { background: #fff; font-size: 10pt; }
+      body::before, .topbar, .phase-nav, .hero::after { display: none !important; }
+      .wrap { width: 100%; }
+      .hero { padding: 20px 0; }
+      h1 { font-size: 48pt; }
+      .section { padding: 28px 0; break-before: auto; }
+      .card, .metric, .minute, .objective, .figure, .lesson, .final-judgment { break-inside: avoid; box-shadow: none; background: #fff; }
+      .minute.hidden { display: grid; }
+      .figure { border-color: #888; }
+      .figure img { max-height: 6.7in; object-fit: contain; }
+      footer { padding-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand"><span class="brand-mark"><span>NF</span></span><span>Indian Ocean Escalation · Turn 6</span></div>
+      <div class="actions">
+        <button class="action" type="button" onclick="window.print()">Print / PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Global Conflict: Blue Horizon · After Action Report</div>
+        <h1>Operation <em>Narrow Furnace</em></h1>
+        <p class="dek">A six-ship sealift survives the run toward Hormuz, the coastal strike arrives late, and a single fast-attack craft turns a successful bombing sequence into a costly tactical reversal.</p>
+        <div class="meta">
+          <span class="chip">30 AUG 2026 PLAYTHROUGH</span>
+          <span class="chip">16:30:00–17:39:00 Z</span>
+          <span class="chip">69 MINUTES</span>
+          <span class="chip">51 STARTING UNITS</span>
+          <span class="chip">TACVIEW + SIM LOGS</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section class="verdict" aria-label="Overall verdict">
+        <div>
+          <small>Evidence-based operational verdict</small>
+          <strong>Partial tactical success · mission not accomplished</strong>
+          <p>The sealift survived, but BLUE neutralized only one of three required coastal nodes. Two nominal FAC losses are disputed, and both Lancer strike aircraft were destroyed.</p>
+        </div>
+        <div class="stamp">NO<br>CAMPAIGN<br>VICTORY</div>
+      </section>
+
+      <section class="metrics" aria-label="Key metrics">
+        <div class="metric"><div class="value good">6 / 6</div><div class="label">Sealift survived</div><div class="note">No recorded damage to an auxiliary</div></div>
+        <div class="metric"><div class="value bad">2 / 2</div><div class="label">Lancers lost</div><div class="note">Both destroyed by Dagger’s 40 mm fire</div></div>
+        <div class="metric"><div class="value warn">1 / 3</div><div class="label">Coastal nodes</div><div class="note">Coastwatch 1 destroyed; four remain</div></div>
+        <div class="metric"><div class="value info">4</div><div class="label">Confirmed RED kills</div><div class="note">One shore node and three warships</div></div>
+      </section>
+    </div>
+
+    <section class="section" id="assessment">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">01 · Assessment</div>
+          <div><h2>The convoy lived. The corridor did not open.</h2><p class="section-intro">BLUE protected the operation’s center of gravity, but the strike sequence started too late and ended inside an unsuppressed naval gun envelope.</p></div>
+        </div>
+        <div class="brief-grid">
+          <article class="card">
+            <p class="lead">Operation Narrow Furnace separated into two very different battles. For almost an hour, the convoy advanced without damage while BLUE aviation absorbed one long-range S-300 engagement and repositioned. In the final twelve minutes, Lancer 2 destroyed Coastwatch 1, IRIS Sahand, and IRIS Dena with SDBs. The strike then pressed toward Dagger. Dagger’s 40 mm fire destroyed Lancer 2 and Lancer 1 in 28 seconds; Lancer 1’s already-released GBU-12s killed Dagger seconds later.</p>
+          </article>
+          <aside class="card callout">
+            <h3 class="bad">Critical caveat</h3>
+            <p>Falakhon and Khanjar reached zero health at M+12:17 and M+15:54 with no weapon impact recorded. USS Mason’s Harpoon against Falakhon was explicitly logged as a miss. Their apparent destruction is therefore treated as a route, grounding, or simulation artifact—not a legitimate BLUE kill.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="objectives">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">02 · Objectives</div>
+          <div><h2>One clean pass, one failed task, one false positive.</h2><p class="section-intro">The formal compound goal required every BLUE subgoal to pass. The coastal requirement alone prevents a mission victory.</p></div>
+        </div>
+        <div class="objectives">
+          <div class="objective">
+            <div class="status good">Accomplished</div>
+            <div><strong>Preserve at least five of six auxiliaries</strong><p>All six remained afloat and undamaged through the end of the recording.</p></div>
+            <div class="bar"><span style="width:100%;background:var(--green)"></span></div>
+          </div>
+          <div class="objective">
+            <div class="status bad">Not accomplished</div>
+            <div><strong>Neutralize at least three of five coastal nodes</strong><p>Only Coastwatch 1 was destroyed. Bastion 1–3 and S-300 Site North survived.</p></div>
+            <div class="bar"><span style="width:33.3%;background:var(--red)"></span></div>
+          </div>
+          <div class="objective">
+            <div class="status warn">Nominal / disputed</div>
+            <div><strong>Neutralize Falakhon and Khanjar</strong><p>Both were counted as lost, but neither has a recorded damaging weapon event.</p></div>
+            <div class="bar"><span style="width:100%;background:var(--amber)"></span></div>
+          </div>
+          <div class="objective">
+            <div class="status bad">Overall failed</div>
+            <div><strong>Compound BLUE mission</strong><p>The shore objective failed; the operational corridor was not demonstrated as open.</p></div>
+            <div class="bar"><span style="width:44%;background:linear-gradient(90deg,var(--green),var(--amber),var(--red))"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="opening">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">03 · Opening fire</div>
+          <div><h2>M+02:27 · Broadarrow cheats the S-300.</h2><p class="section-intro">At M+00:30, S-300 Site North launched the only 48N6E2 of the session. By the moment shown below, it was descending toward Broadarrow’s vicinity. Tacview later records the missile locked to a deployed chaff object and timing out as a miss at M+02:51.</p></div>
+        </div>
+        <div class="image-pair">
+          <figure class="figure">
+            <img src="../scenarios/Images/1_PoseidonVeryLuckyCounterMeasures.png" alt="Tacview view of a 48N6E2 descending near Broadarrow P-8 at 16:32:27">
+            <figcaption><span class="fig-no">Figure 01</span><span><strong>Very close call.</strong> Broadarrow’s track sits beneath the descending SAM. The weapon was ultimately seduced by countermeasures; no BLUE aircraft was damaged.</span></figcaption>
+          </figure>
+          <figure class="figure">
+            <img src="../scenarios/Images/2_Lancer2_CockpitView.png" alt="Tacview HUD-style view from Lancer 2 at 16:32:27">
+            <figcaption><span class="fig-no">Figure 02</span><span><strong>The strike package’s view.</strong> From Lancer 2, Lancer 1 is visible ahead while the early SAM engagement unfolds elsewhere in the formation.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chronology">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">04 · Minute log</div>
+          <div><h2>The full playthrough, minute by minute.</h2><p class="section-intro">Times use mission elapsed time and the Tacview reference clock. “Quiet” means no weapon or damage event was logged; forces were still maneuvering.</p></div>
+        </div>
+        <div class="phase-nav" aria-label="Timeline filters">
+          <button class="filter active" data-filter="all" type="button">All 69 minutes</button>
+          <button class="filter" data-filter="action" type="button">Action only</button>
+          <button class="filter" data-filter="quiet" type="button">Maneuver / quiet</button>
+          <button class="filter" data-filter="loss" type="button">Losses</button>
+        </div>
+        <div class="minute-log" id="minute-log">
+          <article class="minute action"><time>M+00<span class="clock">16:30 Z</span></time><div><strong>Convoy underway; SAM launch</strong><p>All 51 units enter the scenario. At 00:30, S-300 Site North fires one 48N6E2 toward the BLUE air picture.</p></div></article>
+          <article class="minute action"><time>M+01<span class="clock">16:31 Z</span></time><div><strong>Missile climbs and turns south</strong><p>The long-range SAM continues its intercept while Broadarrow and the fighter package dispense countermeasures.</p></div></article>
+          <article class="minute action"><time>M+02<span class="clock">16:32 Z</span></time><div><strong>Broadarrow survives</strong><p>At 02:27 the missile is dangerously close; at 02:51 it times out against chaff. No damage is recorded.</p></div></article>
+          <article class="minute quiet"><time>M+03<span class="clock">16:33 Z</span></time><div><strong>Air picture stabilizes</strong><p>No follow-on S-300 launch appears. Lancer flight continues southwest while the surface force advances.</p></div></article>
+          <article class="minute quiet"><time>M+04<span class="clock">16:34 Z</span></time><div><strong>Formation movement</strong><p>The sealift remains intact in two protected columns; escorts and MCM vessels continue west-northwest.</p></div></article>
+          <article class="minute quiet"><time>M+05<span class="clock">16:35 Z</span></time><div><strong>Lancers extend west</strong><p>The F-15Es keep opening distance from the convoy and have not begun the authorized coastal strike.</p></div></article>
+          <article class="minute quiet"><time>M+06<span class="clock">16:36 Z</span></time><div><strong>No weapons in flight</strong><p>BLUE’s fresh Tiger CAP, P-8s, Sentinel, and Shell remain available; RED aircraft stay staged.</p></div></article>
+          <article class="minute quiet"><time>M+07<span class="clock">16:37 Z</span></time><div><strong>Surface screen advances</strong><p>No convoy damage or RED missile attack is logged. The Lancers continue their wide reposition.</p></div></article>
+          <article class="minute quiet"><time>M+08<span class="clock">16:38 Z</span></time><div><strong>Contact geometry develops</strong><p>Eastern RED FACs remain ahead of the corridor; BLUE surface units close from the southeast.</p></div></article>
+          <article class="minute action"><time>M+09<span class="clock">16:39 Z</span></time><div><strong>Mason fires Harpoon</strong><p>At 09:53 USS Mason launches one RGM-84F at Falakhon, the only BLUE anti-ship missile of the session.</p></div></article>
+          <article class="minute quiet"><time>M+10<span class="clock">16:40 Z</span></time><div><strong>Harpoon in transit</strong><p>The missile runs northwest; the convoy remains undamaged and the Lancers continue southwest.</p></div></article>
+          <article class="minute quiet"><time>M+11<span class="clock">16:41 Z</span></time><div><strong>Falakhon still maneuvering</strong><p>No impact or damage event is recorded. The Harpoon remains in flight.</p></div></article>
+          <article class="minute loss"><time>M+12<span class="clock">16:42 Z</span></time><div><strong>Falakhon inexplicably fails</strong><p>At 12:17 Falakhon reaches zero health before the Harpoon resolves. No weapon is credited.</p></div></article>
+          <article class="minute action"><time>M+13<span class="clock">16:43 Z</span></time><div><strong>Harpoon misses</strong><p>At 13:19 the missile crashes and Tacview explicitly reports a miss against Falakhon.</p></div></article>
+          <article class="minute quiet"><time>M+14<span class="clock">16:44 Z</span></time><div><strong>Transit continues</strong><p>BLUE holds fire. No legitimate cause for Falakhon’s zero-health state appears.</p></div></article>
+          <article class="minute loss"><time>M+15<span class="clock">16:45 Z</span></time><div><strong>Khanjar also fails</strong><p>At 15:54 Khanjar reaches zero health with no recorded weapon event—matching the earlier anomaly.</p></div></article>
+          <article class="minute quiet"><time>M+16<span class="clock">16:46 Z</span></time><div><strong>Objective credit becomes suspect</strong><p>The two named FACs are nominally down, but the evidence does not support combat attribution.</p></div></article>
+          <article class="minute quiet"><time>M+17<span class="clock">16:47 Z</span></time><div><strong>Lancers far southwest</strong><p>Strike aircraft continue away from the target area, lengthening the time before shore suppression can begin.</p></div></article>
+          <article class="minute quiet"><time>M+18<span class="clock">16:48 Z</span></time><div><strong>Convoy remains untouched</strong><p>No RED surface, air, or coastal weapon reaches the six auxiliaries.</p></div></article>
+          <article class="minute quiet"><time>M+19<span class="clock">16:49 Z</span></time><div><strong>Operational pause</strong><p>The surface formation advances; Tiger CAP and support aircraft continue their patrol geometry.</p></div></article>
+          <article class="minute loss"><time>M+20<span class="clock">16:50 Z</span></time><div><strong>Falakhon deletion logged</strong><p>Tacview posts the destroy event at 20:34, long after health reached zero and without a kill event.</p></div></article>
+          <article class="minute quiet"><time>M+21<span class="clock">16:51 Z</span></time><div><strong>No new engagement</strong><p>The Lancers are near the western end of their outbound leg; the strike remains unexecuted.</p></div></article>
+          <article class="minute quiet"><time>M+22<span class="clock">16:52 Z</span></time><div><strong>Lancer 2 begins a turn</strong><p>The pair starts changing geometry southwest of the main force, preparing to come back toward Hormuz.</p></div></article>
+          <article class="minute quiet"><time>M+23<span class="clock">16:53 Z</span></time><div><strong>Wide separation persists</strong><p>Lancer flight remains far from the convoy and authorized shore targets.</p></div></article>
+          <article class="minute loss"><time>M+24<span class="clock">16:54 Z</span></time><div><strong>Khanjar deletion logged</strong><p>The destroy event posts at 24:09, again without a weapon hit or kill attribution.</p></div></article>
+          <article class="minute quiet"><time>M+25<span class="clock">16:55 Z</span></time><div><strong>Lancers reverse northward</strong><p>The strike pair begins the long return leg from the southwest.</p></div></article>
+          <article class="minute quiet"><time>M+26<span class="clock">16:56 Z</span></time><div><strong>Convoy presses west</strong><p>All six auxiliaries remain at full health under the escort screen.</p></div></article>
+          <article class="minute quiet"><time>M+27<span class="clock">16:57 Z</span></time><div><strong>No RED counterstroke</strong><p>Bandar Abbas aircraft remain staged; S-300 Site North does not fire again.</p></div></article>
+          <article class="minute quiet"><time>M+28<span class="clock">16:58 Z</span></time><div><strong>Strike pair consolidates</strong><p>Lancer 1 and 2 draw closer on the western side of the theater.</p></div></article>
+          <article class="minute quiet"><time>M+29<span class="clock">16:59 Z</span></time><div><strong>Late-mission form-up</strong><p>At 29:38 Tacview shows both Lancers far west while the convoy and support package remain east of Hormuz.</p></div></article>
+          <article class="minute quiet"><time>M+30<span class="clock">17:00 Z</span></time><div><strong>Western turnaround</strong><p>The Lancers bottom out near the western edge of their route and begin orienting back toward the targets.</p></div></article>
+          <article class="minute quiet"><time>M+31<span class="clock">17:01 Z</span></time><div><strong>Lancers together</strong><p>The two F-15Es fly in close proximity before starting a long northeast recovery leg.</p></div></article>
+          <article class="minute quiet"><time>M+32<span class="clock">17:02 Z</span></time><div><strong>Northbound leg</strong><p>Strike aircraft climb the western side of the operating area; no weapons are released.</p></div></article>
+          <article class="minute quiet"><time>M+33<span class="clock">17:03 Z</span></time><div><strong>Convoy / strike split</strong><p>The logistics force continues west while Lancer flight remains well southwest of the decisive corridor.</p></div></article>
+          <article class="minute quiet"><time>M+34<span class="clock">17:04 Z</span></time><div><strong>Coastal network intact</strong><p>All five designated nodes remain operational; Pantsir systems and the S-300 are untouched.</p></div></article>
+          <article class="minute quiet"><time>M+35<span class="clock">17:05 Z</span></time><div><strong>Steady northeast transit</strong><p>The Lancers continue returning toward the Strait without opposition.</p></div></article>
+          <article class="minute quiet"><time>M+36<span class="clock">17:06 Z</span></time><div><strong>No weapon activity</strong><p>BLUE’s surface and air formations remain intact apart from the two disputed RED FAC losses.</p></div></article>
+          <article class="minute quiet"><time>M+37<span class="clock">17:07 Z</span></time><div><strong>Lancers bend east</strong><p>The strike route gradually turns toward the target area.</p></div></article>
+          <article class="minute quiet"><time>M+38<span class="clock">17:08 Z</span></time><div><strong>Support aircraft hold</strong><p>Sentinel, Shell, Broadarrow, Trident, and Tiger flight continue their supporting orbits.</p></div></article>
+          <article class="minute quiet"><time>M+39<span class="clock">17:09 Z</span></time><div><strong>Sealift still protected</strong><p>The convoy advances without a reported hit, but has not completed passage through the corridor.</p></div></article>
+          <article class="minute quiet"><time>M+40<span class="clock">17:10 Z</span></time><div><strong>Long reposition continues</strong><p>Lancer flight remains in transit; no designated coastal node has yet been struck.</p></div></article>
+          <article class="minute quiet"><time>M+41<span class="clock">17:11 Z</span></time><div><strong>Surface picture unchanged</strong><p>Dagger, Scimitar, Zolfaghar, both Tsunamis, and both Moudge frigates remain combat-capable.</p></div></article>
+          <article class="minute quiet"><time>M+42<span class="clock">17:12 Z</span></time><div><strong>Lancers close the distance</strong><p>The pair moves northeast, still more than twenty minutes from its final attack run.</p></div></article>
+          <article class="minute quiet"><time>M+43<span class="clock">17:13 Z</span></time><div><strong>No hostile launch</strong><p>The intact coastal network does not engage during this minute.</p></div></article>
+          <article class="minute quiet"><time>M+44<span class="clock">17:14 Z</span></time><div><strong>Convoy approaches the Strait</strong><p>BLUE surface units continue to compress toward the Hormuz approaches while maintaining all six auxiliaries.</p></div></article>
+          <article class="minute quiet"><time>M+45<span class="clock">17:15 Z</span></time><div><strong>Strike pair eastbound</strong><p>Lancer flight is now returning toward the Iranian coast from the west.</p></div></article>
+          <article class="minute quiet"><time>M+46<span class="clock">17:16 Z</span></time><div><strong>Enemy surface layer intact</strong><p>No RED combatant is damaged by weapons; the two anomalous FACs remain the only nominal losses.</p></div></article>
+          <article class="minute quiet"><time>M+47<span class="clock">17:17 Z</span></time><div><strong>Air cover remains available</strong><p>Tiger 3 and 4 survive with no weapons expended; no RED aircraft launches.</p></div></article>
+          <article class="minute quiet"><time>M+48<span class="clock">17:18 Z</span></time><div><strong>Lancers cross north of Muscat</strong><p>The pair continues the broad arc toward the Strait, preserving formation.</p></div></article>
+          <article class="minute quiet"><time>M+49<span class="clock">17:19 Z</span></time><div><strong>Convoy remains the success story</strong><p>No logged damage, collision, or loss affects any BLUE surface unit.</p></div></article>
+          <article class="minute quiet"><time>M+50<span class="clock">17:20 Z</span></time><div><strong>Coastal strike still pending</strong><p>The mission has passed fifty minutes with zero authorized shore targets neutralized.</p></div></article>
+          <article class="minute quiet"><time>M+51<span class="clock">17:21 Z</span></time><div><strong>Lancers turn east-northeast</strong><p>The strike pair aligns more directly with the RED coastal and surface groups.</p></div></article>
+          <article class="minute quiet"><time>M+52<span class="clock">17:22 Z</span></time><div><strong>Final approach begins</strong><p>Lancer 1 and 2 close on the target belt from the west.</p></div></article>
+          <article class="minute quiet"><time>M+53<span class="clock">17:23 Z</span></time><div><strong>Target area ahead</strong><p>Coastwatch 1, both Moudge frigates, and Dagger remain available to the RED side.</p></div></article>
+          <article class="minute quiet"><time>M+54<span class="clock">17:24 Z</span></time><div><strong>Lancers hold formation</strong><p>No escort or suppression fire precedes the strike aircraft into the surface-gun threat area.</p></div></article>
+          <article class="minute quiet"><time>M+55<span class="clock">17:25 Z</span></time><div><strong>Attack geometry established</strong><p>Lancer 2 closes on Coastwatch 1; the strike sequence is finally seconds away.</p></div></article>
+          <article class="minute action"><time>M+56<span class="clock">17:26 Z</span></time><div><strong>First bomb away</strong><p>At 56:40 Lancer 2 releases one GBU-39 SDB against Coastwatch 1.</p></div></article>
+          <article class="minute action"><time>M+57<span class="clock">17:27 Z</span></time><div><strong>Coastwatch 1 destroyed</strong><p>The SDB kills the radar post at 57:04. BLUE has one of the three required coastal nodes.</p></div></article>
+          <article class="minute quiet"><time>M+58<span class="clock">17:28 Z</span></time><div><strong>Lancer 2 shifts to ships</strong><p>The F-15E turns its attention from the coastal network to IRIS Sahand and closes for follow-on delivery.</p></div></article>
+          <article class="minute action"><time>M+59<span class="clock">17:29 Z</span></time><div><strong>Three SDBs toward Sahand</strong><p>Lancer 2 releases at 59:22, 59:32, and 59:43. The screenshot below captures the weapons descending.</p></div></article>
+          <article class="minute action"><time>M+60<span class="clock">17:30 Z</span></time><div><strong>IRIS Sahand killed</strong><p>Three SDB impacts at 60:25, 60:29, and 60:32 reduce the frigate to zero health.</p></div></article>
+          <article class="minute action"><time>M+61<span class="clock">17:31 Z</span></time><div><strong>IRIS Dena under attack</strong><p>Lancer 2 releases three more SDBs at 61:04–61:14; two strike before the minute ends.</p></div></article>
+          <article class="minute action"><time>M+62<span class="clock">17:32 Z</span></time><div><strong>IRIS Dena destroyed</strong><p>The third SDB kills Dena at 62:02. Lancer 2 has now destroyed a radar post and two frigates.</p></div></article>
+          <article class="minute action"><time>M+63<span class="clock">17:33 Z</span></time><div><strong>Dagger targeted</strong><p>At 63:46 Lancer 2 releases its eighth SDB, this time against the surviving fast-attack craft.</p></div></article>
+          <article class="minute quiet"><time>M+64<span class="clock">17:34 Z</span></time><div><strong>Lancers enter the danger zone</strong><p>The pair continues close to Dagger. The FAC’s 40 mm battery remains intact and ready.</p></div></article>
+          <article class="minute loss"><time>M+65<span class="clock">17:35 Z</span></time><div><strong>Catastrophic gun engagement</strong><p>The SDB misses at 65:03. Dagger fires 40 rounds beginning 65:27, kills Lancer 2 at 65:29, and destroys Lancer 1 at 65:57. Lancer 1 releases two GBU-12s at 65:47.</p></div></article>
+          <article class="minute action loss"><time>M+66<span class="clock">17:36 Z</span></time><div><strong>Dagger dies after the exchange</strong><p>Lancer 1’s bombs hit at 66:06 and 66:07, destroying Dagger roughly ten seconds after the F-15E itself reached zero health.</p></div></article>
+          <article class="minute quiet"><time>M+67<span class="clock">17:37 Z</span></time><div><strong>Strike package gone</strong><p>Both Lancers are lost. BLUE’s surviving CAP and support aircraft remain intact; the shore network still stands at four of five nodes.</p></div></article>
+          <article class="minute loss"><time>M+68<span class="clock">17:38 Z</span></time><div><strong>Sahand sinking completes</strong><p>Tacview posts Sahand’s delayed destroy event at 68:52 after the frigate reached zero health eight minutes earlier.</p></div></article>
+          <article class="minute quiet"><time>M+69<span class="clock">17:39 Z</span></time><div><strong>Recording ends</strong><p>All six auxiliaries and every BLUE surface vessel remain intact. The corridor is not operationally confirmed open.</p></div></article>
+        </div>
+        <p class="timeline-note">Minute cards interpolate the maneuver narrative from Tacview tracks; exact weapon, hit, health, and destroy times are taken directly from Tacview and the GC:BH log.</p>
+      </div>
+    </section>
+
+    <section class="section" id="reposition">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">05 · The long arc</div>
+          <div><h2>M+29:38 · The strike is still far away.</h2><p class="section-intro">This overhead view explains the hour-long quiet period. Lancer 1 and 2 are far west of the Strait after a broad southwest excursion, while the convoy, CAP, P-8s, AEW, and tanker remain clustered to the east. The strike pair will not release its first bomb for another 27 minutes.</p></div>
+        </div>
+        <figure class="figure">
+          <img src="../scenarios/Images/3_OverheadAsLancersFormUpLateMissoin.png" alt="Tacview overhead view at 16:59:38 showing Lancer flight far west of the main BLUE formation">
+          <figcaption><span class="fig-no">Figure 03</span><span><strong>Distance becomes tempo.</strong> The separation preserved the Lancers early, but it deferred coastal suppression until the final twelve minutes and left little margin to re-attack or recover from a mistake.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="strike">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">06 · Strike climax</div>
+          <div><h2>M+59:45 · Lancer 2 begins a devastating run.</h2><p class="section-intro">Three GBU-39s descend on IRIS Sahand. Over the next 153 seconds, Lancer 2 will destroy both Moudge frigates. The success pulls the pair deeper toward Dagger, which survives the first SDB and opens fire.</p></div>
+        </div>
+        <figure class="figure">
+          <img src="../scenarios/Images/4_Lancer_GBUs_vs_Ships.png" alt="Tacview view at 17:29:45 showing Lancer 2 GBU-39 SDBs descending toward IRIS Sahand">
+          <figcaption><span class="fig-no">Figure 04</span><span><strong>SDBs in trail.</strong> The compact attack is effective against Sahand, but the flight’s subsequent closure on Dagger creates the decisive vulnerability. Standoff success becomes close-range exposure.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="accounting">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">07 · Accounting</div>
+          <div><h2>Losses, effects, and expenditure.</h2><p class="section-intro">Confirmed combat results are separated from health-zero events that lack weapon attribution.</p></div>
+        </div>
+        <div class="tables">
+          <article class="card">
+            <h3>Loss &amp; damage ledger</h3>
+            <table>
+              <thead><tr><th>Unit</th><th>Status</th><th>Cause</th></tr></thead>
+              <tbody>
+                <tr><td>Lancer 2 · F-15E</td><td><span class="tag tag-loss">Destroyed</span></td><td>Dagger 40 mm HE-T at M+65:29</td></tr>
+                <tr><td>Lancer 1 · F-15E</td><td><span class="tag tag-loss">Destroyed</span></td><td>Dagger 40 mm HE-T at M+65:57</td></tr>
+                <tr><td>Coastwatch 1</td><td><span class="tag tag-confirmed">Confirmed</span></td><td>Lancer 2 · one GBU-39</td></tr>
+                <tr><td>IRIS Sahand</td><td><span class="tag tag-confirmed">Confirmed</span></td><td>Lancer 2 · three GBU-39s</td></tr>
+                <tr><td>IRIS Dena</td><td><span class="tag tag-confirmed">Confirmed</span></td><td>Lancer 2 · three GBU-39s</td></tr>
+                <tr><td>Dagger</td><td><span class="tag tag-confirmed">Confirmed</span></td><td>Lancer 1 · two GBU-12s</td></tr>
+                <tr><td>Falakhon</td><td><span class="tag tag-disputed">Disputed</span></td><td>No damaging weapon event</td></tr>
+                <tr><td>Khanjar</td><td><span class="tag tag-disputed">Disputed</span></td><td>No damaging weapon event</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card">
+            <h3>Weapon employment</h3>
+            <table>
+              <thead><tr><th>Shooter</th><th>Weapon</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td>Lancer 2</td><td>8 × GBU-39 SDB</td><td>7 hits: 3 kills; 1 miss</td></tr>
+                <tr><td>Lancer 1</td><td>2 × GBU-12/B</td><td>2 hits: Dagger killed</td></tr>
+                <tr><td>USS Mason</td><td>1 × RGM-84F</td><td>Miss against Falakhon</td></tr>
+                <tr><td>Dagger</td><td>40 × 40 mm HE-T</td><td>2 F-15E kills; 39 resolved misses</td></tr>
+                <tr><td>S-300 Site North</td><td>1 × 48N6E2</td><td>Defeated by countermeasures</td></tr>
+              </tbody>
+            </table>
+            <p style="margin:16px 10px 0;color:var(--dim);font-size:.78rem">Tacview records one 40 mm projectile as the kill against each Lancer. The remaining resolved shell events are misses.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lessons">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">08 · Lessons</div>
+          <div><h2>What the next commander should change.</h2><p class="section-intro">The mission was recoverable until the final minutes. The next attempt should preserve the successful convoy screen while restructuring the strike.</p></div>
+        </div>
+        <div class="lessons">
+          <article class="lesson"><div class="num">LESSON 01</div><h3>Sequence shore suppression first.</h3><p>Begin with the three required coastal nodes. Do not spend the strike’s limited late window on surface targets until the formal corridor-control objective is secure.</p></article>
+          <article class="lesson"><div class="num">LESSON 02</div><h3>Keep standoff after the first kill.</h3><p>Lancer 2’s SDB work was precise. The failure came after closing on Dagger. Re-attack from outside the 40 mm envelope or hand the target to a surface shooter.</p></article>
+          <article class="lesson"><div class="num">LESSON 03</div><h3>Shorten the strike route.</h3><p>The broad western arc delayed first release until M+56. A direct, threat-aware marshal point would create time for multiple coastal passes and safer egress.</p></article>
+          <article class="lesson"><div class="num">LESSON 04</div><h3>Exploit the intact CAP.</h3><p>Tiger 3 and 4 survived unused. Keep them as cover, but integrate them into escort and threat localization so Lancer flight is not operating as an isolated pair.</p></article>
+          <article class="lesson"><div class="num">LESSON 05</div><h3>Repair the FAC artifact.</h3><p>Falakhon and Khanjar again fail without weapon attribution. Validate their starts, routes, water depth, and collision geometry before applying persistent campaign losses.</p></article>
+          <article class="lesson"><div class="num">LESSON 06</div><h3>Preserve the convoy plan.</h3><p>The two-column sealift, escort lanes, and MCM screen delivered the clearest success: six of six auxiliaries survived the full 69-minute session.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="evidence">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">09 · Evidence</div>
+          <div><h2>What this report is—and is not—claiming.</h2><p class="section-intro">The assessment favors explicit weapon outcomes over game-state disappearance and keeps uncertain campaign facts visibly uncertain.</p></div>
+        </div>
+        <div class="evidence">
+          <article class="card">
+            <h3>Primary sources reviewed</h3>
+            <ul>
+              <li><code>20260830140652_Operation_Narrow_Furnace.txt.acmi</code></li>
+              <li>GC:BH <code>Logs/log.txt</code>, <code>pyout.txt</code>, and <code>unit_state.xml</code></li>
+              <li><code>scenarios/operation_narrow_furnace.py</code></li>
+              <li>Four user-provided Tacview screenshots reproduced above</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Confidence rules</h3>
+            <ul>
+              <li><strong>Confirmed:</strong> health change plus Tacview hit/kill or simulator damage entry.</li>
+              <li><strong>Disputed:</strong> health reaches zero without a weapon event or damage attribution.</li>
+              <li><strong>Operational judgment:</strong> objective status is interpreted against the actual scenario goal logic, not a raw score alone.</li>
+              <li>Aircrew recovery for Lancer 1 and Lancer 2 is unknown; no ejection event appears in the reviewed evidence.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="final-judgment">
+          <blockquote>“Narrow Furnace protected what had to survive, but sacrificed what it needed to finish.”</blockquote>
+          <p>The sealift’s survival makes this more than a defeat. Yet the intact Bastion batteries and S-300, the loss of both strike aircraft, and the unresolved FAC artifact make it less than a corridor-opening success. Record the playthrough as a <strong>partial tactical success with an unsuccessful operational outcome</strong>. Do not canonize Falakhon or Khanjar as combat losses without a corrected replay.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><span>INDIAN OCEAN ESCALATION · CAMPAIGN TURN 6</span><span>Prepared 30 August 2026</span></div>
+  </footer>
+
+  <script>
+    const filters = document.querySelectorAll('.filter');
+    const minutes = document.querySelectorAll('.minute');
+    filters.forEach(button => button.addEventListener('click', () => {
+      filters.forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+      const mode = button.dataset.filter;
+      minutes.forEach(card => {
+        const show = mode === 'all' || card.classList.contains(mode);
+        card.classList.toggle('hidden', !show);
+      });
+    }));
+  </script>
+</body>
+</html>
