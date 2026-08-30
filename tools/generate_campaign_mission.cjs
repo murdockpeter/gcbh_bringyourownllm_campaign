@@ -3,12 +3,13 @@
 
 const path = require('node:path');
 const { generateMission } = require('./mission-generator/generate.cjs');
+const { chooseLoadouts } = require('./mission-generator/loadout-picker.cjs');
 const { GeneratorError, formatError } = require('./mission-generator/errors.cjs');
 
 function usage() {
   return `Usage:
   npm run generate -- --state <campaign.json> --seed <scenario-seed.json> \\
-    --output <scenario.py> --manifest <manifest.json> [--database <database.db>] [--rng-seed <seed>]
+    --output <scenario.py> --manifest <manifest.json> [--database <database.db>] [--rng-seed <seed>] [--choose-loadouts]
 `;
 }
 
@@ -17,6 +18,10 @@ function parseArgs(argv) {
   for (let index = 0; index < argv.length; index += 1) {
     const flag = argv[index];
     if (flag === '--help' || flag === '-h') return { help: true };
+    if (flag === '--choose-loadouts') {
+      options.chooseLoadouts = true;
+      continue;
+    }
     if (!flag.startsWith('--')) throw new GeneratorError('CLI_ARGUMENT', `Unexpected argument: ${flag}`);
     const key = flag.slice(2).replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
     const value = argv[index + 1];
@@ -35,6 +40,13 @@ async function main() {
   }
   for (const key of ['state', 'seed', 'output', 'manifest']) {
     if (!options[key]) throw new GeneratorError('CLI_ARGUMENT', `Missing required --${key} argument.\n\n${usage()}`);
+  }
+  if (options.chooseLoadouts) {
+    await chooseLoadouts({
+      statePath: path.resolve(options.state),
+      seedPath: path.resolve(options.seed),
+      databasePath: options.database ? path.resolve(options.database) : undefined,
+    });
   }
   const result = await generateMission({
     statePath: path.resolve(options.state),

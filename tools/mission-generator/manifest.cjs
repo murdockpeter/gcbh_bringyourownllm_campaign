@@ -17,6 +17,7 @@ function unitDecision(unit) {
       fuel_fraction: unit.fuelFraction,
       sorties: unit.sorties,
       loadout_setup: unit.loadoutSetup,
+      aviation_magazine: unit.aviationMagazine,
       launchers: unit.launchers,
       magazines: unit.magazines,
       position: unit.position,
@@ -31,7 +32,7 @@ function unitDecision(unit) {
 function buildManifest(model, context) {
   return canonicalize({
     schema_version: 1,
-    generator: { name: 'mission-generator-v2', version: '0.2.0', node: '>=24', database_schema_version: context.databaseSchemaVersion },
+    generator: { name: 'mission-generator-v2', version: '0.3.0', node: '>=24', database_schema_version: context.databaseSchemaVersion },
     scenario: { id: model.seed.scenario_id, name: model.seed.scenario_name, archetype: model.archetype.id, theater_id: model.seed.theater_id },
     inputs: context.hashes,
     effective_rng_seed: model.effectiveSeed,

@@ -77,13 +77,29 @@ function rejectUnknown(object, allowed, path, errors) {
   for (const key of Object.keys(object)) if (!allowed.has(key)) errors.push(`${path}.${key} is not supported by schema version 1`);
 }
 
+function validateLauncherList(value, path, errors) {
+  if (!Array.isArray(value) || !value.length) {
+    errors.push(`${path} must be a non-empty launcher array`);
+    return;
+  }
+  value.forEach((launcher, index) => {
+    const itemPath = `${path}[${index}]`;
+    if (!assertObject(launcher, itemPath, errors)) return;
+    rejectUnknown(launcher, new Set(['launcherId', 'item', 'quantity']), itemPath, errors);
+    if (!Number.isInteger(launcher.launcherId) || launcher.launcherId < 0) errors.push(`${itemPath}.launcherId must be a non-negative integer`);
+    if (typeof launcher.item !== 'string' || !launcher.item.trim()) errors.push(`${itemPath}.item must be a non-empty string`);
+    if (!Number.isInteger(launcher.quantity) || launcher.quantity < 1) errors.push(`${itemPath}.quantity must be a positive integer`);
+  });
+}
+
 function normalizeSeed(raw) {
   const errors = [];
   if (!assertObject(raw, 'scenario seed', errors)) throw new GeneratorError('SEED_INVALID', 'Scenario seed is invalid', errors);
   rejectUnknown(raw, new Set([
     'schema_version', 'scenario_id', 'scenario_name', 'theater_id', 'date_time', 'playable_side',
     'rng_seed', 'archetype', 'premise', 'blue_intent', 'red_intent', 'escalation_constraints',
-    'duration_hours', 'force_policy', 'objectives', 'placement', 'variation', 'sea_state', 'svp', 'loadout_overrides', 'aviation_support',
+    'duration_hours', 'force_policy', 'objectives', 'placement', 'variation', 'sea_state', 'svp',
+    'loadout_overrides', 'loadout_selections', 'loadout_presets', 'aviation_support',
     'unit_directives',
     'continuity_assertions',
   ]), 'scenario seed', errors);
@@ -97,6 +113,21 @@ function normalizeSeed(raw) {
   if (raw.duration_hours !== undefined && (!Number.isFinite(raw.duration_hours) || raw.duration_hours <= 0)) errors.push('scenario seed.duration_hours must be positive');
   if (raw.sea_state !== undefined && (!Number.isInteger(raw.sea_state) || raw.sea_state < 0 || raw.sea_state > 9)) errors.push('scenario seed.sea_state must be an integer from 0 to 9');
   if (!assertObject(raw.placement, 'scenario seed.placement', errors)) errors.push('scenario seed.placement is required');
+  if (raw.loadout_overrides !== undefined && assertObject(raw.loadout_overrides, 'scenario seed.loadout_overrides', errors)) {
+    for (const [name, launchers] of Object.entries(raw.loadout_overrides)) validateLauncherList(launchers, `scenario seed.loadout_overrides.${name}`, errors);
+  }
+  if (raw.loadout_selections !== undefined && assertObject(raw.loadout_selections, 'scenario seed.loadout_selections', errors)) {
+    for (const [name, selection] of Object.entries(raw.loadout_selections)) {
+      if (typeof selection !== 'string' || !selection.trim()) errors.push(`scenario seed.loadout_selections.${name} must be a non-empty string`);
+    }
+  }
+  if (raw.loadout_presets !== undefined && assertObject(raw.loadout_presets, 'scenario seed.loadout_presets', errors)) {
+    for (const [className, presets] of Object.entries(raw.loadout_presets)) {
+      const classPath = `scenario seed.loadout_presets.${className}`;
+      if (!assertObject(presets, classPath, errors)) continue;
+      for (const [presetName, launchers] of Object.entries(presets)) validateLauncherList(launchers, `${classPath}.${presetName}`, errors);
+    }
+  }
   if (raw.unit_directives !== undefined && assertObject(raw.unit_directives, 'scenario seed.unit_directives', errors)) {
     for (const side of ['blue', 'red']) {
       const directives = raw.unit_directives[side] || {};
@@ -118,6 +149,8 @@ function normalizeSeed(raw) {
     objectives: {},
     variation: {},
     loadout_overrides: {},
+    loadout_selections: {},
+    loadout_presets: {},
     aviation_support: {},
     unit_directives: { blue: {}, red: {} },
     continuity_assertions: {},

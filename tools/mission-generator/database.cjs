@@ -33,6 +33,7 @@ class GameDatabase {
     if (missingTables.length) throw new GeneratorError('DATABASE_SCHEMA', 'Game database is missing required generation tables', missingTables);
     this.platformCache = new Map();
     this.loadoutCache = new Map();
+    this.loadoutCatalogCache = new Map();
   }
 
   close() {
@@ -54,16 +55,7 @@ class GameDatabase {
     return found;
   }
 
-  defaultLoadout(className, year) {
-    const key = `${className}:${year}`;
-    if (this.loadoutCache.has(key)) return this.loadoutCache.get(key);
-    const setup = this.db.prepare(`
-      SELECT LauncherLoadout, MagazineLoadout, SetupName
-      FROM platform_setup
-      WHERE DatabaseClass = ? AND InitialYear <= ? AND FinalYear >= ?
-      ORDER BY InitialYear DESC, SetupName ASC
-      LIMIT 1
-    `).get(className, year, year);
+  loadoutFromSetup(className, setup) {
     const launcherRows = setup?.LauncherLoadout ? this.db.prepare(`
       SELECT ll.LauncherId AS launcherId, ll.Item AS item, ll.Quantity AS quantity,
              pl.LauncherClass AS launcherClass
@@ -90,9 +82,52 @@ class GameDatabase {
     `).all(setup.MagazineLoadout).map((row) => ({
       magazineId: Number(row.magazineId), item: row.item, quantity: Number(row.quantity),
     })) : [];
-    const result = { setupName: setup?.SetupName || null, launchers, magazines };
+    return { setupName: setup?.SetupName || null, launchers, magazines };
+  }
+
+  applicableSetupRows(className, year) {
+    return this.db.prepare(`
+      SELECT LauncherLoadout, MagazineLoadout, SetupName
+      FROM platform_setup
+      WHERE DatabaseClass = ? AND InitialYear <= ? AND FinalYear >= ?
+      ORDER BY InitialYear DESC, SetupName ASC
+    `).all(className, year, year);
+  }
+
+  defaultLoadout(className, year) {
+    const key = `${className}:${year}`;
+    if (this.loadoutCache.has(key)) return this.loadoutCache.get(key);
+    const result = this.loadoutFromSetup(className, this.applicableSetupRows(className, year)[0]);
     this.loadoutCache.set(key, result);
     return result;
+  }
+
+  availableLoadouts(className, year) {
+    const key = `${className}:${year}`;
+    if (this.loadoutCatalogCache.has(key)) return this.loadoutCatalogCache.get(key);
+    const seen = new Set();
+    const result = this.applicableSetupRows(className, year)
+      .filter((setup) => {
+        if (seen.has(setup.SetupName)) return false;
+        seen.add(setup.SetupName);
+        return true;
+      })
+      .map((setup) => this.loadoutFromSetup(className, setup));
+    this.loadoutCatalogCache.set(key, result);
+    return result;
+  }
+
+  namedLoadout(className, year, setupName) {
+    const available = this.availableLoadouts(className, year);
+    const normalized = String(setupName).trim().replace(/\s+/g, ' ').toLowerCase();
+    const short = (name) => String(name).trim().replace(/\s+\d{4}(?:\.\d+)?$/, '').replace(/\s+/g, ' ').toLowerCase();
+    const matches = available.filter((loadout) => loadout.setupName === setupName
+      || loadout.setupName.trim().replace(/\s+/g, ' ').toLowerCase() === normalized
+      || short(loadout.setupName) === normalized);
+    if (matches.length === 1) return matches[0];
+    const names = available.map((loadout) => loadout.setupName);
+    if (matches.length > 1) throw new GeneratorError('DATABASE_LOADOUT_SELECTION', `Loadout ${setupName} is ambiguous for ${className} in ${year}`, matches.map((loadout) => loadout.setupName));
+    throw new GeneratorError('DATABASE_LOADOUT_SELECTION', `Loadout ${setupName} is not available for ${className} in ${year}`, names);
   }
 
   isLauncherCompatible(launcherClass, item) {

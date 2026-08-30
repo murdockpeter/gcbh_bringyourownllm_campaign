@@ -5,7 +5,10 @@ const test = require('node:test');
 const { normalizeState, normalizeSeed } = require('../../tools/mission-generator/inputs.cjs');
 const { createRng, hashValue } = require('../../tools/mission-generator/rng.cjs');
 const { eligibility, inferRole } = require('../../tools/mission-generator/state.cjs');
-const { scaledQuantity, missionSpeed, validatePackageBudget, validateAviationSupport } = require('../../tools/mission-generator/logistics.cjs');
+const {
+  scaledQuantity, missionSpeed, planUnit, loadoutItemMaximums, stockAviationMagazines,
+  validatePackageBudget, validateAviationSupport,
+} = require('../../tools/mission-generator/logistics.cjs');
 const { ARCHETYPES, getArchetype } = require('../../tools/mission-generator/archetypes.cjs');
 const { boundedQuantity, buildObjectives, assertApprovedGoals } = require('../../tools/mission-generator/objectives.cjs');
 const { jitterPoint, pointFromBox, placeUnits } = require('../../tools/mission-generator/placement.cjs');
@@ -13,6 +16,7 @@ const { scoreUnit, assessBalance } = require('../../tools/mission-generator/bala
 const { renderScenario } = require('../../tools/mission-generator/renderer.cjs');
 const { shiftLocalDateTime, applyVariation } = require('../../tools/mission-generator/variation.cjs');
 const { validateContinuity } = require('../../tools/mission-generator/continuity.cjs');
+const { summarizeLaunchers, loadoutMenus } = require('../../tools/mission-generator/loadout-picker.cjs');
 const { baseUnit, baseState, baseSeed, plannedUnit } = require('./fixtures.cjs');
 
 test('normalizes a valid campaign state', () => {
@@ -41,6 +45,32 @@ test('unit directives validate staged hosts and supported presence states', () =
   }));
   assert.equal(seed.unit_directives.blue['Tiger 1'].host, 'Carrier');
   assert.throws(() => normalizeSeed(baseSeed({ unit_directives: { blue: { Bad: { presence: 'teleported' } }, red: {} } })), /validation failed/);
+});
+
+test('seed accepts named loadout choices and validates custom presets', () => {
+  const seed = normalizeSeed(baseSeed({
+    loadout_selections: { 'Test Aircraft': 'maritime strike' },
+    loadout_presets: { 'Test Aircraft': { 'maritime strike': [{ launcherId: 0, item: 'Test Missile', quantity: 2 }] } },
+  }));
+  assert.equal(seed.loadout_selections['Test Aircraft'], 'maritime strike');
+  assert.throws(() => normalizeSeed(baseSeed({
+    loadout_presets: { 'Test Aircraft': { broken: [{ launcherId: -1, item: '', quantity: 0 }] } },
+  })), /validation failed/);
+});
+
+test('interactive loadout menus combine database setups and scenario presets', () => {
+  const state = baseState();
+  const seed = baseSeed({
+    date_time: '2026-05-23T16:30:00Z',
+    loadout_presets: { 'Test Ship': { strike: [{ launcherId: 0, item: 'Bomb', quantity: 2 }] } },
+  });
+  const database = {
+    platform: () => ({ domain: 'air' }),
+    availableLoadouts: () => [{ setupName: 'CAP', launchers: [{ item: 'Missile', quantity: 2 }, { item: 'Missile', quantity: 2 }] }],
+  };
+  const menus = loadoutMenus(state, seed, database);
+  assert.deepEqual(menus[0].choices.map((choice) => choice.name), ['strike', 'CAP']);
+  assert.equal(summarizeLaunchers(menus[0].choices[1].launchers), '4x Missile');
 });
 
 test('seeded RNG repeats draws and records their labels', () => {
@@ -129,6 +159,49 @@ test('placement jitter and air boxes are deterministic', () => {
 test('placement fails instead of inventing a missing ground location', () => {
   const ground = plannedUnit({ unit_name: 'Ground Node', domain: 'ground', role: 'air_defense' });
   assert.throws(() => placeUnits({ blue: [ground], red: [], rejected: [] }, baseSeed(), createRng('x')), /No valid ground position/);
+});
+
+test('named loadout selection sets the default while explicit overrides retain priority', () => {
+  const database = {
+    defaultLoadout: () => ({ setupName: 'default', launchers: [{ launcherId: 0, item: 'Default Missile', quantity: 2 }], magazines: [] }),
+    namedLoadout: (_className, _year, name) => ({
+      setupName: name,
+      launchers: [{ launcherId: 0, item: 'Named Missile', quantity: 4 }],
+      magazines: [{ magazineId: 0, item: 'Named Reload', quantity: 8 }],
+    }),
+    validateLoadout: (_className, launchers) => launchers,
+  };
+  const aircraft = { ...baseUnit({ platform_class: 'Test Aircraft' }), domain: 'air', role: 'fighter', platform: { maxSpeedKts: 500 } };
+  const named = planUnit(aircraft, database, 2026, null, 'fleet defense');
+  assert.equal(named.loadoutSetup, 'fleet defense');
+  assert.equal(named.launchers[0].item, 'Named Missile');
+  assert.equal(named.magazines[0].item, 'Named Reload');
+  const overridden = planUnit(aircraft, database, 2026, [{ launcherId: 0, item: 'Override Missile', quantity: 1 }], 'fleet defense');
+  assert.equal(overridden.loadoutSetup, 'scenario-seed override');
+  assert.equal(overridden.launchers[0].item, 'Override Missile');
+});
+
+test('host magazines cover every known loadout for every staged aircraft', () => {
+  assert.deepEqual([...loadoutItemMaximums([
+    { launchers: [{ item: 'A', quantity: 2 }, { item: 'A', quantity: 1 }] },
+    { launchers: [{ item: 'A', quantity: 1 }, { item: 'B', quantity: 4 }] },
+  ])], [['A', 3], ['B', 4]]);
+  const carrier = plannedUnit({ unit_name: 'Carrier', role: 'base', ammo_pct: 100, magazines: [{ magazineId: 0, item: 'Fuel', quantity: 100 }] });
+  const aircraft = ['Tiger 1', 'Tiger 2'].map((unit_name) => plannedUnit({
+    unit_name, platform_class: 'Test Aircraft', domain: 'air', role: 'fighter', presence: 'staged', host: 'Carrier',
+    loadoutSetup: 'default', launchers: [{ launcherId: 0, item: 'A', quantity: 1 }],
+  }));
+  const database = {
+    availableLoadouts: () => [
+      { setupName: 'air-to-air', launchers: [{ item: 'A', quantity: 3 }] },
+      { setupName: 'strike', launchers: [{ item: 'B', quantity: 4 }] },
+    ],
+    validateLoadout: (_className, launchers) => launchers,
+  };
+  const units = stockAviationMagazines({ blue: [carrier, ...aircraft], red: [], rejected: [] }, database, '2026-01-01T00:00:00Z');
+  const stores = Object.fromEntries(units.blue[0].magazines.map((entry) => [entry.item, entry.quantity]));
+  assert.deepEqual(stores, { A: 6, B: 8, Fuel: 100 });
+  assert.deepEqual(units.blue[0].aviationMagazine.catalog[0].loadouts, ['air-to-air', 'strike']);
 });
 
 test('objective composition supports independent named destruction groups', () => {

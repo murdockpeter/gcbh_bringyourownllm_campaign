@@ -7,7 +7,7 @@ const { createRng, canonicalJson, hashValue } = require('./rng.cjs');
 const { GameDatabase, defaultDatabasePath } = require('./database.cjs');
 const { indexCampaign } = require('./state.cjs');
 const { selectRoster } = require('./roster.cjs');
-const { applyLogistics } = require('./logistics.cjs');
+const { applyLogistics, stockAviationMagazines } = require('./logistics.cjs');
 const { getArchetype } = require('./archetypes.cjs');
 const { buildObjectives } = require('./objectives.cjs');
 const { placeUnits } = require('./placement.cjs');
@@ -40,12 +40,12 @@ async function generateMission(options) {
     const indexed = indexCampaign(inputs.state, database);
     const roster = selectRoster(indexed, seed, rng);
     const supplied = applyLogistics(
-      roster, database, seed.date_time, seed.loadout_overrides,
+      roster, database, seed.date_time, seed.loadout_overrides, seed.loadout_selections, seed.loadout_presets,
       inputs.state.sides, seed.aviation_support, seed.duration_hours,
     );
     const archetype = getArchetype(seed.archetype);
     const objectives = buildObjectives(supplied, seed, archetype);
-    const units = placeUnits(supplied, seed, rng);
+    const units = stockAviationMagazines(placeUnits(supplied, seed, rng), database, seed.date_time, seed.loadout_presets);
     const continuity = validateContinuity(units, seed.continuity_assertions);
     const balance = assessBalance(units, objectives);
     const model = { state: inputs.state, seed, sourceSeed: inputs.seed, variation: variation.applied, effectiveSeed, archetype, objectives, units, continuity, balance };

@@ -28,6 +28,8 @@ npm run generate -- `
   --manifest scenarios/generated_mission_v2.manifest.json
 ```
 
+Add `--choose-loadouts` to pause before generation and pick platform-wide aircraft loadouts from numbered lists. The menu includes every date-valid database setup plus the seed's custom presets, shows the stores in each choice, saves the selections back to the seed, and then continues generation. Press Enter or choose `0` to retain the current selection or database default.
+
 The effective RNG seed is resolved in this order:
 
 1. `--rng-seed`
@@ -65,7 +67,7 @@ Subsystem damage that the scenario API cannot express is retained in the manifes
 - protected and designated target sets and quantities;
 - independent named destruction groups when one mission requires separate thresholds, such as suppressing three coastal nodes while neutralizing two pickets;
 - surface starts/routes, aircraft operating boxes/tracks, and ground positions;
-- database-validated loadout overrides for platforms without a dated setup; and
+- named loadout selections, mission-specific loadout presets, and database-validated launcher overrides;
 - bounded variation for timing, sea state, reserve slots, contact visibility, positional jitter, surface-route variants, and air-route variants.
 - per-unit presence directives (`active`, `reserve`, `staged`, or `maintenance`), host platforms, tasks, starts, and routes for story-critical formations.
 - executable continuity assertions for required selections and exclusions, participation states, forbidden tasks, exact launcher totals, force counts, and unique surface waypoints.
@@ -86,7 +88,32 @@ Archetypes provide role requirements, default objective targets, tactical framin
 
 Platforms are resolved from the `ship`, `air`, `simpleair`, `ground`, and `sub` tables. Dated setups and launcher/magazine contents come from `platform_setup`, `launcher_loadout`, and `magazine_loadout`.
 
-The database's own dated default loadout is authoritative. When a setup assigns several weapon groups to one simulator launcher index, the generator deterministically selects the highest-quantity group because `SetUnitLauncherItem` can emit only one active child class per launcher. Seed-level loadout overrides are required when a platform has no dated setup, and every override launcher/item pair is checked against `platform_launcher`, `launcher_configuration`, and `equipment_group` before generation. A named-unit override takes precedence over a platform-class override so exact expenditure can be carried forward for one aircraft or ship without changing every unit of that class. An override is authoritative for the mission and suppresses the dated setup's magazine inventory, preventing unrelated database-default stores from being reintroduced behind an exact launcher state.
+The database's own dated default loadout remains authoritative when the seed makes no choice. A seed can select a date-valid database `SetupName` or a mission-specific named preset through `loadout_selections`. A named-unit selection takes precedence over a platform-class selection. Existing `loadout_overrides` remain the highest-priority escape hatch and are authoritative for exact launcher state.
+
+```json
+{
+  "loadout_selections": {
+    "F/A-18F": "AW2",
+    "Tiger 1": "SM1",
+    "F-15E": "standoff strike"
+  },
+  "loadout_presets": {
+    "F-15E": {
+      "standoff strike": [
+        { "launcherId": 0, "item": "GBU-39 SDB", "quantity": 8 },
+        { "launcherId": 1, "item": "AIM-120D", "quantity": 2 },
+        { "launcherId": 2, "item": "AIM-9X", "quantity": 2 }
+      ]
+    }
+  }
+}
+```
+
+Selection precedence is: named-unit `loadout_overrides`, platform-class `loadout_overrides`, named-unit `loadout_selections`, platform-class `loadout_selections`, then the deterministic database default. Every custom preset and override is checked against `platform_launcher`, `launcher_configuration`, and `equipment_group` before generation. When a database setup assigns several weapon groups to one simulator launcher index, the generator deterministically selects the highest-quantity group because `SetUnitLauncherItem` can emit only one active child class per launcher.
+
+For aircraft emitted as `staged` or `maintenance`, the generator also builds an aviation-store catalog on their declared carrier or airbase. It includes every date-valid database loadout plus every scenario preset known for that aircraft class. The host receives, for each store type, enough inventory to give every hosted aircraft one complete copy of whichever catalog loadout uses the most of that store; host `ammo_pct` scales the final quantity. The selected loadout is still applied to the aircraft at scenario start, while the alternate stores allow the player to change a reserve aircraft's loadout in the flight-deck interface. The manifest records the catalog and resulting host inventory.
+
+“All database loadouts” is literal. If the game database defines special or nuclear configurations as date-valid for an aircraft, their stores are included. Campaign authors who do not want those options should use a platform with an appropriately constrained database catalog until an exclusion policy is added.
 
 ## Quality gates
 
@@ -138,6 +165,7 @@ The generator tests cover input validation, deterministic RNG, availability, rol
 
 - Campaign ammunition is an abstract percentage, not exact launcher history; the deterministic scaling rule and result are recorded in the manifest.
 - A scenario may override a named unit's loadout when the campaign has exact launcher-history evidence. Staged and maintenance aircraft are emitted on their declared carrier or airfield instead of being forced airborne.
+- Host aviation magazines are stocked only for aircraft actually emitted on that host; off-map and already-airborne aircraft do not add rearm inventory.
 - The generator does not mutate campaign state or ingest battle logs.
 - Free-form LLM briefing generation is outside this rules-based pipeline.
 - A theater without an explicit theater definition and placement geometry is rejected.

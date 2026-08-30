@@ -30,7 +30,23 @@
     "sea_state": { "type": "integer", "minimum": 0, "maximum": 9 },
     "svp": { "type": "string" },
     "force_policy": { "type": "object" },
-    "loadout_overrides": { "type": "object" },
+    "loadout_overrides": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/launcherLoadout" }
+    },
+    "loadout_selections": {
+      "type": "object",
+      "description": "Named database setup or scenario preset selected by unit name or platform class. Named-unit entries take precedence.",
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
+    "loadout_presets": {
+      "type": "object",
+      "description": "Mission-specific named loadout choices keyed by aircraft platform class.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "$ref": "#/$defs/launcherLoadout" }
+      }
+    },
     "aviation_support": { "type": "object" },
     "unit_directives": {
       "type": "object",
@@ -44,5 +60,21 @@
     "objectives": { "type": "object" },
     "placement": { "type": "object" },
     "variation": { "type": "object" }
+  },
+  "$defs": {
+    "launcherLoadout": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["launcherId", "item", "quantity"],
+        "properties": {
+          "launcherId": { "type": "integer", "minimum": 0 },
+          "item": { "type": "string", "minLength": 1 },
+          "quantity": { "type": "integer", "minimum": 1 }
+        }
+      }
+    }
   }
 }

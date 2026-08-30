@@ -20,6 +20,10 @@ test('opens the game database read-only and resolves campaign classes/loadouts',
     const loadout = database.defaultLoadout('Arleigh Burke IIA DDGHM', 2026).launchers;
     assert.ok(loadout.length);
     assert.equal(new Set(loadout.map((launcher) => launcher.launcherId)).size, loadout.length);
+    const hornetLoadouts = database.availableLoadouts('F/A-18F', 2026);
+    assert.ok(hornetLoadouts.length > 1);
+    assert.equal(database.namedLoadout('F/A-18F', 2026, 'SM1').setupName.trim().replace(/\s+/g, ' '), 'SM1 2010');
+    assert.throws(() => database.namedLoadout('F/A-18F', 2026, 'not-a-loadout'), /not available/);
     assert.throws(() => database.validateLoadout('F-15E', [{ launcherId: 999, item: 'Imaginary', quantity: 1 }]), /invalid/);
   } finally {
     database.close();

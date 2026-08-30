@@ -1,0 +1,1794 @@
+{
+  "schema_version": 1,
+  "scenario_id": "crossed_sabers_001",
+  "scenario_name": "Operation Crossed Sabers",
+  "theater_id": "hormuz_mvp",
+  "date_time": "2026-05-23T16:30:00Z",
+  "playable_side": "blue",
+  "rng_seed": "crossed-sabers-turn-7-high-action",
+  "archetype": "limited_strike",
+  "premise": "Twenty-four hours after Narrow Furnace, the intact convoy completes its westward passage while BLUE launches a coordinated carrier and land-based attack on the remaining coastal kill chain. RED commits both rested Shahin F-14As and every surviving surface raider in a simultaneous counterstroke. The result is a compressed three-axis fight: counter-air over the Strait, surface action around the convoy lanes, and suppression of the Bastion and S-300 belt.",
+  "blue_intent": "Use Tiger as the flexible carrier element, Viper for precision suppression, and both P-8s for maritime targeting. Protect the carrier and at least four auxiliaries while striking the coastal-missile, air-defense, and surface-raider groups in parallel.",
+  "red_intent": "Launch Shahin immediately to contest the air picture, drive the six surviving raiders into converging attack lanes, and coordinate their pressure with the Bastion and S-300 batteries against BLUE high-value units.",
+  "escalation_constraints": [
+    "BLUE attacks remain limited to forces actively controlling or attacking the Hormuz corridor.",
+    "Bandar Abbas Strip itself is not a preplanned target, although launched Shahin aircraft may be engaged.",
+    "Civilian and neutral traffic remains outside the engagement authorization.",
+    "Neither side is authorized to employ nuclear weapons."
+  ],
+  "duration_hours": 6,
+  "sea_state": 3,
+  "force_policy": {
+    "blue": {
+      "max_units": 29
+    },
+    "red": {
+      "max_units": 16
+    }
+  },
+  "loadout_overrides": {
+    "Khanjar": [
+      {
+        "launcherId": 0,
+        "item": "RGM-84A Harpoon",
+        "quantity": 1
+      },
+      {
+        "launcherId": 2,
+        "item": "76mm HE-MOM",
+        "quantity": 1
+      },
+      {
+        "launcherId": 3,
+        "item": "40mm HE-T",
+        "quantity": 20
+      }
+    ],
+    "Falakhon": [
+      {
+        "launcherId": 3,
+        "item": "40mm HE-T",
+        "quantity": 12
+      }
+    ],
+    "IRIS Dena": [
+      {
+        "launcherId": 0,
+        "item": "76mm HC",
+        "quantity": 60
+      },
+      {
+        "launcherId": 1,
+        "item": "Noor",
+        "quantity": 2
+      },
+      {
+        "launcherId": 2,
+        "item": "Noor",
+        "quantity": 2
+      },
+      {
+        "launcherId": 4,
+        "item": "20mm HE-T x2",
+        "quantity": 50
+      }
+    ],
+    "S-300 Site North": [
+      {
+        "launcherId": 0,
+        "item": "48N6E2",
+        "quantity": 2
+      },
+      {
+        "launcherId": 1,
+        "item": "48N6E2",
+        "quantity": 2
+      },
+      {
+        "launcherId": 2,
+        "item": "48N6E2",
+        "quantity": 2
+      },
+      {
+        "launcherId": 3,
+        "item": "48N6E2",
+        "quantity": 1
+      }
+    ],
+    "K-300P Bastion-P": [
+      {
+        "launcherId": 0,
+        "item": "P-800 Oniks",
+        "quantity": 2
+      }
+    ]
+  },
+  "aviation_support": {
+    "blue": {
+      "mode": "in_scenario"
+    },
+    "red": {
+      "mode": "in_scenario"
+    }
+  },
+  "objectives": {
+    "protect": {
+      "blue": [
+        "USS George H.W. Bush",
+        "RFA Fort Victoria",
+        "USNS John Ericsson",
+        "USNS Amelia Earhart",
+        "RFA Tidespring",
+        "USNS Guadalupe",
+        "USNS Cesar Chavez"
+      ]
+    },
+    "protect_quantity": {
+      "blue": 5
+    },
+    "destroy_groups": {
+      "blue": [
+        {
+          "label": "break the coastal missile batteries",
+          "targets": [
+            "Bastion 1",
+            "Bastion 2",
+            "Bastion 3"
+          ],
+          "quantity": 2
+        },
+        {
+          "label": "reduce the integrated air-defense belt",
+          "targets": [
+            "S-300 Site North",
+            "Pantsir 1",
+            "Pantsir 2",
+            "Pantsir 3"
+          ],
+          "quantity": 2
+        },
+        {
+          "label": "defeat the converging surface raiders",
+          "targets": [
+            "Khanjar",
+            "Falakhon",
+            "Scimitar",
+            "Zolfaghar",
+            "Tsunami 1",
+            "Tsunami 2"
+          ],
+          "quantity": 4
+        }
+      ]
+    },
+    "destroy_quantity": {
+      "red": 4
+    }
+  },
+  "unit_directives": {
+    "blue": {
+      "USS Dextrous": {
+        "presence": "active",
+        "speed": 10,
+        "heading": 285
+      },
+      "USS Devastator": {
+        "presence": "active",
+        "speed": 10,
+        "heading": 285
+      },
+      "USNS Amelia Earhart": {
+        "presence": "active",
+        "speed": 12,
+        "heading": 285
+      },
+      "USNS John Ericsson": {
+        "presence": "active",
+        "speed": 12,
+        "heading": 285
+      },
+      "RFA Fort Victoria": {
+        "presence": "active",
+        "speed": 12,
+        "heading": 285
+      },
+      "USNS Cesar Chavez": {
+        "presence": "active",
+        "speed": 12,
+        "heading": 285
+      },
+      "USNS Guadalupe": {
+        "presence": "active",
+        "speed": 12,
+        "heading": 285
+      },
+      "RFA Tidespring": {
+        "presence": "active",
+        "speed": 12,
+        "heading": 285
+      },
+      "HMS Diamond": {
+        "presence": "active",
+        "speed": 16,
+        "heading": 285
+      },
+      "USS Chosin": {
+        "presence": "active",
+        "speed": 16,
+        "heading": 285
+      },
+      "HMS Richmond": {
+        "presence": "active",
+        "speed": 16,
+        "heading": 285
+      },
+      "USS Tempest": {
+        "presence": "active",
+        "speed": 14,
+        "heading": 285
+      },
+      "USS Mason": {
+        "presence": "active",
+        "speed": 16,
+        "heading": 285
+      },
+      "USS Thomas Hudner": {
+        "presence": "active",
+        "speed": 16,
+        "heading": 285
+      },
+      "USS Arleigh Burke": {
+        "presence": "active",
+        "speed": 16,
+        "heading": 285
+      },
+      "USCGC Stone": {
+        "presence": "active",
+        "speed": 14,
+        "heading": 285
+      },
+      "USS George H.W. Bush": {
+        "presence": "active",
+        "speed": 16,
+        "heading": 305,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "Nav"
+        ]
+      },
+      "Al Dhafra Air Base": {
+        "presence": "reserve",
+        "always_visible": true
+      },
+      "Tiger 1": {
+        "presence": "active",
+        "speed": 410,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      },
+      "Tiger 2": {
+        "presence": "active",
+        "speed": 410,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      },
+      "Tiger 3": {
+        "presence": "active",
+        "speed": 410,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      },
+      "Tiger 4": {
+        "presence": "active",
+        "speed": 410,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      },
+      "Viper 1": {
+        "presence": "active",
+        "speed": 410,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      },
+      "Viper 2": {
+        "presence": "active",
+        "speed": 410,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      },
+      "Wildcat 1": {
+        "presence": "maintenance",
+        "host": "Al Dhafra Air Base",
+        "flight_deck_location": 1
+      },
+      "Broadarrow": {
+        "presence": "active",
+        "speed": 320,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      },
+      "Trident": {
+        "presence": "active",
+        "speed": 320,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      },
+      "Sentinel": {
+        "presence": "active",
+        "speed": 280,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "Shell 1": {
+        "presence": "active",
+        "speed": 310,
+        "heading": 300,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      }
+    },
+    "red": {
+      "Khanjar": {
+        "presence": "active",
+        "speed": 22,
+        "heading": 110,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "Falakhon": {
+        "presence": "active",
+        "speed": 22,
+        "heading": 110,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "Tsunami 2": {
+        "presence": "active",
+        "speed": 22,
+        "heading": 110,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "Scimitar": {
+        "presence": "active",
+        "speed": 22,
+        "heading": 110,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "Zolfaghar": {
+        "presence": "active",
+        "speed": 22,
+        "heading": 110,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "Tsunami 1": {
+        "presence": "active",
+        "speed": 22,
+        "heading": 110,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "Bastion 1": {
+        "presence": "active",
+        "always_visible": true
+      },
+      "Bastion 2": {
+        "presence": "active",
+        "always_visible": true
+      },
+      "Bastion 3": {
+        "presence": "active",
+        "always_visible": true
+      },
+      "Pantsir 1": {
+        "presence": "active",
+        "always_visible": true
+      },
+      "Pantsir 2": {
+        "presence": "active",
+        "always_visible": true
+      },
+      "Pantsir 3": {
+        "presence": "active",
+        "always_visible": true
+      },
+      "S-300 Site North": {
+        "presence": "active",
+        "always_visible": true
+      },
+      "Bandar Abbas Strip": {
+        "presence": "reserve",
+        "always_visible": true
+      },
+      "Shahin 1": {
+        "presence": "active",
+        "speed": 420,
+        "heading": 190,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      },
+      "Shahin 2": {
+        "presence": "active",
+        "speed": 420,
+        "heading": 190,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "AirEvade",
+          "Nav"
+        ]
+      }
+    }
+  },
+  "continuity_assertions": {
+    "required_counts": {
+      "blue": 29,
+      "red": 16
+    },
+    "required_selected": {
+      "blue": [
+        "RFA Fort Victoria",
+        "USNS John Ericsson",
+        "USNS Amelia Earhart",
+        "RFA Tidespring",
+        "USNS Guadalupe",
+        "USNS Cesar Chavez",
+        "USS Mason",
+        "USS Chosin",
+        "USS Thomas Hudner",
+        "USS Arleigh Burke",
+        "HMS Diamond",
+        "HMS Richmond",
+        "USS Tempest",
+        "USCGC Stone",
+        "USS Devastator",
+        "USS Dextrous",
+        "USS George H.W. Bush",
+        "Al Dhafra Air Base",
+        "Tiger 1",
+        "Tiger 2",
+        "Tiger 3",
+        "Tiger 4",
+        "Viper 1",
+        "Viper 2",
+        "Wildcat 1",
+        "Broadarrow",
+        "Trident",
+        "Sentinel",
+        "Shell 1"
+      ],
+      "red": [
+        "Khanjar",
+        "Falakhon",
+        "Scimitar",
+        "Zolfaghar",
+        "Tsunami 1",
+        "Tsunami 2",
+        "Bastion 1",
+        "Bastion 2",
+        "Bastion 3",
+        "Pantsir 1",
+        "Pantsir 2",
+        "Pantsir 3",
+        "S-300 Site North",
+        "Bandar Abbas Strip",
+        "Shahin 1",
+        "Shahin 2"
+      ]
+    },
+    "required_rejected": {
+      "blue": [
+        "Wildcat 2",
+        "Lancer 1",
+        "Lancer 2"
+      ],
+      "red": [
+        "Fulcrum 1",
+        "Fulcrum 2",
+        "Fulcrum 3",
+        "Fulcrum 4",
+        "Fencer 1",
+        "Fencer 2",
+        "Dagger",
+        "IRIS Sahand",
+        "IRIS Dena",
+        "Coastwatch 1"
+      ]
+    },
+    "required_presence": {
+      "blue": {
+        "Wildcat 1": "maintenance",
+        "Tiger 1": "active",
+        "Tiger 2": "active",
+        "Tiger 3": "active",
+        "Tiger 4": "active",
+        "Viper 1": "active",
+        "Viper 2": "active",
+        "Trident": "active"
+      },
+      "red": {
+        "Shahin 1": "active",
+        "Shahin 2": "active",
+        "Scimitar": "active",
+        "Zolfaghar": "active",
+        "Tsunami 1": "active",
+        "Tsunami 2": "active"
+      }
+    },
+    "required_loadout_totals": {
+      "Khanjar": {
+        "76mm HE-MOM": 1
+      },
+      "Falakhon": {
+        "76mm HE-MOM": 0
+      },
+      "S-300 Site North": {
+        "48N6E2": 4
+      },
+      "Bastion 1": {
+        "P-800 Oniks": 2
+      },
+      "Bastion 2": {
+        "P-800 Oniks": 2
+      },
+      "Bastion 3": {
+        "P-800 Oniks": 2
+      }
+    },
+    "unique_surface_waypoints": true
+  },
+  "placement": {
+    "unit_positions": {
+      "blue": {
+        "USS Dextrous": {
+          "lat": 26.015,
+          "lon": 56.955
+        },
+        "USS Devastator": {
+          "lat": 25.98,
+          "lon": 56.925
+        },
+        "USNS Amelia Earhart": {
+          "lat": 25.958,
+          "lon": 57.018
+        },
+        "USNS John Ericsson": {
+          "lat": 25.913,
+          "lon": 57.063
+        },
+        "RFA Fort Victoria": {
+          "lat": 25.868,
+          "lon": 57.108
+        },
+        "USNS Cesar Chavez": {
+          "lat": 25.922,
+          "lon": 56.982
+        },
+        "USNS Guadalupe": {
+          "lat": 25.877,
+          "lon": 57.027
+        },
+        "RFA Tidespring": {
+          "lat": 25.832,
+          "lon": 57.072
+        },
+        "HMS Diamond": {
+          "lat": 26.03,
+          "lon": 57.09
+        },
+        "USS Chosin": {
+          "lat": 25.975,
+          "lon": 57.145
+        },
+        "HMS Richmond": {
+          "lat": 25.92,
+          "lon": 57.2
+        },
+        "USS Tempest": {
+          "lat": 25.945,
+          "lon": 57.075
+        },
+        "USS Mason": {
+          "lat": 25.895,
+          "lon": 56.935
+        },
+        "USS Thomas Hudner": {
+          "lat": 25.84,
+          "lon": 56.99
+        },
+        "USS Arleigh Burke": {
+          "lat": 25.785,
+          "lon": 57.045
+        },
+        "USCGC Stone": {
+          "lat": 25.9,
+          "lon": 57
+        },
+        "USS George H.W. Bush": {
+          "lat": 25.323411,
+          "lon": 58.113014
+        },
+        "Tiger 3": {
+          "lat": 25.62,
+          "lon": 57.82,
+          "altitude": 7800
+        },
+        "Tiger 4": {
+          "lat": 25.58,
+          "lon": 57.88,
+          "altitude": 7800
+        },
+        "Broadarrow": {
+          "lat": 26.05,
+          "lon": 57.55,
+          "altitude": 7600
+        },
+        "Trident": {
+          "lat": 25.55,
+          "lon": 58.1,
+          "altitude": 7600
+        },
+        "Sentinel": {
+          "lat": 25.35,
+          "lon": 57.9,
+          "altitude": 8500
+        },
+        "Shell 1": {
+          "lat": 25.1,
+          "lon": 58.1,
+          "altitude": 9000
+        },
+        "Tiger 1": {
+          "lat": 25.65,
+          "lon": 57.35,
+          "altitude": 8500
+        },
+        "Tiger 2": {
+          "lat": 25.58,
+          "lon": 57.42,
+          "altitude": 8500
+        },
+        "Viper 1": {
+          "lat": 25.25,
+          "lon": 56.55,
+          "altitude": 7600
+        },
+        "Viper 2": {
+          "lat": 25.18,
+          "lon": 56.62,
+          "altitude": 7600
+        }
+      },
+      "red": {
+        "Khanjar": {
+          "lat": 26.43,
+          "lon": 56.44
+        },
+        "Falakhon": {
+          "lat": 26.4,
+          "lon": 56.46
+        },
+        "Scimitar": {
+          "lat": 26.37,
+          "lon": 55.7
+        },
+        "Zolfaghar": {
+          "lat": 26.32,
+          "lon": 55.66
+        },
+        "Tsunami 1": {
+          "lat": 26.27,
+          "lon": 55.62
+        },
+        "Tsunami 2": {
+          "lat": 26.22,
+          "lon": 55.58
+        },
+        "Shahin 1": {
+          "lat": 26.68,
+          "lon": 56.75,
+          "altitude": 9200
+        },
+        "Shahin 2": {
+          "lat": 26.62,
+          "lon": 56.84,
+          "altitude": 9200
+        }
+      }
+    },
+    "unit_routes": {
+      "blue": {
+        "USS Dextrous": [
+          {
+            "lat": 26.188,
+            "lon": 56.8
+          },
+          {
+            "lat": 26.413,
+            "lon": 56.535
+          },
+          {
+            "lat": 26.443,
+            "lon": 56.385
+          },
+          {
+            "lat": 26.423,
+            "lon": 56.1
+          },
+          {
+            "lat": 26.423,
+            "lon": 55.8
+          }
+        ],
+        "USNS Amelia Earhart": [
+          {
+            "lat": 26.184,
+            "lon": 56.8
+          },
+          {
+            "lat": 26.409,
+            "lon": 56.535
+          },
+          {
+            "lat": 26.439,
+            "lon": 56.385
+          },
+          {
+            "lat": 26.419,
+            "lon": 56.1
+          },
+          {
+            "lat": 26.419,
+            "lon": 55.8
+          }
+        ],
+        "USNS John Ericsson": [
+          {
+            "lat": 26.18,
+            "lon": 56.8
+          },
+          {
+            "lat": 26.405,
+            "lon": 56.535
+          },
+          {
+            "lat": 26.435,
+            "lon": 56.385
+          },
+          {
+            "lat": 26.415,
+            "lon": 56.1
+          },
+          {
+            "lat": 26.415,
+            "lon": 55.8
+          }
+        ],
+        "RFA Fort Victoria": [
+          {
+            "lat": 26.176,
+            "lon": 56.8
+          },
+          {
+            "lat": 26.401,
+            "lon": 56.535
+          },
+          {
+            "lat": 26.431,
+            "lon": 56.385
+          },
+          {
+            "lat": 26.411,
+            "lon": 56.1
+          },
+          {
+            "lat": 26.411,
+            "lon": 55.8
+          }
+        ],
+        "USS Tempest": [
+          {
+            "lat": 26.172,
+            "lon": 56.8
+          },
+          {
+            "lat": 26.397,
+            "lon": 56.535
+          },
+          {
+            "lat": 26.427,
+            "lon": 56.385
+          },
+          {
+            "lat": 26.407,
+            "lon": 56.1
+          },
+          {
+            "lat": 26.407,
+            "lon": 55.8
+          }
+        ],
+        "USS Devastator": [
+          {
+            "lat": 26.168,
+            "lon": 56.77
+          },
+          {
+            "lat": 26.403,
+            "lon": 56.525
+          },
+          {
+            "lat": 26.428,
+            "lon": 56.38
+          },
+          {
+            "lat": 26.408,
+            "lon": 56.08
+          },
+          {
+            "lat": 26.408,
+            "lon": 55.78
+          }
+        ],
+        "USNS Cesar Chavez": [
+          {
+            "lat": 26.164,
+            "lon": 56.77
+          },
+          {
+            "lat": 26.399,
+            "lon": 56.525
+          },
+          {
+            "lat": 26.424,
+            "lon": 56.38
+          },
+          {
+            "lat": 26.404,
+            "lon": 56.08
+          },
+          {
+            "lat": 26.404,
+            "lon": 55.78
+          }
+        ],
+        "USNS Guadalupe": [
+          {
+            "lat": 26.16,
+            "lon": 56.77
+          },
+          {
+            "lat": 26.395,
+            "lon": 56.525
+          },
+          {
+            "lat": 26.42,
+            "lon": 56.38
+          },
+          {
+            "lat": 26.4,
+            "lon": 56.08
+          },
+          {
+            "lat": 26.4,
+            "lon": 55.78
+          }
+        ],
+        "RFA Tidespring": [
+          {
+            "lat": 26.156,
+            "lon": 56.77
+          },
+          {
+            "lat": 26.391,
+            "lon": 56.525
+          },
+          {
+            "lat": 26.416,
+            "lon": 56.38
+          },
+          {
+            "lat": 26.396,
+            "lon": 56.08
+          },
+          {
+            "lat": 26.396,
+            "lon": 55.78
+          }
+        ],
+        "USCGC Stone": [
+          {
+            "lat": 26.152,
+            "lon": 56.77
+          },
+          {
+            "lat": 26.387,
+            "lon": 56.525
+          },
+          {
+            "lat": 26.412,
+            "lon": 56.38
+          },
+          {
+            "lat": 26.392,
+            "lon": 56.08
+          },
+          {
+            "lat": 26.392,
+            "lon": 55.78
+          }
+        ],
+        "HMS Diamond": [
+          {
+            "lat": 26.211,
+            "lon": 56.815
+          },
+          {
+            "lat": 26.436,
+            "lon": 56.55
+          },
+          {
+            "lat": 26.466,
+            "lon": 56.4
+          },
+          {
+            "lat": 26.446,
+            "lon": 56.12
+          },
+          {
+            "lat": 26.446,
+            "lon": 55.82
+          }
+        ],
+        "USS Chosin": [
+          {
+            "lat": 26.205,
+            "lon": 56.815
+          },
+          {
+            "lat": 26.43,
+            "lon": 56.55
+          },
+          {
+            "lat": 26.46,
+            "lon": 56.4
+          },
+          {
+            "lat": 26.44,
+            "lon": 56.12
+          },
+          {
+            "lat": 26.44,
+            "lon": 55.82
+          }
+        ],
+        "HMS Richmond": [
+          {
+            "lat": 26.199,
+            "lon": 56.815
+          },
+          {
+            "lat": 26.424,
+            "lon": 56.55
+          },
+          {
+            "lat": 26.454,
+            "lon": 56.4
+          },
+          {
+            "lat": 26.434,
+            "lon": 56.12
+          },
+          {
+            "lat": 26.434,
+            "lon": 55.82
+          }
+        ],
+        "USS Mason": [
+          {
+            "lat": 26.146,
+            "lon": 56.77
+          },
+          {
+            "lat": 26.396,
+            "lon": 56.53
+          },
+          {
+            "lat": 26.426,
+            "lon": 56.38
+          },
+          {
+            "lat": 26.406,
+            "lon": 56.08
+          },
+          {
+            "lat": 26.406,
+            "lon": 55.78
+          }
+        ],
+        "USS Thomas Hudner": [
+          {
+            "lat": 26.14,
+            "lon": 56.769
+          },
+          {
+            "lat": 26.39,
+            "lon": 56.529
+          },
+          {
+            "lat": 26.42,
+            "lon": 56.379
+          },
+          {
+            "lat": 26.4,
+            "lon": 56.079
+          },
+          {
+            "lat": 26.4,
+            "lon": 55.779
+          }
+        ],
+        "USS Arleigh Burke": [
+          {
+            "lat": 26.134,
+            "lon": 56.77
+          },
+          {
+            "lat": 26.384,
+            "lon": 56.53
+          },
+          {
+            "lat": 26.414,
+            "lon": 56.38
+          },
+          {
+            "lat": 26.394,
+            "lon": 56.08
+          },
+          {
+            "lat": 26.394,
+            "lon": 55.78
+          }
+        ],
+        "USS George H.W. Bush": [
+          {
+            "lat": 25.4,
+            "lon": 57.95
+          },
+          {
+            "lat": 25.55,
+            "lon": 57.75
+          },
+          {
+            "lat": 25.35,
+            "lon": 58.05
+          }
+        ],
+        "Tiger 3": [
+          {
+            "lat": 25.95,
+            "lon": 57.3,
+            "altitude": 8200,
+            "speed": 380
+          },
+          {
+            "lat": 26.28,
+            "lon": 56.82,
+            "altitude": 8200,
+            "speed": 380
+          },
+          {
+            "lat": 26.02,
+            "lon": 57.38,
+            "altitude": 8200,
+            "speed": 380
+          }
+        ],
+        "Tiger 4": [
+          {
+            "lat": 25.91,
+            "lon": 57.34,
+            "altitude": 8200,
+            "speed": 380
+          },
+          {
+            "lat": 26.24,
+            "lon": 56.88,
+            "altitude": 8200,
+            "speed": 380
+          },
+          {
+            "lat": 25.98,
+            "lon": 57.42,
+            "altitude": 8200,
+            "speed": 380
+          }
+        ],
+        "Broadarrow": [
+          {
+            "lat": 26.2,
+            "lon": 57.1,
+            "altitude": 7600,
+            "speed": 280
+          },
+          {
+            "lat": 26.3,
+            "lon": 56.78,
+            "altitude": 7600,
+            "speed": 280
+          },
+          {
+            "lat": 25.95,
+            "lon": 57.3,
+            "altitude": 7600,
+            "speed": 280
+          }
+        ],
+        "Trident": [
+          {
+            "lat": 25.75,
+            "lon": 57.75,
+            "altitude": 7600,
+            "speed": 280
+          },
+          {
+            "lat": 25.45,
+            "lon": 58.2,
+            "altitude": 7600,
+            "speed": 280
+          }
+        ],
+        "Sentinel": [
+          {
+            "lat": 25.45,
+            "lon": 57.65,
+            "altitude": 8500,
+            "speed": 260
+          },
+          {
+            "lat": 25.2,
+            "lon": 58.05,
+            "altitude": 8500,
+            "speed": 260
+          }
+        ],
+        "Shell 1": [
+          {
+            "lat": 25.2,
+            "lon": 57.85,
+            "altitude": 9000,
+            "speed": 300
+          },
+          {
+            "lat": 24.95,
+            "lon": 58.25,
+            "altitude": 9000,
+            "speed": 300
+          }
+        ]
+      },
+      "red": {
+        "Khanjar": [
+          {
+            "lat": 26.38,
+            "lon": 56.55
+          },
+          {
+            "lat": 26.24,
+            "lon": 56.68
+          },
+          {
+            "lat": 26.1,
+            "lon": 56.8
+          }
+        ],
+        "Falakhon": [
+          {
+            "lat": 26.35,
+            "lon": 56.57
+          },
+          {
+            "lat": 26.21,
+            "lon": 56.7
+          },
+          {
+            "lat": 26.07,
+            "lon": 56.82
+          }
+        ],
+        "Scimitar": [
+          {
+            "lat": 26.37,
+            "lon": 55.98
+          },
+          {
+            "lat": 26.37,
+            "lon": 56.16
+          },
+          {
+            "lat": 26.36,
+            "lon": 56.3
+          }
+        ],
+        "Zolfaghar": [
+          {
+            "lat": 26.32,
+            "lon": 55.94
+          },
+          {
+            "lat": 26.32,
+            "lon": 56.12
+          },
+          {
+            "lat": 26.31,
+            "lon": 56.26
+          }
+        ],
+        "Tsunami 1": [
+          {
+            "lat": 26.27,
+            "lon": 55.9
+          },
+          {
+            "lat": 26.27,
+            "lon": 56.04
+          },
+          {
+            "lat": 26.28,
+            "lon": 56.12
+          }
+        ],
+        "Tsunami 2": [
+          {
+            "lat": 26.22,
+            "lon": 55.86
+          },
+          {
+            "lat": 26.22,
+            "lon": 55.98
+          },
+          {
+            "lat": 26.24,
+            "lon": 56.06
+          }
+        ],
+        "Shahin 1": [
+          {
+            "lat": 26.35,
+            "lon": 56.45,
+            "altitude": 9200,
+            "speed": 420
+          },
+          {
+            "lat": 25.95,
+            "lon": 56.75,
+            "altitude": 8800,
+            "speed": 420
+          },
+          {
+            "lat": 26.45,
+            "lon": 56.95,
+            "altitude": 9200,
+            "speed": 420
+          }
+        ],
+        "Shahin 2": [
+          {
+            "lat": 26.28,
+            "lon": 56.52,
+            "altitude": 9000,
+            "speed": 420
+          },
+          {
+            "lat": 25.88,
+            "lon": 56.82,
+            "altitude": 8600,
+            "speed": 420
+          },
+          {
+            "lat": 26.38,
+            "lon": 57.02,
+            "altitude": 9000,
+            "speed": 420
+          }
+        ]
+      }
+    },
+    "ground_positions": {
+      "Al Dhafra Air Base": {
+        "lat": 24.248,
+        "lon": 54.547,
+        "altitude": 20
+      },
+      "Bastion 1": {
+        "lat": 26.83544,
+        "lon": 56.3337,
+        "altitude": 10
+      },
+      "Bastion 2": {
+        "lat": 26.88,
+        "lon": 56.398544,
+        "altitude": 10
+      },
+      "Bastion 3": {
+        "lat": 27.052409,
+        "lon": 56.48362,
+        "altitude": 10
+      },
+      "Pantsir 1": {
+        "lat": 26.834632,
+        "lon": 56.338093,
+        "altitude": 10
+      },
+      "Pantsir 2": {
+        "lat": 26.870324,
+        "lon": 56.399035,
+        "altitude": 10
+      },
+      "Pantsir 3": {
+        "lat": 27.053302,
+        "lon": 56.482007,
+        "altitude": 10
+      },
+      "S-300 Site North": {
+        "lat": 27.036039,
+        "lon": 56.865368,
+        "altitude": 10
+      },
+      "Coastwatch 1": {
+        "lat": 26.792083,
+        "lon": 56.078986,
+        "altitude": 10
+      },
+      "Bandar Abbas Strip": {
+        "lat": 27.08,
+        "lon": 56.98,
+        "altitude": 12
+      }
+    },
+    "air_boxes": {
+      "blue": {
+        "south": 24.9,
+        "north": 26.1,
+        "west": 56.4,
+        "east": 58,
+        "altitude": 8200
+      },
+      "red": {
+        "south": 26.1,
+        "north": 26.9,
+        "west": 56,
+        "east": 57.1,
+        "altitude": 9000
+      }
+    }
+  },
+  "variation": {
+    "position_jitter_nm": 0,
+    "time_offset_minutes": [
+      0,
+      0
+    ],
+    "sea_state_range": [
+      3,
+      3
+    ],
+    "reserve_slots": {
+      "blue": [
+        0,
+        0
+      ],
+      "red": [
+        0,
+        0
+      ]
+    },
+    "contact_visibility_fraction": {
+      "blue": 0,
+      "red": 0
+    }
+  },
+  "loadout_presets": {
+    "F-15E": {
+      "precision strike": [
+        {
+          "launcherId": 0,
+          "item": "GBU-39 SDB",
+          "quantity": 8
+        },
+        {
+          "launcherId": 1,
+          "item": "AIM-120D",
+          "quantity": 2
+        },
+        {
+          "launcherId": 2,
+          "item": "AIM-9X",
+          "quantity": 2
+        },
+        {
+          "launcherId": 3,
+          "item": "GBU-12/B",
+          "quantity": 4
+        },
+        {
+          "launcherId": 4,
+          "item": "GBU-31A(v)2",
+          "quantity": 2
+        },
+        {
+          "launcherId": 6,
+          "item": "Flare-1",
+          "quantity": 120
+        },
+        {
+          "launcherId": 7,
+          "item": "Chaff-1",
+          "quantity": 120
+        },
+        {
+          "launcherId": 8,
+          "item": "20mm PGU",
+          "quantity": 46
+        }
+      ],
+      "deep strike": [
+        {
+          "launcherId": 0,
+          "item": "AGM-130",
+          "quantity": 2
+        },
+        {
+          "launcherId": 1,
+          "item": "AIM-120D",
+          "quantity": 2
+        },
+        {
+          "launcherId": 2,
+          "item": "AIM-9X",
+          "quantity": 2
+        },
+        {
+          "launcherId": 3,
+          "item": "GBU-12/B",
+          "quantity": 4
+        },
+        {
+          "launcherId": 4,
+          "item": "GBU-31A(v)2",
+          "quantity": 2
+        },
+        {
+          "launcherId": 5,
+          "item": "GBU-28B/B",
+          "quantity": 1
+        },
+        {
+          "launcherId": 6,
+          "item": "Flare-1",
+          "quantity": 120
+        },
+        {
+          "launcherId": 7,
+          "item": "Chaff-1",
+          "quantity": 120
+        },
+        {
+          "launcherId": 8,
+          "item": "20mm PGU",
+          "quantity": 46
+        }
+      ],
+      "close interdiction": [
+        {
+          "launcherId": 0,
+          "item": "AGM-65J",
+          "quantity": 4
+        },
+        {
+          "launcherId": 1,
+          "item": "AIM-120D",
+          "quantity": 2
+        },
+        {
+          "launcherId": 2,
+          "item": "AIM-9X",
+          "quantity": 2
+        },
+        {
+          "launcherId": 3,
+          "item": "Mk-82",
+          "quantity": 6
+        },
+        {
+          "launcherId": 4,
+          "item": "GBU-12/B",
+          "quantity": 4
+        },
+        {
+          "launcherId": 5,
+          "item": "GBU-12/B",
+          "quantity": 2
+        },
+        {
+          "launcherId": 6,
+          "item": "Flare-1",
+          "quantity": 120
+        },
+        {
+          "launcherId": 7,
+          "item": "Chaff-1",
+          "quantity": 120
+        },
+        {
+          "launcherId": 8,
+          "item": "20mm PGU",
+          "quantity": 46
+        }
+      ]
+    },
+    "P-8 MPA": {
+      "maritime strike": [
+        {
+          "launcherId": 0,
+          "item": "Mk-46 Mod5",
+          "quantity": 4
+        },
+        {
+          "launcherId": 1,
+          "item": "AGM-84D Harpoon",
+          "quantity": 4
+        },
+        {
+          "launcherId": 5,
+          "item": "AN/AAQ-24 Nemesis Laser Beam",
+          "quantity": 100
+        },
+        {
+          "launcherId": 6,
+          "item": "Chaff-1",
+          "quantity": 30
+        },
+        {
+          "launcherId": 7,
+          "item": "Flare-1",
+          "quantity": 30
+        }
+      ],
+      "ASW barrier": [
+        {
+          "launcherId": 0,
+          "item": "Mk-46 Mod5",
+          "quantity": 4
+        },
+        {
+          "launcherId": 1,
+          "item": "AGM-84D Harpoon",
+          "quantity": 2
+        },
+        {
+          "launcherId": 2,
+          "item": "DICASS (90) Sonobuoy",
+          "quantity": 17
+        },
+        {
+          "launcherId": 3,
+          "item": "LOFAR (90) Sonobuoy",
+          "quantity": 17
+        },
+        {
+          "launcherId": 4,
+          "item": "DIFAR (90) Sonobuoy",
+          "quantity": 50
+        },
+        {
+          "launcherId": 5,
+          "item": "AN/AAQ-24 Nemesis Laser Beam",
+          "quantity": 100
+        },
+        {
+          "launcherId": 6,
+          "item": "Chaff-1",
+          "quantity": 30
+        },
+        {
+          "launcherId": 7,
+          "item": "Flare-1",
+          "quantity": 30
+        }
+      ]
+    },
+    "F-14A": {
+      "fleet defense": [
+        {
+          "launcherId": 0,
+          "item": "20mm PGU",
+          "quantity": 46
+        },
+        {
+          "launcherId": 1,
+          "item": "AIM-54A",
+          "quantity": 4
+        },
+        {
+          "launcherId": 2,
+          "item": "AIM-9P",
+          "quantity": 2
+        },
+        {
+          "launcherId": 3,
+          "item": "AIM-7E",
+          "quantity": 2
+        },
+        {
+          "launcherId": 4,
+          "item": "Chaff-1",
+          "quantity": 30
+        },
+        {
+          "launcherId": 5,
+          "item": "Flare-1",
+          "quantity": 30
+        }
+      ],
+      "modernized BVR": [
+        {
+          "launcherId": 0,
+          "item": "20mm PGU",
+          "quantity": 46
+        },
+        {
+          "launcherId": 1,
+          "item": "AIM-54C ECCM",
+          "quantity": 4
+        },
+        {
+          "launcherId": 2,
+          "item": "AIM-9M",
+          "quantity": 2
+        },
+        {
+          "launcherId": 3,
+          "item": "AIM-7M",
+          "quantity": 2
+        },
+        {
+          "launcherId": 4,
+          "item": "Chaff-1",
+          "quantity": 30
+        },
+        {
+          "launcherId": 5,
+          "item": "Flare-1",
+          "quantity": 30
+        }
+      ],
+      "close escort": [
+        {
+          "launcherId": 0,
+          "item": "20mm PGU",
+          "quantity": 46
+        },
+        {
+          "launcherId": 1,
+          "item": "AIM-7M",
+          "quantity": 4
+        },
+        {
+          "launcherId": 2,
+          "item": "AIM-9M",
+          "quantity": 2
+        },
+        {
+          "launcherId": 3,
+          "item": "AIM-9M",
+          "quantity": 2
+        },
+        {
+          "launcherId": 4,
+          "item": "Chaff-1",
+          "quantity": 30
+        },
+        {
+          "launcherId": 5,
+          "item": "Flare-1",
+          "quantity": 30
+        }
+      ]
+    }
+  },
+  "loadout_selections": {
+    "F/A-18F": "IB1   2010",
+    "F-15E": "deep strike",
+    "P-8 MPA": "maritime strike",
+    "F-14A": "modernized BVR"
+  }
+}
