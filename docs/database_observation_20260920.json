@@ -1,0 +1,306 @@
+{
+  "observed_utc": "2026-09-20T12:47:15.133Z",
+  "steam": {
+    "appid": "4069800",
+    "name": "Global Conflict Blue: Horizon",
+    "buildid": "25411882",
+    "last_updated_epoch": 1789907742,
+    "install_root": "D:\\SteamLibrary\\steamapps\\common\\Global Conflict Blue Horizon"
+  },
+  "database": {
+    "schema_version": 4,
+    "installed": {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Global Conflict Blue Horizon\\database\\database.db",
+      "bytes": 12886016,
+      "modified_utc": "2026-09-20T11:56:00.000Z",
+      "sha256": "63f7c570e24c17d56838ecfd78d08d89149fbf28811b9ccd75cf1cf6e4cb72cd"
+    },
+    "player_copy": {
+      "path": "C:\\Users\\Peter G. Robbins\\AppData\\LocalLow\\Wardstone Games\\GCB Horizon\\Database\\database.db",
+      "bytes": 12886016,
+      "modified_utc": "2026-09-20T11:56:00.000Z",
+      "sha256": "63f7c570e24c17d56838ecfd78d08d89149fbf28811b9ccd75cf1cf6e4cb72cd"
+    },
+    "copies_match": true,
+    "table_count": 45,
+    "tables": [
+      "Version",
+      "acoustic_noise",
+      "air",
+      "air_complement",
+      "air_engine",
+      "air_signature",
+      "ballistic",
+      "ballistic_missile",
+      "cm",
+      "country_data",
+      "country_names",
+      "cross_reference",
+      "damage_effect",
+      "directed_energy",
+      "ecm",
+      "equipment_group",
+      "esm",
+      "flightport",
+      "fueltank",
+      "ground",
+      "images",
+      "item",
+      "launcher_configuration",
+      "launcher_loadout",
+      "magazine_loadout",
+      "missile",
+      "object_bounds",
+      "optical",
+      "platform_launcher",
+      "platform_magazine",
+      "platform_names",
+      "platform_sensor",
+      "platform_setup",
+      "radar",
+      "radiation_pattern",
+      "satellite",
+      "ship",
+      "simpleair",
+      "sonar",
+      "sonobuoy",
+      "stores",
+      "sub",
+      "table_reference",
+      "torpedo",
+      "weapon_damage"
+    ],
+    "row_counts": {
+      "air": 212,
+      "simpleair": 190,
+      "ship": 504,
+      "sub": 116,
+      "ground": 249,
+      "platform_setup": 7901,
+      "missile": 567,
+      "radar": 667,
+      "sonar": 389
+    }
+  },
+  "relevant_platforms": [
+    {
+      "table": "ship",
+      "DatabaseClass": "America LHA",
+      "DisplayClass": "America-class LHA",
+      "Country": "USA",
+      "Subtype": "LHA",
+      "InitialYear": 2014.778,
+      "FinalYear": 2999,
+      "FlightportClass": "Wasp Flightdeck",
+      "setups": [
+        "America LHA (2014)"
+      ]
+    },
+    {
+      "table": "ship",
+      "DatabaseClass": "Wasp LHDM",
+      "DisplayClass": "",
+      "Country": "USA",
+      "Subtype": "LHD",
+      "InitialYear": 1989.57,
+      "FinalYear": 3000,
+      "FlightportClass": "Wasp Flightdeck",
+      "setups": [
+        "Mixed 2012",
+        "Sea Control 2012",
+        "Shore Assault 2012"
+      ]
+    },
+    {
+      "table": "ship",
+      "DatabaseClass": "San Antonio LPDM",
+      "DisplayClass": "",
+      "Country": "USA",
+      "Subtype": "LPD",
+      "InitialYear": 2006.04,
+      "FinalYear": 3000,
+      "FlightportClass": "Double Helo Hangar",
+      "setups": [
+        "San Antonio 2006"
+      ]
+    },
+    {
+      "table": "ship",
+      "DatabaseClass": "Landing Craft Air Cushion LCAC",
+      "DisplayClass": "",
+      "Country": "USA",
+      "Subtype": "LCJ",
+      "InitialYear": 1900.1,
+      "FinalYear": 3000,
+      "FlightportClass": "",
+      "setups": [
+        "Landing Craft Air Cushion 1900"
+      ]
+    },
+    {
+      "table": "simpleair",
+      "DatabaseClass": "MV-22 Osprey",
+      "DisplayClass": "",
+      "Country": "USA",
+      "Subtype": "Cargo",
+      "InitialYear": 2007,
+      "FinalYear": 2999,
+      "setups": []
+    },
+    {
+      "table": "simpleair",
+      "DatabaseClass": "CH-53K",
+      "DisplayClass": "King Stallion",
+      "Country": "USA",
+      "Subtype": "Cargo",
+      "InitialYear": 2022,
+      "FinalYear": 2999,
+      "setups": [
+        "CH-53K (2022)"
+      ]
+    },
+    {
+      "table": "simpleair",
+      "DatabaseClass": "AH-1Z Viper",
+      "DisplayClass": "",
+      "Country": "USA",
+      "Subtype": "Attack",
+      "InitialYear": 2003,
+      "FinalYear": 2999,
+      "setups": [
+        "AT1 2003",
+        "AT2 2003",
+        "AT3 2003",
+        "AT4 2003",
+        "AT5 2003",
+        "CS1 2003",
+        "CS2 2003",
+        "CS3 2003",
+        "CS4 2003",
+        "UR1 2003",
+        "UR2 2003",
+        "UR3 2003",
+        "UR4 2003",
+        "UR5 2003",
+        "UR6 2003"
+      ]
+    },
+    {
+      "table": "simpleair",
+      "DatabaseClass": "UH-1Y Venom",
+      "DisplayClass": "Venom",
+      "Country": "USA",
+      "Subtype": "Utility",
+      "InitialYear": 2008,
+      "FinalYear": 2999,
+      "setups": [
+        "UH-1Y (2008)"
+      ]
+    },
+    {
+      "table": "air",
+      "DatabaseClass": "F-35B",
+      "DisplayClass": "F-35B",
+      "Country": "USA",
+      "Subtype": "STOVL Strike Fighter",
+      "InitialYear": 2015,
+      "FinalYear": 2070,
+      "setups": []
+    },
+    {
+      "table": "air",
+      "DatabaseClass": "EA-18G",
+      "DisplayClass": "",
+      "Country": "USA",
+      "Subtype": "Fighter Multi",
+      "InitialYear": 2010,
+      "FinalYear": 2045,
+      "setups": [
+        "EA-18G-1",
+        "EA-18G-Auto"
+      ]
+    },
+    {
+      "table": "ground",
+      "DatabaseClass": "Khordad-15",
+      "DisplayClass": "",
+      "Country": "Iran",
+      "Subtype": "SAM",
+      "InitialYear": 2019,
+      "FinalYear": 2999,
+      "FlightportClass": "",
+      "setups": [
+        "Khordad-15-1"
+      ]
+    },
+    {
+      "table": "ground",
+      "DatabaseClass": "Shahed OWA TEL",
+      "DisplayClass": "",
+      "Country": "Iran",
+      "Subtype": "OWA",
+      "InitialYear": 2021,
+      "FinalYear": 2999,
+      "FlightportClass": "",
+      "setups": [
+        "Shahed OWA TEL-1"
+      ]
+    },
+    {
+      "table": "sub",
+      "DatabaseClass": "Fateh",
+      "DisplayClass": "Fateh class",
+      "Country": "Iran",
+      "Subtype": "SSK",
+      "InitialYear": 2019,
+      "FinalYear": 2999,
+      "setups": [
+        "Fateh 2019"
+      ]
+    },
+    {
+      "table": "sub",
+      "DatabaseClass": "Pr 877EKM Paltus(Iran)",
+      "DisplayClass": "Kilo(Iran)",
+      "Country": "Iran",
+      "Subtype": "SSK",
+      "InitialYear": 1992.892,
+      "FinalYear": 2999.9973,
+      "setups": [
+        "Pr 877EKM Paltus(Iran)-1"
+      ]
+    }
+  ],
+  "behavior_scripts": [
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Global Conflict Blue Horizon\\scripts\\tasks\\auto_attack.py",
+      "bytes": 4143,
+      "modified_utc": "2026-09-20T12:03:42.030Z",
+      "sha256": "d458b775715e9368824d7b15d374c2193a2bc27a9c3a405f38a0ef4e31a6aa5b"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Global Conflict Blue Horizon\\scripts\\tasks\\ship1.py",
+      "bytes": 1680,
+      "modified_utc": "2026-07-25T13:33:29.440Z",
+      "sha256": "1226161ba3607d49ebb8934f9b60d8d551cf0efaa4d6a77d851c846832f97fff"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Global Conflict Blue Horizon\\scripts\\tasks\\aircraft1.py",
+      "bytes": 3313,
+      "modified_utc": "2026-07-25T13:33:14.140Z",
+      "sha256": "13148c65b81a76f5cc60bbaf90a5b5fe50c301d816746ae5a26a104c6c1e0ed4"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Global Conflict Blue Horizon\\scripts\\tasks\\wait_for_group.py",
+      "bytes": 2827,
+      "modified_utc": "2026-09-20T12:03:37.370Z",
+      "sha256": "fe9c1d5f2f0c0780877daa66999fd0de5b705a8b9f582e0d4fdfa990e09e912b"
+    },
+    {
+      "path": "D:\\SteamLibrary\\steamapps\\common\\Global Conflict Blue Horizon\\scripts\\tasks\\land_helicopter.py",
+      "bytes": 5119,
+      "modified_utc": "2026-09-20T12:03:40.510Z",
+      "sha256": "4ccaf114fb2db54ab10c60837abb44ffb1c7b9f65c9ed7a955a5fb1563546cfc"
+    }
+  ]
+}

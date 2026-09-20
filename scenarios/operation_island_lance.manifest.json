@@ -1,0 +1,1616 @@
+{
+  "scenario_id": "island_lance_001",
+  "scenario_name": "Operation Island Lance",
+  "campaign_turn": 7,
+  "baseline": {
+    "scenario": "Operation Crossed Sabers",
+    "entities": 45,
+    "multiplier": 4,
+    "target_entities": 180
+  },
+  "generated": {
+    "utc": "2026-09-20T12:52:25.342Z",
+    "database_schema_version": 4,
+    "entities": 180
+  },
+  "sides": {
+    "blue": 100,
+    "red": 65,
+    "neutral": 15
+  },
+  "mission_threads": [
+    "Greater Tunb air assault and lodgment",
+    "legacy convoy completion",
+    "mainland SEAD and strike",
+    "surface/subsurface maritime interdiction",
+    "counter-air and escort",
+    "neutral merchant deconfliction"
+  ],
+  "role_counts": {
+    "convoy": 6,
+    "escort": 10,
+    "carrier": 1,
+    "amphibious": 4,
+    "landing_craft": 6,
+    "submarine": 8,
+    "air_assault": 12,
+    "attack_helo": 6,
+    "escort_cap": 8,
+    "sead": 6,
+    "electronic_attack": 4,
+    "strike": 14,
+    "maritime_strike": 4,
+    "maritime_patrol": 6,
+    "aew": 2,
+    "tanker": 2,
+    "reconnaissance": 4,
+    "asw": 4,
+    "lodgment": 8,
+    "surface_raider": 12,
+    "fighter": 14,
+    "island_defense": 6,
+    "coastal_strike": 9,
+    "ground_defense": 9,
+    "merchant": 15
+  },
+  "objectives": {
+    "blue": [
+      {
+        "type": "ProtectGoal",
+        "targets": [
+          "RFA Fort Victoria",
+          "USNS John Ericsson",
+          "USNS Amelia Earhart",
+          "RFA Tidespring",
+          "USNS Guadalupe",
+          "USNS Cesar Chavez"
+        ],
+        "quantity": 5,
+        "label": "convoy survival"
+      },
+      {
+        "type": "ProtectGoal",
+        "targets": [
+          "USS Iwo Jima",
+          "USS America",
+          "USS Arlington",
+          "HMS Albion",
+          "Tunb Expeditionary LZ",
+          "Pathfinder 1",
+          "Pathfinder 2",
+          "Pathfinder 3",
+          "Rampart 1",
+          "Rampart 2"
+        ],
+        "quantity": 7,
+        "label": "island lodgment"
+      },
+      {
+        "type": "DestroyGoal",
+        "targets": [
+          "Tunb Khordad",
+          "Tunb Watch",
+          "Tunb Shilka 1",
+          "Tunb Shilka 2",
+          "Tunb Armor 1",
+          "Tunb Armor 2"
+        ],
+        "quantity": 4,
+        "label": "island defenses"
+      },
+      {
+        "type": "DestroyGoal",
+        "targets": [
+          "Khanjar",
+          "Falakhon",
+          "Scimitar",
+          "Zolfaghar",
+          "Tsunami 1",
+          "Tsunami 2",
+          "Shamshir",
+          "Neyzeh",
+          "Tabarzin",
+          "IRIS Jamaran",
+          "IRIS Damavand",
+          "Tsunami 3",
+          "Fateh Patrol 1",
+          "Fateh Patrol 2",
+          "Fateh Patrol 3",
+          "Kilo Patrol 1",
+          "Kilo Patrol 2"
+        ],
+        "quantity": 8,
+        "label": "maritime interdiction"
+      },
+      {
+        "type": "DestroyGoal",
+        "targets": [
+          "Bastion 1",
+          "Bastion 2",
+          "Bastion 3",
+          "Pantsir 1",
+          "Pantsir 2",
+          "Pantsir 3",
+          "S-300 Site North",
+          "Khordad Coast 1",
+          "Khordad Coast 2",
+          "Khordad Coast 3",
+          "Coastwatch North",
+          "Coastwatch West"
+        ],
+        "quantity": 7,
+        "label": "coastal suppression"
+      },
+      {
+        "type": "ProtectGoal",
+        "targets": [
+          "Merchant 01",
+          "Merchant 02",
+          "Merchant 03",
+          "Merchant 04",
+          "Merchant 05",
+          "Merchant 06",
+          "Merchant 07",
+          "Merchant 08",
+          "Merchant 09",
+          "Merchant 10",
+          "Merchant 11",
+          "Merchant 12",
+          "Merchant 13",
+          "Merchant 14",
+          "Merchant 15"
+        ],
+        "quantity": 12,
+        "label": "civilian protection"
+      }
+    ],
+    "red": {
+      "destroy_quantity": 5
+    },
+    "neutral": {
+      "protect_quantity": 10
+    }
+  },
+  "units": [
+    {
+      "side": "blue",
+      "unit_name": "RFA Fort Victoria",
+      "platform_class": "Fort Victoria AOR",
+      "domain": "ship",
+      "role": "convoy",
+      "loadout_setup": "Fort Victoria AOR-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USNS John Ericsson",
+      "platform_class": "Henry J Kaiser",
+      "domain": "ship",
+      "role": "convoy",
+      "loadout_setup": "Henry J Kaiser-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USNS Amelia Earhart",
+      "platform_class": "Lewis and Clark",
+      "domain": "ship",
+      "role": "convoy",
+      "loadout_setup": "Lewis and Clark-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "RFA Tidespring",
+      "platform_class": "Fort Victoria AOR",
+      "domain": "ship",
+      "role": "convoy",
+      "loadout_setup": "Fort Victoria AOR-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USNS Guadalupe",
+      "platform_class": "Henry J Kaiser",
+      "domain": "ship",
+      "role": "convoy",
+      "loadout_setup": "Henry J Kaiser-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USNS Cesar Chavez",
+      "platform_class": "Lewis and Clark",
+      "domain": "ship",
+      "role": "convoy",
+      "loadout_setup": "Lewis and Clark-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS Mason",
+      "platform_class": "Arleigh Burke IIA DDGHM",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Burke A 2012"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS Chosin",
+      "platform_class": "Ticonderoga CG Baseline 4",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Tico B4 2012"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS Thomas Hudner",
+      "platform_class": "Arleigh Burke IIA DDGHM",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Burke A 2012"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS Arleigh Burke",
+      "platform_class": "Arleigh Burke III DDGHM",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Burke III 2023"
+    },
+    {
+      "side": "blue",
+      "unit_name": "HMS Diamond",
+      "platform_class": "Type 45 DDG",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Type 45 2007"
+    },
+    {
+      "side": "blue",
+      "unit_name": "HMS Richmond",
+      "platform_class": "Type 23 FF",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Type 23 1993"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS Tempest",
+      "platform_class": "Cyclone PBFM",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Cyclone 1993"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USCGC Stone",
+      "platform_class": "Legend WMSL",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Legend 2008"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS Devastator",
+      "platform_class": "Avenger MCM",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Avenger MCM 1987"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS Dextrous",
+      "platform_class": "Avenger MCM",
+      "domain": "ship",
+      "role": "escort",
+      "loadout_setup": "Avenger MCM 1987"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS George H.W. Bush",
+      "platform_class": "CVN-77 (Nimitz) USS George H.W. Bush",
+      "domain": "ship",
+      "role": "carrier",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS Iwo Jima",
+      "platform_class": "Wasp LHDM",
+      "domain": "ship",
+      "role": "amphibious",
+      "loadout_setup": "Mixed 2012"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS America",
+      "platform_class": "America LHA",
+      "domain": "ship",
+      "role": "amphibious",
+      "loadout_setup": "America LHA (2014)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "USS Arlington",
+      "platform_class": "San Antonio LPDM",
+      "domain": "ship",
+      "role": "amphibious",
+      "loadout_setup": "San Antonio 2006"
+    },
+    {
+      "side": "blue",
+      "unit_name": "HMS Albion",
+      "platform_class": "Albion Class LPD",
+      "domain": "ship",
+      "role": "amphibious",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Surf Rider 1",
+      "platform_class": "Landing Craft Air Cushion LCAC",
+      "domain": "ship",
+      "role": "landing_craft",
+      "loadout_setup": "Landing Craft Air Cushion 1900"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Surf Rider 2",
+      "platform_class": "Landing Craft Air Cushion LCAC",
+      "domain": "ship",
+      "role": "landing_craft",
+      "loadout_setup": "Landing Craft Air Cushion 1900"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Surf Rider 3",
+      "platform_class": "Landing Craft Air Cushion LCAC",
+      "domain": "ship",
+      "role": "landing_craft",
+      "loadout_setup": "Landing Craft Air Cushion 1900"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Surf Rider 4",
+      "platform_class": "Landing Craft Air Cushion LCAC",
+      "domain": "ship",
+      "role": "landing_craft",
+      "loadout_setup": "Landing Craft Air Cushion 1900"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Beachmaster 1",
+      "platform_class": "LCU 1600 LCU-Navy",
+      "domain": "ship",
+      "role": "landing_craft",
+      "loadout_setup": "LCU-1600 LCU Navy 1900"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Beachmaster 2",
+      "platform_class": "LCU 1600 LCU-Navy",
+      "domain": "ship",
+      "role": "landing_craft",
+      "loadout_setup": "LCU-1600 LCU Navy 1900"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Silent Service 1",
+      "platform_class": "SSN 774.4 Virginia",
+      "domain": "sub",
+      "role": "submarine",
+      "loadout_setup": "Default Stock 2019"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Silent Service 2",
+      "platform_class": "SSN 774.4 Virginia",
+      "domain": "sub",
+      "role": "submarine",
+      "loadout_setup": "Default Stock 2019"
+    },
+    {
+      "side": "blue",
+      "unit_name": "HMS Ambush",
+      "platform_class": "Astute SSN",
+      "domain": "sub",
+      "role": "submarine",
+      "loadout_setup": "Astute 2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Osprey 1",
+      "platform_class": "MV-22 Osprey",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Osprey 2",
+      "platform_class": "MV-22 Osprey",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Osprey 3",
+      "platform_class": "MV-22 Osprey",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Osprey 4",
+      "platform_class": "MV-22 Osprey",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Osprey 5",
+      "platform_class": "MV-22 Osprey",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Osprey 6",
+      "platform_class": "MV-22 Osprey",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Osprey 7",
+      "platform_class": "MV-22 Osprey",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Osprey 8",
+      "platform_class": "MV-22 Osprey",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "King 1",
+      "platform_class": "CH-53K",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": "CH-53K (2022)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "King 2",
+      "platform_class": "CH-53K",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": "CH-53K (2022)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "King 3",
+      "platform_class": "CH-53K",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": "CH-53K (2022)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "King 4",
+      "platform_class": "CH-53K",
+      "domain": "air",
+      "role": "air_assault",
+      "loadout_setup": "CH-53K (2022)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Gunship 1",
+      "platform_class": "AH-1Z Viper",
+      "domain": "air",
+      "role": "attack_helo",
+      "loadout_setup": "AT2 2003"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Gunship 2",
+      "platform_class": "AH-1Z Viper",
+      "domain": "air",
+      "role": "attack_helo",
+      "loadout_setup": "AT2 2003"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Gunship 3",
+      "platform_class": "AH-1Z Viper",
+      "domain": "air",
+      "role": "attack_helo",
+      "loadout_setup": "AT2 2003"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Gunship 4",
+      "platform_class": "AH-1Z Viper",
+      "domain": "air",
+      "role": "attack_helo",
+      "loadout_setup": "AT2 2003"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Venom 1",
+      "platform_class": "UH-1Y Venom",
+      "domain": "air",
+      "role": "attack_helo",
+      "loadout_setup": "UH-1Y (2008)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Venom 2",
+      "platform_class": "UH-1Y Venom",
+      "domain": "air",
+      "role": "attack_helo",
+      "loadout_setup": "UH-1Y (2008)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Tiger 1",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "escort_cap",
+      "loadout_setup": "AW1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Tiger 2",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "escort_cap",
+      "loadout_setup": "AW1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Tiger 3",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "escort_cap",
+      "loadout_setup": "AW1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Tiger 4",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "escort_cap",
+      "loadout_setup": "AW1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Tiger 5",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "escort_cap",
+      "loadout_setup": "AW1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Tiger 6",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "escort_cap",
+      "loadout_setup": "AW1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Tiger 7",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "escort_cap",
+      "loadout_setup": "AW1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Tiger 8",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "escort_cap",
+      "loadout_setup": "AW1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Razor 1",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "sead",
+      "loadout_setup": "SD1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Razor 2",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "sead",
+      "loadout_setup": "SD1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Razor 3",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "sead",
+      "loadout_setup": "SD1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Razor 4",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "sead",
+      "loadout_setup": "SD1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Razor 5",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "sead",
+      "loadout_setup": "SD1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Razor 6",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "sead",
+      "loadout_setup": "SD1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Growler 1",
+      "platform_class": "EA-18G",
+      "domain": "air",
+      "role": "electronic_attack",
+      "loadout_setup": "EA-18G-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Growler 2",
+      "platform_class": "EA-18G",
+      "domain": "air",
+      "role": "electronic_attack",
+      "loadout_setup": "EA-18G-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Growler 3",
+      "platform_class": "EA-18G",
+      "domain": "air",
+      "role": "electronic_attack",
+      "loadout_setup": "EA-18G-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Growler 4",
+      "platform_class": "EA-18G",
+      "domain": "air",
+      "role": "electronic_attack",
+      "loadout_setup": "EA-18G-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Strike 1",
+      "platform_class": "F-15E",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Strike 2",
+      "platform_class": "F-15E",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Strike 3",
+      "platform_class": "F-15E",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Strike 4",
+      "platform_class": "F-15E",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Strike 5",
+      "platform_class": "F-15E",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Viper Strike 6",
+      "platform_class": "F-15E",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Hammer 1",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "maritime_strike",
+      "loadout_setup": "SM1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Hammer 2",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "maritime_strike",
+      "loadout_setup": "SM1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Hammer 3",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "maritime_strike",
+      "loadout_setup": "SM1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Hammer 4",
+      "platform_class": "F/A-18F",
+      "domain": "air",
+      "role": "maritime_strike",
+      "loadout_setup": "SM1   2010"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Poseidon 1",
+      "platform_class": "P-8 MPA",
+      "domain": "air",
+      "role": "maritime_patrol",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Poseidon 2",
+      "platform_class": "P-8 MPA",
+      "domain": "air",
+      "role": "maritime_patrol",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Poseidon 3",
+      "platform_class": "P-8 MPA",
+      "domain": "air",
+      "role": "maritime_patrol",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Poseidon 4",
+      "platform_class": "P-8 MPA",
+      "domain": "air",
+      "role": "maritime_patrol",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Hawkeye 1",
+      "platform_class": "E-2D",
+      "domain": "air",
+      "role": "aew",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Hawkeye 2",
+      "platform_class": "E-2D",
+      "domain": "air",
+      "role": "aew",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Shell 1",
+      "platform_class": "KC-135R",
+      "domain": "air",
+      "role": "tanker",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Shell 2",
+      "platform_class": "KC-135R",
+      "domain": "air",
+      "role": "tanker",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Sea Guardian 1",
+      "platform_class": "MQ-9B SeaGuardian",
+      "domain": "air",
+      "role": "reconnaissance",
+      "loadout_setup": "MQ-9B SeaGuardian (2019)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Sea Guardian 2",
+      "platform_class": "MQ-9B SeaGuardian",
+      "domain": "air",
+      "role": "reconnaissance",
+      "loadout_setup": "MQ-9B SeaGuardian (2019)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Sea Guardian 3",
+      "platform_class": "MQ-9B SeaGuardian",
+      "domain": "air",
+      "role": "reconnaissance",
+      "loadout_setup": "MQ-9B SeaGuardian (2019)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Sea Guardian 4",
+      "platform_class": "MQ-9B SeaGuardian",
+      "domain": "air",
+      "role": "reconnaissance",
+      "loadout_setup": "MQ-9B SeaGuardian (2019)"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Romeo 1",
+      "platform_class": "S-70B Seahawk",
+      "domain": "air",
+      "role": "asw",
+      "loadout_setup": "S-70B ASW"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Romeo 2",
+      "platform_class": "S-70B Seahawk",
+      "domain": "air",
+      "role": "asw",
+      "loadout_setup": "S-70B ASW"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Romeo 3",
+      "platform_class": "S-70B Seahawk",
+      "domain": "air",
+      "role": "asw",
+      "loadout_setup": "S-70B ASW"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Romeo 4",
+      "platform_class": "S-70B Seahawk",
+      "domain": "air",
+      "role": "asw",
+      "loadout_setup": "S-70B ASW"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Tunb Expeditionary LZ",
+      "platform_class": "Airstrip, Small (USA)",
+      "domain": "ground",
+      "role": "lodgment",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Pathfinder 1",
+      "platform_class": "M113 APC",
+      "domain": "ground",
+      "role": "lodgment",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Pathfinder 2",
+      "platform_class": "M113 APC",
+      "domain": "ground",
+      "role": "lodgment",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Pathfinder 3",
+      "platform_class": "M113 APC",
+      "domain": "ground",
+      "role": "lodgment",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Rampart 1",
+      "platform_class": "M2A3 Bradley",
+      "domain": "ground",
+      "role": "lodgment",
+      "loadout_setup": "M2A3 Bradley-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Rampart 2",
+      "platform_class": "M2A3 Bradley",
+      "domain": "ground",
+      "role": "lodgment",
+      "loadout_setup": "M2A3 Bradley-1"
+    },
+    {
+      "side": "blue",
+      "unit_name": "Stinger Team 1",
+      "platform_class": "Stinger Vehicle",
+      "domain": "ground",
+      "role": "lodgment",
+      "loadout_setup": null
+    },
+    {
+      "side": "blue",
+      "unit_name": "Stinger Team 2",
+      "platform_class": "Stinger Vehicle",
+      "domain": "ground",
+      "role": "lodgment",
+      "loadout_setup": null
+    },
+    {
+      "side": "red",
+      "unit_name": "Khanjar",
+      "platform_class": "Kaman FACM",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Kaman FACM-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Falakhon",
+      "platform_class": "Kaman FACM",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Kaman FACM-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Scimitar",
+      "platform_class": "Kaman FACM",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Kaman FACM-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Zolfaghar",
+      "platform_class": "Kaman FACM",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Kaman FACM-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Tsunami 1",
+      "platform_class": "Pr 205ER Tsunami (Iran)",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Pr 205ER Tsunami (Iran)-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Tsunami 2",
+      "platform_class": "Pr 205ER Tsunami (Iran)",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Pr 205ER Tsunami (Iran)-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shamshir",
+      "platform_class": "Kaman FACM",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Kaman FACM-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Neyzeh",
+      "platform_class": "Kaman FACM",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Kaman FACM-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Tabarzin",
+      "platform_class": "Kaman FACM",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Kaman FACM-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "IRIS Jamaran",
+      "platform_class": "Moudge FFG",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "IRIN 2010"
+    },
+    {
+      "side": "red",
+      "unit_name": "IRIS Damavand",
+      "platform_class": "Moudge FFG",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "IRIN 2010"
+    },
+    {
+      "side": "red",
+      "unit_name": "Tsunami 3",
+      "platform_class": "Pr 205ER Tsunami (Iran)",
+      "domain": "ship",
+      "role": "surface_raider",
+      "loadout_setup": "Pr 205ER Tsunami (Iran)-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fateh Patrol 1",
+      "platform_class": "Fateh",
+      "domain": "sub",
+      "role": "submarine",
+      "loadout_setup": "Fateh 2019"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fateh Patrol 2",
+      "platform_class": "Fateh",
+      "domain": "sub",
+      "role": "submarine",
+      "loadout_setup": "Fateh 2019"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fateh Patrol 3",
+      "platform_class": "Fateh",
+      "domain": "sub",
+      "role": "submarine",
+      "loadout_setup": "Fateh 2019"
+    },
+    {
+      "side": "red",
+      "unit_name": "Kilo Patrol 1",
+      "platform_class": "Pr 877EKM Paltus(Iran)",
+      "domain": "sub",
+      "role": "submarine",
+      "loadout_setup": "Pr 877EKM Paltus(Iran)-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Kilo Patrol 2",
+      "platform_class": "Pr 877EKM Paltus(Iran)",
+      "domain": "sub",
+      "role": "submarine",
+      "loadout_setup": "Pr 877EKM Paltus(Iran)-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahin 1",
+      "platform_class": "F-14A",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahin 2",
+      "platform_class": "F-14A",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahin 3",
+      "platform_class": "F-14A",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahin 4",
+      "platform_class": "F-14A",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 1",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 2",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 3",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 4",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 5",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 6",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 7",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 8",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 9",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fulcrum Reserve 10",
+      "platform_class": "MiG-29",
+      "domain": "air",
+      "role": "fighter",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fencer Reserve 1",
+      "platform_class": "Su-24M",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fencer Reserve 2",
+      "platform_class": "Su-24M",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fencer Reserve 3",
+      "platform_class": "Su-24M",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fencer Reserve 4",
+      "platform_class": "Su-24M",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fencer Reserve 5",
+      "platform_class": "Su-24M",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fencer Reserve 6",
+      "platform_class": "Su-24M",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fencer Reserve 7",
+      "platform_class": "Su-24M",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Fencer Reserve 8",
+      "platform_class": "Su-24M",
+      "domain": "air",
+      "role": "strike",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Persian Orion 1",
+      "platform_class": "P-3F Orion",
+      "domain": "air",
+      "role": "maritime_patrol",
+      "loadout_setup": "T1   12"
+    },
+    {
+      "side": "red",
+      "unit_name": "Persian Orion 2",
+      "platform_class": "P-3F Orion",
+      "domain": "air",
+      "role": "maritime_patrol",
+      "loadout_setup": "T1   12"
+    },
+    {
+      "side": "red",
+      "unit_name": "Tunb Khordad",
+      "platform_class": "Khordad-15",
+      "domain": "ground",
+      "role": "island_defense",
+      "loadout_setup": "Khordad-15-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Tunb Watch",
+      "platform_class": "Generic Mobile Radar Post 170",
+      "domain": "ground",
+      "role": "island_defense",
+      "loadout_setup": null
+    },
+    {
+      "side": "red",
+      "unit_name": "Tunb Shilka 1",
+      "platform_class": "ZSU-23-4M4 Biryusa",
+      "domain": "ground",
+      "role": "island_defense",
+      "loadout_setup": null
+    },
+    {
+      "side": "red",
+      "unit_name": "Tunb Shilka 2",
+      "platform_class": "ZSU-23-4M4 Biryusa",
+      "domain": "ground",
+      "role": "island_defense",
+      "loadout_setup": null
+    },
+    {
+      "side": "red",
+      "unit_name": "Tunb Armor 1",
+      "platform_class": "T-72 MBT",
+      "domain": "ground",
+      "role": "island_defense",
+      "loadout_setup": "T-72 MBT-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Tunb Armor 2",
+      "platform_class": "T-72 MBT",
+      "domain": "ground",
+      "role": "island_defense",
+      "loadout_setup": "T-72 MBT-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Bastion 1",
+      "platform_class": "K-300P Bastion-P",
+      "domain": "ground",
+      "role": "coastal_strike",
+      "loadout_setup": "SSC-4(6)-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Bastion 2",
+      "platform_class": "K-300P Bastion-P",
+      "domain": "ground",
+      "role": "coastal_strike",
+      "loadout_setup": "SSC-4(6)-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Bastion 3",
+      "platform_class": "K-300P Bastion-P",
+      "domain": "ground",
+      "role": "coastal_strike",
+      "loadout_setup": "SSC-4(6)-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Pantsir 1",
+      "platform_class": "Pantsir-S1",
+      "domain": "ground",
+      "role": "ground_defense",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Pantsir 2",
+      "platform_class": "Pantsir-S1",
+      "domain": "ground",
+      "role": "ground_defense",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "Pantsir 3",
+      "platform_class": "Pantsir-S1",
+      "domain": "ground",
+      "role": "ground_defense",
+      "loadout_setup": "campaign-validated fallback"
+    },
+    {
+      "side": "red",
+      "unit_name": "S-300 Site North",
+      "platform_class": "S-300PMU-2",
+      "domain": "ground",
+      "role": "ground_defense",
+      "loadout_setup": "S-300PMU-2-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Khordad Coast 1",
+      "platform_class": "Khordad-15",
+      "domain": "ground",
+      "role": "ground_defense",
+      "loadout_setup": "Khordad-15-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Khordad Coast 2",
+      "platform_class": "Khordad-15",
+      "domain": "ground",
+      "role": "ground_defense",
+      "loadout_setup": "Khordad-15-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Khordad Coast 3",
+      "platform_class": "Khordad-15",
+      "domain": "ground",
+      "role": "ground_defense",
+      "loadout_setup": "Khordad-15-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahed Battery 1",
+      "platform_class": "Shahed OWA TEL",
+      "domain": "ground",
+      "role": "coastal_strike",
+      "loadout_setup": "Shahed OWA TEL-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahed Battery 2",
+      "platform_class": "Shahed OWA TEL",
+      "domain": "ground",
+      "role": "coastal_strike",
+      "loadout_setup": "Shahed OWA TEL-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahed Battery 3",
+      "platform_class": "Shahed OWA TEL",
+      "domain": "ground",
+      "role": "coastal_strike",
+      "loadout_setup": "Shahed OWA TEL-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahed Battery 4",
+      "platform_class": "Shahed OWA TEL",
+      "domain": "ground",
+      "role": "coastal_strike",
+      "loadout_setup": "Shahed OWA TEL-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahed Battery 5",
+      "platform_class": "Shahed OWA TEL",
+      "domain": "ground",
+      "role": "coastal_strike",
+      "loadout_setup": "Shahed OWA TEL-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Shahed Battery 6",
+      "platform_class": "Shahed OWA TEL",
+      "domain": "ground",
+      "role": "coastal_strike",
+      "loadout_setup": "Shahed OWA TEL-1"
+    },
+    {
+      "side": "red",
+      "unit_name": "Coastwatch North",
+      "platform_class": "Generic Radar Post 300",
+      "domain": "ground",
+      "role": "ground_defense",
+      "loadout_setup": null
+    },
+    {
+      "side": "red",
+      "unit_name": "Coastwatch West",
+      "platform_class": "Generic Mobile Radar Post 220",
+      "domain": "ground",
+      "role": "ground_defense",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 01",
+      "platform_class": "Container Ship",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 02",
+      "platform_class": "Oil Tanker",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 03",
+      "platform_class": "General Cargo",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 04",
+      "platform_class": "Chemical Tanker",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 05",
+      "platform_class": "Container Ship",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 06",
+      "platform_class": "Oil Tanker",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 07",
+      "platform_class": "General Cargo",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 08",
+      "platform_class": "Chemical Tanker",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 09",
+      "platform_class": "Container Ship",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 10",
+      "platform_class": "Oil Tanker",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 11",
+      "platform_class": "General Cargo",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 12",
+      "platform_class": "Chemical Tanker",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 13",
+      "platform_class": "Container Ship",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 14",
+      "platform_class": "Oil Tanker",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    },
+    {
+      "side": "neutral",
+      "unit_name": "Merchant 15",
+      "platform_class": "General Cargo",
+      "domain": "ship",
+      "role": "merchant",
+      "loadout_setup": null
+    }
+  ]
+}

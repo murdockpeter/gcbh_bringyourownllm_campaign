@@ -15,6 +15,8 @@
     "check:map": "npm --prefix mission-map run check",
     "check": "npm run check:generator && npm run check:map",
     "audit:scenarios": "npm --prefix mission-map run audit:scenarios --",
-    "audit:generated": "node tools/audit_generated.cjs"
+    "audit:generated": "node tools/audit_generated.cjs",
+    "observe:game": "node tools/observe_game_install.cjs",
+    "generate:island-lance": "node tools/generate_operation_island_lance.cjs"
   }
 }

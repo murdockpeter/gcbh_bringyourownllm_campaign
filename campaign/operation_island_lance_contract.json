@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "campaign_id": "indian_ocean_hormuz_mvp",
+  "campaign_turn": 7,
+  "scenario_id": "island_lance_001",
+  "scenario_name": "Operation Island Lance",
+  "scenario_file": "scenarios/operation_island_lance.py",
+  "replaces_unplayed_scenario": "crossed_sabers_001",
+  "state_basis": "campaign_state_crossed_sabers.json",
+  "continuity": [
+    "All six auxiliaries survived Operation Narrow Furnace.",
+    "Lancer 1 and Lancer 2 remain confirmed losses.",
+    "IRIS Sahand, IRIS Dena, and Dagger remain confirmed RED losses.",
+    "Falakhon and Khanjar remain operational because their prior health-zero events lacked weapon attribution.",
+    "Wildcat 1 remains under repair and is not included in the mission.",
+    "The expanded forces are theater reinforcements committed during the 24-hour operational pause, not retroactive campaign survivors."
+  ],
+  "scale": {
+    "baseline_scenario": "Operation Crossed Sabers",
+    "baseline_entities": 45,
+    "multiplier": 4,
+    "entities": 180,
+    "blue": 100,
+    "red": 65,
+    "neutral": 15
+  },
+  "mission_threads": [
+    {
+      "name": "Island Lance",
+      "purpose": "Escort Osprey and heavy-lift waves to establish a Greater Tunb lodgment under attack-helicopter and fighter cover."
+    },
+    {
+      "name": "Furnace Exit",
+      "purpose": "Complete the six-ship sealift passage with the surviving campaign escort."
+    },
+    {
+      "name": "Razor Screen",
+      "purpose": "Use SEAD, electronic attack, and standoff strike packages against the mainland coastal and air-defense belt."
+    },
+    {
+      "name": "Silent Gate",
+      "purpose": "Use submarines, maritime patrol aircraft, and shipborne helicopters to isolate hostile raiders and submarines."
+    },
+    {
+      "name": "High Cover",
+      "purpose": "Defeat the Iranian reserve fighter and strike packages while protecting the air assault."
+    },
+    {
+      "name": "Open Ledger",
+      "purpose": "Deconflict fifteen neutral merchants; at least twelve must survive."
+    }
+  ],
+  "design_notes": [
+    "The September 19 build's group auto-attack and formation-leader controls are called out in the briefing for package management.",
+    "The updated grounding avoidance supports the expanded surface order of battle, but every scripted naval position and route still passes project coastline validation.",
+    "Corrected anti-air gun ranges make close FAC overflight less misleading; strike routes and briefing language reinforce the standoff lesson from Narrow Furnace.",
+    "The air assault is represented by active transport aircraft routing to a friendly expeditionary LZ, with a pre-inserted pathfinder element and landing craft follow-on."
+  ]
+}

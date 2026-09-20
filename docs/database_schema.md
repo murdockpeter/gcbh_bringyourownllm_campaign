@@ -1,8 +1,10 @@
 # Database Schema
 
 GCBlue simulation engine database. Uses SQLite.
-Schema version: 2 (stored in `version` table).
+Observed schema version: 4 (stored in `version` table; generator compatibility remains versions 2 through 4).
 Default location for player database is `%USERPROFILE%\AppData\LocalLow\Wardstone Games\GCB Horizon\Database\database.db`
+
+Run `npm run observe:game` after a game update to record the Steam build, database hashes and row counts, relevant campaign platforms, and behavior-script hashes in a dated JSON report. The observer opens SQLite read-only and verifies that the installed and player-copy databases match.
 
 To connect from Python, use `os.path.expandvars` to resolve the environment variable:
 ```python

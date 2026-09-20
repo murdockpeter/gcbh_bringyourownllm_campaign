@@ -34,4 +34,17 @@ npm run audit:generated -- scenarios/generated_mission_v2.py
 npm test
 ```
 
+After a GCB Horizon update, capture a read-only observation of the installed build and database:
+
+```powershell
+npm run observe:game
+```
+
+Generate and audit the four-times-scale Turn 7 operation:
+
+```powershell
+npm run generate:island-lance
+npm run audit:generated -- scenarios/operation_island_lance.py
+```
+
 Node.js 24 or newer and the local GCB Horizon database are required. See `docs/mission_generator.md` for the input contract, state mappings, validation behavior, and troubleshooting.
