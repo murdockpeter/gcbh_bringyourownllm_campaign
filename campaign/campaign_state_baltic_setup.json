@@ -1,0 +1,81 @@
+{
+  "campaign_id": "baltic_setup_only",
+  "campaign_name": "Baltic Operational Area - Technical Fixture",
+  "version": 1,
+  "current_time_local": "2026-06-15T10:00:00+03:00",
+  "turn": 0,
+  "notes": [
+    "Synthetic test units and date; not an approved campaign order of battle. No Hormuz campaign state is carried over."
+  ],
+  "sides": {
+    "blue": {
+      "units": [
+        {
+          "unit_name": "TEST NATO Escort",
+          "platform_class": "Sachsen FFGHM",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 20,
+          "readiness_pct": 100,
+          "crew_fatigue_pct": 0,
+          "fuel_pct": 100,
+          "ammo_pct": 100,
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0
+          },
+          "logistics": {
+            "daily_upkeep_points": 0
+          }
+        },
+        {
+          "unit_name": "TEST NATO Logistics",
+          "platform_class": "Fort Victoria AOR",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 16,
+          "readiness_pct": 100,
+          "crew_fatigue_pct": 0,
+          "fuel_pct": 100,
+          "ammo_pct": 100,
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0
+          },
+          "logistics": {
+            "daily_upkeep_points": 0
+          }
+        }
+      ]
+    },
+    "red": {
+      "units": [
+        {
+          "unit_name": "TEST Russian Corvette",
+          "platform_class": "Pr 20380 Steregushchiy",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 20,
+          "readiness_pct": 100,
+          "crew_fatigue_pct": 0,
+          "fuel_pct": 100,
+          "ammo_pct": 100,
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0
+          },
+          "logistics": {
+            "daily_upkeep_points": 0
+          }
+        }
+      ]
+    }
+  },
+  "scenario_history": []
+}

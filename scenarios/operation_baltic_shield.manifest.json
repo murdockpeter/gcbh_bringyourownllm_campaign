@@ -1,0 +1,3378 @@
+{
+  "aviation_support": {
+    "blue": {
+      "aircraft": 11,
+      "combat_aircraft": 8,
+      "in_scenario_bases": [
+        "Amari Air Base",
+        "Lielvarde Air Base"
+      ],
+      "location": "Amari and Lielvarde; national support bases off map",
+      "mode": "in_scenario",
+      "reason": "Tactical aircraft can recover locally; AEW, tanker and MPA recovery is off map.",
+      "tankers": 1
+    },
+    "red": {
+      "aircraft": 8,
+      "combat_aircraft": 8,
+      "in_scenario_bases": [
+        "Russian Air Base"
+      ],
+      "location": "Russian Air Base",
+      "mode": "in_scenario",
+      "reason": "Generic Kaliningrad recovery node.",
+      "tankers": 0
+    }
+  },
+  "balance": {
+    "blue": {
+      "effective": 82.638,
+      "force": 92.555,
+      "objectiveBurden": 1.12
+    },
+    "model": "role-condition-sustainment-v1",
+    "ratio": 0.875,
+    "red": {
+      "effective": 94.47,
+      "force": 94.47,
+      "objectiveBurden": 1
+    },
+    "warnings": []
+  },
+  "continuity": {
+    "assertions": {
+      "forbidden_tasks": {
+        "Falcon Precision Strike 1": [
+          "AutoAttack"
+        ],
+        "Falcon Precision Strike 2": [
+          "AutoAttack"
+        ],
+        "Magic AEW": [
+          "AutoAttack"
+        ],
+        "Raven SEAD Strike 1": [
+          "AutoAttack"
+        ],
+        "Raven SEAD Strike 2": [
+          "AutoAttack"
+        ],
+        "Seeker MPA": [
+          "AutoAttack"
+        ],
+        "Shell Tanker": [
+          "AutoAttack"
+        ]
+      },
+      "required_counts": {
+        "blue": 20,
+        "red": 16
+      },
+      "required_loadout_totals": {
+        "Russian Coastal Battery": {
+          "P-800 Oniks": 2
+        }
+      }
+    },
+    "passed": true
+  },
+  "effective_rng_seed": "baltic-shield-turn-1",
+  "generator": {
+    "database_schema_version": 4,
+    "name": "mission-generator-v2",
+    "node": ">=24",
+    "version": "0.3.0"
+  },
+  "inputs": {
+    "campaign_state": "19983f1e1256c4e859d9c7be84c6a7fa3facb60a6aaebb670420c4dc79c88b6d",
+    "scenario_seed": "d8bdcf6695f02f8c040fddd7fba091a4c86a76f6a9e3ff6f69be01c995a988df"
+  },
+  "logistics": {
+    "blue": {
+      "allocated": {
+        "air_sorties": 22,
+        "fuel_points": 49,
+        "ordnance_points": 60,
+        "repair_capacity_points": 0
+      },
+      "available": {
+        "fuel_points": 500,
+        "ordnance_points": 500,
+        "repair_capacity_points": 60
+      }
+    },
+    "red": {
+      "allocated": {
+        "air_sorties": 16,
+        "fuel_points": 40,
+        "ordnance_points": 70,
+        "repair_capacity_points": 0
+      },
+      "available": {
+        "fuel_points": 400,
+        "ordnance_points": 400,
+        "repair_capacity_points": 40
+      }
+    }
+  },
+  "objectives": {
+    "blue": {
+      "goals": [
+        {
+          "label": "preserve campaign-critical assets",
+          "quantity": 3,
+          "targets": [
+            "Amari Air Base",
+            "Baltic Sustainment 1",
+            "Lielvarde Air Base"
+          ],
+          "type": "ProtectGoal"
+        },
+        {
+          "label": "Defeat the limited strike package",
+          "quantity": 2,
+          "targets": [
+            "Fencer Maritime 1",
+            "Fencer Maritime 2",
+            "Fencer Strike 1",
+            "Fencer Strike 2"
+          ],
+          "type": "DestroyGoal"
+        },
+        {
+          "label": "Break the forward corvette threat",
+          "quantity": 1,
+          "targets": [
+            "Russian Corvette 1",
+            "Russian Corvette 2"
+          ],
+          "type": "DestroyGoal"
+        }
+      ],
+      "label": "Convoy Escort",
+      "mode": 0,
+      "type": "CompoundGoal"
+    },
+    "red": {
+      "label": "break the protected force",
+      "quantity": 1,
+      "targets": [
+        "Amari Air Base",
+        "Baltic Sustainment 1",
+        "Lielvarde Air Base"
+      ],
+      "type": "DestroyGoal"
+    }
+  },
+  "output_hash": "e9a6306a2d6f1bc8f885043143be320c318133aa374eb8b676be4960a8f800bf",
+  "random_draws": [
+    {
+      "index": 0,
+      "label": "roster:blue:NATO Air Defense Frigate",
+      "value": 0.469140138011
+    },
+    {
+      "index": 1,
+      "label": "roster:blue:NATO ASW Frigate",
+      "value": 0.5030032082
+    },
+    {
+      "index": 2,
+      "label": "roster:blue:Baltic Sustainment 1",
+      "value": 0.435864055529
+    },
+    {
+      "index": 3,
+      "label": "roster:blue:Amari Air Base",
+      "value": 0.960141729563
+    },
+    {
+      "index": 4,
+      "label": "roster:blue:Lielvarde Air Base",
+      "value": 0.779646449955
+    },
+    {
+      "index": 5,
+      "label": "roster:blue:Estonia SAM Detachment",
+      "value": 0.074379676022
+    },
+    {
+      "index": 6,
+      "label": "roster:blue:Latvia SAM Detachment",
+      "value": 0.812106873374
+    },
+    {
+      "index": 7,
+      "label": "roster:blue:Estonia Radar Post",
+      "value": 0.528693779139
+    },
+    {
+      "index": 8,
+      "label": "roster:blue:Latvia Radar Post",
+      "value": 0.326700717211
+    },
+    {
+      "index": 9,
+      "label": "roster:blue:Viper CAP 1",
+      "value": 0.664042266551
+    },
+    {
+      "index": 10,
+      "label": "roster:blue:Viper CAP 2",
+      "value": 0.619001098443
+    },
+    {
+      "index": 11,
+      "label": "roster:blue:Viper CAP 3",
+      "value": 0.638404675992
+    },
+    {
+      "index": 12,
+      "label": "roster:blue:Viper CAP 4",
+      "value": 0.918202032102
+    },
+    {
+      "index": 13,
+      "label": "roster:blue:Raven SEAD Strike 1",
+      "value": 0.180785520701
+    },
+    {
+      "index": 14,
+      "label": "roster:blue:Falcon Precision Strike 1",
+      "value": 0.635327809956
+    },
+    {
+      "index": 15,
+      "label": "roster:blue:Raven SEAD Strike 2",
+      "value": 0.570394926239
+    },
+    {
+      "index": 16,
+      "label": "roster:blue:Falcon Precision Strike 2",
+      "value": 0.840287375264
+    },
+    {
+      "index": 17,
+      "label": "roster:blue:Seeker MPA",
+      "value": 0.502481814008
+    },
+    {
+      "index": 18,
+      "label": "roster:blue:Magic AEW",
+      "value": 0.812710528728
+    },
+    {
+      "index": 19,
+      "label": "roster:blue:Shell Tanker",
+      "value": 0.515646718442
+    },
+    {
+      "index": 20,
+      "label": "roster:red:Russian Corvette 1",
+      "value": 0.631685549393
+    },
+    {
+      "index": 21,
+      "label": "roster:red:Russian Corvette 2",
+      "value": 0.786087583518
+    },
+    {
+      "index": 22,
+      "label": "roster:red:Russian Support Frigate",
+      "value": 0.901182285277
+    },
+    {
+      "index": 23,
+      "label": "roster:red:Russian Air Base",
+      "value": 0.554440332809
+    },
+    {
+      "index": 24,
+      "label": "roster:red:Russian SAM Sector",
+      "value": 0.838993355865
+    },
+    {
+      "index": 25,
+      "label": "roster:red:Russian Point Defense",
+      "value": 0.804829756729
+    },
+    {
+      "index": 26,
+      "label": "roster:red:Russian Coastal Radar",
+      "value": 0.081932304194
+    },
+    {
+      "index": 27,
+      "label": "roster:red:Russian Coastal Battery",
+      "value": 0.276406351943
+    },
+    {
+      "index": 28,
+      "label": "roster:red:Flanker CAP 1",
+      "value": 0.209903349401
+    },
+    {
+      "index": 29,
+      "label": "roster:red:Flanker CAP 2",
+      "value": 0.514389144722
+    },
+    {
+      "index": 30,
+      "label": "roster:red:Flanker CAP 3",
+      "value": 0.923724798486
+    },
+    {
+      "index": 31,
+      "label": "roster:red:Flanker CAP 4",
+      "value": 0.717280180659
+    },
+    {
+      "index": 32,
+      "label": "roster:red:Fencer Maritime 1",
+      "value": 0.746256245533
+    },
+    {
+      "index": 33,
+      "label": "roster:red:Fencer Strike 1",
+      "value": 0.409230758203
+    },
+    {
+      "index": 34,
+      "label": "roster:red:Fencer Maritime 2",
+      "value": 0.454619468888
+    },
+    {
+      "index": 35,
+      "label": "roster:red:Fencer Strike 2",
+      "value": 0.337819218868
+    }
+  ],
+  "rejected_units": [],
+  "scenario": {
+    "archetype": "convoy_escort",
+    "id": "baltic_shield_001",
+    "name": "Operation Baltic Shield - First Contact",
+    "theater_id": "baltic_latvia_estonia"
+  },
+  "schema_version": 1,
+  "selected_units": [
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 59.26,
+          "lon": 24.21,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "Airbase",
+      "presence": "active",
+      "role": "base",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Amari Air Base"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [],
+        "loadout_setup": "Henry J Kaiser-1",
+        "magazines": [
+          {
+            "item": "Fuel",
+            "magazineId": 0,
+            "quantity": 14250000
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 56.15,
+          "lon": 20.12,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 56.675,
+            "lon": 20.12,
+            "speed": 14
+          },
+          {
+            "altitude": 0,
+            "lat": 57.2,
+            "lon": 20.12,
+            "speed": 14
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 18,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "host": null,
+      "platform_class": "Henry J Kaiser",
+      "presence": "active",
+      "role": "logistics",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 18,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Baltic Sustainment 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 59.18,
+          "lon": 24.25,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "Generic Radar Post 170",
+      "presence": "active",
+      "role": "reconnaissance",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Estonia Radar Post"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [
+          {
+            "item": "MIM-104C",
+            "launcherId": 0,
+            "quantity": 8
+          },
+          {
+            "item": "MIM-104C",
+            "launcherId": 1,
+            "quantity": 8
+          },
+          {
+            "item": "MIM-104C",
+            "launcherId": 2,
+            "quantity": 8
+          },
+          {
+            "item": "MIM-104C",
+            "launcherId": 3,
+            "quantity": 8
+          },
+          {
+            "item": "MIM-104D",
+            "launcherId": 4,
+            "quantity": 8
+          },
+          {
+            "item": "MIM-104D",
+            "launcherId": 5,
+            "quantity": 8
+          }
+        ],
+        "loadout_setup": "MIM-104 Patriot PAC-2-1",
+        "magazines": [
+          {
+            "item": "MIM-104C",
+            "magazineId": 0,
+            "quantity": 32
+          },
+          {
+            "item": "MIM-104D",
+            "magazineId": 0,
+            "quantity": 16
+          }
+        ],
+        "position": {
+          "altitude": 10,
+          "lat": 59.22,
+          "lon": 24.3,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1",
+          "PointDefense"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "MIM-104 Patriot PAC-2",
+      "presence": "active",
+      "role": "air_defense",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Estonia SAM Detachment"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "AIM-9X",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120D",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "GBU-12/B",
+            "launcherId": 2,
+            "quantity": 6
+          },
+          {
+            "item": "370 gallon wing tank",
+            "launcherId": 3,
+            "quantity": 2
+          },
+          {
+            "item": "300 gallon wing tank",
+            "launcherId": 4,
+            "quantity": 1
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 6,
+            "quantity": 30
+          },
+          {
+            "item": "20mm PGU",
+            "launcherId": 7,
+            "quantity": 46
+          }
+        ],
+        "loadout_setup": "GB2E  2010",
+        "magazines": [],
+        "position": {
+          "altitude": 6500,
+          "lat": 56.89,
+          "lon": 24,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 6500,
+            "lat": 56.85,
+            "lon": 23.8,
+            "speed": 380
+          },
+          {
+            "altitude": 6500,
+            "lat": 57.1,
+            "lon": 24.2,
+            "speed": 380
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "F-16C/D Block 50",
+      "presence": "active",
+      "role": "strike",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Falcon Precision Strike 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "AIM-9X",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120D",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "GBU-12/B",
+            "launcherId": 2,
+            "quantity": 6
+          },
+          {
+            "item": "370 gallon wing tank",
+            "launcherId": 3,
+            "quantity": 2
+          },
+          {
+            "item": "300 gallon wing tank",
+            "launcherId": 4,
+            "quantity": 1
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 6,
+            "quantity": 30
+          },
+          {
+            "item": "20mm PGU",
+            "launcherId": 7,
+            "quantity": 46
+          }
+        ],
+        "loadout_setup": "GB2E  2010",
+        "magazines": [],
+        "position": {
+          "altitude": 6500,
+          "lat": 56.93,
+          "lon": 24,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 6500,
+            "lat": 56.85,
+            "lon": 23.8,
+            "speed": 380
+          },
+          {
+            "altitude": 6500,
+            "lat": 57.1,
+            "lon": 24.2,
+            "speed": 380
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "F-16C/D Block 50",
+      "presence": "active",
+      "role": "strike",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Falcon Precision Strike 2"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 56.9,
+          "lon": 24.8,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "Generic Mobile Radar Post 170",
+      "presence": "active",
+      "role": "reconnaissance",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Latvia Radar Post"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [
+          {
+            "item": "ERINT/PAC-3",
+            "launcherId": 0,
+            "quantity": 32
+          },
+          {
+            "item": "MIM-104C",
+            "launcherId": 1,
+            "quantity": 8
+          },
+          {
+            "item": "MIM-104C",
+            "launcherId": 2,
+            "quantity": 8
+          },
+          {
+            "item": "MIM-104C",
+            "launcherId": 3,
+            "quantity": 8
+          },
+          {
+            "item": "MIM-104D",
+            "launcherId": 4,
+            "quantity": 8
+          },
+          {
+            "item": "MIM-104D",
+            "launcherId": 5,
+            "quantity": 8
+          }
+        ],
+        "loadout_setup": "MIM-104 Patriot PAC-3-1",
+        "magazines": [
+          {
+            "item": "ERINT/PAC-3",
+            "magazineId": 0,
+            "quantity": 32
+          },
+          {
+            "item": "MIM-104C",
+            "magazineId": 0,
+            "quantity": 24
+          },
+          {
+            "item": "MIM-104D",
+            "magazineId": 0,
+            "quantity": 16
+          }
+        ],
+        "position": {
+          "altitude": 10,
+          "lat": 56.8,
+          "lon": 24.9,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1",
+          "PointDefense"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "MIM-104 Patriot PAC-3",
+      "presence": "active",
+      "role": "air_defense",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Latvia SAM Detachment"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 56.78,
+          "lon": 24.85,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "Airbase",
+      "presence": "active",
+      "role": "base",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Lielvarde Air Base"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 9500,
+          "lat": 57.3,
+          "lon": 23.8,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 9500,
+            "lat": 57.099999999999994,
+            "lon": 23.6,
+            "speed": 300
+          },
+          {
+            "altitude": 9500,
+            "lat": 57.5,
+            "lon": 24,
+            "speed": 300
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "E-3C",
+      "presence": "active",
+      "role": "reconnaissance",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Magic AEW"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [
+          {
+            "item": "RIM-66M",
+            "launcherId": 0,
+            "quantity": 1
+          },
+          {
+            "item": "RIM-162B",
+            "launcherId": 1,
+            "quantity": 1
+          },
+          {
+            "item": "RIM-116B RAM",
+            "launcherId": 2,
+            "quantity": 21
+          },
+          {
+            "item": "RIM-116B RAM",
+            "launcherId": 3,
+            "quantity": 21
+          },
+          {
+            "item": "RGM-84F Harpoon",
+            "launcherId": 4,
+            "quantity": 4
+          },
+          {
+            "item": "RGM-84F Harpoon",
+            "launcherId": 5,
+            "quantity": 4
+          },
+          {
+            "item": "76mm HE-MOM",
+            "launcherId": 6,
+            "quantity": 80
+          },
+          {
+            "item": "27mm DM10 FAPDS",
+            "launcherId": 7,
+            "quantity": 90
+          },
+          {
+            "item": "27mm DM10 FAPDS",
+            "launcherId": 8,
+            "quantity": 90
+          },
+          {
+            "item": "MU-90",
+            "launcherId": 9,
+            "quantity": 3
+          },
+          {
+            "item": "MU-90",
+            "launcherId": 10,
+            "quantity": 3
+          }
+        ],
+        "loadout_setup": "Sachsen 2006",
+        "magazines": [
+          {
+            "item": "Fuel",
+            "magazineId": 0,
+            "quantity": 22515
+          },
+          {
+            "item": "Mk-46 Mod5",
+            "magazineId": 0,
+            "quantity": 29
+          },
+          {
+            "item": "Sea Skua",
+            "magazineId": 0,
+            "quantity": 16
+          },
+          {
+            "item": "RIM-162B",
+            "magazineId": 1,
+            "quantity": 32
+          },
+          {
+            "item": "RIM-66M",
+            "magazineId": 1,
+            "quantity": 24
+          },
+          {
+            "item": "RIM-116B RAM",
+            "magazineId": 2,
+            "quantity": 84
+          },
+          {
+            "item": "76mm HE-MOM",
+            "magazineId": 3,
+            "quantity": 240
+          },
+          {
+            "item": "27mm DM10 FAPDS",
+            "magazineId": 4,
+            "quantity": 1000
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 56.25,
+          "lon": 20.25,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 56.775,
+            "lon": 20.25,
+            "speed": 16
+          },
+          {
+            "altitude": 0,
+            "lat": 57.3,
+            "lon": 20.25,
+            "speed": 16
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 18,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "host": null,
+      "platform_class": "Sachsen FFGHM",
+      "presence": "active",
+      "role": "surface_combatant",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 18,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "NATO Air Defense Frigate"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [
+          {
+            "item": "RIM-7P(v2)",
+            "launcherId": 0,
+            "quantity": 1
+          },
+          {
+            "item": "RIM-116B RAM",
+            "launcherId": 1,
+            "quantity": 21
+          },
+          {
+            "item": "RIM-116B RAM",
+            "launcherId": 2,
+            "quantity": 21
+          },
+          {
+            "item": "MM-40 B3 Exocet",
+            "launcherId": 3,
+            "quantity": 2
+          },
+          {
+            "item": "MM-40 B3 Exocet",
+            "launcherId": 4,
+            "quantity": 2
+          },
+          {
+            "item": "76mm HE-MOM",
+            "launcherId": 5,
+            "quantity": 80
+          },
+          {
+            "item": "20mm Rh202 HE-T",
+            "launcherId": 6,
+            "quantity": 50
+          },
+          {
+            "item": "20mm Rh202 HE-T",
+            "launcherId": 7,
+            "quantity": 50
+          },
+          {
+            "item": "Mk-46 Mod5",
+            "launcherId": 8,
+            "quantity": 2
+          },
+          {
+            "item": "Mk-46 Mod5",
+            "launcherId": 9,
+            "quantity": 2
+          }
+        ],
+        "loadout_setup": "Brandenburg 2007",
+        "magazines": [
+          {
+            "item": "Fuel",
+            "magazineId": 0,
+            "quantity": 22515
+          },
+          {
+            "item": "Mk-46 Mod5",
+            "magazineId": 0,
+            "quantity": 29
+          },
+          {
+            "item": "Sea Skua",
+            "magazineId": 0,
+            "quantity": 16
+          },
+          {
+            "item": "76mm HE-MOM",
+            "magazineId": 1,
+            "quantity": 240
+          },
+          {
+            "item": "RIM-116B RAM",
+            "magazineId": 2,
+            "quantity": 42
+          },
+          {
+            "item": "20mm Rh202 HE-T",
+            "magazineId": 3,
+            "quantity": 1000
+          },
+          {
+            "item": "RIM-7P(v2)",
+            "magazineId": 4,
+            "quantity": 15
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 56.3,
+          "lon": 20.05,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 56.825,
+            "lon": 20.05,
+            "speed": 16
+          },
+          {
+            "altitude": 0,
+            "lat": 57.35,
+            "lon": 20.05,
+            "speed": 16
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 18,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "host": null,
+      "platform_class": "Brandenburg FFGHM",
+      "presence": "active",
+      "role": "surface_combatant",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 18,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "NATO ASW Frigate"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "Chaff-1",
+            "launcherId": 0,
+            "quantity": 50
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 1,
+            "quantity": 50
+          },
+          {
+            "item": "IRIS-T",
+            "launcherId": 2,
+            "quantity": 1
+          },
+          {
+            "item": "IRIS-T",
+            "launcherId": 3,
+            "quantity": 1
+          },
+          {
+            "item": "330 gallon wing tank",
+            "launcherId": 4,
+            "quantity": 1
+          },
+          {
+            "item": "330 gallon wing tank",
+            "launcherId": 5,
+            "quantity": 1
+          },
+          {
+            "item": "AGM-88B",
+            "launcherId": 6,
+            "quantity": 1
+          },
+          {
+            "item": "AGM-88B",
+            "launcherId": 7,
+            "quantity": 1
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 6500,
+          "lat": 56.589999999999996,
+          "lon": 23.4,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 6500,
+            "lat": 56.6,
+            "lon": 23.3,
+            "speed": 360
+          },
+          {
+            "altitude": 6500,
+            "lat": 56.9,
+            "lon": 23.6,
+            "speed": 360
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Tornado ECR (Germany)",
+      "presence": "active",
+      "role": "strike",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Raven SEAD Strike 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "Chaff-1",
+            "launcherId": 0,
+            "quantity": 50
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 1,
+            "quantity": 50
+          },
+          {
+            "item": "IRIS-T",
+            "launcherId": 2,
+            "quantity": 1
+          },
+          {
+            "item": "IRIS-T",
+            "launcherId": 3,
+            "quantity": 1
+          },
+          {
+            "item": "330 gallon wing tank",
+            "launcherId": 4,
+            "quantity": 1
+          },
+          {
+            "item": "330 gallon wing tank",
+            "launcherId": 5,
+            "quantity": 1
+          },
+          {
+            "item": "AGM-88B",
+            "launcherId": 6,
+            "quantity": 1
+          },
+          {
+            "item": "AGM-88B",
+            "launcherId": 7,
+            "quantity": 1
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 6500,
+          "lat": 56.629999999999995,
+          "lon": 23.4,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 6500,
+            "lat": 56.6,
+            "lon": 23.3,
+            "speed": 360
+          },
+          {
+            "altitude": 6500,
+            "lat": 56.9,
+            "lon": 23.6,
+            "speed": 360
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Tornado ECR (Germany)",
+      "presence": "active",
+      "role": "strike",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Raven SEAD Strike 2"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "Mk-46 Mod5",
+            "launcherId": 0,
+            "quantity": 4
+          },
+          {
+            "item": "AGM-84D Harpoon",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 6,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 7,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 5000,
+          "lat": 57.1,
+          "lon": 21.5,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 5000,
+            "lat": 56.9,
+            "lon": 21.3,
+            "speed": 300
+          },
+          {
+            "altitude": 5000,
+            "lat": 57.300000000000004,
+            "lon": 21.7,
+            "speed": 300
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "P-8 MPA",
+      "presence": "active",
+      "role": "maritime_patrol",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Seeker MPA"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 8500,
+          "lat": 57.8,
+          "lon": 24,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 8500,
+            "lat": 57.599999999999994,
+            "lon": 23.8,
+            "speed": 300
+          },
+          {
+            "altitude": 8500,
+            "lat": 58,
+            "lon": 24.2,
+            "speed": 300
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "KC-135R",
+      "presence": "active",
+      "role": "tanker",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Shell Tanker"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "ASRAAM",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120C7",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120C7",
+            "launcherId": 3,
+            "quantity": 4
+          },
+          {
+            "item": "1150 Liter Tank",
+            "launcherId": 4,
+            "quantity": 1
+          },
+          {
+            "item": "27mm BK27 27x145mm",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 6,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 7,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 8000,
+          "lat": 56.58,
+          "lon": 20.9,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 8000,
+            "lat": 56.7,
+            "lon": 20.7,
+            "speed": 420
+          },
+          {
+            "altitude": 8000,
+            "lat": 57.2,
+            "lon": 21.2,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Typhoon",
+      "presence": "active",
+      "role": "fighter",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Viper CAP 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "ASRAAM",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120C7",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120C7",
+            "launcherId": 3,
+            "quantity": 4
+          },
+          {
+            "item": "1150 Liter Tank",
+            "launcherId": 4,
+            "quantity": 1
+          },
+          {
+            "item": "27mm BK27 27x145mm",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 6,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 7,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 8000,
+          "lat": 56.61,
+          "lon": 20.9,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 8000,
+            "lat": 56.7,
+            "lon": 20.7,
+            "speed": 420
+          },
+          {
+            "altitude": 8000,
+            "lat": 57.2,
+            "lon": 21.2,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Typhoon",
+      "presence": "active",
+      "role": "fighter",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Viper CAP 2"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "ASRAAM",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120C7",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120C7",
+            "launcherId": 3,
+            "quantity": 4
+          },
+          {
+            "item": "1150 Liter Tank",
+            "launcherId": 4,
+            "quantity": 1
+          },
+          {
+            "item": "27mm BK27 27x145mm",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 6,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 7,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 8000,
+          "lat": 58.49,
+          "lon": 23.9,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 8000,
+            "lat": 58.6,
+            "lon": 24,
+            "speed": 420
+          },
+          {
+            "altitude": 8000,
+            "lat": 59.2,
+            "lon": 24.4,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Typhoon",
+      "presence": "active",
+      "role": "fighter",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Viper CAP 3"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "ASRAAM",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120C7",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "AIM-120C7",
+            "launcherId": 3,
+            "quantity": 4
+          },
+          {
+            "item": "1150 Liter Tank",
+            "launcherId": 4,
+            "quantity": 1
+          },
+          {
+            "item": "27mm BK27 27x145mm",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 6,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 7,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 8000,
+          "lat": 58.519999999999996,
+          "lon": 23.9,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 8000,
+            "lat": 58.6,
+            "lon": 24,
+            "speed": 420
+          },
+          {
+            "altitude": 8000,
+            "lat": 59.2,
+            "lon": 24.4,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Typhoon",
+      "presence": "active",
+      "role": "fighter",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Viper CAP 4"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "R-60",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "Kh-59MK",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "23mm AM-23",
+            "launcherId": 4,
+            "quantity": 6
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 6,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 1500,
+          "lat": 55.79,
+          "lon": 21.3,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 1500,
+            "lat": 56.25,
+            "lon": 20.8,
+            "speed": 420
+          },
+          {
+            "altitude": 1500,
+            "lat": 56.5,
+            "lon": 20.5,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Su-24M",
+      "presence": "active",
+      "role": "strike",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Fencer Maritime 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "R-60",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "Kh-59MK",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "23mm AM-23",
+            "launcherId": 4,
+            "quantity": 6
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 6,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 1500,
+          "lat": 55.83,
+          "lon": 21.3,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 1500,
+            "lat": 56.25,
+            "lon": 20.8,
+            "speed": 420
+          },
+          {
+            "altitude": 1500,
+            "lat": 56.5,
+            "lon": 20.5,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Su-24M",
+      "presence": "active",
+      "role": "strike",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Fencer Maritime 2"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "R-60",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "3000 liter tank",
+            "launcherId": 1,
+            "quantity": 1
+          },
+          {
+            "item": "Kh-29T",
+            "launcherId": 2,
+            "quantity": 2
+          },
+          {
+            "item": "KAB-500L",
+            "launcherId": 3,
+            "quantity": 2
+          },
+          {
+            "item": "23mm AM-23",
+            "launcherId": 4,
+            "quantity": 6
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 6,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 1800,
+          "lat": 55.99,
+          "lon": 23.2,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 1800,
+            "lat": 56.5,
+            "lon": 24.1,
+            "speed": 420
+          },
+          {
+            "altitude": 1800,
+            "lat": 56.72,
+            "lon": 24.7,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Su-24M",
+      "presence": "active",
+      "role": "strike",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Fencer Strike 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "R-60",
+            "launcherId": 0,
+            "quantity": 2
+          },
+          {
+            "item": "3000 liter tank",
+            "launcherId": 1,
+            "quantity": 1
+          },
+          {
+            "item": "Kh-29T",
+            "launcherId": 2,
+            "quantity": 2
+          },
+          {
+            "item": "KAB-500L",
+            "launcherId": 3,
+            "quantity": 2
+          },
+          {
+            "item": "23mm AM-23",
+            "launcherId": 4,
+            "quantity": 6
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 5,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 6,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 1800,
+          "lat": 56.03,
+          "lon": 23.2,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 1800,
+            "lat": 56.5,
+            "lon": 24.1,
+            "speed": 420
+          },
+          {
+            "altitude": 1800,
+            "lat": 56.72,
+            "lon": 24.7,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Su-24M",
+      "presence": "active",
+      "role": "strike",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Fencer Strike 2"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "R-27R",
+            "launcherId": 0,
+            "quantity": 4
+          },
+          {
+            "item": "R-73M",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "R-27R",
+            "launcherId": 2,
+            "quantity": 2
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 3,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 4,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 8500,
+          "lat": 55.589999999999996,
+          "lon": 21.700000000000003,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 8500,
+            "lat": 56,
+            "lon": 21.3,
+            "speed": 420
+          },
+          {
+            "altitude": 8500,
+            "lat": 56.6,
+            "lon": 21.5,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Su-27",
+      "presence": "active",
+      "role": "fighter",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Flanker CAP 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "R-27R",
+            "launcherId": 0,
+            "quantity": 4
+          },
+          {
+            "item": "R-73M",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "R-27R",
+            "launcherId": 2,
+            "quantity": 2
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 3,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 4,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 8500,
+          "lat": 55.629999999999995,
+          "lon": 21.6,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 8500,
+            "lat": 56,
+            "lon": 21.3,
+            "speed": 420
+          },
+          {
+            "altitude": 8500,
+            "lat": 56.6,
+            "lon": 21.5,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Su-27",
+      "presence": "active",
+      "role": "fighter",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Flanker CAP 2"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "R-27R",
+            "launcherId": 0,
+            "quantity": 4
+          },
+          {
+            "item": "R-73M",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "R-27R",
+            "launcherId": 2,
+            "quantity": 2
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 3,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 4,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 8500,
+          "lat": 55.669999999999995,
+          "lon": 21.700000000000003,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 8500,
+            "lat": 56,
+            "lon": 21.3,
+            "speed": 420
+          },
+          {
+            "altitude": 8500,
+            "lat": 56.6,
+            "lon": 21.5,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Su-27",
+      "presence": "active",
+      "role": "fighter",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Flanker CAP 3"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.85,
+        "launchers": [
+          {
+            "item": "R-27R",
+            "launcherId": 0,
+            "quantity": 4
+          },
+          {
+            "item": "R-73M",
+            "launcherId": 1,
+            "quantity": 2
+          },
+          {
+            "item": "R-27R",
+            "launcherId": 2,
+            "quantity": 2
+          },
+          {
+            "item": "Chaff-1",
+            "launcherId": 3,
+            "quantity": 30
+          },
+          {
+            "item": "Flare-1",
+            "launcherId": 4,
+            "quantity": 30
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 8500,
+          "lat": 55.709999999999994,
+          "lon": 21.6,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 8500,
+            "lat": 56,
+            "lon": 21.3,
+            "speed": 420
+          },
+          {
+            "altitude": 8500,
+            "lat": 56.6,
+            "lon": 21.5,
+            "speed": 420
+          }
+        ],
+        "sorties": 2,
+        "speed_kts": 420,
+        "tasks": [
+          "Aircraft1",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "air",
+      "host": null,
+      "platform_class": "Su-27",
+      "presence": "active",
+      "role": "fighter",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 85,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 420,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Flanker CAP 4"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 54.77,
+          "lon": 20.4,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "Airstrip (Russia)",
+      "presence": "active",
+      "role": "base",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Russian Air Base"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [
+          {
+            "item": "P-800 Oniks",
+            "launcherId": 0,
+            "quantity": 2
+          }
+        ],
+        "loadout_setup": "scenario-seed override",
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 54.9,
+          "lon": 20.35,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1",
+          "AutoAttack"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "K-300P Bastion-P",
+      "presence": "active",
+      "role": "coastal_strike",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Russian Coastal Battery"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 54.9,
+          "lon": 20.2,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "Generic Radar Post 170",
+      "presence": "active",
+      "role": "reconnaissance",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Russian Coastal Radar"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [
+          {
+            "item": "100mm OF-58 FRAG",
+            "launcherId": 0,
+            "quantity": 46
+          },
+          {
+            "item": "12.7mm B-32 APi",
+            "launcherId": 1,
+            "quantity": 17
+          },
+          {
+            "item": "12.7mm B-32 APi",
+            "launcherId": 2,
+            "quantity": 17
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "launcherId": 3,
+            "quantity": 59
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "launcherId": 4,
+            "quantity": 59
+          },
+          {
+            "item": "9M311 Kashtan",
+            "launcherId": 5,
+            "quantity": 8
+          },
+          {
+            "item": "9M311 Kashtan",
+            "launcherId": 6,
+            "quantity": 8
+          },
+          {
+            "item": "Kh-35",
+            "launcherId": 7,
+            "quantity": 8
+          }
+        ],
+        "loadout_setup": "Pr 20380 2007",
+        "magazines": [
+          {
+            "item": "100mm OF-58 FRAG",
+            "magazineId": 0,
+            "quantity": 350
+          },
+          {
+            "item": "12.7mm B-32 APi",
+            "magazineId": 0,
+            "quantity": 680
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "magazineId": 1,
+            "quantity": 472
+          },
+          {
+            "item": "9M311 Kashtan",
+            "magazineId": 2,
+            "quantity": 48
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 56.8,
+          "lon": 20.4,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 56.5,
+            "lon": 20.4,
+            "speed": 18
+          },
+          {
+            "altitude": 0,
+            "lat": 56.2,
+            "lon": 20.4,
+            "speed": 18
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 18,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "host": null,
+      "platform_class": "Pr 20380 Steregushchiy",
+      "presence": "active",
+      "role": "surface_combatant",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 18,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Russian Corvette 1"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [
+          {
+            "item": "100mm OF-58 FRAG",
+            "launcherId": 0,
+            "quantity": 46
+          },
+          {
+            "item": "12.7mm B-32 APi",
+            "launcherId": 1,
+            "quantity": 17
+          },
+          {
+            "item": "12.7mm B-32 APi",
+            "launcherId": 2,
+            "quantity": 17
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "launcherId": 3,
+            "quantity": 59
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "launcherId": 4,
+            "quantity": 59
+          },
+          {
+            "item": "9M311 Kashtan",
+            "launcherId": 5,
+            "quantity": 8
+          },
+          {
+            "item": "9M311 Kashtan",
+            "launcherId": 6,
+            "quantity": 8
+          },
+          {
+            "item": "Kh-35",
+            "launcherId": 7,
+            "quantity": 8
+          }
+        ],
+        "loadout_setup": "Pr 20380 2007",
+        "magazines": [
+          {
+            "item": "100mm OF-58 FRAG",
+            "magazineId": 0,
+            "quantity": 350
+          },
+          {
+            "item": "12.7mm B-32 APi",
+            "magazineId": 0,
+            "quantity": 680
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "magazineId": 1,
+            "quantity": 472
+          },
+          {
+            "item": "9M311 Kashtan",
+            "magazineId": 2,
+            "quantity": 48
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 57.1,
+          "lon": 20.5,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 56.725,
+            "lon": 20.5,
+            "speed": 18
+          },
+          {
+            "altitude": 0,
+            "lat": 56.35,
+            "lon": 20.5,
+            "speed": 18
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 18,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "host": null,
+      "platform_class": "Pr 20380 Steregushchiy",
+      "presence": "active",
+      "role": "surface_combatant",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 18,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Russian Corvette 2"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [],
+        "loadout_setup": null,
+        "magazines": [],
+        "position": {
+          "altitude": 10,
+          "lat": 54.9,
+          "lon": 20.7,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "Pantsir-S1",
+      "presence": "active",
+      "role": "air_defense",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Russian Point Defense"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [
+          {
+            "item": "48N6E2",
+            "launcherId": 0,
+            "quantity": 4
+          },
+          {
+            "item": "48N6E2",
+            "launcherId": 1,
+            "quantity": 4
+          },
+          {
+            "item": "48N6E2",
+            "launcherId": 2,
+            "quantity": 4
+          },
+          {
+            "item": "48N6E2",
+            "launcherId": 3,
+            "quantity": 4
+          }
+        ],
+        "loadout_setup": "S-300PMU-2-1",
+        "magazines": [
+          {
+            "item": "48N6E2",
+            "magazineId": 0,
+            "quantity": 72
+          }
+        ],
+        "position": {
+          "altitude": 10,
+          "lat": 54.85,
+          "lon": 20.8,
+          "speed": 0
+        },
+        "route": [],
+        "sorties": 0,
+        "speed_kts": 0,
+        "tasks": [
+          "Ground1",
+          "PointDefense"
+        ]
+      },
+      "domain": "ground",
+      "host": null,
+      "platform_class": "S-300PMU-2",
+      "presence": "active",
+      "role": "air_defense",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 0,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Russian SAM Sector"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 0.95,
+        "launchers": [
+          {
+            "item": "100mm OF-58 FRAG",
+            "launcherId": 0,
+            "quantity": 46
+          },
+          {
+            "item": "53-65M",
+            "launcherId": 1,
+            "quantity": 3
+          },
+          {
+            "item": "53-65M",
+            "launcherId": 2,
+            "quantity": 3
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "launcherId": 3,
+            "quantity": 59
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "launcherId": 4,
+            "quantity": 59
+          },
+          {
+            "item": "9M311 Kashtan",
+            "launcherId": 5,
+            "quantity": 8
+          },
+          {
+            "item": "9M311 Kashtan",
+            "launcherId": 6,
+            "quantity": 8
+          },
+          {
+            "item": "9M330 Kinzhal",
+            "launcherId": 7,
+            "quantity": 32
+          }
+        ],
+        "loadout_setup": "Pr 11540 2012",
+        "magazines": [
+          {
+            "item": "100mm OF-58 FRAG",
+            "magazineId": 0,
+            "quantity": 350
+          },
+          {
+            "item": "53-65M",
+            "magazineId": 0,
+            "quantity": 12
+          },
+          {
+            "item": "9M311 Kashtan",
+            "magazineId": 1,
+            "quantity": 48
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "magazineId": 2,
+            "quantity": 472
+          },
+          {
+            "item": "AT-1",
+            "magazineId": 3,
+            "quantity": 18
+          },
+          {
+            "item": "DICASS (105) Sonobuoy",
+            "magazineId": 3,
+            "quantity": 105
+          },
+          {
+            "item": "DIFAR (105) Sonobuoy",
+            "magazineId": 3,
+            "quantity": 294
+          },
+          {
+            "item": "Fuel",
+            "magazineId": 3,
+            "quantity": 21802
+          },
+          {
+            "item": "LOFAR (105) Sonobuoy",
+            "magazineId": 3,
+            "quantity": 105
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 55.65,
+          "lon": 20.3,
+          "speed": 0
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 55.974999999999994,
+            "lon": 20.3,
+            "speed": 18
+          },
+          {
+            "altitude": 0,
+            "lat": 56.3,
+            "lon": 20.3,
+            "speed": 18
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 18,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "host": null,
+      "platform_class": "Pr 11540 Yastreb",
+      "presence": "active",
+      "role": "surface_combatant",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 10,
+        "fuel_pct": 95,
+        "readiness_pct": 90,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "full_reconstitution_days": 0,
+          "pier_side_hours_required": 0,
+          "port_required": false
+        },
+        "speed_limit_kts": 18,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "Russian Support Frigate"
+    }
+  ],
+  "validation": {
+    "errors": 0,
+    "findings": [],
+    "parser": "passed",
+    "theater": "baltic_latvia_estonia",
+    "warnings": 0
+  },
+  "variation": {
+    "applied": {},
+    "configured": {
+      "position_jitter_nm": 0
+    }
+  }
+}

@@ -95,3 +95,66 @@ test('unsatisfiable objectives fail without creating partial output', { skip: !h
   assert.equal(fs.existsSync(outputPath), false);
   assert.equal(fs.existsSync(manifestPath), false);
 });
+
+test('Baltic operational references and route library pass mask and coastline checks', async () => {
+  const geometry = await import('../../mission-map/renderer/geometry.js');
+  const read = (name) => JSON.parse(fs.readFileSync(path.join(projectRoot, name), 'utf8'));
+  const theater = read('theaters/baltic_latvia_estonia.json');
+  const area = read('campaign/baltic_operational_area.json');
+  const land = geometry.buildLandIndex(read('mission-map/renderer/data/global-land.geojson'));
+  const { selectTheater } = require('../../mission-map/src/theater-selector.cjs');
+  assert.equal(selectTheater({ theaterCenter: { lat: 57.4, lng: 24 } }, [read('theaters/hormuz_mvp.json'), theater]).theater_id, theater.theater_id);
+  for (const node of area.ground_reference_nodes) assert.ok(geometry.pointInLand({ lat: node.lat, lng: node.lon }, land), node.id);
+  for (const [name, route] of Object.entries(area.surface_route_library)) {
+    const points = route.map((p) => ({ ...p, lng: p.lon }));
+    const scenario = { units: [{ name, className: 'Sachsen FFGHM', domain: 'surface', position: points[0], waypoints: points.slice(1) }] };
+    assert.deepEqual(geometry.validateMission(scenario, theater, 1), [], name);
+    assert.deepEqual(geometry.validateRealWorld(scenario, theater, land, 1), [], name);
+  }
+});
+
+test('Baltic fixture generates deterministically with NATO/Russia and no audit findings', { skip: !hasDatabase, timeout: 60000 }, async (t) => {
+  const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'gcbh-baltic-'));
+  t.after(() => fs.rmSync(temporary, { recursive: true, force: true }));
+  const options = { statePath: path.join(projectRoot, 'campaign/campaign_state_baltic_setup.json'), seedPath: path.join(projectRoot, 'campaign/scenario_seed_baltic_setup.json'), databasePath, outputPath: path.join(temporary, 'setup.py'), manifestPath: path.join(temporary, 'setup.json') };
+  await generateMission(options);
+  const source = fs.readFileSync(options.outputPath, 'utf8');
+  const manifest = fs.readFileSync(options.manifestPath, 'utf8');
+  assert.match(source, /CreateAlliance\(1, "NATO"\)/);
+  assert.match(source, /AddAllianceCountry\(2, "Russia"\)/);
+  assert.doesNotMatch(source, /Iran/);
+  assert.equal(JSON.parse(manifest).validation.warnings, 0);
+  await generateMission(options);
+  assert.equal(fs.readFileSync(options.outputPath, 'utf8'), source);
+  assert.equal(fs.readFileSync(options.manifestPath, 'utf8'), manifest);
+});
+
+test('Baltic Shield preserves combined-arms forces, conventional loadouts and player-controlled strike aircraft', { skip: !hasDatabase, timeout: 60000 }, async (t) => {
+  const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'gcbh-baltic-shield-'));
+  t.after(() => {
+    assert.ok(path.resolve(temporary).startsWith(path.resolve(os.tmpdir()) + path.sep));
+    fs.rmSync(temporary, { recursive: true, force: true });
+  });
+  const options = { statePath: path.join(projectRoot, 'campaign/campaign_state_baltic_shield.json'), seedPath: path.join(projectRoot, 'campaign/scenario_seed_baltic_shield.json'), databasePath, outputPath: path.join(temporary, 'shield.py'), manifestPath: path.join(temporary, 'shield.json') };
+  await generateMission(options);
+  const manifest = JSON.parse(fs.readFileSync(options.manifestPath));
+  assert.equal(manifest.validation.errors, 0);
+  assert.equal(manifest.validation.warnings, 0);
+  assert.equal(manifest.selected_units.filter(u => u.side === 'blue').length, 20);
+  assert.equal(manifest.selected_units.filter(u => u.side === 'red').length, 16);
+  for (const side of ['blue', 'red']) for (const domain of ['ship', 'air', 'ground']) assert.ok(manifest.selected_units.some(u => u.side === side && u.domain === domain));
+  const aew = manifest.selected_units.find(u => u.unit_name === 'Magic AEW');
+  assert.equal(aew.role, 'reconnaissance');
+  const coastal = manifest.selected_units.find(u => u.unit_name === 'Russian Coastal Battery');
+  assert.deepEqual(coastal.applied.launchers, [{ launcherId: 0, item: 'P-800 Oniks', quantity: 2 }]);
+  for (const u of manifest.selected_units) {
+    if (/Raven|Falcon|Seeker|Magic|Shell/.test(u.unit_name)) assert.ok(!u.applied.tasks.includes('AutoAttack'), u.unit_name);
+    assert.ok(!u.applied.launchers.some(l => /TN-1000|nuclear|B61/i.test(l.item)), u.unit_name);
+  }
+  assert.deepEqual(manifest.objectives.blue.goals.map(g => g.quantity), [3, 2, 1]);
+  const source = fs.readFileSync(options.outputPath, 'utf8');
+  const provenance = fs.readFileSync(options.manifestPath, 'utf8');
+  await generateMission(options);
+  assert.equal(fs.readFileSync(options.outputPath, 'utf8'), source);
+  assert.equal(fs.readFileSync(options.manifestPath, 'utf8'), provenance);
+});

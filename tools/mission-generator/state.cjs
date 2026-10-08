@@ -6,7 +6,7 @@ function inferRole(unit, domain) {
   const text = `${unit.unit_name} ${unit.platform_class}`.toLowerCase();
   if (/airstrip|air base|carrier|cvn-/.test(text)) return 'base';
   if (/aor|kaiser|lewis and clark|victoria|logistic|supply|auxiliary/.test(text)) return 'logistics';
-  if (/radar post|coastwatch|e-2/.test(text)) return 'reconnaissance';
+  if (/radar post|coastwatch|e-2|e-3|aew/.test(text)) return 'reconnaissance';
   if (/kc-135|tanker/.test(text)) return 'tanker';
   if (/p-8|mpa/.test(text)) return 'maritime_patrol';
   if (/bastion|coastal|k-300/.test(text)) return 'coastal_strike';

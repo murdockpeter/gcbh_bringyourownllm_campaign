@@ -1,0 +1,879 @@
+{
+  "campaign_id": "baltic_shield",
+  "campaign_name": "Baltic Shield - Limited Air-Maritime Conflict",
+  "version": 1,
+  "current_time_local": "2026-06-15T07:30:00+03:00",
+  "turn": 1,
+  "notes": [
+    "Fictional combined-arms force package following ten days of warning; not a real June 2026 ORBAT.",
+    "SVP is a scenario design assumption, not measured Baltic data."
+  ],
+  "sides": {
+    "blue": {
+      "theater_logistics": {
+        "fuel_points": 500,
+        "ordnance_points": 500,
+        "repair_capacity_points": 60
+      },
+      "units": [
+        {
+          "unit_name": "NATO Air Defense Frigate",
+          "platform_class": "Sachsen FFGHM",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 18,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "NATO ASW Frigate",
+          "platform_class": "Brandenburg FFGHM",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 18,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Baltic Sustainment 1",
+          "platform_class": "Henry J Kaiser",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 18,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Amari Air Base",
+          "platform_class": "Airbase",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Lielvarde Air Base",
+          "platform_class": "Airbase",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Estonia SAM Detachment",
+          "platform_class": "MIM-104 Patriot PAC-2",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Latvia SAM Detachment",
+          "platform_class": "MIM-104 Patriot PAC-3",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Estonia Radar Post",
+          "platform_class": "Generic Radar Post 170",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Latvia Radar Post",
+          "platform_class": "Generic Mobile Radar Post 170",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Viper CAP 1",
+          "platform_class": "Typhoon",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Viper CAP 2",
+          "platform_class": "Typhoon",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Viper CAP 3",
+          "platform_class": "Typhoon",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Viper CAP 4",
+          "platform_class": "Typhoon",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Raven SEAD Strike 1",
+          "platform_class": "Tornado ECR (Germany)",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Falcon Precision Strike 1",
+          "platform_class": "F-16C/D Block 50",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Raven SEAD Strike 2",
+          "platform_class": "Tornado ECR (Germany)",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Falcon Precision Strike 2",
+          "platform_class": "F-16C/D Block 50",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Seeker MPA",
+          "platform_class": "P-8 MPA",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Magic AEW",
+          "platform_class": "E-3C",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Shell Tanker",
+          "platform_class": "KC-135R",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        }
+      ]
+    },
+    "red": {
+      "theater_logistics": {
+        "fuel_points": 400,
+        "ordnance_points": 400,
+        "repair_capacity_points": 40
+      },
+      "units": [
+        {
+          "unit_name": "Russian Corvette 1",
+          "platform_class": "Pr 20380 Steregushchiy",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 18,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Russian Corvette 2",
+          "platform_class": "Pr 20380 Steregushchiy",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 18,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Russian Support Frigate",
+          "platform_class": "Pr 11540 Yastreb",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 18,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Russian Air Base",
+          "platform_class": "Airstrip (Russia)",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Russian SAM Sector",
+          "platform_class": "S-300PMU-2",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Russian Point Defense",
+          "platform_class": "Pantsir-S1",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Russian Coastal Radar",
+          "platform_class": "Generic Radar Post 170",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Russian Coastal Battery",
+          "platform_class": "K-300P Bastion-P",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 0,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 95,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 3
+          }
+        },
+        {
+          "unit_name": "Flanker CAP 1",
+          "platform_class": "Su-27",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Flanker CAP 2",
+          "platform_class": "Su-27",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Flanker CAP 3",
+          "platform_class": "Su-27",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Flanker CAP 4",
+          "platform_class": "Su-27",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Fencer Maritime 1",
+          "platform_class": "Su-24M",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Fencer Strike 1",
+          "platform_class": "Su-24M",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Fencer Maritime 2",
+          "platform_class": "Su-24M",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        },
+        {
+          "unit_name": "Fencer Strike 2",
+          "platform_class": "Su-24M",
+          "status": "operational",
+          "mission_capable": true,
+          "structural_integrity_pct": 100,
+          "speed_limit_kts": 420,
+          "readiness_pct": 90,
+          "crew_fatigue_pct": 10,
+          "fuel_pct": 85,
+          "ammo_pct": 100,
+          "current_location": "Mission seed position",
+          "damage": [],
+          "repair": {
+            "emergency_hours_remaining": 0,
+            "pier_side_hours_required": 0,
+            "full_reconstitution_days": 0,
+            "port_required": false
+          },
+          "logistics": {
+            "daily_upkeep_points": 2,
+            "sorties_available_next_12h": 2
+          }
+        }
+      ]
+    }
+  },
+  "scenario_history": []
+}

@@ -4,6 +4,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('missionMap', {
   listScenarios: () => ipcRenderer.invoke('scenario:list'),
+  listTheaters: () => ipcRenderer.invoke('theater:list'),
   chooseScenario: () => ipcRenderer.invoke('scenario:open-dialog'),
   loadScenario: (filePath) => ipcRenderer.invoke('scenario:load', filePath),
   saveScenarioEdits: (filePath, edits) => ipcRenderer.invoke('scenario:save-edits', filePath, edits),

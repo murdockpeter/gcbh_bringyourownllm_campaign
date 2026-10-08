@@ -8,6 +8,7 @@
   },
   "scripts": {
     "generate": "node tools/generate_campaign_mission.cjs",
+    "generate:baltic-setup": "node tools/generate_campaign_mission.cjs --state campaign/campaign_state_baltic_setup.json --seed campaign/scenario_seed_baltic_setup.json --output scenarios/baltic_setup_validation.py --manifest scenarios/baltic_setup_validation.manifest.json",
     "test:generator": "node --test test/mission-generator/core.test.cjs test/mission-generator/integration.test.cjs",
     "test:map": "npm --prefix mission-map test",
     "test": "npm run test:generator && npm run test:map",
@@ -17,6 +18,7 @@
     "audit:scenarios": "npm --prefix mission-map run audit:scenarios --",
     "audit:generated": "node tools/audit_generated.cjs",
     "observe:game": "node tools/observe_game_install.cjs",
-    "generate:island-lance": "node tools/generate_operation_island_lance.cjs"
+    "generate:island-lance": "node tools/generate_operation_island_lance.cjs",
+    "generate:baltic-shield": "node tools/generate_campaign_mission.cjs --state campaign/campaign_state_baltic_shield.json --seed campaign/scenario_seed_baltic_shield.json --output scenarios/operation_baltic_shield.py --manifest scenarios/operation_baltic_shield.manifest.json"
   }
 }

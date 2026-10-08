@@ -98,6 +98,10 @@ function localDateParts(iso) {
 }
 
 function renderScenario(model) {
+  const alliances = model.seed.alliances || {
+    blue: { name: 'Blue', countries: ['Blue', 'USA', 'UK'] },
+    red: { name: 'Red', countries: ['Red', 'Iran'] },
+  };
   const [year, month, day, hour, minute, second] = localDateParts(model.seed.date_time);
   const units = [...model.units.blue, ...model.units.red];
   const description = `${model.seed.premise}\n\nMission archetype: ${model.archetype.label}. This scenario was generated from campaign turn ${model.state.turn} with deterministic seed ${model.effectiveSeed}.`;
@@ -112,7 +116,7 @@ def ScenarioInfo():
     d['name'] = ${q(model.seed.scenario_name)}
     d['description'] = """${safeTriple(description)}"""
     d['author'] = 'Mission Generator v2'
-    d['playableSides'] = ${q(model.seed.playable_side === 'blue' ? 'Blue' : 'Red')}
+    d['playableSides'] = ${q(alliances[model.seed.playable_side].name)}
     d['thumb'] = 'ships3.png'
     d['date'] = ${q(dateLabel)}
     d['unitCount'] = ${units.length}
@@ -123,15 +127,12 @@ def ScenarioInfo():
 def CreateScenario(SM):
     SM.SetScenarioInfo(ScenarioInfo())
 
-    SM.CreateAlliance(1, 'Blue')
-    SM.AddAllianceCountry(1, 'Blue')
-    SM.AddAllianceCountry(1, 'USA')
-    SM.AddAllianceCountry(1, 'UK')
+    SM.CreateAlliance(1, ${model.seed.alliances ? q(alliances.blue.name) : "'Blue'"})
+${alliances.blue.countries.map((country) => `    SM.AddAllianceCountry(1, ${model.seed.alliances ? q(country) : `'${country}'`})`).join('\n')}
     SM.SetAlliancePlayable(1, ${model.seed.playable_side === 'blue' ? 1 : 0})
 
-    SM.CreateAlliance(2, 'Red')
-    SM.AddAllianceCountry(2, 'Red')
-    SM.AddAllianceCountry(2, 'Iran')
+    SM.CreateAlliance(2, ${model.seed.alliances ? q(alliances.red.name) : "'Red'"})
+${alliances.red.countries.map((country) => `    SM.AddAllianceCountry(2, ${model.seed.alliances ? q(country) : `'${country}'`})`).join('\n')}
     SM.SetAlliancePlayable(2, ${model.seed.playable_side === 'red' ? 1 : 0})
 
     SM.SetAllianceRelationship(1, 2, 'Hostile')

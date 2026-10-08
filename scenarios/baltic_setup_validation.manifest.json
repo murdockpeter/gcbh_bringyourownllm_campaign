@@ -1,0 +1,482 @@
+{
+  "aviation_support": {
+    "blue": {
+      "aircraft": 0,
+      "mode": "not_required"
+    },
+    "red": {
+      "aircraft": 0,
+      "mode": "not_required"
+    }
+  },
+  "balance": {
+    "blue": {
+      "effective": 9.615,
+      "force": 10,
+      "objectiveBurden": 1.04
+    },
+    "model": "role-condition-sustainment-v1",
+    "ratio": 1.068,
+    "red": {
+      "effective": 9,
+      "force": 9,
+      "objectiveBurden": 1
+    },
+    "warnings": []
+  },
+  "continuity": {
+    "assertions": {},
+    "passed": true
+  },
+  "effective_rng_seed": "baltic-setup-v1",
+  "generator": {
+    "database_schema_version": 4,
+    "name": "mission-generator-v2",
+    "node": ">=24",
+    "version": "0.3.0"
+  },
+  "inputs": {
+    "campaign_state": "cb7791748e8309dc72920e875ec67582c39fb4265e114f1a531c49ce2ee594cd",
+    "scenario_seed": "0aa70d3921c695dd56572ca2139c04cb10d57fdf78be132317cebb5157fca3c7"
+  },
+  "logistics": {
+    "blue": {
+      "allocated": {
+        "air_sorties": 0,
+        "fuel_points": 0,
+        "ordnance_points": 5,
+        "repair_capacity_points": 0
+      },
+      "available": {}
+    },
+    "red": {
+      "allocated": {
+        "air_sorties": 0,
+        "fuel_points": 0,
+        "ordnance_points": 5,
+        "repair_capacity_points": 0
+      },
+      "available": {}
+    }
+  },
+  "objectives": {
+    "blue": {
+      "goals": [
+        {
+          "label": "preserve campaign-critical assets",
+          "quantity": 1,
+          "targets": [
+            "TEST NATO Logistics"
+          ],
+          "type": "ProtectGoal"
+        },
+        {
+          "label": "neutralize the designated threat",
+          "quantity": 1,
+          "targets": [
+            "TEST Russian Corvette"
+          ],
+          "type": "DestroyGoal"
+        }
+      ],
+      "label": "Convoy Escort",
+      "mode": 0,
+      "type": "CompoundGoal"
+    },
+    "red": {
+      "label": "break the protected force",
+      "quantity": 1,
+      "targets": [
+        "TEST NATO Logistics"
+      ],
+      "type": "DestroyGoal"
+    }
+  },
+  "output_hash": "0f7c16fee8c7cc6f26ac6d4fc9b8b5c330bc247136bdd668488d2682510be246",
+  "random_draws": [
+    {
+      "index": 0,
+      "label": "roster:blue:TEST NATO Escort",
+      "value": 0.097835178021
+    },
+    {
+      "index": 1,
+      "label": "roster:blue:TEST NATO Logistics",
+      "value": 0.847966693109
+    },
+    {
+      "index": 2,
+      "label": "roster:red:TEST Russian Corvette",
+      "value": 0.572986622807
+    }
+  ],
+  "rejected_units": [],
+  "scenario": {
+    "archetype": "convoy_escort",
+    "id": "baltic_setup_validation",
+    "name": "Baltic Operational Area - Technical Validation Only",
+    "theater_id": "baltic_latvia_estonia"
+  },
+  "schema_version": 1,
+  "selected_units": [
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 1,
+        "launchers": [
+          {
+            "item": "RIM-66M",
+            "launcherId": 0,
+            "quantity": 1
+          },
+          {
+            "item": "RIM-162B",
+            "launcherId": 1,
+            "quantity": 1
+          },
+          {
+            "item": "RIM-116B RAM",
+            "launcherId": 2,
+            "quantity": 21
+          },
+          {
+            "item": "RIM-116B RAM",
+            "launcherId": 3,
+            "quantity": 21
+          },
+          {
+            "item": "RGM-84F Harpoon",
+            "launcherId": 4,
+            "quantity": 4
+          },
+          {
+            "item": "RGM-84F Harpoon",
+            "launcherId": 5,
+            "quantity": 4
+          },
+          {
+            "item": "76mm HE-MOM",
+            "launcherId": 6,
+            "quantity": 80
+          },
+          {
+            "item": "27mm DM10 FAPDS",
+            "launcherId": 7,
+            "quantity": 90
+          },
+          {
+            "item": "27mm DM10 FAPDS",
+            "launcherId": 8,
+            "quantity": 90
+          },
+          {
+            "item": "MU-90",
+            "launcherId": 9,
+            "quantity": 3
+          },
+          {
+            "item": "MU-90",
+            "launcherId": 10,
+            "quantity": 3
+          }
+        ],
+        "loadout_setup": "Sachsen 2006",
+        "magazines": [
+          {
+            "item": "Fuel",
+            "magazineId": 0,
+            "quantity": 23700
+          },
+          {
+            "item": "Mk-46 Mod5",
+            "magazineId": 0,
+            "quantity": 29
+          },
+          {
+            "item": "Sea Skua",
+            "magazineId": 0,
+            "quantity": 16
+          },
+          {
+            "item": "RIM-162B",
+            "magazineId": 1,
+            "quantity": 32
+          },
+          {
+            "item": "RIM-66M",
+            "magazineId": 1,
+            "quantity": 24
+          },
+          {
+            "item": "RIM-116B RAM",
+            "magazineId": 2,
+            "quantity": 84
+          },
+          {
+            "item": "76mm HE-MOM",
+            "magazineId": 3,
+            "quantity": 240
+          },
+          {
+            "item": "27mm DM10 FAPDS",
+            "magazineId": 4,
+            "quantity": 1000
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 56.1,
+          "lon": 20.1,
+          "speed": 16
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 56.8,
+            "lon": 20.15,
+            "speed": 16
+          },
+          {
+            "altitude": 0,
+            "lat": 57.2,
+            "lon": 20.15,
+            "speed": 16
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 20,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "host": null,
+      "platform_class": "Sachsen FFGHM",
+      "presence": "active",
+      "role": "surface_combatant",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 0,
+        "fuel_pct": 100,
+        "readiness_pct": 100,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "pier_side_hours_required": 0
+        },
+        "speed_limit_kts": 20,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "TEST NATO Escort"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 1,
+        "launchers": [
+          {
+            "item": "20mm Mark 149-4",
+            "launcherId": 0,
+            "quantity": 141
+          },
+          {
+            "item": "20mm Mark 149-4",
+            "launcherId": 1,
+            "quantity": 141
+          }
+        ],
+        "loadout_setup": "Fort Victoria AOR-1",
+        "magazines": [
+          {
+            "item": "20mm Mark 149-4",
+            "magazineId": 0,
+            "quantity": 970
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 56.05,
+          "lon": 20,
+          "speed": 16
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 56.8,
+            "lon": 20.15,
+            "speed": 16
+          },
+          {
+            "altitude": 0,
+            "lat": 57.2,
+            "lon": 20.15,
+            "speed": 16
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 16,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "host": null,
+      "platform_class": "Fort Victoria AOR",
+      "presence": "active",
+      "role": "logistics",
+      "side": "blue",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 0,
+        "fuel_pct": 100,
+        "readiness_pct": 100,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "pier_side_hours_required": 0
+        },
+        "speed_limit_kts": 16,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "TEST NATO Logistics"
+    },
+    {
+      "applied": {
+        "always_visible": false,
+        "flight_deck_location": 2,
+        "fuel_fraction": 1,
+        "launchers": [
+          {
+            "item": "100mm OF-58 FRAG",
+            "launcherId": 0,
+            "quantity": 46
+          },
+          {
+            "item": "12.7mm B-32 APi",
+            "launcherId": 1,
+            "quantity": 17
+          },
+          {
+            "item": "12.7mm B-32 APi",
+            "launcherId": 2,
+            "quantity": 17
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "launcherId": 3,
+            "quantity": 59
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "launcherId": 4,
+            "quantity": 59
+          },
+          {
+            "item": "9M311 Kashtan",
+            "launcherId": 5,
+            "quantity": 8
+          },
+          {
+            "item": "9M311 Kashtan",
+            "launcherId": 6,
+            "quantity": 8
+          },
+          {
+            "item": "Kh-35",
+            "launcherId": 7,
+            "quantity": 8
+          }
+        ],
+        "loadout_setup": "Pr 20380 2007",
+        "magazines": [
+          {
+            "item": "100mm OF-58 FRAG",
+            "magazineId": 0,
+            "quantity": 350
+          },
+          {
+            "item": "12.7mm B-32 APi",
+            "magazineId": 0,
+            "quantity": 680
+          },
+          {
+            "item": "30mm OF-84 HE-FRAG AK-630M",
+            "magazineId": 1,
+            "quantity": 472
+          },
+          {
+            "item": "9M311 Kashtan",
+            "magazineId": 2,
+            "quantity": 48
+          }
+        ],
+        "position": {
+          "altitude": 0,
+          "lat": 57.6,
+          "lon": 20.3,
+          "speed": 16
+        },
+        "route": [
+          {
+            "altitude": 0,
+            "lat": 57.4,
+            "lon": 20.3,
+            "speed": 16
+          },
+          {
+            "altitude": 0,
+            "lat": 57,
+            "lon": 20.3,
+            "speed": 16
+          }
+        ],
+        "sorties": 0,
+        "speed_kts": 20,
+        "tasks": [
+          "Ship1",
+          "ShipDefense",
+          "AutoAttack",
+          "Nav"
+        ]
+      },
+      "domain": "ship",
+      "host": null,
+      "platform_class": "Pr 20380 Steregushchiy",
+      "presence": "active",
+      "role": "surface_combatant",
+      "side": "red",
+      "source_state": {
+        "ammo_pct": 100,
+        "crew_fatigue_pct": 0,
+        "fuel_pct": 100,
+        "readiness_pct": 100,
+        "repair": {
+          "emergency_hours_remaining": 0,
+          "pier_side_hours_required": 0
+        },
+        "speed_limit_kts": 20,
+        "structural_integrity_pct": 100
+      },
+      "unit_name": "TEST Russian Corvette"
+    }
+  ],
+  "validation": {
+    "errors": 0,
+    "findings": [],
+    "parser": "passed",
+    "theater": "baltic_latvia_estonia",
+    "warnings": 0
+  },
+  "variation": {
+    "applied": {},
+    "configured": {
+      "position_jitter_nm": 0
+    }
+  }
+}

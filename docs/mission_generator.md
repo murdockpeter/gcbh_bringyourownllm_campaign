@@ -61,6 +61,7 @@ Subsystem damage that the scenario API cannot express is retained in the manifes
 `schemas/scenario_seed.schema.json` documents the version 1 contract. Unknown top-level fields are rejected. The seed controls:
 
 - scenario identity, theater, date/time, playable side, and archetype;
+- optional `alliances` definitions for both sides, each with a `name` and nonempty `countries` array; omitted definitions retain the original Blue/Red country memberships;
 - operational premise, side intent, and escalation limits;
 - force caps and explicit include/exclude requirements;
 - explicit in-scenario or documented off-map aviation recovery support;

@@ -8,6 +8,7 @@ const path = require('node:path');
 const { parseScenario } = require('./scenario-parser.cjs');
 const { saveScenarioEdits } = require('./scenario-editor.cjs');
 const { selectTheater } = require('./theater-selector.cjs');
+const { readTheaters, listScenarios } = require('./scenario-library.cjs');
 
 const APP_PORT = 43117;
 const APP_HOST = '127.0.0.1';
@@ -75,10 +76,7 @@ async function loadScenario(filePath) {
   if (!isScenarioPath(filePath)) throw new Error('Select a Python scenario file.');
   const source = await fsp.readFile(filePath, 'utf8');
   const scenario = parseScenario(source, filePath);
-  const theaterFiles = (await fsp.readdir(THEATER_ROOT)).filter((name) => name.toLowerCase().endsWith('.json'));
-  const theaters = await Promise.all(theaterFiles.map(async (name) => (
-    JSON.parse(await fsp.readFile(path.join(THEATER_ROOT, name), 'utf8'))
-  )));
+  const theaters = await readTheaters(THEATER_ROOT);
   return { scenario, theater: selectTheater(scenario, theaters) };
 }
 
@@ -142,12 +140,9 @@ function startLocalServer() {
 
 function registerIpc() {
   ipcMain.handle('scenario:list', async () => {
-    const entries = await fsp.readdir(SCENARIO_ROOT, { withFileTypes: true });
-    return entries
-      .filter((entry) => entry.isFile() && entry.name.toLowerCase().endsWith('.py'))
-      .map((entry) => ({ name: entry.name, path: path.join(SCENARIO_ROOT, entry.name) }))
-      .sort((left, right) => left.name.localeCompare(right.name));
+    return listScenarios(SCENARIO_ROOT, await readTheaters(THEATER_ROOT));
   });
+  ipcMain.handle('theater:list', () => readTheaters(THEATER_ROOT));
   ipcMain.handle('scenario:open-dialog', async () => {
     const result = await dialog.showOpenDialog(mainWindow, {
       title: 'Open GCBH scenario',

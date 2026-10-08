@@ -102,6 +102,7 @@ function normalizeSeed(raw) {
     'loadout_overrides', 'loadout_selections', 'loadout_presets', 'aviation_support',
     'unit_directives',
     'continuity_assertions',
+    'alliances',
   ]), 'scenario seed', errors);
   for (const key of ['schema_version', 'scenario_id', 'scenario_name', 'theater_id', 'date_time', 'playable_side', 'archetype', 'premise', 'placement']) {
     if (raw[key] === undefined || raw[key] === null || raw[key] === '') errors.push(`scenario seed.${key} is required`);
@@ -112,6 +113,16 @@ function normalizeSeed(raw) {
   if (Number.isNaN(Date.parse(raw.date_time))) errors.push('scenario seed.date_time must be an ISO 8601 date-time');
   if (raw.duration_hours !== undefined && (!Number.isFinite(raw.duration_hours) || raw.duration_hours <= 0)) errors.push('scenario seed.duration_hours must be positive');
   if (raw.sea_state !== undefined && (!Number.isInteger(raw.sea_state) || raw.sea_state < 0 || raw.sea_state > 9)) errors.push('scenario seed.sea_state must be an integer from 0 to 9');
+  if (raw.alliances !== undefined && assertObject(raw.alliances, 'scenario seed.alliances', errors)) {
+    rejectUnknown(raw.alliances, new Set(['blue', 'red']), 'scenario seed.alliances', errors);
+    for (const side of ['blue', 'red']) {
+      const alliance = raw.alliances[side];
+      if (!assertObject(alliance, `alliances.${side}`, errors)) continue;
+      rejectUnknown(alliance, new Set(['name', 'countries']), `alliances.${side}`, errors);
+      if (typeof alliance.name !== 'string' || !alliance.name.trim()) errors.push(`alliances.${side}.name must be a non-empty string`);
+      if (!Array.isArray(alliance.countries) || !alliance.countries.length || alliance.countries.some((country) => typeof country !== 'string' || !country.trim())) errors.push(`alliances.${side}.countries must contain non-empty country names`);
+    }
+  }
   if (!assertObject(raw.placement, 'scenario seed.placement', errors)) errors.push('scenario seed.placement is required');
   if (raw.loadout_overrides !== undefined && assertObject(raw.loadout_overrides, 'scenario seed.loadout_overrides', errors)) {
     for (const [name, launchers] of Object.entries(raw.loadout_overrides)) validateLauncherList(launchers, `scenario seed.loadout_overrides.${name}`, errors);

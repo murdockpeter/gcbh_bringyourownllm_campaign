@@ -1,0 +1,155 @@
+{
+  "theater_id": "baltic_latvia_estonia",
+  "name": "Baltic - Latvia and Estonia Operational Area",
+  "coverage_bounds": {
+    "west": 18,
+    "south": 54.5,
+    "east": 30,
+    "north": 60.3
+  },
+  "notes": [
+    "Coordinates use longitude, latitude ordering; placement seeds use named lat/lon fields.",
+    "Coverage is the operational envelope, not a navigable-water polygon.",
+    "Conservative offshore masks exclude ports, coastal archipelagos and unverified connecting passages. Separate masks do not imply a safe straight-line route between them.",
+    "Natural Earth coastline validation is mandatory. These masks do not model depth, mines, ice, territorial waters or the simulator bathymetry."
+  ],
+  "surface_classes": [
+    "Arleigh Burke IIA DDGHM",
+    "Type 45 DDG",
+    "Sachsen FFGHM",
+    "Brandenburg FFGHM",
+    "Fort Victoria AOR",
+    "Pr 20380 Steregushchiy",
+    "Gotland",
+    "Henry J Kaiser",
+    "Pr 11540 Yastreb"
+  ],
+  "safe_water_polygons": [
+    {
+      "name": "Eastern Baltic offshore",
+      "points": [
+        [
+          19.7,
+          55.4
+        ],
+        [
+          20.6,
+          55.4
+        ],
+        [
+          20.6,
+          58.4
+        ],
+        [
+          19.7,
+          58.4
+        ]
+      ]
+    },
+    {
+      "name": "West Estonian offshore",
+      "points": [
+        [
+          20.5,
+          58.1
+        ],
+        [
+          21.5,
+          58.1
+        ],
+        [
+          21.5,
+          59.3
+        ],
+        [
+          20.5,
+          59.3
+        ]
+      ]
+    },
+    {
+      "name": "Irbe western approach",
+      "points": [
+        [
+          20.4,
+          57.7
+        ],
+        [
+          21.9,
+          57.7
+        ],
+        [
+          21.9,
+          57.9
+        ],
+        [
+          20.4,
+          57.9
+        ]
+      ]
+    },
+    {
+      "name": "Irbe offshore passage",
+      "points": [
+        [
+          21.8,
+          57.79
+        ],
+        [
+          22.8,
+          57.79
+        ],
+        [
+          22.8,
+          57.84
+        ],
+        [
+          21.8,
+          57.84
+        ]
+      ]
+    },
+    {
+      "name": "Gulf of Riga offshore",
+      "points": [
+        [
+          23.35,
+          57.25
+        ],
+        [
+          23.7,
+          57.25
+        ],
+        [
+          23.7,
+          57.6
+        ],
+        [
+          23.35,
+          57.6
+        ]
+      ]
+    },
+    {
+      "name": "Central Gulf of Finland offshore",
+      "points": [
+        [
+          25,
+          59.7
+        ],
+        [
+          27,
+          59.7
+        ],
+        [
+          27,
+          59.76
+        ],
+        [
+          25,
+          59.76
+        ]
+      ]
+    }
+  ]
+}

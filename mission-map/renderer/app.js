@@ -8,9 +8,11 @@ import {
 import { allianceSide, visibleFindings, visibleUnits } from './side-filter.js';
 import { routeVisualStyle, unitMarkerVisualStyle, waypointVisualStyle } from './selection-style.js';
 import { inferUnitMission } from './unit-mission.js';
+import { operationalBounds, preferredAreaScenario, scenariosForArea } from './area-view.js';
 
 const elements = Object.fromEntries([
   'scenario-select', 'browse-button', 'reload-button', 'watch-status', 'settings-button',
+  'area-select', 'view-area-button',
   'mission-name', 'mission-meta', 'mission-description', 'unit-count', 'unit-list',
   'map', 'map-placeholder', 'placeholder-key-button', 'toggle-mask', 'toggle-land', 'toggle-routes',
   'toggle-satellite', 'side-filter', 'coordinate-order', 'coordinate-reason', 'clearance-select',
@@ -23,6 +25,9 @@ const elements = Object.fromEntries([
 ].map((id) => [id.replaceAll('-', '_'), document.getElementById(id)]));
 
 const state = {
+  scenarios: [],
+  theaters: [],
+  viewFullArea: false,
   scenario: null,
   theater: null,
   landGeoJson: null,
@@ -323,10 +328,18 @@ function renderMap() {
   const infoWindow = new google.maps.InfoWindow();
 
   const scenarioPoints = state.scenario.units.flatMap((unit) => [unit.position, ...unit.waypoints]);
-  const areaBounds = scenarioPoints.reduce((value, point) => ({
+  const coverage = operationalBounds(state.theater);
+  const areaBounds = coverage || scenarioPoints.reduce((value, point) => ({
     west: Math.min(value.west, point.lng), south: Math.min(value.south, point.lat),
     east: Math.max(value.east, point.lng), north: Math.max(value.north, point.lat),
   }), { west: Infinity, south: Infinity, east: -Infinity, north: -Infinity });
+  if (coverage) {
+    const boundary = new google.maps.Rectangle({
+      bounds: coverage, map: state.map, strokeColor: '#f4a24c',
+      strokeOpacity: 0.65, strokeWeight: 1, fillOpacity: 0, clickable: false,
+    });
+    state.overlays.push(boundary);
+  }
   for (const { rings, bounds: landBounds } of state.landIndex?.polygons || []) {
     const visible = landBounds.west <= areaBounds.east + 1 && landBounds.east >= areaBounds.west - 1
       && landBounds.south <= areaBounds.north + 1 && landBounds.north >= areaBounds.south - 1;
@@ -442,6 +455,8 @@ function renderMap() {
   if (state.editMode && priorCenter && Number.isFinite(priorZoom)) {
     state.map.setCenter(priorCenter);
     state.map.setZoom(priorZoom);
+  } else if (state.viewFullArea && coverage) {
+    state.map.fitBounds(coverage, 48);
   } else if (!bounds.isEmpty()) {
     state.map.fitBounds(bounds, 48);
   }
@@ -484,7 +499,7 @@ async function loadGoogleMaps(key) {
     throw new Error('Google returned an incomplete Maps API. Confirm Maps JavaScript API is enabled for this key and project.');
   }
   state.map = new MapClass(elements.map, {
-    center: state.scenario?.theaterCenter || { lat: 26.2, lng: 56.8 },
+    center: state.scenario?.theaterCenter || state.scenario?.units[0]?.position || { lat: 26.2, lng: 56.8 },
     zoom: 8,
     mapTypeId: 'terrain',
     mapTypeControl: false,
@@ -494,6 +509,7 @@ async function loadGoogleMaps(key) {
     backgroundColor: '#071019',
   });
   state.mapsReady = true;
+  elements.view_area_button.disabled = !operationalBounds(state.theater);
   elements.map_placeholder.hidden = true;
   updateEditControls();
   renderMap();
@@ -508,6 +524,8 @@ async function loadScenario(filePath, { quiet = false } = {}) {
     state.selectedUnitName = quiet && state.scenario.units.some((unit) => unit.name === state.selectedUnitName)
       ? state.selectedUnitName : '';
     state.theater = result.theater;
+    if (!quiet) state.viewFullArea = false;
+    elements.view_area_button.disabled = !state.mapsReady || !operationalBounds(state.theater);
     elements.toggle_mask.disabled = !state.theater;
     elements.toggle_mask.checked = Boolean(state.theater);
     elements.mask_data_status.textContent = state.theater
@@ -640,7 +658,14 @@ async function initialize() {
   const loading = beginLoading('Loading mission workspace…');
   try {
     setFindings([]);
-    const scenarios = await window.missionMap.listScenarios();
+    const [scenarios, theaters] = await Promise.all([
+      window.missionMap.listScenarios(), window.missionMap.listTheaters(),
+    ]);
+    state.scenarios = scenarios;
+    state.theaters = theaters;
+    elements.area_select.innerHTML = '<option value="">All areas</option>' + theaters
+      .filter((theater) => scenarios.some((scenario) => scenario.theaterId === theater.theater_id))
+      .map((theater) => `<option value="${escapeHtml(theater.theater_id)}">${escapeHtml(theater.name)}</option>`).join('');
     try {
       const response = await fetch('/data/global-land.geojson');
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -650,10 +675,11 @@ async function initialize() {
     } catch (error) {
       elements.land_data_status.textContent = `Unavailable: ${error.message}`;
     }
-    elements.scenario_select.innerHTML = scenarios.map((scenario) => `<option value="${escapeHtml(scenario.path)}">${escapeHtml(scenario.name)}</option>`).join('');
+    renderScenarioOptions();
     if (scenarios.length) {
-      await loadScenario(scenarios[0].path);
-      elements.scenario_select.value = scenarios[0].path;
+      const initialScenario = preferredAreaScenario(scenarios);
+      await loadScenario(initialScenario.path);
+      elements.scenario_select.value = initialScenario.path;
     }
     const key = await window.missionMap.getMapsKey();
     if (key) {
@@ -668,10 +694,39 @@ async function initialize() {
   }
 }
 
+function renderScenarioOptions() {
+  const scenarios = scenariosForArea(state.scenarios, elements.area_select.value);
+  elements.scenario_select.innerHTML = scenarios.map((scenario) => `<option value="${escapeHtml(scenario.path)}">${escapeHtml(scenario.title || scenario.name)}</option>`).join('');
+  if (scenarios.some((scenario) => scenario.path === state.selectedPath)) elements.scenario_select.value = state.selectedPath;
+  return scenarios;
+}
+
+elements.area_select.addEventListener('change', async () => {
+  const scenarios = renderScenarioOptions();
+  const scenario = preferredAreaScenario(scenarios, state.selectedPath);
+  if (scenario) {
+    elements.scenario_select.value = scenario.path;
+    await loadScenario(scenario.path);
+    showOperationalArea();
+  }
+});
+function showOperationalArea() {
+  const bounds = operationalBounds(state.theater);
+  if (!bounds) return;
+  state.viewFullArea = true;
+  renderMap();
+  state.map?.fitBounds(bounds, 48);
+}
+elements.view_area_button.addEventListener('click', showOperationalArea);
 elements.scenario_select.addEventListener('change', () => loadScenario(elements.scenario_select.value));
 elements.browse_button.addEventListener('click', async () => {
   const filePath = await window.missionMap.chooseScenario();
   if (!filePath) return;
+  elements.area_select.value = '';
+  if (!state.scenarios.some((scenario) => scenario.path === filePath)) {
+    state.scenarios.push({ name: filePath.split(/[\\/]/).pop(), path: filePath, theaterId: '' });
+  }
+  renderScenarioOptions();
   if (![...elements.scenario_select.options].some((option) => option.value === filePath)) {
     elements.scenario_select.add(new Option(filePath.split(/[\\/]/).pop(), filePath));
   }

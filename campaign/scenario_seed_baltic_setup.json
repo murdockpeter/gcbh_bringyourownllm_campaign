@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "scenario_id": "baltic_setup_validation",
+  "scenario_name": "Baltic Operational Area - Technical Validation Only",
+  "theater_id": "baltic_latvia_estonia",
+  "date_time": "2026-06-15T10:00:00+03:00",
+  "playable_side": "blue",
+  "alliances": {
+    "blue": {
+      "name": "NATO",
+      "countries": [
+        "Germany",
+        "UK"
+      ]
+    },
+    "red": {
+      "name": "Russia",
+      "countries": [
+        "Russia"
+      ]
+    }
+  },
+  "rng_seed": "baltic-setup-v1",
+  "archetype": "convoy_escort",
+  "premise": "Synthetic geography and database validation fixture. Not the first campaign mission or a prediction of conflict.",
+  "blue_intent": "Validate escort and logistics placement.",
+  "red_intent": "Validate a Russian database platform and opposing objective.",
+  "escalation_constraints": [
+    "Technical fixture only; hostile alliance settings are not a campaign starting policy."
+  ],
+  "duration_hours": 2,
+  "sea_state": 3,
+  "force_policy": {
+    "blue": {
+      "max_units": 2
+    },
+    "red": {
+      "max_units": 1
+    }
+  },
+  "objectives": {
+    "protect": {
+      "blue": [
+        "TEST NATO Logistics"
+      ]
+    },
+    "destroy": {
+      "blue": [
+        "TEST Russian Corvette"
+      ],
+      "red": [
+        "TEST NATO Logistics"
+      ]
+    },
+    "protect_quantity": {
+      "blue": 1
+    },
+    "destroy_quantity": {
+      "blue": 1,
+      "red": 1
+    }
+  },
+  "placement": {
+    "surface_starts": {
+      "blue": [
+        {
+          "lat": 56.1,
+          "lon": 20.1,
+          "speed": 16
+        },
+        {
+          "lat": 56.05,
+          "lon": 20,
+          "speed": 16
+        }
+      ],
+      "red": [
+        {
+          "lat": 57.6,
+          "lon": 20.3,
+          "speed": 16
+        }
+      ]
+    },
+    "surface_routes": {
+      "blue": [
+        {
+          "lat": 56.8,
+          "lon": 20.15,
+          "speed": 16
+        },
+        {
+          "lat": 57.2,
+          "lon": 20.15,
+          "speed": 16
+        }
+      ],
+      "red": [
+        {
+          "lat": 57.4,
+          "lon": 20.3,
+          "speed": 16
+        },
+        {
+          "lat": 57,
+          "lon": 20.3,
+          "speed": 16
+        }
+      ]
+    }
+  },
+  "variation": {
+    "position_jitter_nm": 0
+  }
+}

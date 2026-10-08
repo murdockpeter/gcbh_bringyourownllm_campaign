@@ -5,6 +5,8 @@ Electron desktop companion for visualizing and validating Global Conflict Blue: 
 ## Features
 
 - Reads the workspace's Python scenario files without executing them.
+- Filters the scenario library by operational area, including Hormuz and the Baltic near Latvia and Estonia, and displays readable mission titles.
+- Shows the operational-area boundary and offers **View full area** to fit the complete theater envelope; selecting an area also fits that envelope.
 - Recognizes surface units from `Ship1` tasking, so newly added ship classes do not need to be hard-coded into the app.
 - Watches the selected scenario and refreshes after it is saved.
 - Detects legacy `longitude, latitude` and scenario v0.2.1 `latitude, longitude` `SetPosition` formats.
@@ -56,6 +58,8 @@ npm run audit:scenarios -- ..\scenarios\operation_gate_latch.py
 The command exits nonzero when it finds mask or real-world placement errors, making it suitable for a future build/CI gate.
 
 ## Coordinate repair workflow
+
+To inspect the Baltic, select **Baltic - Latvia and Estonia Operational Area** under **Operational area**, then choose **Operation Baltic Shield - First Contact** in the top scenario list. Use **View full area** to return to the complete envelope after inspecting a unit. Select **All** under **Forces** to see both NATO and Russia. The same controls work for Hormuz. Startup prefers a mission whose filename begins with `operation_` over a technical fixture; in the current library this opens Baltic Shield. Google Maps still uses the existing encrypted key; parsing and local audits work without it.
 
 1. Run the full local comparison and review the red incidents and green candidate markers.
 2. Use **Fix scenario** to apply all currently listed automatic candidates, or choose **Edit coordinates manually** and drag individual unit/waypoint markers.

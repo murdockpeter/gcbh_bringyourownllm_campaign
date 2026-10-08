@@ -1,0 +1,1236 @@
+{
+  "schema_version": 1,
+  "scenario_id": "baltic_shield_001",
+  "scenario_name": "Operation Baltic Shield - First Contact",
+  "theater_id": "baltic_latvia_estonia",
+  "date_time": "2026-06-15T07:30:00+03:00",
+  "playable_side": "blue",
+  "alliances": {
+    "blue": {
+      "name": "NATO",
+      "countries": [
+        "Germany",
+        "UK",
+        "USA",
+        "Latvia",
+        "Estonia"
+      ]
+    },
+    "red": {
+      "name": "Russia",
+      "countries": [
+        "Russia"
+      ]
+    }
+  },
+  "rng_seed": "baltic-shield-turn-1",
+  "archetype": "convoy_escort",
+  "premise": "FICTIONAL ALTERNATE TIMELINE, June 2026. Ten days of crisis allowed precautionary deployments. A maritime confrontation escalated into reciprocal weapons fire overnight. NATO must preserve a supply ship and forward air operations against a limited Russian air-maritime attack off Latvia. No land invasion has begun. This is a bounded game force package, not a claim about actual deployments.",
+  "blue_intent": "Preserve Baltic Sustainment 1 and both forward air bases. Defeat two strike aircraft and one forward corvette. Combine CAP, ship defenses and shore SAM cover. SEAD and precision-strike aircraft begin on hold for player tasking; attack only designated coastal threats when needed.",
+  "red_intent": "Disrupt NATO sustainment and forward air operations with two maritime-strike and two land-strike aircraft, fighter cover and two forward corvettes. A frigate supports the naval force; coastal defenses protect the southern approaches.",
+  "escalation_constraints": [
+    "Conventional weapons only.",
+    "NATO shore engagement is restricted by commander intent to Russian Coastal Battery, Russian Coastal Radar, Russian SAM Sector and Russian Point Defense. Briefing guidance is not an engine-enforced whitelist.",
+    "Russian Air Base and civilian infrastructure are not NATO victory targets.",
+    "Ground maneuver formations and occupation of Latvia or Estonia are outside this opening air-maritime battle."
+  ],
+  "duration_hours": 4,
+  "sea_state": 3,
+  "force_policy": {
+    "blue": {
+      "max_units": 20,
+      "require": [
+        "NATO Air Defense Frigate",
+        "NATO ASW Frigate",
+        "Baltic Sustainment 1",
+        "Amari Air Base",
+        "Lielvarde Air Base",
+        "Estonia SAM Detachment",
+        "Latvia SAM Detachment",
+        "Estonia Radar Post",
+        "Latvia Radar Post",
+        "Viper CAP 1",
+        "Viper CAP 2",
+        "Viper CAP 3",
+        "Viper CAP 4",
+        "Raven SEAD Strike 1",
+        "Falcon Precision Strike 1",
+        "Raven SEAD Strike 2",
+        "Falcon Precision Strike 2",
+        "Seeker MPA",
+        "Magic AEW",
+        "Shell Tanker"
+      ]
+    },
+    "red": {
+      "max_units": 16,
+      "require": [
+        "Russian Corvette 1",
+        "Russian Corvette 2",
+        "Russian Support Frigate",
+        "Russian Air Base",
+        "Russian SAM Sector",
+        "Russian Point Defense",
+        "Russian Coastal Radar",
+        "Russian Coastal Battery",
+        "Flanker CAP 1",
+        "Flanker CAP 2",
+        "Flanker CAP 3",
+        "Flanker CAP 4",
+        "Fencer Maritime 1",
+        "Fencer Strike 1",
+        "Fencer Maritime 2",
+        "Fencer Strike 2"
+      ]
+    }
+  },
+  "objectives": {
+    "protect": {
+      "blue": [
+        "Baltic Sustainment 1",
+        "Amari Air Base",
+        "Lielvarde Air Base"
+      ]
+    },
+    "protect_quantity": {
+      "blue": 3
+    },
+    "destroy_groups": {
+      "blue": [
+        {
+          "label": "Defeat the limited strike package",
+          "targets": [
+            "Fencer Maritime 1",
+            "Fencer Maritime 2",
+            "Fencer Strike 1",
+            "Fencer Strike 2"
+          ],
+          "quantity": 2
+        },
+        {
+          "label": "Break the forward corvette threat",
+          "targets": [
+            "Russian Corvette 1",
+            "Russian Corvette 2"
+          ],
+          "quantity": 1
+        }
+      ]
+    },
+    "destroy_quantity": {
+      "red": 1
+    }
+  },
+  "placement": {
+    "unit_positions": {
+      "blue": {
+        "NATO Air Defense Frigate": {
+          "lat": 56.25,
+          "lon": 20.25,
+          "altitude": 0,
+          "speed": 0
+        },
+        "NATO ASW Frigate": {
+          "lat": 56.3,
+          "lon": 20.05,
+          "altitude": 0,
+          "speed": 0
+        },
+        "Baltic Sustainment 1": {
+          "lat": 56.15,
+          "lon": 20.12,
+          "altitude": 0,
+          "speed": 0
+        },
+        "Amari Air Base": {
+          "lat": 59.26,
+          "lon": 24.21,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Lielvarde Air Base": {
+          "lat": 56.78,
+          "lon": 24.85,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Estonia SAM Detachment": {
+          "lat": 59.22,
+          "lon": 24.3,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Latvia SAM Detachment": {
+          "lat": 56.8,
+          "lon": 24.9,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Estonia Radar Post": {
+          "lat": 59.18,
+          "lon": 24.25,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Latvia Radar Post": {
+          "lat": 56.9,
+          "lon": 24.8,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Viper CAP 1": {
+          "lat": 56.58,
+          "lon": 20.9,
+          "altitude": 8000,
+          "speed": 0
+        },
+        "Viper CAP 2": {
+          "lat": 56.61,
+          "lon": 20.9,
+          "altitude": 8000,
+          "speed": 0
+        },
+        "Viper CAP 3": {
+          "lat": 58.49,
+          "lon": 23.9,
+          "altitude": 8000,
+          "speed": 0
+        },
+        "Viper CAP 4": {
+          "lat": 58.519999999999996,
+          "lon": 23.9,
+          "altitude": 8000,
+          "speed": 0
+        },
+        "Raven SEAD Strike 1": {
+          "lat": 56.589999999999996,
+          "lon": 23.4,
+          "altitude": 6500,
+          "speed": 0
+        },
+        "Falcon Precision Strike 1": {
+          "lat": 56.89,
+          "lon": 24,
+          "altitude": 6500,
+          "speed": 0
+        },
+        "Raven SEAD Strike 2": {
+          "lat": 56.629999999999995,
+          "lon": 23.4,
+          "altitude": 6500,
+          "speed": 0
+        },
+        "Falcon Precision Strike 2": {
+          "lat": 56.93,
+          "lon": 24,
+          "altitude": 6500,
+          "speed": 0
+        },
+        "Seeker MPA": {
+          "lat": 57.1,
+          "lon": 21.5,
+          "altitude": 5000,
+          "speed": 0
+        },
+        "Magic AEW": {
+          "lat": 57.3,
+          "lon": 23.8,
+          "altitude": 9500,
+          "speed": 0
+        },
+        "Shell Tanker": {
+          "lat": 57.8,
+          "lon": 24,
+          "altitude": 8500,
+          "speed": 0
+        }
+      },
+      "red": {
+        "Russian Corvette 1": {
+          "lat": 56.8,
+          "lon": 20.4,
+          "altitude": 0,
+          "speed": 0
+        },
+        "Russian Corvette 2": {
+          "lat": 57.1,
+          "lon": 20.5,
+          "altitude": 0,
+          "speed": 0
+        },
+        "Russian Support Frigate": {
+          "lat": 55.65,
+          "lon": 20.3,
+          "altitude": 0,
+          "speed": 0
+        },
+        "Russian Air Base": {
+          "lat": 54.77,
+          "lon": 20.4,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Russian SAM Sector": {
+          "lat": 54.85,
+          "lon": 20.8,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Russian Point Defense": {
+          "lat": 54.9,
+          "lon": 20.7,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Russian Coastal Radar": {
+          "lat": 54.9,
+          "lon": 20.2,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Russian Coastal Battery": {
+          "lat": 54.9,
+          "lon": 20.35,
+          "altitude": 10,
+          "speed": 0
+        },
+        "Flanker CAP 1": {
+          "lat": 55.589999999999996,
+          "lon": 21.700000000000003,
+          "altitude": 8500,
+          "speed": 0
+        },
+        "Flanker CAP 2": {
+          "lat": 55.629999999999995,
+          "lon": 21.6,
+          "altitude": 8500,
+          "speed": 0
+        },
+        "Flanker CAP 3": {
+          "lat": 55.669999999999995,
+          "lon": 21.700000000000003,
+          "altitude": 8500,
+          "speed": 0
+        },
+        "Flanker CAP 4": {
+          "lat": 55.709999999999994,
+          "lon": 21.6,
+          "altitude": 8500,
+          "speed": 0
+        },
+        "Fencer Maritime 1": {
+          "lat": 55.79,
+          "lon": 21.3,
+          "altitude": 1500,
+          "speed": 0
+        },
+        "Fencer Strike 1": {
+          "lat": 55.99,
+          "lon": 23.2,
+          "altitude": 1800,
+          "speed": 0
+        },
+        "Fencer Maritime 2": {
+          "lat": 55.83,
+          "lon": 21.3,
+          "altitude": 1500,
+          "speed": 0
+        },
+        "Fencer Strike 2": {
+          "lat": 56.03,
+          "lon": 23.2,
+          "altitude": 1800,
+          "speed": 0
+        }
+      }
+    },
+    "unit_routes": {
+      "blue": {
+        "NATO Air Defense Frigate": [
+          {
+            "lat": 56.775,
+            "lon": 20.25,
+            "altitude": 0,
+            "speed": 16
+          },
+          {
+            "lat": 57.3,
+            "lon": 20.25,
+            "altitude": 0,
+            "speed": 16
+          }
+        ],
+        "NATO ASW Frigate": [
+          {
+            "lat": 56.825,
+            "lon": 20.05,
+            "altitude": 0,
+            "speed": 16
+          },
+          {
+            "lat": 57.35,
+            "lon": 20.05,
+            "altitude": 0,
+            "speed": 16
+          }
+        ],
+        "Baltic Sustainment 1": [
+          {
+            "lat": 56.675,
+            "lon": 20.12,
+            "altitude": 0,
+            "speed": 14
+          },
+          {
+            "lat": 57.2,
+            "lon": 20.12,
+            "altitude": 0,
+            "speed": 14
+          }
+        ],
+        "Viper CAP 1": [
+          {
+            "lat": 56.7,
+            "lon": 20.7,
+            "altitude": 8000,
+            "speed": 420
+          },
+          {
+            "lat": 57.2,
+            "lon": 21.2,
+            "altitude": 8000,
+            "speed": 420
+          }
+        ],
+        "Viper CAP 2": [
+          {
+            "lat": 56.7,
+            "lon": 20.7,
+            "altitude": 8000,
+            "speed": 420
+          },
+          {
+            "lat": 57.2,
+            "lon": 21.2,
+            "altitude": 8000,
+            "speed": 420
+          }
+        ],
+        "Viper CAP 3": [
+          {
+            "lat": 58.6,
+            "lon": 24,
+            "altitude": 8000,
+            "speed": 420
+          },
+          {
+            "lat": 59.2,
+            "lon": 24.4,
+            "altitude": 8000,
+            "speed": 420
+          }
+        ],
+        "Viper CAP 4": [
+          {
+            "lat": 58.6,
+            "lon": 24,
+            "altitude": 8000,
+            "speed": 420
+          },
+          {
+            "lat": 59.2,
+            "lon": 24.4,
+            "altitude": 8000,
+            "speed": 420
+          }
+        ],
+        "Raven SEAD Strike 1": [
+          {
+            "lat": 56.6,
+            "lon": 23.3,
+            "altitude": 6500,
+            "speed": 360
+          },
+          {
+            "lat": 56.9,
+            "lon": 23.6,
+            "altitude": 6500,
+            "speed": 360
+          }
+        ],
+        "Falcon Precision Strike 1": [
+          {
+            "lat": 56.85,
+            "lon": 23.8,
+            "altitude": 6500,
+            "speed": 380
+          },
+          {
+            "lat": 57.1,
+            "lon": 24.2,
+            "altitude": 6500,
+            "speed": 380
+          }
+        ],
+        "Raven SEAD Strike 2": [
+          {
+            "lat": 56.6,
+            "lon": 23.3,
+            "altitude": 6500,
+            "speed": 360
+          },
+          {
+            "lat": 56.9,
+            "lon": 23.6,
+            "altitude": 6500,
+            "speed": 360
+          }
+        ],
+        "Falcon Precision Strike 2": [
+          {
+            "lat": 56.85,
+            "lon": 23.8,
+            "altitude": 6500,
+            "speed": 380
+          },
+          {
+            "lat": 57.1,
+            "lon": 24.2,
+            "altitude": 6500,
+            "speed": 380
+          }
+        ],
+        "Seeker MPA": [
+          {
+            "lat": 56.9,
+            "lon": 21.3,
+            "altitude": 5000,
+            "speed": 300
+          },
+          {
+            "lat": 57.300000000000004,
+            "lon": 21.7,
+            "altitude": 5000,
+            "speed": 300
+          }
+        ],
+        "Magic AEW": [
+          {
+            "lat": 57.099999999999994,
+            "lon": 23.6,
+            "altitude": 9500,
+            "speed": 300
+          },
+          {
+            "lat": 57.5,
+            "lon": 24,
+            "altitude": 9500,
+            "speed": 300
+          }
+        ],
+        "Shell Tanker": [
+          {
+            "lat": 57.599999999999994,
+            "lon": 23.8,
+            "altitude": 8500,
+            "speed": 300
+          },
+          {
+            "lat": 58,
+            "lon": 24.2,
+            "altitude": 8500,
+            "speed": 300
+          }
+        ]
+      },
+      "red": {
+        "Russian Corvette 1": [
+          {
+            "lat": 56.5,
+            "lon": 20.4,
+            "altitude": 0,
+            "speed": 18
+          },
+          {
+            "lat": 56.2,
+            "lon": 20.4,
+            "altitude": 0,
+            "speed": 18
+          }
+        ],
+        "Russian Corvette 2": [
+          {
+            "lat": 56.725,
+            "lon": 20.5,
+            "altitude": 0,
+            "speed": 18
+          },
+          {
+            "lat": 56.35,
+            "lon": 20.5,
+            "altitude": 0,
+            "speed": 18
+          }
+        ],
+        "Russian Support Frigate": [
+          {
+            "lat": 55.974999999999994,
+            "lon": 20.3,
+            "altitude": 0,
+            "speed": 18
+          },
+          {
+            "lat": 56.3,
+            "lon": 20.3,
+            "altitude": 0,
+            "speed": 18
+          }
+        ],
+        "Flanker CAP 1": [
+          {
+            "lat": 56,
+            "lon": 21.3,
+            "altitude": 8500,
+            "speed": 420
+          },
+          {
+            "lat": 56.6,
+            "lon": 21.5,
+            "altitude": 8500,
+            "speed": 420
+          }
+        ],
+        "Flanker CAP 2": [
+          {
+            "lat": 56,
+            "lon": 21.3,
+            "altitude": 8500,
+            "speed": 420
+          },
+          {
+            "lat": 56.6,
+            "lon": 21.5,
+            "altitude": 8500,
+            "speed": 420
+          }
+        ],
+        "Flanker CAP 3": [
+          {
+            "lat": 56,
+            "lon": 21.3,
+            "altitude": 8500,
+            "speed": 420
+          },
+          {
+            "lat": 56.6,
+            "lon": 21.5,
+            "altitude": 8500,
+            "speed": 420
+          }
+        ],
+        "Flanker CAP 4": [
+          {
+            "lat": 56,
+            "lon": 21.3,
+            "altitude": 8500,
+            "speed": 420
+          },
+          {
+            "lat": 56.6,
+            "lon": 21.5,
+            "altitude": 8500,
+            "speed": 420
+          }
+        ],
+        "Fencer Maritime 1": [
+          {
+            "lat": 56.25,
+            "lon": 20.8,
+            "altitude": 1500,
+            "speed": 420
+          },
+          {
+            "lat": 56.5,
+            "lon": 20.5,
+            "altitude": 1500,
+            "speed": 420
+          }
+        ],
+        "Fencer Strike 1": [
+          {
+            "lat": 56.5,
+            "lon": 24.1,
+            "altitude": 1800,
+            "speed": 420
+          },
+          {
+            "lat": 56.72,
+            "lon": 24.7,
+            "altitude": 1800,
+            "speed": 420
+          }
+        ],
+        "Fencer Maritime 2": [
+          {
+            "lat": 56.25,
+            "lon": 20.8,
+            "altitude": 1500,
+            "speed": 420
+          },
+          {
+            "lat": 56.5,
+            "lon": 20.5,
+            "altitude": 1500,
+            "speed": 420
+          }
+        ],
+        "Fencer Strike 2": [
+          {
+            "lat": 56.5,
+            "lon": 24.1,
+            "altitude": 1800,
+            "speed": 420
+          },
+          {
+            "lat": 56.72,
+            "lon": 24.7,
+            "altitude": 1800,
+            "speed": 420
+          }
+        ]
+      }
+    }
+  },
+  "variation": {
+    "position_jitter_nm": 0
+  },
+  "svp": "0.000000,1480.000000,20.000000,1475.000000,60.000000,1460.000000,150.000000,1470.000000,500.000000,1490.000000",
+  "aviation_support": {
+    "blue": {
+      "mode": "in_scenario",
+      "location": "Amari and Lielvarde; national support bases off map",
+      "reason": "Tactical aircraft can recover locally; AEW, tanker and MPA recovery is off map."
+    },
+    "red": {
+      "mode": "in_scenario",
+      "location": "Russian Air Base",
+      "reason": "Generic Kaliningrad recovery node."
+    }
+  },
+  "unit_directives": {
+    "blue": {
+      "NATO Air Defense Frigate": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": false
+      },
+      "NATO ASW Frigate": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": false
+      },
+      "Baltic Sustainment 1": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": false
+      },
+      "Amari Air Base": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": false
+      },
+      "Lielvarde Air Base": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": false
+      },
+      "Estonia SAM Detachment": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": false
+      },
+      "Latvia SAM Detachment": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": false
+      },
+      "Estonia Radar Post": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": false
+      },
+      "Latvia Radar Post": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": false
+      },
+      "Viper CAP 1": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true
+      },
+      "Viper CAP 2": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true
+      },
+      "Viper CAP 3": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true
+      },
+      "Viper CAP 4": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true
+      },
+      "Raven SEAD Strike 1": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "Falcon Precision Strike 1": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "Raven SEAD Strike 2": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "Falcon Precision Strike 2": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "Seeker MPA": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "Magic AEW": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      },
+      "Shell Tanker": {
+        "presence": "active",
+        "heading": 0,
+        "nav_loop": true,
+        "tasks": [
+          "Aircraft1",
+          "Nav"
+        ]
+      }
+    },
+    "red": {
+      "Russian Corvette 1": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Russian Corvette 2": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Russian Support Frigate": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Russian Air Base": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Russian SAM Sector": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Russian Point Defense": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Russian Coastal Radar": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Russian Coastal Battery": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Flanker CAP 1": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Flanker CAP 2": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Flanker CAP 3": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Flanker CAP 4": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Fencer Maritime 1": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Fencer Strike 1": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Fencer Maritime 2": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      },
+      "Fencer Strike 2": {
+        "presence": "active",
+        "heading": 315,
+        "nav_loop": false
+      }
+    }
+  },
+  "loadout_overrides": {
+    "Typhoon": [
+      {
+        "launcherId": 0,
+        "item": "ASRAAM",
+        "quantity": 2
+      },
+      {
+        "launcherId": 1,
+        "item": "AIM-120C7",
+        "quantity": 2
+      },
+      {
+        "launcherId": 3,
+        "item": "AIM-120C7",
+        "quantity": 4
+      },
+      {
+        "launcherId": 4,
+        "item": "1150 Liter Tank",
+        "quantity": 1
+      },
+      {
+        "launcherId": 5,
+        "item": "27mm BK27 27x145mm",
+        "quantity": 30
+      },
+      {
+        "launcherId": 6,
+        "item": "Chaff-1",
+        "quantity": 30
+      },
+      {
+        "launcherId": 7,
+        "item": "Flare-1",
+        "quantity": 30
+      }
+    ],
+    "Su-27": [
+      {
+        "launcherId": 0,
+        "item": "R-27R",
+        "quantity": 4
+      },
+      {
+        "launcherId": 1,
+        "item": "R-73M",
+        "quantity": 2
+      },
+      {
+        "launcherId": 2,
+        "item": "R-27R",
+        "quantity": 2
+      },
+      {
+        "launcherId": 3,
+        "item": "Chaff-1",
+        "quantity": 30
+      },
+      {
+        "launcherId": 4,
+        "item": "Flare-1",
+        "quantity": 30
+      }
+    ],
+    "Tornado ECR (Germany)": [
+      {
+        "launcherId": 0,
+        "item": "Chaff-1",
+        "quantity": 50
+      },
+      {
+        "launcherId": 1,
+        "item": "Flare-1",
+        "quantity": 50
+      },
+      {
+        "launcherId": 2,
+        "item": "IRIS-T",
+        "quantity": 1
+      },
+      {
+        "launcherId": 3,
+        "item": "IRIS-T",
+        "quantity": 1
+      },
+      {
+        "launcherId": 4,
+        "item": "330 gallon wing tank",
+        "quantity": 1
+      },
+      {
+        "launcherId": 5,
+        "item": "330 gallon wing tank",
+        "quantity": 1
+      },
+      {
+        "launcherId": 6,
+        "item": "AGM-88B",
+        "quantity": 1
+      },
+      {
+        "launcherId": 7,
+        "item": "AGM-88B",
+        "quantity": 1
+      }
+    ],
+    "Fencer Maritime 1": [
+      {
+        "launcherId": 0,
+        "item": "R-60",
+        "quantity": 2
+      },
+      {
+        "launcherId": 1,
+        "item": "Kh-59MK",
+        "quantity": 2
+      },
+      {
+        "launcherId": 4,
+        "item": "23mm AM-23",
+        "quantity": 6
+      },
+      {
+        "launcherId": 5,
+        "item": "Chaff-1",
+        "quantity": 30
+      },
+      {
+        "launcherId": 6,
+        "item": "Flare-1",
+        "quantity": 30
+      }
+    ],
+    "Fencer Strike 1": [
+      {
+        "launcherId": 0,
+        "item": "R-60",
+        "quantity": 2
+      },
+      {
+        "launcherId": 1,
+        "item": "3000 liter tank",
+        "quantity": 1
+      },
+      {
+        "launcherId": 2,
+        "item": "Kh-29T",
+        "quantity": 2
+      },
+      {
+        "launcherId": 3,
+        "item": "KAB-500L",
+        "quantity": 2
+      },
+      {
+        "launcherId": 4,
+        "item": "23mm AM-23",
+        "quantity": 6
+      },
+      {
+        "launcherId": 5,
+        "item": "Chaff-1",
+        "quantity": 30
+      },
+      {
+        "launcherId": 6,
+        "item": "Flare-1",
+        "quantity": 30
+      }
+    ],
+    "Fencer Maritime 2": [
+      {
+        "launcherId": 0,
+        "item": "R-60",
+        "quantity": 2
+      },
+      {
+        "launcherId": 1,
+        "item": "Kh-59MK",
+        "quantity": 2
+      },
+      {
+        "launcherId": 4,
+        "item": "23mm AM-23",
+        "quantity": 6
+      },
+      {
+        "launcherId": 5,
+        "item": "Chaff-1",
+        "quantity": 30
+      },
+      {
+        "launcherId": 6,
+        "item": "Flare-1",
+        "quantity": 30
+      }
+    ],
+    "Fencer Strike 2": [
+      {
+        "launcherId": 0,
+        "item": "R-60",
+        "quantity": 2
+      },
+      {
+        "launcherId": 1,
+        "item": "3000 liter tank",
+        "quantity": 1
+      },
+      {
+        "launcherId": 2,
+        "item": "Kh-29T",
+        "quantity": 2
+      },
+      {
+        "launcherId": 3,
+        "item": "KAB-500L",
+        "quantity": 2
+      },
+      {
+        "launcherId": 4,
+        "item": "23mm AM-23",
+        "quantity": 6
+      },
+      {
+        "launcherId": 5,
+        "item": "Chaff-1",
+        "quantity": 30
+      },
+      {
+        "launcherId": 6,
+        "item": "Flare-1",
+        "quantity": 30
+      }
+    ],
+    "P-8 MPA": [
+      {
+        "launcherId": 0,
+        "item": "Mk-46 Mod5",
+        "quantity": 4
+      },
+      {
+        "launcherId": 1,
+        "item": "AGM-84D Harpoon",
+        "quantity": 2
+      },
+      {
+        "launcherId": 6,
+        "item": "Chaff-1",
+        "quantity": 30
+      },
+      {
+        "launcherId": 7,
+        "item": "Flare-1",
+        "quantity": 30
+      }
+    ],
+    "K-300P Bastion-P": [
+      {
+        "launcherId": 0,
+        "item": "P-800 Oniks",
+        "quantity": 2
+      }
+    ]
+  },
+  "loadout_selections": {
+    "F-16C/D Block 50": "GB2E  2010"
+  },
+  "continuity_assertions": {
+    "required_counts": {
+      "blue": 20,
+      "red": 16
+    },
+    "required_loadout_totals": {
+      "Russian Coastal Battery": {
+        "P-800 Oniks": 2
+      }
+    },
+    "forbidden_tasks": {
+      "Raven SEAD Strike 1": [
+        "AutoAttack"
+      ],
+      "Raven SEAD Strike 2": [
+        "AutoAttack"
+      ],
+      "Falcon Precision Strike 1": [
+        "AutoAttack"
+      ],
+      "Falcon Precision Strike 2": [
+        "AutoAttack"
+      ],
+      "Seeker MPA": [
+        "AutoAttack"
+      ],
+      "Magic AEW": [
+        "AutoAttack"
+      ],
+      "Shell Tanker": [
+        "AutoAttack"
+      ]
+    }
+  }
+}

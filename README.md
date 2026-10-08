@@ -1,6 +1,6 @@
 # GCB Horizon Bring-Your-Own-LLM Campaign
 
-Scenario-development workspace and supporting desktop tools for a dynamic Global Conflict Blue: Horizon campaign centered on the Strait of Hormuz.
+Scenario-development workspace and supporting desktop tools for dynamic Global Conflict Blue: Horizon campaigns in the Strait of Hormuz and a prepared Baltic operational area near Latvia and Estonia.
 
 ## Contents
 
@@ -24,6 +24,10 @@ npm start
 Google Maps credentials are configured at runtime and stored outside the repository using Electron's operating-system-backed encryption. Do not commit API keys or a local GCB Horizon database.
 
 ## Generate a campaign mission
+
+The Baltic geography, database catalog and technical fixture are documented in [docs/baltic_operational_area.md](docs/baltic_operational_area.md). Run `npm run generate:baltic-setup` to regenerate its fixture.
+
+The first fictional Baltic combat mission, **Operation Baltic Shield - First Contact**, fields 20 NATO and 16 Russian units across air, maritime and shore-defense roles. See [the briefing and ORBAT](docs/operation_baltic_shield_briefing.md). Run `npm run generate:baltic-shield` to regenerate the mission.
 
 Mission Generator v2 turns persistent campaign state and a structured scenario seed into a validated GCB Horizon Python scenario plus a deterministic JSON manifest.
 

@@ -39,6 +39,14 @@ test('seed defaults are deterministic', () => {
   assert.equal(hashValue(normalizeSeed(baseSeed())), hashValue(normalizeSeed(baseSeed())));
 });
 
+test('seed validates complete theater-specific alliance definitions', () => {
+  const alliances = { blue: { name: 'NATO', countries: ['Germany', 'UK'] }, red: { name: 'Russia', countries: ['Russia'] } };
+  assert.deepEqual(normalizeSeed(baseSeed({ alliances })).alliances, alliances);
+  assert.throws(() => normalizeSeed(baseSeed({ alliances: { blue: alliances.blue } })), /validation failed/);
+  assert.throws(() => normalizeSeed(baseSeed({ alliances: { ...alliances, neutral: {} } })), /validation failed/);
+  assert.throws(() => normalizeSeed(baseSeed({ alliances: { ...alliances, red: { name: 'Russia', countries: [] } } })), /validation failed/);
+});
+
 test('unit directives validate staged hosts and supported presence states', () => {
   const seed = normalizeSeed(baseSeed({
     unit_directives: { blue: { 'Tiger 1': { presence: 'staged', host: 'Carrier', flight_deck_location: 2 } }, red: {} },
@@ -107,6 +115,7 @@ test('eligibility excludes destroyed, incapable, and critically damaged units', 
 test('role inference covers campaign platform families', () => {
   assert.equal(inferRole(baseUnit({ platform_class: 'Fort Victoria AOR' }), 'ship'), 'logistics');
   assert.equal(inferRole(baseUnit({ platform_class: 'KC-135R' }), 'air'), 'tanker');
+  assert.equal(inferRole(baseUnit({ unit_name: 'Magic AEW', platform_class: 'E-3C' }), 'air'), 'reconnaissance');
   assert.equal(inferRole(baseUnit({ platform_class: 'K-300P Bastion-P' }), 'ground'), 'coastal_strike');
 });
 

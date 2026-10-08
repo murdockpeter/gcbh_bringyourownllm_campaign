@@ -39,6 +39,8 @@
     <main class="workspace">
       <aside class="sidebar mission-panel">
         <div class="eyebrow">MISSION OVERVIEW</div>
+        <label class="field-label" for="area-select">Operational area</label>
+        <select id="area-select" aria-label="Operational area"><option value="">All areas</option></select>
         <h1 id="mission-name">Select a scenario</h1>
         <div id="mission-meta" class="meta-line"></div>
         <p id="mission-description" class="description"></p>
@@ -62,6 +64,7 @@
           </div>
         </div>
         <div class="map-tools">
+          <button id="view-area-button" class="button secondary" disabled>View full area</button>
           <label><input id="toggle-mask" type="checkbox" checked> GCBH safe-water mask</label>
           <label><input id="toggle-land" type="checkbox" checked> Real coastline</label>
           <label><input id="toggle-routes" type="checkbox" checked> Routes</label>

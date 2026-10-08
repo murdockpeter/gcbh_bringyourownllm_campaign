@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "theater_id": "baltic_latvia_estonia",
+  "planning_status": "Geography and technical readiness only; campaign forces, chronology and escalation remain undecided.",
+  "reference_year": 2026,
+  "center": {
+    "lat": 57.4,
+    "lon": 24
+  },
+  "ground_reference_nodes": [
+    {
+      "id": "amari",
+      "name": "Amari air base reference",
+      "country": "Estonia",
+      "lat": 59.26,
+      "lon": 24.21,
+      "usage": "Approximate geographic reference on land, not an exact facility placement or ship berth."
+    },
+    {
+      "id": "lielvarde",
+      "name": "Lielvarde air base reference",
+      "country": "Latvia",
+      "lat": 56.78,
+      "lon": 24.85,
+      "usage": "Approximate geographic reference on land, not an exact facility placement or ship berth."
+    },
+    {
+      "id": "siauliai",
+      "name": "Siauliai air base reference",
+      "country": "Lithuania",
+      "lat": 55.89,
+      "lon": 23.4,
+      "usage": "Approximate geographic reference on land, not an exact facility placement or ship berth."
+    },
+    {
+      "id": "kaliningrad_support",
+      "name": "Kaliningrad inland support reference",
+      "country": "Russia",
+      "lat": 54.77,
+      "lon": 20.4,
+      "usage": "Approximate geographic reference on land, not an exact facility placement or ship berth."
+    },
+    {
+      "id": "kronstadt",
+      "name": "Kronstadt naval support reference",
+      "country": "Russia",
+      "lat": 60,
+      "lon": 29.77,
+      "usage": "Approximate geographic reference on land, not an exact facility placement or ship berth."
+    },
+    {
+      "id": "riga",
+      "name": "Riga port reference",
+      "country": "Latvia",
+      "lat": 56.97,
+      "lon": 24.1,
+      "usage": "Approximate geographic reference on land, not an exact facility placement or ship berth."
+    },
+    {
+      "id": "tallinn",
+      "name": "Tallinn port reference",
+      "country": "Estonia",
+      "lat": 59.44,
+      "lon": 24.75,
+      "usage": "Approximate geographic reference on land, not an exact facility placement or ship berth."
+    },
+    {
+      "id": "ventspils",
+      "name": "Ventspils port reference",
+      "country": "Latvia",
+      "lat": 57.39,
+      "lon": 21.56,
+      "usage": "Approximate geographic reference on land, not an exact facility placement or ship berth."
+    },
+    {
+      "id": "liepaja",
+      "name": "Liepaja port reference",
+      "country": "Latvia",
+      "lat": 56.51,
+      "lon": 21.01,
+      "usage": "Approximate geographic reference on land, not an exact facility placement or ship berth."
+    }
+  ],
+  "surface_route_library": {
+    "eastern_baltic_northbound": [
+      {
+        "lat": 56,
+        "lon": 20.15,
+        "speed": 16
+      },
+      {
+        "lat": 57.2,
+        "lon": 20.15,
+        "speed": 16
+      },
+      {
+        "lat": 58.25,
+        "lon": 20.55,
+        "speed": 16
+      },
+      {
+        "lat": 58.8,
+        "lon": 21,
+        "speed": 16
+      }
+    ],
+    "irbe_eastbound": [
+      {
+        "lat": 57.8,
+        "lon": 20.8,
+        "speed": 12
+      },
+      {
+        "lat": 57.8,
+        "lon": 21.65,
+        "speed": 12
+      },
+      {
+        "lat": 57.815,
+        "lon": 22.3,
+        "speed": 12
+      },
+      {
+        "lat": 57.815,
+        "lon": 22.65,
+        "speed": 12
+      }
+    ],
+    "gulf_riga_patrol": [
+      {
+        "lat": 57.35,
+        "lon": 23.45,
+        "speed": 12
+      },
+      {
+        "lat": 57.5,
+        "lon": 23.6,
+        "speed": 12
+      }
+    ],
+    "gulf_finland_patrol": [
+      {
+        "lat": 59.73,
+        "lon": 25.3,
+        "speed": 12
+      },
+      {
+        "lat": 59.73,
+        "lon": 26.6,
+        "speed": 12
+      }
+    ]
+  },
+  "air_boxes": {
+    "blue": {
+      "south": 57,
+      "north": 58,
+      "west": 21,
+      "east": 23,
+      "altitude": 7500
+    },
+    "red": {
+      "south": 57,
+      "north": 58,
+      "west": 25,
+      "east": 27,
+      "altitude": 7500
+    }
+  },
+  "platform_catalog": [
+    {
+      "platform_class": "Arleigh Burke IIA DDGHM",
+      "present": true,
+      "domain": "ship",
+      "date_valid_setups_2026": [
+        "Burke A 2012"
+      ],
+      "default_launcher_count_2026": 12,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Type 45 DDG",
+      "present": true,
+      "domain": "ship",
+      "date_valid_setups_2026": [
+        "Type 45 2007"
+      ],
+      "default_launcher_count_2026": 5,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Sachsen FFGHM",
+      "present": true,
+      "domain": "ship",
+      "date_valid_setups_2026": [
+        "Sachsen 2006"
+      ],
+      "default_launcher_count_2026": 11,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Brandenburg FFGHM",
+      "present": true,
+      "domain": "ship",
+      "date_valid_setups_2026": [
+        "Brandenburg 2007"
+      ],
+      "default_launcher_count_2026": 10,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Fort Victoria AOR",
+      "present": true,
+      "domain": "ship",
+      "date_valid_setups_2026": [
+        "Fort Victoria AOR-1"
+      ],
+      "default_launcher_count_2026": 2,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Pr 20380 Steregushchiy",
+      "present": true,
+      "domain": "ship",
+      "date_valid_setups_2026": [
+        "Pr 20380 2007"
+      ],
+      "default_launcher_count_2026": 8,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Gotland",
+      "present": true,
+      "domain": "sub",
+      "date_valid_setups_2026": [
+        "Gotland-1"
+      ],
+      "default_launcher_count_2026": 8,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Typhoon",
+      "present": true,
+      "domain": "air",
+      "date_valid_setups_2026": [
+        "AW1",
+        "GB1",
+        "SM1"
+      ],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Gripen E",
+      "present": true,
+      "domain": "air",
+      "date_valid_setups_2026": [
+        "AW1 2019"
+      ],
+      "default_launcher_count_2026": 7,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "P-8 MPA",
+      "present": true,
+      "domain": "air",
+      "date_valid_setups_2026": [],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Su-27",
+      "present": true,
+      "domain": "air",
+      "date_valid_setups_2026": [],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Su-24M",
+      "present": true,
+      "domain": "air",
+      "date_valid_setups_2026": [],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "MiG-29",
+      "present": true,
+      "domain": "air",
+      "date_valid_setups_2026": [],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Airbase",
+      "present": true,
+      "domain": "ground",
+      "date_valid_setups_2026": [],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Airstrip (Russia)",
+      "present": true,
+      "domain": "ground",
+      "date_valid_setups_2026": [],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Generic Radar Post 170",
+      "present": true,
+      "domain": "ground",
+      "date_valid_setups_2026": [],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Generic Mobile Radar Post 170",
+      "present": true,
+      "domain": "ground",
+      "date_valid_setups_2026": [],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "K-300P Bastion-P",
+      "present": true,
+      "domain": "ground",
+      "date_valid_setups_2026": [
+        "SSC-4(6)-1"
+      ],
+      "default_launcher_count_2026": 1,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "Pantsir-S1",
+      "present": true,
+      "domain": "ground",
+      "date_valid_setups_2026": [],
+      "default_launcher_count_2026": 0,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    },
+    {
+      "platform_class": "S-400 Triumf",
+      "present": true,
+      "domain": "ground",
+      "date_valid_setups_2026": [
+        "S-400 2013"
+      ],
+      "default_launcher_count_2026": 4,
+      "usage": "Database candidate only; not evidence of actual regional deployment or national inventory."
+    }
+  ],
+  "environment": {
+    "sea_state": "Choose per mission; technical fixture uses 3.",
+    "svp": "Technical placeholder only. A seasonal Baltic sound-speed profile must be chosen before ASW scenario design.",
+    "ice": "No ice simulation policy selected.",
+    "bathymetry": "Not modeled by the water mask. Submarine depths require separate review."
+  },
+  "campaign_decisions_pending": [
+    "Historical or fictional date and season",
+    "Initial NATO and Russian forces and arrival windows",
+    "Starting diplomatic state and executable ROE policy",
+    "Civilian traffic, infrastructure and incident attribution",
+    "Logistics budgets, campaign turn length and manual after-action process"
+  ],
+  "sources": [
+    {
+      "title": "NATO Baltic Sentry launch, 14 January 2025",
+      "url": "https://www.nato.int/en/news-and-events/articles/news/2025/01/14/nato-launches-baltic-sentry-to-increase-critical-infrastructure-security"
+    },
+    {
+      "title": "NATO Baltic Air Policing",
+      "url": "https://ac.nato.int/missions/air-policing/baltics"
+    },
+    {
+      "title": "Natural Earth coastline dataset used by this workspace",
+      "url": "https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_10m_land.geojson"
+    }
+  ]
+}

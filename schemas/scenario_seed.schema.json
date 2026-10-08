@@ -15,6 +15,10 @@
     "theater_id": { "type": "string", "minLength": 1 },
     "date_time": { "type": "string", "format": "date-time" },
     "playable_side": { "enum": ["blue", "red"] },
+    "alliances": {
+      "type": "object", "additionalProperties": false, "required": ["blue", "red"],
+      "properties": { "blue": { "$ref": "#/$defs/alliance" }, "red": { "$ref": "#/$defs/alliance" } }
+    },
     "rng_seed": { "type": ["string", "number"] },
     "archetype": {
       "enum": [
@@ -62,6 +66,13 @@
     "variation": { "type": "object" }
   },
   "$defs": {
+    "alliance": {
+      "type": "object", "additionalProperties": false, "required": ["name", "countries"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "countries": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
     "launcherLoadout": {
       "type": "array",
       "minItems": 1,
